@@ -45,6 +45,8 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, header_bar);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, introspection_tree_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_box);
+
+  g_type_ensure (DSPY_TYPE_TREE_VIEW);
 }
 
 static GtkWidget *

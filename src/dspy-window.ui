@@ -46,25 +46,11 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <child>
-              <object class="GtkTreeView" id="introspection_tree_view">
+              <object class="DspyTreeView" id="introspection_tree_view">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection"/>
-                </child>
-                <child>
-                  <object class="GtkTreeViewColumn">
-                    <property name="title" translatable="yes">Object Path</property>
-                    <property name="visible">true</property>
-                    <child>
-                      <object class="GtkCellRendererText">
-                        <property name="xalign">0.0</property>
-                      </object>
-                      <attributes>
-                        <attribute name="markup">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
                 </child>
               </object>
             </child>
