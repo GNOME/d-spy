@@ -187,6 +187,8 @@ gint                    _dspy_interface_info_compare  (const DspyInterfaceInfo  
 void                    _dspy_name_clear_pid          (DspyName                 *name);
 void                    _dspy_name_refresh_pid        (DspyName                 *name,
                                                        GDBusConnection          *connection);
+void                    _dspy_name_refresh_owner      (DspyName                 *name,
+                                                       GDBusConnection          *connection);
 void                    _dspy_name_set_owner          (DspyName                 *self,
                                                        const gchar              *owner);
 void                    _dspy_name_set_activatable    (DspyName                 *name,

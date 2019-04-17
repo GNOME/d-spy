@@ -339,6 +339,61 @@ _dspy_name_refresh_pid (DspyName        *self,
                           g_object_ref (self));
 }
 
+static void
+dspy_name_get_owner_cb (GObject      *object,
+                        GAsyncResult *result,
+                        gpointer      user_data)
+{
+  GDBusConnection *connection = (GDBusConnection *)object;
+  g_autoptr(DspyName) self = user_data;
+  g_autoptr(GError) error = NULL;
+  g_autoptr(GVariant) reply = NULL;
+  const gchar *owner = NULL;
+
+  g_assert (G_IS_DBUS_CONNECTION (connection));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (DSPY_IS_NAME (self));
+
+  if (!(reply = g_dbus_connection_call_finish (connection, result, &error)))
+    return;
+
+  g_variant_get (reply, "(&s)", &owner);
+
+  if (g_strcmp0 (owner, self->owner) != 0)
+    {
+      g_free (self->owner);
+      self->owner = g_strdup (owner);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_OWNER]);
+    }
+}
+
+void
+_dspy_name_refresh_owner (DspyName        *self,
+                          GDBusConnection *connection)
+{
+  g_return_if_fail (DSPY_IS_NAME (self));
+  g_return_if_fail (G_IS_DBUS_CONNECTION (connection));
+
+  g_clear_pointer (&self->owner, g_free);
+
+  /* If the name is already a :0.123 style name, that's the owner */
+  if (self->name[0] == ':')
+    return;
+
+  g_dbus_connection_call (connection,
+                          "org.freedesktop.DBus",
+                          "/org/freedesktop/DBus",
+                          "org.freedesktop.DBus",
+                          "GetNameOwner",
+                          g_variant_new ("(s)", self->name),
+                          G_VARIANT_TYPE ("(s)"),
+                          G_DBUS_CALL_FLAGS_NONE,
+                          -1,
+                          NULL,
+                          dspy_name_get_owner_cb,
+                          g_object_ref (self));
+}
+
 /**
  * dspy_name_get_connection:
  *

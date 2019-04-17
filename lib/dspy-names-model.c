@@ -127,7 +127,10 @@ dspy_names_model_add_names (DspyNamesModel      *self,
         }
 
       name = dspy_name_new (self->connection, names[i], is_activatable);
+
       _dspy_name_refresh_pid (name, bus);
+      _dspy_name_refresh_owner (name, bus);
+
       iter = g_sequence_insert_sorted (self->items,
                                        g_steal_pointer (&name),
                                        (GCompareDataFunc) dspy_name_compare,
