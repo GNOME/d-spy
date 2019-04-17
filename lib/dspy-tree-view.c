@@ -36,6 +36,21 @@ dspy_tree_view_new (void)
 }
 
 static void
+dspy_tree_view_row_activated (GtkTreeView       *view,
+                              GtkTreePath       *path,
+                              GtkTreeViewColumn *column)
+{
+  g_assert (GTK_IS_TREE_VIEW (view));
+  g_assert (path != NULL);
+  g_assert (!column || GTK_IS_TREE_VIEW_COLUMN (column));
+
+  if (gtk_tree_view_row_expanded (view, path))
+    gtk_tree_view_collapse_row (view, path);
+  else
+    gtk_tree_view_expand_row (view, path, FALSE);
+}
+
+static void
 dspy_tree_view_row_expanded (GtkTreeView *view,
                              GtkTreeIter *iter,
                              GtkTreePath *path)
@@ -86,6 +101,7 @@ dspy_tree_view_class_init (DspyTreeViewClass *klass)
 {
   GtkTreeViewClass *tree_view_class = GTK_TREE_VIEW_CLASS (klass);
 
+  tree_view_class->row_activated = dspy_tree_view_row_activated;
   tree_view_class->row_expanded = dspy_tree_view_row_expanded;
 }
 
