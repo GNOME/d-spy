@@ -31,6 +31,7 @@ struct _DspyConnection
   GCancellable    *cancellable;
   GDBusConnection *connection;
   gchar           *address;
+  gchar           *connected_address;
   GBusType         bus_type;
 };
 
@@ -86,6 +87,8 @@ dspy_connection_finalize (GObject *object)
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
   g_clear_object (&self->connection);
+  g_clear_pointer (&self->address, g_free);
+  g_clear_pointer (&self->connected_address, g_free);
 
   G_OBJECT_CLASS (dspy_connection_parent_class)->finalize (object);
 }
@@ -207,7 +210,13 @@ dspy_connection_get_address (DspyConnection *self)
 {
   g_return_val_if_fail (DSPY_IS_CONNECTION (self), NULL);
 
-  return self->address;
+  if (self->address)
+    return self->address;
+
+  if (self->connected_address)
+    return self->connected_address;
+
+  return NULL;
 }
 
 GBusType
@@ -274,20 +283,28 @@ dspy_connection_open_async (DspyConnection      *self,
       return;
     }
 
-  if (self->bus_type != G_BUS_TYPE_NONE)
-    g_bus_get (self->bus_type,
-               cancellable,
-               dspy_connection_open_bus_cb,
-               g_steal_pointer (&task));
-  else
-    g_dbus_connection_new_for_address (self->address,
-                                       (G_DBUS_CONNECTION_FLAGS_MESSAGE_BUS_CONNECTION |
-                                        G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_CLIENT),
-                                       NULL,
-                                       cancellable,
-                                       dspy_connection_open_address_cb,
-                                       g_steal_pointer (&task));
+  g_clear_pointer (&self->connected_address, g_free);
 
+  if (self->bus_type != G_BUS_TYPE_NONE)
+    {
+      g_bus_get (self->bus_type,
+                 cancellable,
+                 dspy_connection_open_bus_cb,
+                 g_steal_pointer (&task));
+      self->connected_address = g_dbus_address_get_for_bus_sync (self->bus_type,
+                                                                 cancellable,
+                                                                 NULL);
+    }
+  else
+    {
+      g_dbus_connection_new_for_address (self->address,
+                                         (G_DBUS_CONNECTION_FLAGS_MESSAGE_BUS_CONNECTION |
+                                          G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_CLIENT),
+                                         NULL,
+                                         cancellable,
+                                         dspy_connection_open_address_cb,
+                                         g_steal_pointer (&task));
+    }
 }
 
 /**
