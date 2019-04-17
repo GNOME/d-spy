@@ -20,9 +20,16 @@
 
 #define G_LOG_DOMAIN "dspy-node"
 
+#include <errno.h>
 #include <glib/gi18n.h>
 
 #include "dspy-private.h"
+
+#define LPAREN  "<span fgalpha='30000'>(</span>"
+#define RPAREN  "<span fgalpha='30000'>)</span>"
+#define ARROW   "<span fgalpha='20000'>↦</span>"
+#define BOLD(s) "<span weight='bold'>" s "</span>"
+#define DIM(s)  "<span fgalpha='40000'>" s "</span>"
 
 /*
  * This file contains an alternate GDBusNodeInfo hierarchy that we can use
@@ -384,6 +391,122 @@ _dspy_node_walk (DspyNode *node,
     }
 }
 
+static gchar *
+_dspy_property_info_to_string (DspyPropertyInfo *info)
+{
+  g_autofree gchar *sig = NULL;
+  const gchar *rw;
+
+  g_assert (DSPY_IS_NODE (info));
+  g_assert (info->kind == DSPY_NODE_KIND_PROPERTY);
+
+  sig = _dspy_signature_humanize (info->signature);
+
+  if (info->flags == (G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE | G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE))
+    rw = _("read/write");
+  else if (info->flags  & G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE)
+    rw = _("write-only");
+  else if (info->flags  & G_DBUS_PROPERTY_INFO_FLAGS_READABLE)
+    rw = _("read-only");
+  else
+    rw = "";
+
+  return g_strdup_printf ("%s "ARROW" "BOLD(DIM("%s"))" "LPAREN DIM("%s") RPAREN,
+                          info->name, sig, rw);
+}
+
+static gboolean
+arg_name_is_generated (const gchar *str)
+{
+  if (str == NULL)
+    return TRUE;
+
+  if (g_str_has_prefix (str, "arg_"))
+    {
+      gchar *endptr = NULL;
+      gint64 val;
+
+      str += strlen ("arg_");
+      errno = 0;
+      val = g_ascii_strtoll (str, &endptr, 10);
+
+      if (val >= 0 && errno == 0 && *endptr == 0)
+        return TRUE;
+    }
+
+  return FALSE;
+}
+
+static gchar *
+_dspy_method_info_to_string (DspyMethodInfo *info)
+{
+  GString *str;
+
+  g_assert (DSPY_IS_NODE (info));
+  g_assert (info->kind == DSPY_NODE_KIND_METHOD);
+
+  str = g_string_new (info->name);
+  g_string_append (str, " "LPAREN);
+
+  for (const GList *iter = info->in_args.head; iter; iter = iter->next)
+    {
+      DspyArgInfo *arg = iter->data;
+      g_autofree gchar *sig = _dspy_signature_humanize (arg->signature);
+
+      if (iter->prev != NULL)
+        g_string_append (str, ", ");
+      g_string_append_printf (str, BOLD(DIM("%s")), sig);
+      if (!arg_name_is_generated (arg->name))
+        g_string_append_printf (str, DIM(" %s"), arg->name);
+    }
+
+  g_string_append (str, RPAREN" "ARROW" "LPAREN);
+
+  for (const GList *iter = info->out_args.head; iter; iter = iter->next)
+    {
+      DspyArgInfo *arg = iter->data;
+      g_autofree gchar *sig = _dspy_signature_humanize (arg->signature);
+
+      if (iter->prev != NULL)
+        g_string_append (str, ", ");
+      g_string_append_printf (str, BOLD(DIM("%s")), sig);
+      if (!arg_name_is_generated (arg->name))
+        g_string_append_printf (str, DIM(" %s"), arg->name);
+    }
+
+  g_string_append (str, RPAREN);
+
+  return g_string_free (str, FALSE);
+}
+
+static gchar *
+_dspy_signal_info_to_string (DspySignalInfo *info)
+{
+  GString *str;
+
+  g_assert (DSPY_IS_NODE (info));
+  g_assert (info->kind == DSPY_NODE_KIND_SIGNAL);
+
+  str = g_string_new (info->name);
+  g_string_append (str, " "LPAREN);
+
+  for (const GList *iter = info->args.head; iter; iter = iter->next)
+    {
+      DspyArgInfo *arg = iter->data;
+      g_autofree gchar *sig = _dspy_signature_humanize (arg->signature);
+
+      if (iter->prev != NULL)
+        g_string_append (str, ", ");
+      g_string_append_printf (str, BOLD(DIM("%s")), sig);
+      if (!arg_name_is_generated (arg->name))
+        g_string_append_printf (str, DIM(" %s"), arg->name);
+    }
+
+  g_string_append (str, RPAREN);
+
+  return g_string_free (str, FALSE);
+}
+
 gchar *
 _dspy_node_get_text (DspyNode *node)
 {
@@ -405,19 +528,19 @@ _dspy_node_get_text (DspyNode *node)
       return g_strdup (_("Methods"));
 
     case DSPY_NODE_KIND_METHOD:
-      return g_strdup (node->method.name);
+      return _dspy_method_info_to_string (&node->method);
 
     case DSPY_NODE_KIND_PROPERTIES:
       return g_strdup (_("Properties"));
 
     case DSPY_NODE_KIND_PROPERTY:
-      return g_strdup (node->property.name);
+      return _dspy_property_info_to_string (&node->property);
 
     case DSPY_NODE_KIND_SIGNALS:
       return g_strdup (_("Signals"));
 
     case DSPY_NODE_KIND_SIGNAL:
-      return g_strdup (node->signal.name);
+      return _dspy_signal_info_to_string (&node->signal);
 
     default:
       g_return_val_if_reached (NULL);
