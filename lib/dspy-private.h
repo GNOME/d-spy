@@ -192,5 +192,6 @@ void                    _dspy_name_set_owner          (DspyName                 
 void                    _dspy_name_set_activatable    (DspyName                 *name,
                                                        gboolean                  is_activatable);
 DspyIntrospectionModel *_dspy_introspection_model_new (DspyName                 *name);
+gchar                  *_dspy_signature_humanize      (const gchar              *signature);
 
 G_END_DECLS

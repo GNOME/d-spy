@@ -5,6 +5,7 @@ libdspy_sources = [
   'dspy-name-row.c',
   'dspy-names-model.c',
   'dspy-node.c',
+  'dspy-signature.c',
 ]
 
 libdspy_deps = [
