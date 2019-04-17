@@ -280,6 +280,28 @@ dspy_introspection_model_init_introspect_cb (GObject      *object,
     g_task_return_boolean (state->task, TRUE);
 }
 
+static gboolean
+has_node_with_path (DspyIntrospectionModel *self,
+                    const gchar            *path)
+{
+  g_assert (DSPY_IS_INTROSPECTION_MODEL (self));
+  g_assert (path != NULL);
+
+  for (const GList *iter = self->root->nodes.head; iter; iter = iter->next)
+    {
+      const DspyNode *node = iter->data;
+
+      g_assert (node != NULL);
+      g_assert (DSPY_IS_NODE (node));
+      g_assert (node->any.kind == DSPY_NODE_KIND_NODE);
+
+      if (g_strcmp0 (path, node->node.path) == 0)
+        return TRUE;
+    }
+
+  return FALSE;
+}
+
 static void
 dspy_introspection_model_introspect (GTask           *task,
                                      GDBusConnection *connection,
@@ -298,6 +320,10 @@ dspy_introspection_model_introspect (GTask           *task,
 
   g_assert (G_IS_TASK (task));
   g_assert (n_active != NULL);
+
+  /* If we already have this path, then ignore the suplimental query */
+  if (has_node_with_path (self, path))
+    return;
 
   (*n_active)++;
 
