@@ -24,6 +24,7 @@
 
 # include "dspy-connection.h"
 # include "dspy-introspection-model.h"
+# include "dspy-method-invocation.h"
 # include "dspy-name.h"
 # include "dspy-name-marquee.h"
 # include "dspy-name-row.h"
