@@ -32,6 +32,7 @@ struct _DspyWindow
   GtkHeaderBar          *header_bar;
   GtkTreeView           *introspection_tree_view;
   GtkListBox            *names_list_box;
+  GtkButton             *refresh_button;
 };
 
 G_DEFINE_TYPE (DspyWindow, dspy_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -45,6 +46,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, header_bar);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, introspection_tree_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_box);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, refresh_button);
 
   g_type_ensure (DSPY_TYPE_TREE_VIEW);
 }
@@ -135,6 +137,19 @@ name_row_activated_cb (DspyWindow  *self,
 }
 
 static void
+refresh_button_clicked_cb (DspyWindow *self,
+                           GtkButton  *button)
+{
+  GtkListBoxRow *row;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (GTK_IS_BUTTON (button));
+
+  if ((row = gtk_list_box_get_selected_row (self->names_list_box)))
+    name_row_activated_cb (self, DSPY_NAME_ROW (row), self->names_list_box);
+}
+
+static void
 dspy_window_init (DspyWindow *self)
 {
   g_autoptr(DspyConnection) conn = dspy_connection_new_for_bus (G_BUS_TYPE_SESSION);
@@ -149,6 +164,12 @@ dspy_window_init (DspyWindow *self)
   g_signal_connect_object (self->names_list_box,
                            "row-activated",
                            G_CALLBACK (name_row_activated_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->refresh_button,
+                           "clicked",
+                           G_CALLBACK (refresh_button_clicked_cb),
                            self,
                            G_CONNECT_SWAPPED);
 }
