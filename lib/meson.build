@@ -2,6 +2,7 @@ libdspy_sources = [
   'dspy-connection.c',
   'dspy-introspection-model.c',
   'dspy-name.c',
+  'dspy-name-marquee.c',
   'dspy-name-row.c',
   'dspy-names-model.c',
   'dspy-node.c',
@@ -12,6 +13,7 @@ libdspy_sources = [
 libdspy_deps = [
   libgio_dep,
   libgtk_dep,
+  libdazzle_dep,
 ]
 
 libdspy_sources += gnome.compile_resources('libdspy-resources', 'libdspy.gresource.xml',

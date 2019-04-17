@@ -1,4 +1,4 @@
-/* dspy.h
+/* dspy-name-marquee.h
  *
  * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
@@ -20,14 +20,19 @@
 
 #pragma once
 
-#define DSPY_INSIDE
+#include <gtk/gtk.h>
 
-# include "dspy-connection.h"
-# include "dspy-introspection-model.h"
-# include "dspy-name.h"
-# include "dspy-name-marquee.h"
-# include "dspy-name-row.h"
-# include "dspy-names-model.h"
-# include "dspy-tree-view.h"
+#include "dspy-name.h"
 
-#undef DSPY_INSIDE
+G_BEGIN_DECLS
+
+#define DSPY_TYPE_NAME_MARQUEE (dspy_name_marquee_get_type())
+
+G_DECLARE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, DSPY, NAME_MARQUEE, GtkBin)
+
+GtkWidget *dspy_name_marquee_new      (void);
+DspyName  *dspy_name_marquee_get_name (DspyNameMarquee *self);
+void       dspy_name_marquee_set_name (DspyNameMarquee *self,
+                                       DspyName        *name);
+
+G_END_DECLS
