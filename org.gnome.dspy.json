@@ -36,6 +36,19 @@
     ],
     "modules": [
         {
+            "name" : "libdazzle",
+            "buildsystem" : "meson",
+            "cleanup" : [
+                "/bin"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libdazzle.git"
+                }
+            ]
+        },
+        {
             "name": "dspy",
             "builddir": true,
             "buildsystem": "meson",
