@@ -1,0 +1,7 @@
+data/org.gnome.dspy.desktop.in
+data/org.gnome.dspy.appdata.xml.in
+data/org.gnome.dspy.gschema.xml
+src/dspy-window.ui
+src/main.c
+src/dspy-window.c
+
