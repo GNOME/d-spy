@@ -1,4 +1,4 @@
-/* dspy.h
+/* dspy-tree-view.h
  *
  * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
@@ -20,13 +20,22 @@
 
 #pragma once
 
-#define DSPY_INSIDE
+#include <gtk/gtk.h>
 
-# include "dspy-connection.h"
-# include "dspy-introspection-model.h"
-# include "dspy-name.h"
-# include "dspy-name-row.h"
-# include "dspy-names-model.h"
-# include "dspy-tree-view.h"
+G_BEGIN_DECLS
 
-#undef DSPY_INSIDE
+#define DSPY_TYPE_TREE_VIEW (dspy_tree_view_get_type())
+
+G_DECLARE_DERIVABLE_TYPE (DspyTreeView, dspy_tree_view, DSPY, TREE_VIEW, GtkTreeView)
+
+struct _DspyTreeViewClass
+{
+  GtkTreeViewClass parent_class;
+
+  /*< private >*/
+  gpointer _reserved[8];
+};
+
+GtkWidget *dspy_tree_view_new (void);
+
+G_END_DECLS

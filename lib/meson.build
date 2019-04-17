@@ -6,6 +6,7 @@ libdspy_sources = [
   'dspy-names-model.c',
   'dspy-node.c',
   'dspy-signature.c',
+  'dspy-tree-view.c',
 ]
 
 libdspy_deps = [
