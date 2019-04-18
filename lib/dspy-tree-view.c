@@ -65,11 +65,30 @@ dspy_tree_view_selection_changed (DspyTreeView     *self,
       if (node->any.kind == DSPY_NODE_KIND_METHOD)
         {
           invocation = dspy_method_invocation_new ();
+          dspy_method_invocation_set_interface (invocation, _dspy_node_get_interface (node));
           dspy_method_invocation_set_method (invocation, node->method.name);
+
+          if (node->method.in_args.length == 0)
+            dspy_method_invocation_set_parameters (invocation, g_variant_new ("()"));
+        }
+      else if (node->any.kind == DSPY_NODE_KIND_PROPERTY)
+        {
+          const gchar *iface = _dspy_node_get_interface (node);
+
+          invocation = dspy_method_invocation_new ();
+          dspy_method_invocation_set_interface (invocation, "org.freedesktop.DBus.Properties");
+          dspy_method_invocation_set_method (invocation, "Get");
+          dspy_method_invocation_set_signature (invocation, "ss");
+          dspy_method_invocation_set_reply_signature (invocation, "v");
+          dspy_method_invocation_set_parameters (invocation,
+                                                 g_variant_new ("(ss)", iface, node->property.name));
         }
 
       if (invocation != NULL)
-        dspy_method_invocation_set_name (invocation, name);
+        {
+          dspy_method_invocation_set_object_path (invocation, _dspy_node_get_object_path (node));
+          dspy_method_invocation_set_name (invocation, name);
+        }
 
       g_signal_emit (self, signals [METHOD_ACTIVATED], 0, invocation);
     }
