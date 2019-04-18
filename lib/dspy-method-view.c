@@ -115,11 +115,29 @@ dspy_method_view_execute_cb (GObject      *object,
   gtk_button_set_label (priv->button, _("Execute"));
 }
 
+static GVariant *
+get_variant_for_text_buffer (GtkTextBuffer       *buffer,
+                             const GVariantType  *type,
+                             GError             **error)
+{
+  g_autofree gchar *text = NULL;
+  GtkTextIter begin, end;
+
+  g_assert (GTK_IS_TEXT_BUFFER (buffer));
+
+  gtk_text_buffer_get_bounds (buffer, &begin, &end);
+  text = gtk_text_buffer_get_text (buffer, &begin, &end, TRUE);
+  return g_variant_parse (type, text, NULL, NULL, error);
+}
+
 static void
 dspy_method_view_button_clicked_cb (DspyMethodView *self,
                                     GtkButton      *button)
 {
   DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
+  g_autoptr(GVariant) params = NULL;
+  g_autoptr(GError) error = NULL;
+  const gchar *signature;
 
   g_assert (DSPY_IS_METHOD_VIEW (self));
   g_assert (GTK_IS_BUTTON (button));
@@ -136,6 +154,18 @@ dspy_method_view_button_clicked_cb (DspyMethodView *self,
 
   g_assert (priv->busy == FALSE);
   g_assert (priv->cancellable == NULL);
+
+  signature = dspy_method_invocation_get_signature (priv->invocation);
+
+  if (!(params = get_variant_for_text_buffer (priv->buffer_params,
+                                              signature ? G_VARIANT_TYPE (signature) : NULL,
+                                              &error)))
+    {
+      gtk_text_buffer_set_text (priv->buffer_reply, error->message, -1);
+      return;
+    }
+
+  dspy_method_invocation_set_parameters (priv->invocation, params);
 
   priv->busy = TRUE;
   priv->cancellable = g_cancellable_new ();
