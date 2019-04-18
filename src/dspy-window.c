@@ -141,6 +141,8 @@ name_row_activated_cb (DspyWindow  *self,
   gtk_tree_view_set_model (self->introspection_tree_view, NULL);
   dspy_name_marquee_set_name (self->name_marquee, name);
 
+  gtk_revealer_set_reveal_child (self->method_revealer, FALSE);
+
   dspy_name_introspect_async (name,
                               self->cancellable,
                               dspy_window_introspect_cb,
@@ -174,10 +176,18 @@ method_activated_cb (DspyWindow           *self,
       dspy_method_view_set_invocation (self->method_view, invocation);
       gtk_revealer_set_reveal_child (self->method_revealer, TRUE);
     }
-  else
-    {
-      gtk_revealer_set_reveal_child (self->method_revealer, FALSE);
-    }
+}
+
+static void
+notify_child_revealed_cb (DspyWindow  *self,
+                          GParamSpec  *pspec,
+                          GtkRevealer *revealer)
+{
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (GTK_IS_REVEALER (revealer));
+
+  if (!gtk_revealer_get_child_revealed (revealer))
+    dspy_method_view_set_invocation (self->method_view, NULL);
 }
 
 static void
@@ -201,6 +211,12 @@ dspy_window_init (DspyWindow *self)
   g_signal_connect_object (self->refresh_button,
                            "clicked",
                            G_CALLBACK (refresh_button_clicked_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->method_revealer,
+                           "notify::child-revealed",
+                           G_CALLBACK (notify_child_revealed_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
