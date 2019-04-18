@@ -71,7 +71,7 @@ variant_to_string_transform (GBinding     *binding,
   if (v != NULL)
     g_value_take_string (to_value, g_variant_print (v, FALSE));
   else
-    g_value_set_string (to_value, NULL);
+    g_value_set_string (to_value, "");
   return TRUE;
 }
 
