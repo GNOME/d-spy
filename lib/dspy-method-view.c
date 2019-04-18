@@ -39,6 +39,7 @@ typedef struct
   GtkButton            *button;
   GtkTextBuffer        *buffer_params;
   GtkTextBuffer        *buffer_reply;
+  GtkTextView          *textview_params;
 
   guint                 busy : 1;
 } DspyMethodViewPrivate;
@@ -139,12 +140,26 @@ dspy_method_view_button_clicked_cb (DspyMethodView *self,
   priv->busy = TRUE;
   priv->cancellable = g_cancellable_new ();
 
+  gtk_text_buffer_set_text (priv->buffer_reply, "", -1);
+
   dspy_method_invocation_execute_async (priv->invocation,
                                         priv->cancellable,
                                         dspy_method_view_execute_cb,
                                         g_object_ref (self));
 
   gtk_button_set_label (priv->button, _("Cancel"));
+}
+
+static void
+dspy_method_view_invoke_method (GtkWidget *widget,
+                                gpointer   user_data)
+{
+  DspyMethodView *self = user_data;
+  DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
+
+  g_assert (DSPY_IS_METHOD_VIEW (self));
+
+  gtk_widget_activate (GTK_WIDGET (priv->button));
 }
 
 static void
@@ -224,12 +239,14 @@ dspy_method_view_class_init (DspyMethodViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_interface);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_method);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_object_path);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, textview_params);
 }
 
 static void
 dspy_method_view_init (DspyMethodView *self)
 {
   DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
+  DzlShortcutController *controller;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
@@ -245,6 +262,16 @@ dspy_method_view_init (DspyMethodView *self)
                            G_CALLBACK (dspy_method_view_button_clicked_cb),
                            self,
                            G_CONNECT_SWAPPED);
+
+  controller = dzl_shortcut_controller_find (GTK_WIDGET (priv->textview_params));
+
+  dzl_shortcut_controller_add_command_callback (controller,
+                                                "org.gnome.dspy.invoke-method",
+                                                "<Primary>Return",
+                                                DZL_SHORTCUT_PHASE_DISPATCH,
+                                                dspy_method_view_invoke_method,
+                                                self,
+                                                NULL);
 }
 
 void
