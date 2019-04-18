@@ -35,6 +35,7 @@ struct _DspyWindow
   GtkButton             *refresh_button;
   DspyNameMarquee       *name_marquee;
   DspyMethodView        *method_view;
+  GtkRevealer           *method_revealer;
 };
 
 G_DEFINE_TYPE (DspyWindow, dspy_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -48,6 +49,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, header_bar);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, introspection_tree_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, method_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, method_revealer);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, name_marquee);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_box);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, refresh_button);
@@ -159,6 +161,26 @@ refresh_button_clicked_cb (DspyWindow *self,
 }
 
 static void
+method_activated_cb (DspyWindow           *self,
+                     DspyMethodInvocation *invocation,
+                     DspyTreeView         *tree_view)
+{
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (!invocation || DSPY_IS_METHOD_INVOCATION (invocation));
+  g_assert (DSPY_IS_TREE_VIEW (tree_view));
+
+  if (DSPY_IS_METHOD_INVOCATION (invocation))
+    {
+      dspy_method_view_set_invocation (self->method_view, invocation);
+      gtk_revealer_set_reveal_child (self->method_revealer, TRUE);
+    }
+  else
+    {
+      gtk_revealer_set_reveal_child (self->method_revealer, FALSE);
+    }
+}
+
+static void
 dspy_window_init (DspyWindow *self)
 {
   g_autoptr(DspyConnection) conn = dspy_connection_new_for_bus (G_BUS_TYPE_SESSION);
@@ -179,6 +201,12 @@ dspy_window_init (DspyWindow *self)
   g_signal_connect_object (self->refresh_button,
                            "clicked",
                            G_CALLBACK (refresh_button_clicked_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->introspection_tree_view,
+                           "method-activated",
+                           G_CALLBACK (method_activated_cb),
                            self,
                            G_CONNECT_SWAPPED);
 }
