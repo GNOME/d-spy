@@ -36,7 +36,7 @@ typedef struct
   GtkLabel *label_method;
 } DspyMethodViewPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE (DspyMethodView, dspy_method_view, GTK_TYPE_BIN)
+G_DEFINE_TYPE_WITH_PRIVATE (DspyMethodView, dspy_method_view, DZL_TYPE_BIN)
 
 enum {
   PROP_0,

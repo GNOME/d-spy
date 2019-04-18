@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <dazzle.h>
 
 #include "dspy-method-invocation.h"
 
@@ -28,11 +28,11 @@ G_BEGIN_DECLS
 
 #define DSPY_TYPE_METHOD_VIEW (dspy_method_view_get_type())
 
-G_DECLARE_DERIVABLE_TYPE (DspyMethodView, dspy_method_view, DSPY, METHOD_VIEW, GtkBin)
+G_DECLARE_DERIVABLE_TYPE (DspyMethodView, dspy_method_view, DSPY, METHOD_VIEW, DzlBin)
 
 struct _DspyMethodViewClass
 {
-  GtkBinClass parent_class;
+  DzlBinClass parent_class;
 
   /*< private >*/
   gpointer _reserved[8];
