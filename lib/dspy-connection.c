@@ -240,9 +240,17 @@ dspy_connection_open_bus_cb (GObject      *object,
   g_assert (G_IS_TASK (task));
 
   if (!(bus = g_bus_get_finish (result, &error)))
-    g_task_return_error (task, g_steal_pointer (&error));
+    {
+      g_task_return_error (task, g_steal_pointer (&error));
+    }
   else
-    g_task_return_pointer (task, g_steal_pointer (&bus), g_object_unref);
+    {
+      /* Cache a copy of the connection for later use */
+      DspyConnection *self = g_task_get_source_object (task);
+      g_set_object (&self->connection, bus);
+
+      g_task_return_pointer (task, g_steal_pointer (&bus), g_object_unref);
+    }
 }
 
 static void
