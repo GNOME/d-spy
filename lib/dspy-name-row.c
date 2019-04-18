@@ -88,6 +88,9 @@ dspy_name_row_update (DspyNameRow *self)
     }
 
   gtk_label_set_label (self->subtitle, str->str);
+
+  gtk_widget_set_tooltip_text (GTK_WIDGET (self),
+                               dspy_name_get_owner (self->name));
 }
 
 static void
