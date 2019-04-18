@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <template class="DspyMethodView" parent="GtkBin">
+    <child>
+      <object class="GtkGrid">
+        <property name="visible">true</property>
+        <child>
+          <object class="GtkLabel" id="label_object_path">
+            <property name="hexpand">true</property>
+            <property name="visible">true</property>
+            <property name="ellipsize">end</property>
+            <property name="xalign">0.0</property>
+          </object>
+          <packing>
+            <property name="top-attach">0</property>
+            <property name="left-attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label_interface">
+            <property name="hexpand">true</property>
+            <property name="visible">true</property>
+            <property name="ellipsize">end</property>
+            <property name="xalign">0.0</property>
+          </object>
+          <packing>
+            <property name="top-attach">1</property>
+            <property name="left-attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label_method">
+            <property name="hexpand">true</property>
+            <property name="visible">true</property>
+            <property name="ellipsize">end</property>
+            <property name="xalign">0.0</property>
+          </object>
+          <packing>
+            <property name="top-attach">2</property>
+            <property name="left-attach">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

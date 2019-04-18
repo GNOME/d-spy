@@ -1,4 +1,4 @@
-/* dspy.h
+/* dspy-method-view.h
  *
  * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
@@ -20,16 +20,27 @@
 
 #pragma once
 
-#define DSPY_INSIDE
+#include <gtk/gtk.h>
 
-# include "dspy-connection.h"
-# include "dspy-introspection-model.h"
-# include "dspy-method-invocation.h"
-# include "dspy-method-view.h"
-# include "dspy-name.h"
-# include "dspy-name-marquee.h"
-# include "dspy-name-row.h"
-# include "dspy-names-model.h"
-# include "dspy-tree-view.h"
+#include "dspy-method-invocation.h"
 
-#undef DSPY_INSIDE
+G_BEGIN_DECLS
+
+#define DSPY_TYPE_METHOD_VIEW (dspy_method_view_get_type())
+
+G_DECLARE_DERIVABLE_TYPE (DspyMethodView, dspy_method_view, DSPY, METHOD_VIEW, GtkBin)
+
+struct _DspyMethodViewClass
+{
+  GtkBinClass parent_class;
+
+  /*< private >*/
+  gpointer _reserved[8];
+};
+
+GtkWidget            *dspy_method_view_new            (void);
+DspyMethodInvocation *dspy_method_view_get_invocation (DspyMethodView       *self);
+void                  dspy_method_view_set_invocation (DspyMethodView       *self,
+                                                       DspyMethodInvocation *invocation);
+
+G_END_DECLS
