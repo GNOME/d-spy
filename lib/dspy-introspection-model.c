@@ -368,7 +368,8 @@ dspy_introspection_model_init_async (GAsyncInitable      *initiable,
 
   if (self->name == NULL ||
       !(connection = dspy_name_get_connection (self->name)) ||
-      !(bus = dspy_connection_get_connection (connection)))
+      !(bus = dspy_connection_get_connection (connection)) ||
+      !G_IS_DBUS_CONNECTION (bus))
     {
       g_task_return_new_error (task,
                                G_IO_ERROR,
