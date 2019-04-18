@@ -4,7 +4,23 @@
   <template class="DspyMethodView" parent="DzlBin">
     <child>
       <object class="GtkGrid">
+        <property name="column-spacing">12</property>
+        <property name="row-spacing">3</property>
         <property name="visible">true</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Object Path</property>
+            <property name="visible">true</property>
+            <property name="xalign">1.0</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="top-attach">0</property>
+            <property name="left-attach">0</property>
+          </packing>
+        </child>
         <child>
           <object class="GtkLabel" id="label_object_path">
             <property name="hexpand">true</property>
@@ -15,6 +31,20 @@
           <packing>
             <property name="top-attach">0</property>
             <property name="left-attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Interface</property>
+            <property name="visible">true</property>
+            <property name="xalign">1.0</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="top-attach">1</property>
+            <property name="left-attach">0</property>
           </packing>
         </child>
         <child>
@@ -30,6 +60,20 @@
           </packing>
         </child>
         <child>
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Method</property>
+            <property name="visible">true</property>
+            <property name="xalign">1.0</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="top-attach">2</property>
+            <property name="left-attach">0</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkLabel" id="label_method">
             <property name="hexpand">true</property>
             <property name="visible">true</property>
@@ -41,7 +85,93 @@
             <property name="left-attach">1</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Parameters</property>
+            <property name="visible">true</property>
+            <property name="xalign">1.0</property>
+            <property name="valign">start</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="top-attach">3</property>
+            <property name="left-attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="hexpand">true</property>
+            <property name="visible">true</property>
+            <style>
+              <class name="linked"/>
+            </style>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="hexpand">true</property>
+                <property name="shadow-type">in</property>
+                <property name="hscrollbar-policy">never</property>
+                <property name="visible">true</property>
+                <child>
+                  <object class="GtkTextView">
+                    <property name="buffer">buffer_params</property>
+                    <property name="visible">true</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="label" translatable="yes">Execute</property>
+                <property name="visible">true</property>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="top-attach">3</property>
+            <property name="left-attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Result</property>
+            <property name="visible">true</property>
+            <property name="xalign">1.0</property>
+            <property name="valign">start</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="top-attach">4</property>
+            <property name="left-attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="hexpand">true</property>
+            <property name="shadow-type">in</property>
+            <property name="hscrollbar-policy">never</property>
+            <property name="visible">true</property>
+            <child>
+              <object class="GtkTextView">
+                <property name="editable">false</property>
+                <property name="visible">true</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="top-attach">4</property>
+            <property name="left-attach">1</property>
+          </packing>
+        </child>
       </object>
     </child>
   </template>
+  <object class="GtkTextBuffer" id="buffer_params"/>
 </interface>

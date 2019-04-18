@@ -34,6 +34,8 @@ typedef struct
   GtkLabel *label_interface;
   GtkLabel *label_object_path;
   GtkLabel *label_method;
+
+  GtkTextBuffer *buffer_params;
 } DspyMethodViewPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DspyMethodView, dspy_method_view, DZL_TYPE_BIN)
@@ -57,6 +59,20 @@ GtkWidget *
 dspy_method_view_new (void)
 {
   return g_object_new (DSPY_TYPE_METHOD_VIEW, NULL);
+}
+
+static gboolean
+variant_to_string_transform (GBinding     *binding,
+                             const GValue *from_value,
+                             GValue       *to_value,
+                             gpointer      user_data)
+{
+  GVariant *v = g_value_get_variant (from_value);
+  if (v != NULL)
+    g_value_take_string (to_value, g_variant_print (v, FALSE));
+  else
+    g_value_set_string (to_value, NULL);
+  return TRUE;
 }
 
 static void
@@ -130,6 +146,7 @@ dspy_method_view_class_init (DspyMethodViewClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-method-view.ui");
+  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, buffer_params);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_interface);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_method);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_object_path);
@@ -146,6 +163,8 @@ dspy_method_view_init (DspyMethodView *self)
   dzl_binding_group_bind (priv->bindings, "interface", priv->label_interface, "label", 0);
   dzl_binding_group_bind (priv->bindings, "method", priv->label_method, "label", 0);
   dzl_binding_group_bind (priv->bindings, "object-path", priv->label_object_path, "label", 0);
+  dzl_binding_group_bind_full (priv->bindings, "parameters", priv->buffer_params, "text", 0,
+                               variant_to_string_transform, NULL, NULL, NULL);
 }
 
 void
