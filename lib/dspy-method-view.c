@@ -126,7 +126,16 @@ get_variant_for_text_buffer (GtkTextBuffer       *buffer,
   g_assert (GTK_IS_TEXT_BUFFER (buffer));
 
   gtk_text_buffer_get_bounds (buffer, &begin, &end);
-  text = gtk_text_buffer_get_text (buffer, &begin, &end, TRUE);
+
+  text = g_strstrip (gtk_text_buffer_get_text (buffer, &begin, &end, TRUE));
+
+  if (text[0] != '(')
+    {
+      g_autofree gchar *tmp = text;
+      text = g_strdup_printf ("(%s,)", tmp);
+      gtk_text_buffer_set_text (buffer, text, -1);
+    }
+
   return g_variant_parse (type, text, NULL, NULL, error);
 }
 
