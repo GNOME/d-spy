@@ -112,6 +112,7 @@
                 <property name="visible">true</property>
                 <child>
                   <object class="DspyMethodView" id="method_view">
+                    <property name="margin-start">12</property>
                     <property name="visible">true</property>
                   </object>
                 </child>
