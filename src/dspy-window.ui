@@ -15,12 +15,13 @@
       </object>
     </child>
     <child>
-      <object class="GtkPaned">
+      <object class="DzlMultiPaned">
+        <property name="orientation">horizontal</property>
         <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="position">300</property>
         <child>
           <object class="GtkScrolledWindow">
+            <property name="propagate-natural-width">True</property>
+            <property name="max-content-width">400</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <child>
@@ -37,8 +38,7 @@
             </child>
           </object>
           <packing>
-            <property name="resize">False</property>
-            <property name="shrink">True</property>
+            <property name="position">300</property>
           </packing>
         </child>
         <child>
@@ -119,10 +119,6 @@
               </object>
             </child>
           </object>
-          <packing>
-            <property name="resize">True</property>
-            <property name="shrink">True</property>
-          </packing>
         </child>
       </object>
     </child>
