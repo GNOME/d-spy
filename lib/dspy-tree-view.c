@@ -88,9 +88,8 @@ dspy_tree_view_selection_changed (DspyTreeView     *self,
         {
           dspy_method_invocation_set_object_path (invocation, _dspy_node_get_object_path (node));
           dspy_method_invocation_set_name (invocation, name);
+          g_signal_emit (self, signals [METHOD_ACTIVATED], 0, invocation);
         }
-
-      g_signal_emit (self, signals [METHOD_ACTIVATED], 0, invocation);
     }
 
 }
