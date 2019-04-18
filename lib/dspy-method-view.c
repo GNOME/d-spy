@@ -166,8 +166,11 @@ dspy_method_view_button_clicked_cb (DspyMethodView *self,
 
   signature = dspy_method_invocation_get_signature (priv->invocation);
 
+  if (!signature || !signature[0])
+    signature = NULL;
+
   if (!(params = get_variant_for_text_buffer (priv->buffer_params,
-                                              signature ? G_VARIANT_TYPE (signature) : NULL,
+                                              (const GVariantType *)signature,
                                               &error)))
     {
       gtk_text_buffer_set_text (priv->buffer_reply, error->message, -1);
