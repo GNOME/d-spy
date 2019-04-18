@@ -117,13 +117,14 @@
                 <child>
                   <object class="GtkTextView">
                     <property name="buffer">buffer_params</property>
+                    <property name="wrap-mode">char</property>
                     <property name="visible">true</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="GtkButton">
+              <object class="GtkButton" id="button">
                 <property name="label" translatable="yes">Execute</property>
                 <property name="visible">true</property>
                 <style>
@@ -160,6 +161,8 @@
             <property name="visible">true</property>
             <child>
               <object class="GtkTextView">
+                <property name="buffer">buffer_reply</property>
+                <property name="wrap-mode">char</property>
                 <property name="editable">false</property>
                 <property name="visible">true</property>
               </object>
@@ -174,4 +177,5 @@
     </child>
   </template>
   <object class="GtkTextBuffer" id="buffer_params"/>
+  <object class="GtkTextBuffer" id="buffer_reply"/>
 </interface>

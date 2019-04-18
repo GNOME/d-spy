@@ -23,19 +23,24 @@
 #include "config.h"
 
 #include <dazzle.h>
+#include <glib/gi18n.h>
 
 #include "dspy-method-view.h"
 
 typedef struct
 {
   DspyMethodInvocation *invocation;
-  DzlBindingGroup *bindings;
+  DzlBindingGroup      *bindings;
+  GCancellable         *cancellable;
 
-  GtkLabel *label_interface;
-  GtkLabel *label_object_path;
-  GtkLabel *label_method;
+  GtkLabel             *label_interface;
+  GtkLabel             *label_object_path;
+  GtkLabel             *label_method;
+  GtkButton            *button;
+  GtkTextBuffer        *buffer_params;
+  GtkTextBuffer        *buffer_reply;
 
-  GtkTextBuffer *buffer_params;
+  guint                 busy : 1;
 } DspyMethodViewPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DspyMethodView, dspy_method_view, DZL_TYPE_BIN)
@@ -73,6 +78,73 @@ variant_to_string_transform (GBinding     *binding,
   else
     g_value_set_string (to_value, "");
   return TRUE;
+}
+
+static void
+dspy_method_view_execute_cb (GObject      *object,
+                             GAsyncResult *result,
+                             gpointer      user_data)
+{
+  DspyMethodInvocation *invocation = (DspyMethodInvocation *)object;
+  g_autoptr(DspyMethodView) self = user_data;
+  DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
+  g_autoptr(GVariant) reply = NULL;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (DSPY_IS_METHOD_INVOCATION (invocation));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (DSPY_IS_METHOD_VIEW (self));
+
+  priv->busy = FALSE;
+
+  if (!(reply = dspy_method_invocation_execute_finish (invocation, result, &error)))
+    {
+      if (priv->invocation == invocation)
+        gtk_text_buffer_set_text (priv->buffer_reply, error->message, -1);
+    }
+  else
+    {
+      if (priv->invocation == invocation)
+        {
+          g_autofree gchar *replystr = g_variant_print (reply, TRUE);
+          gtk_text_buffer_set_text (priv->buffer_reply, replystr, -1);
+        }
+    }
+
+  gtk_button_set_label (priv->button, _("Execute"));
+}
+
+static void
+dspy_method_view_button_clicked_cb (DspyMethodView *self,
+                                    GtkButton      *button)
+{
+  DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
+
+  g_assert (DSPY_IS_METHOD_VIEW (self));
+  g_assert (GTK_IS_BUTTON (button));
+
+  /* Always cancel anything in flight */
+  g_cancellable_cancel (priv->cancellable);
+  g_clear_object (&priv->cancellable);
+
+  if (priv->busy)
+    return;
+
+  if (priv->invocation == NULL)
+    return;
+
+  g_assert (priv->busy == FALSE);
+  g_assert (priv->cancellable == NULL);
+
+  priv->busy = TRUE;
+  priv->cancellable = g_cancellable_new ();
+
+  dspy_method_invocation_execute_async (priv->invocation,
+                                        priv->cancellable,
+                                        dspy_method_view_execute_cb,
+                                        g_object_ref (self));
+
+  gtk_button_set_label (priv->button, _("Cancel"));
 }
 
 static void
@@ -147,6 +219,8 @@ dspy_method_view_class_init (DspyMethodViewClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-method-view.ui");
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, buffer_params);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, buffer_reply);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_interface);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_method);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_object_path);
@@ -165,6 +239,12 @@ dspy_method_view_init (DspyMethodView *self)
   dzl_binding_group_bind (priv->bindings, "object-path", priv->label_object_path, "label", 0);
   dzl_binding_group_bind_full (priv->bindings, "parameters", priv->buffer_params, "text", 0,
                                variant_to_string_transform, NULL, NULL, NULL);
+
+  g_signal_connect_object (priv->button,
+                           "clicked",
+                           G_CALLBACK (dspy_method_view_button_clicked_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
 
 void
@@ -178,7 +258,12 @@ dspy_method_view_set_invocation (DspyMethodView       *self,
 
   if (g_set_object (&priv->invocation, invocation))
     {
+      g_cancellable_cancel (priv->cancellable);
+      g_clear_object (&priv->cancellable);
+
       dzl_binding_group_set_source (priv->bindings, invocation);
+      gtk_text_buffer_set_text (priv->buffer_reply, "", -1);
+
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_INVOCATION]);
     }
 }
