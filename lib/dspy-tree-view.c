@@ -78,7 +78,7 @@ dspy_tree_view_selection_changed (DspyTreeView     *self,
           invocation = dspy_method_invocation_new ();
           dspy_method_invocation_set_interface (invocation, "org.freedesktop.DBus.Properties");
           dspy_method_invocation_set_method (invocation, "Get");
-          dspy_method_invocation_set_signature (invocation, "ss");
+          dspy_method_invocation_set_signature (invocation, "(ss)");
           dspy_method_invocation_set_reply_signature (invocation, "v");
           dspy_method_invocation_set_parameters (invocation,
                                                  g_variant_new ("(ss)", iface, node->property.name));
