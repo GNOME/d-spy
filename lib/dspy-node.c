@@ -558,3 +558,27 @@ _dspy_node_is_group (DspyNode *node)
          node->any.kind == DSPY_NODE_KIND_SIGNALS ||
          node->any.kind == DSPY_NODE_KIND_METHODS;
 }
+
+const gchar *
+_dspy_node_get_object_path (DspyNode *node)
+{
+  if (node == NULL)
+    return NULL;
+
+  if (node->any.kind == DSPY_NODE_KIND_NODE)
+    return node->node.path;
+
+  return _dspy_node_get_object_path (node->any.parent);
+}
+
+const gchar *
+_dspy_node_get_interface (DspyNode *node)
+{
+  if (node == NULL)
+    return NULL;
+
+  if (node->any.kind == DSPY_NODE_KIND_INTERFACE)
+    return node->interface.name;
+
+  return _dspy_node_get_interface (node->any.parent);
+}

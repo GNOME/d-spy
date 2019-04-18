@@ -182,6 +182,8 @@ DspyNodeInfo           *_dspy_node_new_root           (void);
 gboolean                _dspy_node_is_group           (DspyNode                 *node);
 gint                    _dspy_node_info_compare       (const DspyNodeInfo       *a,
                                                        const DspyNodeInfo       *b);
+const gchar            *_dspy_node_get_object_path    (DspyNode                 *node);
+const gchar            *_dspy_node_get_interface      (DspyNode                 *node);
 gint                    _dspy_interface_info_compare  (const DspyInterfaceInfo  *a,
                                                        const DspyInterfaceInfo  *b);
 void                    _dspy_name_clear_pid          (DspyName                 *name);
