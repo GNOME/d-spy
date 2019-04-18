@@ -189,6 +189,30 @@ notify_child_revealed_cb (DspyWindow  *self,
 
   if (!gtk_revealer_get_child_revealed (revealer))
     dspy_method_view_set_invocation (self->method_view, NULL);
+  else
+    {
+      GtkTreeSelection *selection;
+      GtkTreeModel *model = NULL;
+      GtkTreeIter iter;
+
+      selection = gtk_tree_view_get_selection (self->introspection_tree_view);
+
+      if (gtk_tree_selection_get_selected (selection, &model, &iter))
+        {
+          g_autoptr(GtkTreePath) path = gtk_tree_model_get_path (model, &iter);
+          GtkTreeViewColumn *column = gtk_tree_view_get_column (self->introspection_tree_view, 0);
+
+          /* Move the selected row as far up as we can so that the revealer
+           * for the method invocation does not cover the selected area.
+           */
+          gtk_tree_view_scroll_to_cell (self->introspection_tree_view,
+                                        path,
+                                        column,
+                                        TRUE,
+                                        0.0,
+                                        0.0);
+        }
+    }
 }
 
 static void
