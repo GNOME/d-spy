@@ -18,6 +18,7 @@
 
 #include "config.h"
 
+#include <dazzle.h>
 #include <dspy.h>
 
 #include "dspy-window.h"
@@ -201,6 +202,12 @@ dspy_window_init (DspyWindow *self)
                                     NULL,
                                     dspy_window_list_names_cb,
                                     g_object_ref (self));
+
+  g_signal_connect_object (self,
+                           "key-press-event",
+                           G_CALLBACK (dzl_shortcut_manager_handle_event),
+                           NULL,
+                           G_CONNECT_SWAPPED);
 
   g_signal_connect_object (self->names_list_box,
                            "row-activated",
