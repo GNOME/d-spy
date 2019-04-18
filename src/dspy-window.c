@@ -35,8 +35,11 @@ struct _DspyWindow
   GtkListBox            *names_list_box;
   GtkButton             *refresh_button;
   DspyNameMarquee       *name_marquee;
+  GtkScrolledWindow     *names_scroller;
   DspyMethodView        *method_view;
   GtkRevealer           *method_revealer;
+  GtkRadioButton        *session_button;
+  GtkRadioButton        *system_button;
 };
 
 G_DEFINE_TYPE (DspyWindow, dspy_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -53,7 +56,10 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, method_revealer);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, name_marquee);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_box);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_scroller);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, refresh_button);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, session_button);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, system_button);
 
   g_type_ensure (DSPY_TYPE_METHOD_VIEW);
   g_type_ensure (DSPY_TYPE_NAME_MARQUEE);
@@ -96,6 +102,8 @@ dspy_window_list_names_cb (GObject      *object,
                            create_name_row_cb,
                            NULL,
                            NULL);
+
+  gtk_adjustment_set_value (gtk_scrolled_window_get_vadjustment (self->names_scroller), 0.0);
 }
 
 static void
@@ -216,6 +224,40 @@ notify_child_revealed_cb (DspyWindow  *self,
 }
 
 static void
+session_button_toggled_cb (DspyWindow     *self,
+                           GtkRadioButton *button)
+{
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (GTK_IS_RADIO_BUTTON (button));
+
+  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)))
+    {
+      g_autoptr(DspyConnection) conn = dspy_connection_new_for_bus (G_BUS_TYPE_SESSION);
+      dspy_connection_list_names_async (conn,
+                                        NULL,
+                                        dspy_window_list_names_cb,
+                                        g_object_ref (self));
+    }
+}
+
+static void
+system_button_toggled_cb (DspyWindow     *self,
+                          GtkRadioButton *button)
+{
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (GTK_IS_RADIO_BUTTON (button));
+
+  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)))
+    {
+      g_autoptr(DspyConnection) conn = dspy_connection_new_for_bus (G_BUS_TYPE_SYSTEM);
+      dspy_connection_list_names_async (conn,
+                                        NULL,
+                                        dspy_window_list_names_cb,
+                                        g_object_ref (self));
+    }
+}
+
+static void
 dspy_window_init (DspyWindow *self)
 {
   g_autoptr(DspyConnection) conn = dspy_connection_new_for_bus (G_BUS_TYPE_SESSION);
@@ -254,6 +296,18 @@ dspy_window_init (DspyWindow *self)
   g_signal_connect_object (self->introspection_tree_view,
                            "method-activated",
                            G_CALLBACK (method_activated_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->session_button,
+                           "toggled",
+                           G_CALLBACK (session_button_toggled_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->system_button,
+                           "toggled",
+                           G_CALLBACK (system_button_toggled_cb),
                            self,
                            G_CONNECT_SWAPPED);
 }
