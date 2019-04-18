@@ -121,6 +121,10 @@ dspy_method_invocation_get_property (GObject    *object,
       g_value_set_variant (value, dspy_method_invocation_get_parameters (self));
       break;
 
+    case PROP_TIMEOUT:
+      g_value_set_int (value, dspy_method_invocation_get_timeout (self));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -162,6 +166,10 @@ dspy_method_invocation_set_property (GObject      *object,
 
     case PROP_PARAMETERS:
       dspy_method_invocation_set_parameters (self, g_value_get_variant (value));
+      break;
+
+    case PROP_TIMEOUT:
+      dspy_method_invocation_set_timeout (self, g_value_get_int (value));
       break;
 
     default:
@@ -227,6 +235,13 @@ dspy_method_invocation_class_init (DspyMethodInvocationClass *klass)
                           G_VARIANT_TYPE_ANY,
                           NULL,
                           (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_TIMEOUT] =
+    g_param_spec_int ("timeout",
+                      "Timeout",
+                      "The timeout for the operation",
+                      -1, G_MAXINT, -1,
+                      (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
@@ -540,5 +555,31 @@ dspy_method_invocation_set_parameters (DspyMethodInvocation *self,
       g_clear_pointer (&priv->parameters, g_variant_unref);
       priv->parameters = parameters ? g_variant_ref_sink (parameters) : NULL;
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_PARAMETERS]);
+    }
+}
+
+gint
+dspy_method_invocation_get_timeout (DspyMethodInvocation *self)
+{
+  DspyMethodInvocationPrivate *priv = dspy_method_invocation_get_instance_private (self);
+
+  g_return_val_if_fail (DSPY_IS_METHOD_INVOCATION (self), -1);
+
+  return priv->timeout_msec;
+}
+
+void
+dspy_method_invocation_set_timeout (DspyMethodInvocation *self,
+                                    gint                  timeout)
+{
+  DspyMethodInvocationPrivate *priv = dspy_method_invocation_get_instance_private (self);
+
+  g_return_if_fail (DSPY_IS_METHOD_INVOCATION (self));
+  g_return_if_fail (timeout >= -1);
+
+  if (priv->timeout_msec != timeout)
+    {
+      priv->timeout_msec = timeout;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TIMEOUT]);
     }
 }

@@ -67,5 +67,8 @@ void                  dspy_method_invocation_execute_async       (DspyMethodInvo
 GVariant             *dspy_method_invocation_execute_finish      (DspyMethodInvocation  *self,
                                                                   GAsyncResult          *result,
                                                                   GError               **error);
+gint                  dspy_method_invocation_get_timeout         (DspyMethodInvocation  *self);
+void                  dspy_method_invocation_set_timeout         (DspyMethodInvocation  *self,
+                                                                  gint                   timout);
 
 G_END_DECLS
