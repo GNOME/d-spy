@@ -22,6 +22,8 @@
 
 #include <gtk/gtk.h>
 
+#include "dspy-method-invocation.h"
+
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_TREE_VIEW (dspy_tree_view_get_type())
@@ -31,6 +33,9 @@ G_DECLARE_DERIVABLE_TYPE (DspyTreeView, dspy_tree_view, DSPY, TREE_VIEW, GtkTree
 struct _DspyTreeViewClass
 {
   GtkTreeViewClass parent_class;
+
+  void (*method_activated) (DspyTreeView         *self,
+                            DspyMethodInvocation *invocation);
 
   /*< private >*/
   gpointer _reserved[8];

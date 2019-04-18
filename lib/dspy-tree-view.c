@@ -29,6 +29,13 @@
 
 G_DEFINE_TYPE (DspyTreeView, dspy_tree_view, GTK_TYPE_TREE_VIEW)
 
+enum {
+  METHOD_ACTIVATED,
+  N_SIGNALS
+};
+
+static guint signals [N_SIGNALS];
+
 GtkWidget *
 dspy_tree_view_new (void)
 {
@@ -36,11 +43,45 @@ dspy_tree_view_new (void)
 }
 
 static void
+dspy_tree_view_selection_changed (DspyTreeView     *self,
+                                  GtkTreeSelection *selection)
+{
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+
+  g_assert (DSPY_IS_TREE_VIEW (self));
+  g_assert (GTK_IS_TREE_SELECTION (selection));
+
+  if (gtk_tree_selection_get_selected (selection, &model, &iter) &&
+      DSPY_IS_INTROSPECTION_MODEL (model))
+    {
+      DspyName *name = dspy_introspection_model_get_name (DSPY_INTROSPECTION_MODEL (model));
+      g_autoptr(DspyMethodInvocation) invocation = NULL;
+      DspyNode *node = iter.user_data;
+
+      g_assert (node != NULL);
+      g_assert (DSPY_IS_NODE (node));
+
+      if (node->any.kind == DSPY_NODE_KIND_METHOD)
+        {
+          invocation = dspy_method_invocation_new ();
+          dspy_method_invocation_set_method (invocation, node->method.name);
+        }
+
+      if (invocation != NULL)
+        dspy_method_invocation_set_name (invocation, name);
+
+      g_signal_emit (self, signals [METHOD_ACTIVATED], 0, invocation);
+    }
+
+}
+
+static void
 dspy_tree_view_row_activated (GtkTreeView       *view,
                               GtkTreePath       *path,
                               GtkTreeViewColumn *column)
 {
-  g_assert (GTK_IS_TREE_VIEW (view));
+  g_assert (DSPY_IS_TREE_VIEW (view));
   g_assert (path != NULL);
   g_assert (!column || GTK_IS_TREE_VIEW_COLUMN (column));
 
@@ -103,6 +144,15 @@ dspy_tree_view_class_init (DspyTreeViewClass *klass)
 
   tree_view_class->row_activated = dspy_tree_view_row_activated;
   tree_view_class->row_expanded = dspy_tree_view_row_expanded;
+
+  signals [METHOD_ACTIVATED] =
+    g_signal_new ("method-activated",
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (DspyTreeViewClass, method_activated),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__OBJECT,
+                  G_TYPE_NONE, 1, DSPY_TYPE_METHOD_INVOCATION);
 }
 
 static void
@@ -121,4 +171,10 @@ dspy_tree_view_init (DspyTreeView *self)
   cell = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (column), cell, TRUE);
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (column), cell, "markup", 0);
+
+  g_signal_connect_object (gtk_tree_view_get_selection (GTK_TREE_VIEW (self)),
+                           "changed",
+                           G_CALLBACK (dspy_tree_view_selection_changed),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
