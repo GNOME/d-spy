@@ -34,6 +34,7 @@ struct _DspyWindow
   GtkListBox            *names_list_box;
   GtkButton             *refresh_button;
   DspyNameMarquee       *name_marquee;
+  DspyMethodView        *method_view;
 };
 
 G_DEFINE_TYPE (DspyWindow, dspy_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -46,10 +47,12 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, header_bar);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, introspection_tree_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, method_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, name_marquee);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_box);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, refresh_button);
 
+  g_type_ensure (DSPY_TYPE_METHOD_VIEW);
   g_type_ensure (DSPY_TYPE_NAME_MARQUEE);
   g_type_ensure (DSPY_TYPE_TREE_VIEW);
 }

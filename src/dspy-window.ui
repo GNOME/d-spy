@@ -101,6 +101,17 @@
                 </child>
               </object>
             </child>
+            <child>
+              <object class="GtkRevealer">
+                <property name="reveal-child">true</property>
+                <property name="visible">true</property>
+                <child>
+                  <object class="DspyMethodView" id="method_view">
+                    <property name="visible">true</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="resize">True</property>
