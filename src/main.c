@@ -20,6 +20,8 @@
 
 #include "config.h"
 
+#include <dazzle.h>
+
 #include "dspy-window.h"
 
 static void
@@ -51,7 +53,11 @@ main (int   argc,
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-	app = gtk_application_new ("org.gnome.dspy", G_APPLICATION_FLAGS_NONE);
+	app = g_object_new (DZL_TYPE_APPLICATION,
+                      "application-id", "org.gnome.dspy",
+                      "flags", G_APPLICATION_FLAGS_NONE,
+                      "resource-base-path", "/org/gnome/dspy",
+                      NULL);
 	g_signal_connect (app, "activate", G_CALLBACK (on_activate), NULL);
 	ret = g_application_run (G_APPLICATION (app), argc, argv);
 
