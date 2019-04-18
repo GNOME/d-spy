@@ -586,7 +586,12 @@ dspy_introspection_model_get_value (GtkTreeModel *model,
       str = _dspy_node_get_text (node);
 
       if (_dspy_node_is_group (node))
-        g_value_take_string (value, g_strdup_printf ("<b>%s</b>", str));
+        {
+          if (gtk_tree_model_iter_has_child (model, iter))
+            g_value_take_string (value, g_strdup_printf ("<b>%s</b>", str));
+          else
+            g_value_take_string (value, g_strdup_printf ("<span fgalpha='25000' weight='bold'>%s</span>", str));
+        }
       else
         g_value_take_string (value, g_steal_pointer (&str));
     }
