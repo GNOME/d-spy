@@ -59,13 +59,12 @@ dspy_window_destroy (GtkWidget *widget)
 
   g_assert (DSPY_IS_WINDOW (self));
 
-  dspy_window_set_model (self, NULL);
+  self->destroyed = TRUE;
 
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
   g_clear_object (&self->filter_model);
-
-  self->destroyed = TRUE;
+  g_clear_object (&self->model);
 
   GTK_WIDGET_CLASS (dspy_window_parent_class)->destroy (widget);
 }
