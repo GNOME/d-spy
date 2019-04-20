@@ -43,6 +43,8 @@ struct _DspyWindow
   GtkRadioButton        *session_button;
   GtkRadioButton        *system_button;
   GtkSearchEntry        *search_entry;
+
+  guint                  destroyed : 1;
 };
 
 static void dspy_window_set_model (DspyWindow *self,
@@ -62,6 +64,8 @@ dspy_window_destroy (GtkWidget *widget)
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
   g_clear_object (&self->filter_model);
+
+  self->destroyed = TRUE;
 
   GTK_WIDGET_CLASS (dspy_window_parent_class)->destroy (widget);
 }
@@ -146,6 +150,12 @@ dspy_window_set_model (DspyWindow *self,
 
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (!model || G_IS_LIST_MODEL (model));
+
+  /* Asynchronous completion implies that we might get here after
+   * the widget has been destroyed.
+   */
+  if (self->destroyed)
+    return;
 
   gtk_list_box_bind_model (self->names_list_box, NULL, NULL, NULL, NULL);
 
