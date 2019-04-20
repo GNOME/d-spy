@@ -28,6 +28,7 @@ struct _DspyWindow
   GtkApplicationWindow   parent_instance;
 
   GCancellable          *cancellable;
+  DzlListModelFilter    *filter_model;
 
   /* Template widgets */
   GtkHeaderBar          *header_bar;
@@ -40,14 +41,31 @@ struct _DspyWindow
   GtkRevealer           *method_revealer;
   GtkRadioButton        *session_button;
   GtkRadioButton        *system_button;
+  GtkSearchEntry        *search_entry;
 };
 
 G_DEFINE_TYPE (DspyWindow, dspy_window, GTK_TYPE_APPLICATION_WINDOW)
 
 static void
+dspy_window_destroy (GtkWidget *widget)
+{
+  DspyWindow *self = (DspyWindow *)widget;
+
+  g_assert (DSPY_IS_WINDOW (self));
+
+  g_cancellable_cancel (self->cancellable);
+  g_clear_object (&self->cancellable);
+  g_clear_object (&self->filter_model);
+
+  GTK_WIDGET_CLASS (dspy_window_parent_class)->destroy (widget);
+}
+
+static void
 dspy_window_class_init (DspyWindowClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  widget_class->destroy = dspy_window_destroy;
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, header_bar);
@@ -58,12 +76,47 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_box);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_scroller);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, refresh_button);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, search_entry);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, session_button);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, system_button);
 
   g_type_ensure (DSPY_TYPE_METHOD_VIEW);
   g_type_ensure (DSPY_TYPE_NAME_MARQUEE);
   g_type_ensure (DSPY_TYPE_TREE_VIEW);
+}
+
+static void
+clear_search (DspyWindow *self)
+{
+  g_assert (DSPY_IS_WINDOW (self));
+
+  if (self->filter_model != NULL)
+    dzl_list_model_filter_set_filter_func (self->filter_model, NULL, NULL, NULL);
+}
+
+static gboolean
+search_filter_func (DspyName       *name,
+                    DzlPatternSpec *spec)
+{
+  g_assert (DSPY_IS_NAME (name));
+  g_assert (spec != NULL);
+
+  return dzl_pattern_spec_match (spec, dspy_name_get_search_text (name));
+}
+
+static void
+apply_search (DspyWindow  *self,
+              const gchar *text)
+{
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (text != NULL);
+  g_assert (text[0] != 0);
+
+  if (self->filter_model != NULL)
+    dzl_list_model_filter_set_filter_func (self->filter_model,
+                                           (DzlListModelFilterFunc) search_filter_func,
+                                           dzl_pattern_spec_new (text),
+                                           (GDestroyNotify) dzl_pattern_spec_unref);
 }
 
 static GtkWidget *
@@ -87,6 +140,7 @@ dspy_window_list_names_cb (GObject      *object,
   g_autoptr(DspyWindow) self = user_data;
   g_autoptr(GListModel) model = NULL;
   g_autoptr(GError) error = NULL;
+  const gchar *text;
 
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (G_IS_ASYNC_RESULT (result));
@@ -97,8 +151,18 @@ dspy_window_list_names_cb (GObject      *object,
   if (error != NULL)
     g_warning ("Failed to list names: %s", error->message);
 
+  text = gtk_entry_get_text (GTK_ENTRY (self->search_entry));
+
+  g_clear_object (&self->filter_model);
+  self->filter_model = dzl_list_model_filter_new (model);
+
+  if (text && *text)
+    apply_search (self, text);
+  else
+    clear_search (self);
+
   gtk_list_box_bind_model (self->names_list_box,
-                           model,
+                           G_LIST_MODEL (self->filter_model),
                            create_name_row_cb,
                            NULL,
                            NULL);
@@ -258,6 +322,23 @@ system_button_toggled_cb (DspyWindow     *self,
 }
 
 static void
+search_entry_changed_cb (DspyWindow     *self,
+                         GtkSearchEntry *search_entry)
+{
+  const gchar *text;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
+
+  text = gtk_entry_get_text (GTK_ENTRY (search_entry));
+
+  if (text == NULL || *text == 0)
+    clear_search (self);
+  else
+    apply_search (self, text);
+}
+
+static void
 dspy_window_init (DspyWindow *self)
 {
   g_autoptr(DspyConnection) conn = dspy_connection_new_for_bus (G_BUS_TYPE_SESSION);
@@ -308,6 +389,12 @@ dspy_window_init (DspyWindow *self)
   g_signal_connect_object (self->system_button,
                            "toggled",
                            G_CALLBACK (system_button_toggled_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->search_entry,
+                           "changed",
+                           G_CALLBACK (search_entry_changed_cb),
                            self,
                            G_CONNECT_SWAPPED);
 }
