@@ -80,15 +80,32 @@ dspy_connection_new_for_bus (GBusType bus_type)
 }
 
 static void
+dspy_connection_dispose (GObject *object)
+{
+  DspyConnection *self = (DspyConnection *)object;
+
+  g_assert (DSPY_IS_CONNECTION (self));
+
+  g_cancellable_cancel (self->cancellable);
+  g_clear_object (&self->cancellable);
+
+  if (self->connection != NULL)
+    {
+      if (!g_dbus_connection_is_closed (self->connection))
+        g_dbus_connection_close (self->connection, NULL, NULL, NULL);
+      g_clear_object (&self->connection);
+    }
+
+  G_OBJECT_CLASS (dspy_connection_parent_class)->dispose (object);
+}
+
+static void
 dspy_connection_finalize (GObject *object)
 {
   DspyConnection *self = (DspyConnection *)object;
 
-  g_cancellable_cancel (self->cancellable);
-  g_clear_object (&self->cancellable);
   g_clear_pointer (&self->address, g_free);
   g_clear_pointer (&self->connected_address, g_free);
-  g_clear_object (&self->connection);
 
   G_OBJECT_CLASS (dspy_connection_parent_class)->finalize (object);
 }
@@ -156,6 +173,7 @@ dspy_connection_class_init (DspyConnectionClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+  object_class->dispose = dspy_connection_dispose;
   object_class->finalize = dspy_connection_finalize;
   object_class->get_property = dspy_connection_get_property;
   object_class->set_property = dspy_connection_set_property;
