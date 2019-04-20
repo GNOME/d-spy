@@ -29,6 +29,7 @@ struct _DspyWindow
 
   GCancellable          *cancellable;
   DzlListModelFilter    *filter_model;
+  GListModel            *model;
 
   /* Template widgets */
   GtkHeaderBar          *header_bar;
@@ -44,6 +45,9 @@ struct _DspyWindow
   GtkSearchEntry        *search_entry;
 };
 
+static void dspy_window_set_model (DspyWindow *self,
+                                   GListModel *model);
+
 G_DEFINE_TYPE (DspyWindow, dspy_window, GTK_TYPE_APPLICATION_WINDOW)
 
 static void
@@ -52,6 +56,8 @@ dspy_window_destroy (GtkWidget *widget)
   DspyWindow *self = (DspyWindow *)widget;
 
   g_assert (DSPY_IS_WINDOW (self));
+
+  dspy_window_set_model (self, NULL);
 
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
@@ -132,29 +138,27 @@ create_name_row_cb (gpointer item,
 }
 
 static void
-dspy_window_list_names_cb (GObject      *object,
-                           GAsyncResult *result,
-                           gpointer      user_data)
+dspy_window_set_model (DspyWindow *self,
+                       GListModel *model)
 {
-  DspyConnection *conn = (DspyConnection *)object;
-  g_autoptr(DspyWindow) self = user_data;
-  g_autoptr(GListModel) model = NULL;
-  g_autoptr(GError) error = NULL;
   const gchar *text;
+  GtkAdjustment *adj;
 
   g_assert (DSPY_IS_WINDOW (self));
-  g_assert (G_IS_ASYNC_RESULT (result));
-  g_assert (DSPY_IS_CONNECTION (conn));
+  g_assert (!model || G_IS_LIST_MODEL (model));
 
-  model = dspy_connection_list_names_finish (conn, result, &error);
-
-  if (error != NULL)
-    g_warning ("Failed to list names: %s", error->message);
-
-  text = gtk_entry_get_text (GTK_ENTRY (self->search_entry));
+  gtk_list_box_bind_model (self->names_list_box, NULL, NULL, NULL, NULL);
 
   g_clear_object (&self->filter_model);
-  self->filter_model = dzl_list_model_filter_new (model);
+  g_clear_object (&self->model);
+
+  if (model != NULL)
+    {
+      self->model = g_object_ref (model);
+      self->filter_model = dzl_list_model_filter_new (model);
+    }
+
+  text = gtk_entry_get_text (GTK_ENTRY (self->search_entry));
 
   if (text && *text)
     apply_search (self, text);
@@ -167,7 +171,28 @@ dspy_window_list_names_cb (GObject      *object,
                            NULL,
                            NULL);
 
-  gtk_adjustment_set_value (gtk_scrolled_window_get_vadjustment (self->names_scroller), 0.0);
+  adj = gtk_scrolled_window_get_vadjustment (self->names_scroller);
+  gtk_adjustment_set_value (adj, 0.0);
+}
+
+static void
+dspy_window_list_names_cb (GObject      *object,
+                           GAsyncResult *result,
+                           gpointer      user_data)
+{
+  DspyConnection *conn = (DspyConnection *)object;
+  g_autoptr(DspyWindow) self = user_data;
+  g_autoptr(GListModel) model = NULL;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (DSPY_IS_CONNECTION (conn));
+
+  if (!(model = dspy_connection_list_names_finish (conn, result, &error)))
+    g_warning ("Failed to list names: %s", error->message);
+
+  dspy_window_set_model (self, model);
 }
 
 static void
