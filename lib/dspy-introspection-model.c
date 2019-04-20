@@ -354,8 +354,8 @@ dspy_introspection_model_init_async (GAsyncInitable      *initiable,
                                      gpointer             user_data)
 {
   DspyIntrospectionModel *self = (DspyIntrospectionModel *)initiable;
-  g_autoptr(GDBusConnection) bus = NULL;
-  g_autoptr(DspyConnection) connection = NULL;
+  GDBusConnection *bus = NULL;
+  DspyConnection *connection = NULL;
   g_autoptr(GTask) task = NULL;
 
   g_assert (DSPY_IS_INTROSPECTION_MODEL (self));
@@ -368,8 +368,7 @@ dspy_introspection_model_init_async (GAsyncInitable      *initiable,
 
   if (self->name == NULL ||
       !(connection = dspy_name_get_connection (self->name)) ||
-      !(bus = dspy_connection_get_connection (connection)) ||
-      !G_IS_DBUS_CONNECTION (bus))
+      !(bus = dspy_connection_get_connection (connection)))
     {
       g_task_return_new_error (task,
                                G_IO_ERROR,
