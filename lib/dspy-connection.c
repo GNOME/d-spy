@@ -240,17 +240,9 @@ dspy_connection_open_bus_cb (GObject      *object,
   g_assert (G_IS_TASK (task));
 
   if (!(bus = g_bus_get_finish (result, &error)))
-    {
-      g_task_return_error (task, g_steal_pointer (&error));
-    }
+    g_task_return_error (task, g_steal_pointer (&error));
   else
-    {
-      /* Cache a copy of the connection for later use */
-      DspyConnection *self = g_task_get_source_object (task);
-      g_set_object (&self->connection, bus);
-
-      g_task_return_pointer (task, g_steal_pointer (&bus), g_object_unref);
-    }
+    g_task_return_pointer (task, g_steal_pointer (&bus), g_object_unref);
 }
 
 static void
@@ -335,6 +327,8 @@ dspy_connection_open_finish (DspyConnection  *self,
 
   if ((bus = g_task_propagate_pointer (G_TASK (result), error)))
     {
+      g_dbus_connection_set_exit_on_close (bus, FALSE);
+
       if (g_set_object (&self->connection, bus))
         g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CONNECTION]);
     }
