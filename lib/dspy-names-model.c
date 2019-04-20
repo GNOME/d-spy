@@ -27,10 +27,11 @@
 
 struct _DspyNamesModel
 {
-  GObject         parent_instance;
-  DspyConnection *connection;
-  GSequence      *items;
-  guint           name_owner_changed_handler;
+  GObject          parent_instance;
+  DspyConnection  *connection;
+  GSequence       *items;
+  GDBusConnection *bus;
+  guint            name_owner_changed_handler;
 };
 
 enum {
@@ -303,6 +304,7 @@ dspy_names_model_init_open_cb (GObject      *object,
   g_assert (self != NULL);
   g_assert (DSPY_IS_NAMES_MODEL (self));
 
+  self->bus = g_object_ref (bus);
   self->name_owner_changed_handler =
     g_dbus_connection_signal_subscribe (bus,
                                         NULL,
@@ -416,18 +418,16 @@ dspy_names_model_dispose (GObject *object)
 {
   DspyNamesModel *self = (DspyNamesModel *)object;
 
+  g_assert (DSPY_IS_NAMES_MODEL (self));
+
   if (self->name_owner_changed_handler > 0)
     {
-      if (self->connection != NULL)
-        {
-          GDBusConnection *bus = dspy_connection_get_connection (self->connection);
-
-          if (bus != NULL)
-            g_dbus_connection_signal_unsubscribe (bus, self->name_owner_changed_handler);
-        }
-
+      if (self->bus != NULL)
+        g_dbus_connection_signal_unsubscribe (self->bus, self->name_owner_changed_handler);
       self->name_owner_changed_handler = 0;
     }
+
+  g_clear_object (&self->bus);
 
   G_OBJECT_CLASS (dspy_names_model_parent_class)->dispose (object);
 }
