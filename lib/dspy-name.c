@@ -55,6 +55,7 @@ dspy_name_finalize (GObject *object)
 {
   DspyName *self = (DspyName *)object;
 
+  g_clear_object (&self->connection);
   g_clear_pointer (&self->name, g_free);
   g_clear_pointer (&self->owner, g_free);
 
