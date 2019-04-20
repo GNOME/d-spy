@@ -39,6 +39,7 @@ gboolean        dspy_name_get_activatable   (DspyName             *self);
 GPid            dspy_name_get_pid           (DspyName             *self);
 const gchar    *dspy_name_get_name          (DspyName             *self);
 const gchar    *dspy_name_get_owner         (DspyName             *self);
+const gchar    *dspy_name_get_search_text   (DspyName             *self);
 gint            dspy_name_compare           (gconstpointer         a,
                                              gconstpointer         b);
 void            dspy_name_introspect_async  (DspyName             *self,

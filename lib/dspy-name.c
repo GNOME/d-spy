@@ -32,6 +32,7 @@ struct _DspyName
   DspyConnection *connection;
   gchar          *name;
   gchar          *owner;
+  gchar          *search_text;
   GPid            pid;
   guint           activatable : 1;
 };
@@ -58,6 +59,7 @@ dspy_name_finalize (GObject *object)
   g_clear_object (&self->connection);
   g_clear_pointer (&self->name, g_free);
   g_clear_pointer (&self->owner, g_free);
+  g_clear_pointer (&self->search_text, g_free);
 
   G_OBJECT_CLASS (dspy_name_parent_class)->finalize (object);
 }
@@ -276,6 +278,7 @@ _dspy_name_set_owner (DspyName    *self,
     {
       g_free (self->owner);
       self->owner = g_strdup (owner);
+      g_clear_pointer (&self->search_text, g_free);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_OWNER]);
     }
 }
@@ -288,6 +291,7 @@ _dspy_name_clear_pid (DspyName *self)
   if (self->pid != -1)
     {
       self->pid = -1;
+      g_clear_pointer (&self->search_text, g_free);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_PID]);
     }
 }
@@ -359,13 +363,7 @@ dspy_name_get_owner_cb (GObject      *object,
     return;
 
   g_variant_get (reply, "(&s)", &owner);
-
-  if (g_strcmp0 (owner, self->owner) != 0)
-    {
-      g_free (self->owner);
-      self->owner = g_strdup (owner);
-      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_OWNER]);
-    }
+  _dspy_name_set_owner (self, owner);
 }
 
 void
@@ -471,4 +469,18 @@ dspy_name_introspect_finish (DspyName      *self,
   g_return_val_if_fail (G_IS_TASK (result), NULL);
 
   return g_task_propagate_pointer (G_TASK (result), error);
+}
+
+const gchar *
+dspy_name_get_search_text (DspyName *self)
+{
+  g_return_val_if_fail (DSPY_IS_NAME (self), FALSE);
+
+  if (self->search_text == NULL)
+    {
+      const gchar *owner = dspy_name_get_owner (self);
+      self->search_text = g_strdup_printf ("%s %s %d", self->name, owner, self->pid);
+    }
+
+  return self->search_text;
 }
