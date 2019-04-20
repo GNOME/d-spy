@@ -37,6 +37,7 @@ typedef struct
   GtkLabel             *label_object_path;
   GtkLabel             *label_method;
   GtkButton            *button;
+  GtkButton            *copy_button;
   GtkTextBuffer        *buffer_params;
   GtkTextBuffer        *buffer_reply;
   GtkTextView          *textview_params;
@@ -205,6 +206,27 @@ dspy_method_view_invoke_method (GtkWidget *widget,
 }
 
 static void
+copy_button_clicked_cb (DspyMethodView *self,
+                        GtkButton      *button)
+{
+  DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
+  g_autofree gchar *text = NULL;
+  GtkClipboard *clipboard;
+  GtkTextIter begin;
+  GtkTextIter end;
+
+  g_assert (DSPY_IS_METHOD_VIEW (self));
+  g_assert (GTK_IS_BUTTON (button));
+
+  if (!gtk_text_buffer_get_selection_bounds (priv->buffer_reply, &begin, &end))
+    gtk_text_buffer_get_bounds (priv->buffer_reply, &begin, &end);
+
+  text = gtk_text_iter_get_slice (&begin, &end);
+  clipboard = gtk_widget_get_clipboard (GTK_WIDGET (self), GDK_SELECTION_CLIPBOARD);
+  gtk_clipboard_set_text (clipboard, text, -1);
+}
+
+static void
 dspy_method_view_finalize (GObject *object)
 {
   DspyMethodView *self = (DspyMethodView *)object;
@@ -278,6 +300,7 @@ dspy_method_view_class_init (DspyMethodViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, buffer_params);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, buffer_reply);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, button);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, copy_button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_interface);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_method);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_object_path);
@@ -302,6 +325,12 @@ dspy_method_view_init (DspyMethodView *self)
   g_signal_connect_object (priv->button,
                            "clicked",
                            G_CALLBACK (dspy_method_view_button_clicked_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (priv->copy_button,
+                           "clicked",
+                           G_CALLBACK (copy_button_clicked_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
