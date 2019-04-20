@@ -276,18 +276,15 @@ dspy_connection_open_async (DspyConnection      *self,
                                                                &error);
 
   if (error != NULL)
-    {
-      g_task_return_error (task, g_steal_pointer (&error));
-      return;
-    }
-
-  g_dbus_connection_new_for_address (self->connected_address,
-                                     (G_DBUS_CONNECTION_FLAGS_MESSAGE_BUS_CONNECTION |
-                                      G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_CLIENT),
-                                     NULL,
-                                     cancellable,
-                                     dspy_connection_open_address_cb,
-                                     g_steal_pointer (&task));
+    g_task_return_error (task, g_steal_pointer (&error));
+  else
+    g_dbus_connection_new_for_address (self->connected_address,
+                                       (G_DBUS_CONNECTION_FLAGS_MESSAGE_BUS_CONNECTION |
+                                        G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_CLIENT),
+                                       NULL,
+                                       cancellable,
+                                       dspy_connection_open_address_cb,
+                                       g_steal_pointer (&task));
 }
 
 /**
