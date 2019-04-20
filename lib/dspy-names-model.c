@@ -42,6 +42,13 @@ enum {
 
 static GParamSpec *properties [N_PROPS];
 
+static void
+_g_weak_ref_free (GWeakRef *wr)
+{
+  g_weak_ref_clear (wr);
+  g_slice_free (GWeakRef, wr);
+}
+
 static GType
 dspy_names_model_get_item_type (GListModel *model)
 {
@@ -151,7 +158,8 @@ dspy_names_model_name_owner_changed_cb (GDBusConnection *connection,
                                         GVariant        *params,
                                         gpointer         user_data)
 {
-  DspyNamesModel *self = user_data;
+  GWeakRef *wr = user_data;
+  g_autoptr(DspyNamesModel) self = NULL;
   g_autoptr(DspyName) name = NULL;
   GSequenceIter *seq;
   const gchar *vname;
@@ -161,7 +169,10 @@ dspy_names_model_name_owner_changed_cb (GDBusConnection *connection,
   g_assert (G_IS_DBUS_CONNECTION (connection));
   g_assert (params != NULL);
   g_assert (g_variant_is_of_type (params, G_VARIANT_TYPE ("(sss)")));
-  g_assert (DSPY_IS_NAMES_MODEL (self));
+  g_assert (wr != NULL);
+
+  if (!(self = g_weak_ref_get (wr)))
+    return;
 
   g_variant_get (params, "(&s&s&s)", &vname, &vold_name, &vnew_name);
 
@@ -288,6 +299,7 @@ dspy_names_model_init_open_cb (GObject      *object,
   g_autoptr(GTask) task = user_data;
   g_autoptr(GError) error = NULL;
   DspyNamesModel *self;
+  GWeakRef *wr;
 
   g_assert (DSPY_IS_CONNECTION (connection));
   g_assert (G_IS_ASYNC_RESULT (result));
@@ -305,6 +317,17 @@ dspy_names_model_init_open_cb (GObject      *object,
   g_assert (DSPY_IS_NAMES_MODEL (self));
 
   self->bus = g_object_ref (bus);
+
+  /* Because g_dbus_connection_signal_subscribe() is not guaranteed to
+   * call the cleanup function synchronously when unsubscribed, we need to
+   * use a weak ref in allocated state to ensure that we do not have a
+   * reference cycle. Otherwise, calling unsubscribe() from our finalize
+   * handler could result in a use-after-free. And we can't use a full
+   * reference because we'd never dispose/finalize without external
+   * intervention.
+   */
+  wr = g_slice_new0 (GWeakRef);
+  g_weak_ref_init (wr, self);
   self->name_owner_changed_handler =
     g_dbus_connection_signal_subscribe (bus,
                                         NULL,
@@ -314,8 +337,8 @@ dspy_names_model_init_open_cb (GObject      *object,
                                         NULL,
                                         0,
                                         dspy_names_model_name_owner_changed_cb,
-                                        self,
-                                        NULL);
+                                        g_steal_pointer (&wr),
+                                        (GDestroyNotify)_g_weak_ref_free);
 
   g_dbus_connection_call (bus,
                           "org.freedesktop.DBus",
@@ -419,12 +442,13 @@ dspy_names_model_dispose (GObject *object)
   DspyNamesModel *self = (DspyNamesModel *)object;
 
   g_assert (DSPY_IS_NAMES_MODEL (self));
+  g_assert (self->name_owner_changed_handler == 0 || self->bus != NULL);
 
   if (self->name_owner_changed_handler > 0)
     {
-      if (self->bus != NULL)
-        g_dbus_connection_signal_unsubscribe (self->bus, self->name_owner_changed_handler);
+      guint handler_id = self->name_owner_changed_handler;
       self->name_owner_changed_handler = 0;
+      g_dbus_connection_signal_unsubscribe (self->bus, handler_id);
     }
 
   g_clear_object (&self->bus);
