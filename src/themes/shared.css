@@ -4,3 +4,12 @@ dzlmultipaned > :first-child {
 box.linked > scrolledwindow:first-child {
   border-right: none;
 }
+.sidebar button.popup {
+  border: none;
+  border-radius: 0px;
+  background: none;
+  box-shadow: none;
+}
+.sidebar button:not(:hover) image {
+  color: alpha(currentColor, 0.6);
+}

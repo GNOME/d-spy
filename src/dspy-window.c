@@ -43,6 +43,7 @@ struct _DspyWindow
   GtkRadioButton        *session_button;
   GtkRadioButton        *system_button;
   GtkSearchEntry        *search_entry;
+  GtkMenuButton         *menu_button;
 
   guint                  destroyed : 1;
 };
@@ -79,6 +80,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, header_bar);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, introspection_tree_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, menu_button);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, method_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, method_revealer);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, name_marquee);
@@ -376,6 +378,7 @@ static void
 dspy_window_init (DspyWindow *self)
 {
   g_autoptr(DspyConnection) conn = dspy_connection_new_for_bus (G_BUS_TYPE_SESSION);
+  GMenu *menu;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
@@ -383,6 +386,9 @@ dspy_window_init (DspyWindow *self)
                                     NULL,
                                     dspy_window_list_names_cb,
                                     g_object_ref (self));
+
+  menu = dzl_application_get_menu_by_id (DZL_APPLICATION (g_application_get_default ()), "connections-menu");
+  gtk_menu_button_set_menu_model (self->menu_button, G_MENU_MODEL (menu));
 
   g_signal_connect_object (self,
                            "key-press-event",
