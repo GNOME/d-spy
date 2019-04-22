@@ -41,8 +41,8 @@ struct _DspyWindow
   GtkScrolledWindow     *names_scroller;
   DspyMethodView        *method_view;
   GtkRevealer           *method_revealer;
-  GtkRadioButton        *session_button;
-  GtkRadioButton        *system_button;
+  DspyConnectionButton  *session_button;
+  DspyConnectionButton  *system_button;
   GtkSearchEntry        *search_entry;
   GtkMenuButton         *menu_button;
   GtkBox                *radio_buttons;
@@ -291,8 +291,6 @@ dspy_window_list_names_cb (GObject      *object,
 
   if (!(model = dspy_connection_list_names_finish (conn, result, &error)))
     g_warning ("Failed to list names: %s", error->message);
-  else
-    g_print ("We've run ....\n");
 
   dspy_window_set_model (self, model);
 }

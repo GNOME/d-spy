@@ -1,4 +1,4 @@
-/* dspy.h
+/* dspy-connection-button.h
  *
  * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
@@ -20,17 +20,27 @@
 
 #pragma once
 
-#define DSPY_INSIDE
+#include <gtk/gtk.h>
 
-# include "dspy-connection.h"
-# include "dspy-connection-button.h"
-# include "dspy-introspection-model.h"
-# include "dspy-method-invocation.h"
-# include "dspy-method-view.h"
-# include "dspy-name.h"
-# include "dspy-name-marquee.h"
-# include "dspy-name-row.h"
-# include "dspy-names-model.h"
-# include "dspy-tree-view.h"
+#include "dspy-connection.h"
 
-#undef DSPY_INSIDE
+G_BEGIN_DECLS
+
+#define DSPY_TYPE_CONNECTION_BUTTON (dspy_connection_button_get_type())
+
+G_DECLARE_DERIVABLE_TYPE (DspyConnectionButton, dspy_connection_button, DSPY, CONNECTION_BUTTON, GtkRadioButton)
+
+struct _DspyConnectionButtonClass
+{
+  GtkRadioButtonClass parent_class;
+  
+  /*< private >*/
+  gpointer _reserved[8];
+};
+
+GtkWidget      *dspy_connection_button_new            (void);
+DspyConnection *dspy_connection_button_get_connection (DspyConnectionButton *self);
+void            dspy_connection_button_set_connection (DspyConnectionButton *self,
+                                                       DspyConnection       *connection);
+
+G_END_DECLS

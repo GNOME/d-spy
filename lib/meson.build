@@ -1,5 +1,6 @@
 libdspy_sources = [
   'dspy-connection.c',
+  'dspy-connection-button.c',
   'dspy-introspection-model.c',
   'dspy-method-invocation.c',
   'dspy-method-view.c',

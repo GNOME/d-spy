@@ -36,16 +36,14 @@
                   <class name="linked"/>
                 </style>
                 <child>
-                  <object class="GtkRadioButton" id="session_button">
-                    <property name="label" translatable="yes">Session</property>
-                    <property name="draw-indicator">false</property>
+                  <object class="DspyConnectionButton" id="session_button">
+                    <property name="bus-type">session</property>
                     <property name="visible">true</property>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkRadioButton" id="system_button">
-                    <property name="label" translatable="yes">System</property>
-                    <property name="draw-indicator">false</property>
+                  <object class="DspyConnectionButton" id="system_button">
+                    <property name="bus-type">system</property>
                     <property name="group">session_button</property>
                     <property name="visible">true</property>
                   </object>
