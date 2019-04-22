@@ -32,6 +32,7 @@ struct _DspyConnection
   GDBusConnection *connection;
   gchar           *address;
   gchar           *connected_address;
+  GPtrArray       *errors;
   GBusType         bus_type;
 };
 
@@ -42,6 +43,7 @@ enum {
   PROP_ADDRESS,
   PROP_BUS_TYPE,
   PROP_CONNECTION,
+  PROP_HAS_ERROR,
   N_PROPS
 };
 
@@ -132,6 +134,10 @@ dspy_connection_get_property (GObject    *object,
       g_value_set_object (value, dspy_connection_get_connection (self));
       break;
 
+    case PROP_HAS_ERROR:
+      g_value_set_boolean (value, dspy_connection_get_has_error (self));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -199,6 +205,13 @@ dspy_connection_class_init (DspyConnectionClass *klass)
                          "The underlying GDBus connection",
                          G_TYPE_DBUS_CONNECTION,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_HAS_ERROR] =
+    g_param_spec_boolean ("has-error",
+                          "Has Error",
+                          "Has Error",
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
@@ -354,15 +367,24 @@ dspy_connection_list_names_cb (GObject      *object,
   GAsyncInitable *initable = (GAsyncInitable *)object;
   g_autoptr(GError) error = NULL;
   g_autoptr(GTask) task = user_data;
+  DspyConnection *self;
 
   g_assert (G_IS_ASYNC_INITABLE (initable));
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (G_IS_TASK (task));
 
+  self = g_task_get_source_object (task);
+
   if (!g_async_initable_init_finish (initable, result, &error))
-    g_task_return_error (task, g_steal_pointer (&error));
+    {
+      dspy_connection_add_error (self, error);
+      g_task_return_error (task, g_steal_pointer (&error));
+    }
   else
-    g_task_return_pointer (task, g_object_ref (initable), g_object_unref);
+    {
+      dspy_connection_clear_errors (self);
+      g_task_return_pointer (task, g_object_ref (initable), g_object_unref);
+    }
 }
 
 void
@@ -398,4 +420,55 @@ dspy_connection_list_names_finish (DspyConnection  *self,
   g_return_val_if_fail (G_IS_TASK (result), NULL);
 
   return g_task_propagate_pointer (G_TASK (result), error);
+}
+
+/**
+ * dspy_connection_get_has_error:
+ *
+ * Checks if any errors have been registered with the connection, such
+ * as when listing peer names.
+ *
+ * This can be used to show extra information to the user about the
+ * connection issues.
+ *
+ * Returns: %TRUE if there are any errors
+ */
+gboolean
+dspy_connection_get_has_error (DspyConnection *self)
+{
+  g_return_val_if_fail (DSPY_IS_CONNECTION (self), FALSE);
+
+  return self->errors != NULL && self->errors->len > 0;
+}
+
+void
+dspy_connection_add_error (DspyConnection *self,
+                           const GError   *error)
+{
+  gboolean notify;
+
+  g_return_if_fail (DSPY_IS_CONNECTION (self));
+  g_return_if_fail (error != NULL);
+
+  if (self->errors == NULL)
+    self->errors = g_ptr_array_new_with_free_func ((GDestroyNotify)g_error_free);
+
+  notify = self->errors->len == 0;
+
+  g_ptr_array_add (self->errors, g_error_copy (error));
+
+  if (notify)
+    g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAS_ERROR]);
+}
+
+void
+dspy_connection_clear_errors (DspyConnection *self)
+{
+  g_return_if_fail (DSPY_IS_CONNECTION (self));
+
+  if (self->errors != NULL && self->errors->len > 0)
+    {
+      g_ptr_array_remove_range (self->errors, 0, self->errors->len);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAS_ERROR]);
+    }
 }

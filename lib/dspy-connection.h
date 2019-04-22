@@ -30,9 +30,13 @@ G_DECLARE_FINAL_TYPE (DspyConnection, dspy_connection, DSPY, CONNECTION, GObject
 
 DspyConnection  *dspy_connection_new_for_address   (const gchar          *address);
 DspyConnection  *dspy_connection_new_for_bus       (GBusType              bus_type);
+void             dspy_connection_add_error         (DspyConnection       *self,
+                                                    const GError         *error);
+void             dspy_connection_clear_errors      (DspyConnection       *self);
 GDBusConnection *dspy_connection_get_connection    (DspyConnection       *self);
 const gchar     *dspy_connection_get_address       (DspyConnection       *self);
 GBusType         dspy_connection_get_bus_type      (DspyConnection       *self);
+gboolean         dspy_connection_get_has_error     (DspyConnection       *self);
 void             dspy_connection_open_async        (DspyConnection       *self,
                                                     GCancellable         *cancellable,
                                                     GAsyncReadyCallback   callback,

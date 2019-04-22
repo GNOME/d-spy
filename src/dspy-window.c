@@ -84,14 +84,16 @@ connect_address_activate_cb (DspyWindow       *self,
 
   connection = dspy_connection_new_for_address (text);
 
-  button = g_object_new (GTK_TYPE_RADIO_BUTTON,
-                         "draw-indicator", FALSE,
+  button = g_object_new (DSPY_TYPE_CONNECTION_BUTTON,
                          "group", self->session_button,
-                         "label", _("Custom"),
+                         "connection", connection,
                          "visible", TRUE,
                          NULL);
   gtk_container_add (GTK_CONTAINER (self->radio_buttons), GTK_WIDGET (button));
 
+  gtk_widget_activate (GTK_WIDGET (button));
+
+  // XXX: remove this after activation works
   dspy_connection_list_names_async (connection,
                                     NULL,
                                     dspy_window_list_names_cb,

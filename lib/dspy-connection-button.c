@@ -221,6 +221,8 @@ dspy_connection_button_set_connection (DspyConnectionButton *self,
       else
         gtk_label_set_label (priv->label, _("Custom"));
 
+      g_object_bind_property (connection, "has-error", priv->image, "visible", G_BINDING_SYNC_CREATE);
+
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CONNECTION]);
     }
 }
