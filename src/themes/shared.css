@@ -1,7 +1,7 @@
 dzlmultipaned > :first-child {
   border-right: 1px solid @borders;
 }
-box.linked > scrolledwindow:first-child {
+box.linked.horizontal > scrolledwindow:first-child {
   border-right: none;
 }
 .sidebar button.popup {
