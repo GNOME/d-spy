@@ -20,6 +20,7 @@
 
 #include <dazzle.h>
 #include <dspy.h>
+#include <glib/gi18n.h>
 
 #include "dspy-window.h"
 
@@ -44,14 +45,101 @@ struct _DspyWindow
   GtkRadioButton        *system_button;
   GtkSearchEntry        *search_entry;
   GtkMenuButton         *menu_button;
+  GtkBox                *radio_buttons;
 
   guint                  destroyed : 1;
 };
 
-static void dspy_window_set_model (DspyWindow *self,
-                                   GListModel *model);
+static void dspy_window_set_model     (DspyWindow   *self,
+                                       GListModel   *model);
+static void dspy_window_list_names_cb (GObject      *object,
+                                       GAsyncResult *result,
+                                       gpointer      user_data);
 
 G_DEFINE_TYPE (DspyWindow, dspy_window, GTK_TYPE_APPLICATION_WINDOW)
+
+static void
+connect_address_changed_cb (DspyWindow       *self,
+                            DzlSimplePopover *popover)
+{
+  const gchar *text;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (DZL_IS_SIMPLE_POPOVER (popover));
+
+  text = dzl_simple_popover_get_text (popover);
+  dzl_simple_popover_set_ready (popover, text && *text);
+}
+
+static void
+connect_address_activate_cb (DspyWindow       *self,
+                             const gchar      *text,
+                             DzlSimplePopover *popover)
+{
+  g_autoptr(DspyConnection) connection = NULL;
+  GtkRadioButton *button;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (DZL_IS_SIMPLE_POPOVER (popover));
+
+  connection = dspy_connection_new_for_address (text);
+
+  button = g_object_new (GTK_TYPE_RADIO_BUTTON,
+                         "draw-indicator", FALSE,
+                         "group", self->session_button,
+                         "label", _("Custom"),
+                         "visible", TRUE,
+                         NULL);
+  gtk_container_add (GTK_CONTAINER (self->radio_buttons), GTK_WIDGET (button));
+
+  dspy_connection_list_names_async (connection,
+                                    NULL,
+                                    dspy_window_list_names_cb,
+                                    g_object_ref (self));
+}
+
+static void
+connect_to_bus_action (GSimpleAction *action,
+                       GVariant      *params,
+                       gpointer       user_data)
+{
+  DspyWindow *self = user_data;
+  GtkPopover *popover;
+
+  g_assert (G_IS_SIMPLE_ACTION (action));
+  g_assert (DSPY_IS_WINDOW (self));
+
+  popover = g_object_new (DZL_TYPE_SIMPLE_POPOVER,
+                          "button-text", _("Connect"),
+                          "message", _("Provide the address of the message bus"),
+                          "position", GTK_POS_RIGHT,
+                          "title", _("Connect to Bus"),
+                          "relative-to", self->system_button,
+                          NULL);
+
+  g_signal_connect_object (popover,
+                           "changed",
+                           G_CALLBACK (connect_address_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (popover,
+                           "activate",
+                           G_CALLBACK (connect_address_activate_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect (popover,
+                    "closed",
+                    G_CALLBACK (gtk_widget_destroy),
+                    NULL);
+
+  gtk_popover_popup (popover);
+}
+
+static GActionEntry actions[] = {
+  { "connect-to-bus", connect_to_bus_action },
+};
 
 static void
 dspy_window_destroy (GtkWidget *widget)
@@ -86,6 +174,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, name_marquee);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_box);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_scroller);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, radio_buttons);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, refresh_button);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, search_entry);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, session_button);
@@ -202,6 +291,8 @@ dspy_window_list_names_cb (GObject      *object,
 
   if (!(model = dspy_connection_list_names_finish (conn, result, &error)))
     g_warning ("Failed to list names: %s", error->message);
+  else
+    g_print ("We've run ....\n");
 
   dspy_window_set_model (self, model);
 }
@@ -381,6 +472,11 @@ dspy_window_init (DspyWindow *self)
   GMenu *menu;
 
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  g_action_map_add_action_entries (G_ACTION_MAP (self),
+                                   actions,
+                                   G_N_ELEMENTS (actions),
+                                   self);
 
   dspy_connection_list_names_async (conn,
                                     NULL,

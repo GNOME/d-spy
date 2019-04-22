@@ -27,7 +27,7 @@
               <class name="view"/>
             </style>
             <child>
-              <object class="GtkBox">
+              <object class="GtkBox" id="radio_buttons">
                 <property name="margin">6</property>
                 <property name="homogeneous">true</property>
                 <property name="orientation">horizontal</property>
