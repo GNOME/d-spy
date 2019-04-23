@@ -32,10 +32,14 @@ typedef struct
   DspyMethodInvocation *invocation;
   DzlBindingGroup      *bindings;
   GCancellable         *cancellable;
+  GArray               *durations;
 
   GtkLabel             *label_interface;
   GtkLabel             *label_object_path;
   GtkLabel             *label_method;
+  GtkLabel             *label_avg;
+  GtkLabel             *label_min;
+  GtkLabel             *label_max;
   GtkButton            *button;
   GtkButton            *copy_button;
   GtkTextBuffer        *buffer_params;
@@ -44,6 +48,12 @@ typedef struct
 
   guint                 busy : 1;
 } DspyMethodViewPrivate;
+
+typedef struct
+{
+  DspyMethodView *self;
+  GTimer         *timer;
+} Execute;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DspyMethodView, dspy_method_view, DZL_TYPE_BIN)
 
@@ -54,6 +64,19 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
+
+static void
+execute_free (Execute *state)
+{
+  if (state != NULL)
+    {
+      g_clear_pointer (&state->timer, g_timer_destroy);
+      g_clear_object (&state->self);
+      g_slice_free (Execute, state);
+    }
+}
+
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (Execute, execute_free)
 
 /**
  * dspy_method_view_new:
@@ -66,6 +89,49 @@ GtkWidget *
 dspy_method_view_new (void)
 {
   return g_object_new (DSPY_TYPE_METHOD_VIEW, NULL);
+}
+
+static void
+update_timings (DspyMethodView *self)
+{
+  DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
+  g_autofree gchar *mean_str = NULL;
+  g_autofree gchar *min_str = NULL;
+  g_autofree gchar *max_str = NULL;
+  gdouble min = G_MAXDOUBLE;
+  gdouble max = -G_MAXDOUBLE;
+  gdouble total = 0;
+  gdouble mean = 0;
+
+  g_assert (DSPY_IS_METHOD_VIEW (self));
+  g_assert (priv->durations != NULL);
+
+  if (priv->durations->len == 0)
+    {
+      gtk_label_set_label (priv->label_avg, NULL);
+      gtk_label_set_label (priv->label_min, NULL);
+      gtk_label_set_label (priv->label_max, NULL);
+      return;
+    }
+
+  for (guint i = 0; i < priv->durations->len; i++)
+    {
+      gdouble val = g_array_index (priv->durations, gdouble, i);
+
+      total += val;
+      min = MIN (min, val);
+      max = MAX (max, val);
+    }
+
+  mean = total / (gdouble)priv->durations->len;
+
+  mean_str = g_strdup_printf ("%0.4lf", mean);
+  min_str = g_strdup_printf ("%0.4lf", min);
+  max_str = g_strdup_printf ("%0.4lf", max);
+
+  gtk_label_set_label (priv->label_avg, mean_str);
+  gtk_label_set_label (priv->label_min, min_str);
+  gtk_label_set_label (priv->label_max, max_str);
 }
 
 static gboolean
@@ -88,16 +154,24 @@ dspy_method_view_execute_cb (GObject      *object,
                              gpointer      user_data)
 {
   DspyMethodInvocation *invocation = (DspyMethodInvocation *)object;
-  g_autoptr(DspyMethodView) self = user_data;
-  DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
+  g_autoptr(Execute) state = user_data;
+  DspyMethodViewPrivate *priv;
   g_autoptr(GVariant) reply = NULL;
   g_autoptr(GError) error = NULL;
+  gdouble elapsed;
 
   g_assert (DSPY_IS_METHOD_INVOCATION (invocation));
   g_assert (G_IS_ASYNC_RESULT (result));
-  g_assert (DSPY_IS_METHOD_VIEW (self));
+  g_assert (state != NULL);
+  g_assert (state->timer != NULL);
+  g_assert (DSPY_IS_METHOD_VIEW (state->self));
 
+  priv = dspy_method_view_get_instance_private (state->self);
   priv->busy = FALSE;
+
+  g_timer_stop (state->timer);
+  elapsed = g_timer_elapsed (state->timer, NULL);
+  g_array_append_val (priv->durations, elapsed);
 
   if (!(reply = dspy_method_invocation_execute_finish (invocation, result, &error)))
     {
@@ -112,6 +186,8 @@ dspy_method_view_execute_cb (GObject      *object,
           gtk_text_buffer_set_text (priv->buffer_reply, replystr, -1);
         }
     }
+
+  update_timings (state->self);
 
   gtk_button_set_label (priv->button, _("Execute"));
 }
@@ -148,6 +224,7 @@ dspy_method_view_button_clicked_cb (DspyMethodView *self,
   g_autoptr(GVariant) params = NULL;
   g_autoptr(GError) error = NULL;
   const gchar *signature;
+  Execute *state;
 
   g_assert (DSPY_IS_METHOD_VIEW (self));
   g_assert (GTK_IS_BUTTON (button));
@@ -185,10 +262,14 @@ dspy_method_view_button_clicked_cb (DspyMethodView *self,
 
   gtk_text_buffer_set_text (priv->buffer_reply, "", -1);
 
+  state = g_slice_new0 (Execute);
+  state->self = g_object_ref (self);
+  state->timer = g_timer_new ();
+
   dspy_method_invocation_execute_async (priv->invocation,
                                         priv->cancellable,
                                         dspy_method_view_execute_cb,
-                                        g_object_ref (self));
+                                        state);
 
   gtk_button_set_label (priv->button, _("Cancel"));
 }
@@ -233,8 +314,11 @@ dspy_method_view_finalize (GObject *object)
   DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
 
   dzl_binding_group_set_source (priv->bindings, NULL);
-  g_clear_object (&priv->bindings);
+
   g_clear_object (&priv->invocation);
+  g_clear_object (&priv->bindings);
+  g_clear_object (&priv->cancellable);
+  g_clear_pointer (&priv->durations, g_array_unref);
 
   G_OBJECT_CLASS (dspy_method_view_parent_class)->finalize (object);
 }
@@ -301,8 +385,11 @@ dspy_method_view_class_init (DspyMethodViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, buffer_reply);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, copy_button);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_avg);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_interface);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_max);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_method);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_min);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_object_path);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, textview_params);
 }
@@ -314,6 +401,8 @@ dspy_method_view_init (DspyMethodView *self)
   DzlShortcutController *controller;
 
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  priv->durations = g_array_new (FALSE, FALSE, sizeof (gdouble));
 
   priv->bindings = dzl_binding_group_new ();
   dzl_binding_group_bind (priv->bindings, "interface", priv->label_interface, "label", 0);
