@@ -46,6 +46,7 @@ struct _DspyWindow
   GtkSearchEntry        *search_entry;
   GtkMenuButton         *menu_button;
   GtkBox                *radio_buttons;
+  GtkStack              *stack;
 
   guint                  destroyed : 1;
 };
@@ -69,6 +70,8 @@ radio_button_toggled_cb (DspyWindow           *self,
 
   if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)))
     return;
+
+  gtk_stack_set_visible_child_name (self->stack, "empty-state");
 
   connection = dspy_connection_button_get_connection (button);
   dspy_connection_list_names_async (connection,
@@ -227,8 +230,8 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, header_bar);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, introspection_tree_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, menu_button);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, method_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, method_revealer);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, method_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, name_marquee);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_box);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_scroller);
@@ -236,6 +239,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, refresh_button);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, search_entry);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, session_button);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, stack);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, system_button);
 
   g_type_ensure (DSPY_TYPE_METHOD_VIEW);
@@ -402,6 +406,8 @@ name_row_activated_cb (DspyWindow  *self,
                               self->cancellable,
                               dspy_window_introspect_cb,
                               g_object_ref (self));
+
+  gtk_stack_set_visible_child_name (self->stack, "introspect");
 }
 
 static void

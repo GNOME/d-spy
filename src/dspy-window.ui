@@ -52,7 +52,7 @@
             </child>
             <child>
               <object class="GtkSearchEntry" id="search_entry">
-                <property name="placeholder-text" translatable="yes">Search Connections</property>
+                <property name="placeholder-text" translatable="yes">Search Bus Names</property>
                 <property name="margin-top">6</property>
                 <property name="margin-start">6</property>
                 <property name="margin-end">6</property>
@@ -66,7 +66,7 @@
                 <property name="visible">true</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="label" translatable="yes">Connection Names</property>
+                    <property name="label" translatable="yes">Bus Names</property>
                     <property name="hexpand">true</property>
                     <property name="visible">true</property>
                     <property name="xalign">0.0</property>
@@ -122,60 +122,79 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox">
-            <property name="margin">12</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">12</property>
+          <object class="GtkStack" id="stack">
+            <property name="transition-duration">300</property>
+            <property name="transition-type">crossfade</property>
+            <property name="hexpand">true</property>
             <property name="visible">true</property>
             <child>
-              <object class="DspyNameMarquee" id="name_marquee">
+              <object class="DzlEmptyState">
+                <property name="icon-name">org.gnome.dfeet</property>
+                <property name="title" translatable="yes">Select a Bus Name</property>
+                <property name="subtitle" translatable="yes">Select a bus name to introspect the peer.</property>
                 <property name="visible">true</property>
               </object>
+              <packing>
+                <property name="name">empty-state</property>
+              </packing>
             </child>
             <child>
               <object class="GtkBox">
+                <property name="margin">12</property>
                 <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
                 <property name="visible">true</property>
-                <style>
-                  <class name="linked"/>
-                </style>
                 <child>
-                  <object class="GtkScrolledWindow">
-                    <property name="shadow-type">in</property>
-                    <property name="vexpand">True</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <child>
-                      <object class="DspyTreeView" id="introspection_tree_view">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <child internal-child="selection">
-                          <object class="GtkTreeSelection"/>
-                        </child>
-                      </object>
-                    </child>
+                  <object class="DspyNameMarquee" id="name_marquee">
+                    <property name="visible">true</property>
                   </object>
                 </child>
                 <child>
-                  <object class="DzlBin">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
                     <property name="visible">true</property>
                     <style>
-                      <class name="inline-toolbar"/>
+                      <class name="linked"/>
                     </style>
                     <child>
-                      <object class="GtkBox">
-                        <property name="orientation">horizontal</property>
-                        <property name="visible">true</property>
+                      <object class="GtkScrolledWindow">
+                        <property name="shadow-type">in</property>
+                        <property name="vexpand">True</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
                         <child>
-                          <object class="GtkButton" id="refresh_button">
+                          <object class="DspyTreeView" id="introspection_tree_view">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="DzlBin">
+                        <property name="visible">true</property>
+                        <style>
+                          <class name="inline-toolbar"/>
+                        </style>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">horizontal</property>
                             <property name="visible">true</property>
-                            <style>
-                              <class name="image-button"/>
-                            </style>
                             <child>
-                              <object class="GtkImage">
-                                <property name="icon-name">view-refresh-symbolic</property>
+                              <object class="GtkButton" id="refresh_button">
                                 <property name="visible">true</property>
+                                <style>
+                                  <class name="image-button"/>
+                                </style>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">view-refresh-symbolic</property>
+                                    <property name="visible">true</property>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>
@@ -184,19 +203,22 @@
                     </child>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkRevealer" id="method_revealer">
-                <property name="reveal-child">false</property>
-                <property name="visible">true</property>
                 <child>
-                  <object class="DspyMethodView" id="method_view">
-                    <property name="margin-start">12</property>
+                  <object class="GtkRevealer" id="method_revealer">
+                    <property name="reveal-child">false</property>
                     <property name="visible">true</property>
+                    <child>
+                      <object class="DspyMethodView" id="method_view">
+                        <property name="margin-start">12</property>
+                        <property name="visible">true</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
+              <packing>
+                <property name="name">introspect</property>
+              </packing>
             </child>
           </object>
         </child>
