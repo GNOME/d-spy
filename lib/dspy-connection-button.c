@@ -219,7 +219,7 @@ dspy_connection_button_set_connection (DspyConnectionButton *self,
       else if (bus_type == G_BUS_TYPE_SESSION)
         gtk_label_set_label (priv->label, _("Session"));
       else
-        gtk_label_set_label (priv->label, _("Custom"));
+        gtk_label_set_label (priv->label, _("Other"));
 
       g_object_bind_property (connection, "has-error", priv->image, "visible", G_BINDING_SYNC_CREATE);
 
