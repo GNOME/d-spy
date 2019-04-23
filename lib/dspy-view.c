@@ -32,6 +32,8 @@
 #include "dspy-tree-view.h"
 #include "dspy-view.h"
 
+#include "libdspy-resources.h"
+
 typedef struct
 {
   GCancellable          *cancellable;
@@ -520,6 +522,8 @@ dspy_view_class_init (DspyViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, session_button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, stack);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, system_button);
+
+  g_resources_register (libdspy_get_resource ());
 
   g_type_ensure (DSPY_TYPE_METHOD_VIEW);
   g_type_ensure (DSPY_TYPE_NAME_MARQUEE);
