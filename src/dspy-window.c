@@ -91,12 +91,33 @@ connect_address_changed_cb (DspyWindow       *self,
 }
 
 static void
+connection_got_error_cb (DspyWindow     *self,
+                         const GError   *error,
+                         DspyConnection *connection)
+{
+  GtkWidget *dialog;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (error != NULL);
+  g_assert (DSPY_IS_CONNECTION (connection));
+
+  dialog = gtk_message_dialog_new (GTK_WINDOW (self),
+                                   GTK_DIALOG_MODAL | GTK_DIALOG_USE_HEADER_BAR,
+                                   GTK_MESSAGE_WARNING,
+                                   GTK_BUTTONS_CLOSE,
+                                   "%s", _("DBus Connection Failed"));
+  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
+  g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
+  gtk_window_present (GTK_WINDOW (dialog));
+}
+
+static void
 connect_address_activate_cb (DspyWindow       *self,
                              const gchar      *text,
                              DzlSimplePopover *popover)
 {
   g_autoptr(DspyConnection) connection = NULL;
-  GtkRadioButton *button;
+  DspyConnectionButton *button;
 
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (DZL_IS_SIMPLE_POPOVER (popover));
@@ -111,6 +132,11 @@ connect_address_activate_cb (DspyWindow       *self,
   g_signal_connect_object (button,
                            "toggled",
                            G_CALLBACK (radio_button_toggled_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (dspy_connection_button_get_connection (button),
+                           "error",
+                           G_CALLBACK (connection_got_error_cb),
                            self,
                            G_CONNECT_SWAPPED);
   gtk_container_add (GTK_CONTAINER (self->radio_buttons), GTK_WIDGET (button));
@@ -498,9 +524,21 @@ dspy_window_init (DspyWindow *self)
                            self,
                            G_CONNECT_SWAPPED);
 
+  g_signal_connect_object (dspy_connection_button_get_connection (self->session_button),
+                           "error",
+                           G_CALLBACK (connection_got_error_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
   g_signal_connect_object (self->system_button,
                            "toggled",
                            G_CALLBACK (radio_button_toggled_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (dspy_connection_button_get_connection (self->system_button),
+                           "error",
+                           G_CALLBACK (connection_got_error_cb),
                            self,
                            G_CONNECT_SWAPPED);
 

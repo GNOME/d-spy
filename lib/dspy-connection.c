@@ -47,7 +47,13 @@ enum {
   N_PROPS
 };
 
+enum {
+  ERROR,
+  N_SIGNALS
+};
+
 static GParamSpec *properties [N_PROPS];
+static guint signals [N_SIGNALS];
 
 /**
  * dspy_connection_new_for_address:
@@ -214,6 +220,15 @@ dspy_connection_class_init (DspyConnectionClass *klass)
                           (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
+
+  signals [ERROR] =
+    g_signal_new ("error",
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__BOXED,
+                  G_TYPE_NONE, 1, G_TYPE_ERROR | G_SIGNAL_TYPE_STATIC_SCOPE);
 }
 
 static void
@@ -456,6 +471,8 @@ dspy_connection_add_error (DspyConnection *self,
   notify = self->errors->len == 0;
 
   g_ptr_array_add (self->errors, g_error_copy (error));
+
+  g_signal_emit (self, signals [ERROR], 0, error);
 
   if (notify)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAS_ERROR]);
