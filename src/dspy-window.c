@@ -95,17 +95,29 @@ connection_got_error_cb (DspyWindow     *self,
                          const GError   *error,
                          DspyConnection *connection)
 {
+  const gchar *title;
   GtkWidget *dialog;
 
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (error != NULL);
   g_assert (DSPY_IS_CONNECTION (connection));
 
+  if (g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED))
+    title = _("Access Denied by Peer");
+  else if (g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_AUTH_FAILED))
+    title = _("Authentication Failed");
+  else if (g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_TIMEOUT))
+    title = _("Operation Timed Out");
+  else if (g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_DISCONNECTED))
+    title = _("Lost Connection to Bus");
+  else
+    title = _("DBus Connection Failed");
+
   dialog = gtk_message_dialog_new (GTK_WINDOW (self),
                                    GTK_DIALOG_MODAL | GTK_DIALOG_USE_HEADER_BAR,
                                    GTK_MESSAGE_WARNING,
                                    GTK_BUTTONS_CLOSE,
-                                   "%s", _("DBus Connection Failed"));
+                                   "%s", title);
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
   g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
   gtk_window_present (GTK_WINDOW (dialog));
