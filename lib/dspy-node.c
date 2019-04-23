@@ -301,6 +301,7 @@ _dspy_node_free (gpointer data)
       clear_full (&node->signal.args);
       break;
 
+    case DSPY_NODE_KIND_LAST:
     default:
       g_assert_not_reached ();
     }
@@ -387,6 +388,7 @@ _dspy_node_walk (DspyNode *node,
         _dspy_node_walk (iter->data, func, user_data);
       break;
 
+    case DSPY_NODE_KIND_LAST:
     default:
       g_assert_not_reached ();
     }
@@ -553,6 +555,7 @@ _dspy_node_get_text (DspyNode *node)
     case DSPY_NODE_KIND_SIGNAL:
       return _dspy_signal_info_to_string (&node->signal);
 
+    case DSPY_NODE_KIND_LAST:
     default:
       g_return_val_if_reached (NULL);
     }

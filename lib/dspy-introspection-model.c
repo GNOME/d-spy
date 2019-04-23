@@ -279,7 +279,6 @@ dspy_introspection_model_init_introspect_cb (GObject      *object,
     }
   else
     {
-      DspyIntrospectionModel *self = g_task_get_source_object (state->task);
       DspyConnection *connection = dspy_name_get_connection (self->name);
 
       dspy_connection_add_error (connection, error);
@@ -465,6 +464,7 @@ dspy_introspection_model_iter_next (GtkTreeModel *model,
       iter->user_data = node->any.parent->interface.methods;
       return TRUE;
 
+    case DSPY_NODE_KIND_INTERFACES:
     case DSPY_NODE_KIND_METHODS:
     case DSPY_NODE_KIND_ARG:
     case DSPY_NODE_KIND_LAST:
@@ -505,7 +505,7 @@ dspy_introspection_model_get_path (GtkTreeModel *model,
     {
       gint pos = 0;
 
-      for (const GList *iter = &node->any.link; iter->prev; iter = iter->prev)
+      for (const GList *list = &node->any.link; list->prev; list = list->prev)
         pos++;
 
       gtk_tree_path_prepend_index (path, pos);
@@ -765,6 +765,7 @@ dspy_introspection_model_iter_nth_child (GtkTreeModel *model,
     case DSPY_NODE_KIND_METHOD:
     case DSPY_NODE_KIND_SIGNAL:
     case DSPY_NODE_KIND_PROPERTY:
+    case DSPY_NODE_KIND_LAST:
     default:
       return FALSE;
     }
