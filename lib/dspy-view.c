@@ -479,7 +479,7 @@ connect_to_bus_action (GSimpleAction *action,
   gtk_popover_popup (popover);
 }
 
-static GActionEntry actions[] = {
+static GActionEntry action_entries[] = {
   { "connect-to-bus", connect_to_bus_action },
 };
 
@@ -532,14 +532,16 @@ static void
 dspy_view_init (DspyView *self)
 {
   DspyViewPrivate *priv = dspy_view_get_instance_private (self);
+  g_autoptr(GSimpleActionGroup) actions = g_simple_action_group_new ();
   GMenu *menu;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  g_action_map_add_action_entries (G_ACTION_MAP (self),
-                                   actions,
-                                   G_N_ELEMENTS (actions),
+  g_action_map_add_action_entries (G_ACTION_MAP (actions),
+                                   action_entries,
+                                   G_N_ELEMENTS (action_entries),
                                    self);
+  gtk_widget_insert_action_group (GTK_WIDGET (self), "dspy", G_ACTION_GROUP (actions));
 
   menu = dzl_application_get_menu_by_id (DZL_APPLICATION (g_application_get_default ()),
                                          "connections-menu");

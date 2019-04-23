@@ -3,7 +3,7 @@
   <menu id="connections-menu">
     <item>
       <attribute name="label" translatable="yes">Connect to Other Bus</attribute>
-      <attribute name="action">win.connect-to-bus</attribute>
+      <attribute name="action">dspy.connect-to-bus</attribute>
     </item>
   </menu>
 </interface>
