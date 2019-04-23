@@ -262,16 +262,20 @@ dspy_introspection_model_init_introspect_cb (GObject      *object,
        * contain a large amount of text.
        */
       g_variant_get (reply, "(&s)", &str);
-      bytes = g_bytes_new_with_free_func (str,
-                                          strlen (str),
-                                          (GDestroyNotify) g_variant_unref,
-                                          g_variant_ref (reply));
 
-      parse_xml_async (self,
-                       bytes,
-                       cancellable,
-                       dspy_introspection_model_init_parse_cb,
-                       g_steal_pointer (&state));
+      if (str[0] != 0)
+        {
+          bytes = g_bytes_new_with_free_func (str,
+                                              strlen (str),
+                                              (GDestroyNotify) g_variant_unref,
+                                              g_variant_ref (reply));
+          parse_xml_async (self,
+                           bytes,
+                           cancellable,
+                           dspy_introspection_model_init_parse_cb,
+                           g_steal_pointer (&state));
+          return;
+        }
 
       return;
     }
