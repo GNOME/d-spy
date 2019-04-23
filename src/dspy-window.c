@@ -357,9 +357,8 @@ dspy_window_introspect_cb (GObject      *object,
 
   if (!(model = dspy_name_introspect_finish (name, result, &error)))
     {
-      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
-        g_warning ("Failed to introspect peer: %s", error->message);
-      return;
+      DspyConnection *connection = dspy_name_get_connection (name);
+      dspy_connection_add_error (connection, error);
     }
 
   gtk_tree_view_set_model (self->introspection_tree_view, model);

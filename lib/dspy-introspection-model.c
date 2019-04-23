@@ -276,8 +276,13 @@ dspy_introspection_model_init_introspect_cb (GObject      *object,
                            g_steal_pointer (&state));
           return;
         }
+    }
+  else
+    {
+      DspyIntrospectionModel *self = g_task_get_source_object (state->task);
+      DspyConnection *connection = dspy_name_get_connection (self->name);
 
-      return;
+      dspy_connection_add_error (connection, error);
     }
 
   if (--(*n_active) == 0)
