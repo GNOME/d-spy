@@ -108,15 +108,14 @@ connect_address_activate_cb (DspyWindow       *self,
                          "connection", connection,
                          "visible", TRUE,
                          NULL);
+  g_signal_connect_object (button,
+                           "toggled",
+                           G_CALLBACK (radio_button_toggled_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
   gtk_container_add (GTK_CONTAINER (self->radio_buttons), GTK_WIDGET (button));
 
   gtk_widget_activate (GTK_WIDGET (button));
-
-  // XXX: remove this after activation works
-  dspy_connection_list_names_async (connection,
-                                    NULL,
-                                    dspy_window_list_names_cb,
-                                    g_object_ref (self));
 }
 
 static void
