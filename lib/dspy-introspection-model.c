@@ -343,7 +343,7 @@ dspy_introspection_model_introspect (GTask           *task,
                           "Introspect",
                           NULL, /* Params */
                           G_VARIANT_TYPE ("(s)"),
-                          G_DBUS_CALL_FLAGS_NONE,
+                          G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
                           -1,
                           self->cancellable,
                           dspy_introspection_model_init_introspect_cb,
