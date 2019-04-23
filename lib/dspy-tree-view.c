@@ -29,12 +29,28 @@
 
 G_DEFINE_TYPE (DspyTreeView, dspy_tree_view, GTK_TYPE_TREE_VIEW)
 
+typedef struct
+{
+  DspyTreeView *self;
+  GtkTreePath  *path;
+} GetProperty;
+
 enum {
   METHOD_ACTIVATED,
   N_SIGNALS
 };
 
 static guint signals [N_SIGNALS];
+
+static void
+get_property_free (GetProperty *state)
+{
+  g_clear_object (&state->self);
+  g_clear_pointer (&state->path, gtk_tree_path_free);
+  g_slice_free (GetProperty, state);
+}
+
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (GetProperty, get_property_free)
 
 GtkWidget *
 dspy_tree_view_new (void)
@@ -95,13 +111,110 @@ dspy_tree_view_selection_changed (DspyTreeView     *self,
 }
 
 static void
+dspy_tree_view_get_property_cb (GObject      *object,
+                                GAsyncResult *result,
+                                gpointer      user_data)
+{
+  GDBusConnection *bus = (GDBusConnection *)object;
+  g_autoptr(GVariant) reply = NULL;
+  g_autoptr(GError) error = NULL;
+  g_autoptr(GetProperty) state = user_data;
+
+  g_assert (G_IS_DBUS_CONNECTION (bus));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (state != NULL);
+
+  if ((reply = g_dbus_connection_call_finish (bus, result, &error)))
+    {
+      GtkTreeModel *model = gtk_tree_view_get_model (GTK_TREE_VIEW (state->self));
+      DspyNode *node;
+      GtkTreeIter iter;
+
+      if (gtk_tree_model_get_iter (model, &iter, state->path) &&
+          (node = iter.user_data) &&
+          DSPY_IS_NODE (node) &&
+          node->any.kind == DSPY_NODE_KIND_PROPERTY)
+        {
+          g_autoptr(GVariant) box = g_variant_get_child_value (reply, 0);
+          g_autoptr(GVariant) child = g_variant_get_child_value (box, 0);
+
+          g_clear_pointer (&node->property.value, g_free);
+
+          if (g_variant_is_of_type (child, G_VARIANT_TYPE_STRING) ||
+              g_variant_is_of_type (child, G_VARIANT_TYPE_OBJECT_PATH))
+            node->property.value = g_strdup (g_variant_get_string (child, NULL));
+          else if (g_variant_is_of_type (child, G_VARIANT_TYPE_BYTESTRING))
+            node->property.value = g_strdup (g_variant_get_bytestring (child));
+          else
+            node->property.value = g_variant_print (child, FALSE);
+
+          if (strlen (node->property.value) > 64)
+            {
+              g_autofree gchar *tmp = g_steal_pointer (&node->property.value);
+              tmp[64] = 0;
+              node->property.value = g_strdup_printf ("%s…", tmp);
+            }
+
+          gtk_tree_model_row_changed (model, state->path, &iter);
+        }
+    }
+  else
+    {
+      g_warning ("Failed to get property: %s", error->message);
+    }
+}
+
+static void
 dspy_tree_view_row_activated (GtkTreeView       *view,
                               GtkTreePath       *path,
                               GtkTreeViewColumn *column)
 {
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+
   g_assert (DSPY_IS_TREE_VIEW (view));
   g_assert (path != NULL);
   g_assert (!column || GTK_IS_TREE_VIEW_COLUMN (column));
+
+  model = gtk_tree_view_get_model (view);
+
+  if (DSPY_IS_INTROSPECTION_MODEL (model) &&
+      gtk_tree_model_get_iter (model, &iter, path))
+    {
+      DspyName *name = dspy_introspection_model_get_name (DSPY_INTROSPECTION_MODEL (model));
+      DspyConnection *connection = dspy_name_get_connection (name);
+      GDBusConnection *bus = dspy_connection_get_connection (connection);
+      DspyNode *node = iter.user_data;
+
+      g_assert (!node || DSPY_IS_NODE (node));
+
+      if (node != NULL &&
+          node->any.kind == DSPY_NODE_KIND_PROPERTY &&
+          node->property.flags & G_DBUS_PROPERTY_INFO_FLAGS_READABLE)
+        {
+          GetProperty *state;
+
+          state = g_slice_new0 (GetProperty);
+          state->path = gtk_tree_path_copy (path);
+          state->self = g_object_ref (DSPY_TREE_VIEW (view));
+
+          g_dbus_connection_call (bus,
+                                  dspy_name_get_owner (name),
+                                  _dspy_node_get_object_path (node),
+                                  "org.freedesktop.DBus.Properties",
+                                  "Get",
+                                  g_variant_new ("(ss)",
+                                                 _dspy_node_get_interface (node),
+                                                 node->property.name),
+                                  G_VARIANT_TYPE ("(v)"),
+                                  G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+                                  -1,
+                                  NULL,
+                                  dspy_tree_view_get_property_cb,
+                                  state);
+          return;
+        }
+    }
 
   if (gtk_tree_view_row_expanded (view, path))
     gtk_tree_view_collapse_row (view, path);

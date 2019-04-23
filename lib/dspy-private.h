@@ -109,6 +109,7 @@ struct _DspyPropertyInfo
   const gchar            *name;
   const gchar            *signature;
   GDBusPropertyInfoFlags  flags;
+  gchar                  *value;
 };
 
 struct _DspyArgInfo

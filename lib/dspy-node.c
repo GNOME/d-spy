@@ -290,6 +290,7 @@ _dspy_node_free (gpointer data)
       break;
 
     case DSPY_NODE_KIND_PROPERTY:
+      g_clear_pointer (&node->property.value, g_free);
       break;
 
     case DSPY_NODE_KIND_SIGNALS:
@@ -534,7 +535,17 @@ _dspy_node_get_text (DspyNode *node)
       return g_strdup (_("Properties"));
 
     case DSPY_NODE_KIND_PROPERTY:
-      return _dspy_property_info_to_string (&node->property);
+        {
+          g_autofree gchar *str = _dspy_property_info_to_string (&node->property);
+
+          if (node->property.value != NULL)
+            {
+              g_autofree gchar *escaped = g_markup_escape_text (node->property.value, -1);
+              return g_strdup_printf ("%s = %s", str, escaped);
+            }
+
+          return g_steal_pointer (&str);
+        }
 
     case DSPY_NODE_KIND_SIGNALS:
       return g_strdup (_("Signals"));
