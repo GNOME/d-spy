@@ -506,6 +506,7 @@ dspy_view_class_init (DspyViewClass *klass)
 
   widget_class->destroy = dspy_view_destroy;
 
+  gtk_widget_class_set_css_name (widget_class, "dspyview");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-view.ui");
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, introspection_tree_view);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, menu_button);
