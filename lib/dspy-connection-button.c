@@ -58,6 +58,35 @@ dspy_connection_button_new (void)
   return g_object_new (DSPY_TYPE_CONNECTION_BUTTON, NULL);
 }
 
+static gboolean
+dspy_connection_button_query_tooltip (GtkWidget  *widget,
+                                      gint        x,
+                                      gint        y,
+                                      gboolean    keyboard,
+                                      GtkTooltip *tooltip)
+{
+  DspyConnectionButton *self = (DspyConnectionButton *)widget;
+  DspyConnection *connection;
+
+  g_assert (DSPY_IS_CONNECTION_BUTTON (self));
+
+  if ((connection = dspy_connection_button_get_connection (self)))
+    {
+      GDBusConnection *bus = dspy_connection_get_connection (connection);
+      const gchar *address = dspy_connection_get_address (connection);
+
+      if (bus != NULL && address != NULL)
+        {
+          /* translators: %s is replaced with the address of the DBus */
+          g_autofree gchar *text = g_strdup_printf (_("Connected to “%s”"), address);
+          gtk_tooltip_set_text (tooltip, text);
+          return TRUE;
+        }
+    }
+
+  return FALSE;
+}
+
 static void
 dspy_connection_button_finalize (GObject *object)
 {
@@ -132,10 +161,13 @@ static void
 dspy_connection_button_class_init (DspyConnectionButtonClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->finalize = dspy_connection_button_finalize;
   object_class->get_property = dspy_connection_button_get_property;
   object_class->set_property = dspy_connection_button_set_property;
+
+  widget_class->query_tooltip = dspy_connection_button_query_tooltip;
 
   properties [PROP_BUS_TYPE] =
     g_param_spec_enum ("bus-type",
@@ -161,7 +193,10 @@ dspy_connection_button_init (DspyConnectionButton *self)
   DspyConnectionButtonPrivate *priv = dspy_connection_button_get_instance_private (self);
   GtkBox *box;
 
-  g_object_set (self, "draw-indicator", FALSE, NULL);
+  g_object_set (self,
+                "has-tooltip", TRUE,
+                "draw-indicator", FALSE,
+                NULL);
 
   box = g_object_new (GTK_TYPE_BOX,
                       "halign", GTK_ALIGN_CENTER,
