@@ -129,7 +129,7 @@
             <property name="visible">true</property>
             <child>
               <object class="DzlEmptyState">
-                <property name="icon-name">org.gnome.dfeet</property>
+                <property name="icon-name">org.gnome.dfeet-symbolic</property>
                 <property name="title" translatable="yes">Select a Bus Name</property>
                 <property name="subtitle" translatable="yes">Select a bus name to introspect the peer.</property>
                 <property name="visible">true</property>
