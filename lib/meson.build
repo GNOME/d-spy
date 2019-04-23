@@ -11,6 +11,7 @@ libdspy_sources = [
   'dspy-node.c',
   'dspy-signature.c',
   'dspy-tree-view.c',
+  'dspy-view.c',
 ]
 
 libdspy_deps = [

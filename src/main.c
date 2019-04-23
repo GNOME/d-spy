@@ -35,8 +35,8 @@ on_activate (GtkApplication *app)
 	if (window == NULL)
 		window = g_object_new (DSPY_TYPE_WINDOW,
 		                       "application", app,
-		                       "default-width", 900,
-		                       "default-height", 500,
+		                       "default-width", 1000,
+		                       "default-height", 700,
 		                       NULL);
 
 	gtk_window_present (window);

@@ -1,6 +1,6 @@
 /* dspy-window.h
  *
- * Copyright 2019 Christian Hergert
+ * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,16 +14,20 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <dspy.h>
 
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_WINDOW (dspy_window_get_type())
 
-G_DECLARE_FINAL_TYPE (DspyWindow, dspy_window, DSPY, WINDOW, GtkApplicationWindow)
+G_DECLARE_FINAL_TYPE (DspyWindow, dspy_window, DSPY, WINDOW, DzlApplicationWindow)
+
+GtkWidget *dspy_window_new (void);
 
 G_END_DECLS
