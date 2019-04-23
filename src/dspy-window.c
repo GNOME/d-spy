@@ -59,6 +59,25 @@ static void dspy_window_list_names_cb (GObject      *object,
 G_DEFINE_TYPE (DspyWindow, dspy_window, GTK_TYPE_APPLICATION_WINDOW)
 
 static void
+radio_button_toggled_cb (DspyWindow           *self,
+                         DspyConnectionButton *button)
+{
+  DspyConnection *connection;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (DSPY_IS_CONNECTION_BUTTON (button));
+
+  if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)))
+    return;
+
+  connection = dspy_connection_button_get_connection (button);
+  dspy_connection_list_names_async (connection,
+                                    NULL,
+                                    dspy_window_list_names_cb,
+                                    g_object_ref (self));
+}
+
+static void
 connect_address_changed_cb (DspyWindow       *self,
                             DzlSimplePopover *popover)
 {
@@ -412,22 +431,6 @@ notify_child_revealed_cb (DspyWindow  *self,
                                         0.0);
         }
     }
-}
-
-static void
-radio_button_toggled_cb (DspyWindow           *self,
-                         DspyConnectionButton *button)
-{
-  DspyConnection *connection;
-
-  g_assert (DSPY_IS_WINDOW (self));
-  g_assert (DSPY_IS_CONNECTION_BUTTON (button));
-
-  connection = dspy_connection_button_get_connection (button);
-  dspy_connection_list_names_async (connection,
-                                    NULL,
-                                    dspy_window_list_names_cb,
-                                    g_object_ref (self));
 }
 
 static void
