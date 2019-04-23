@@ -41,7 +41,6 @@ typedef struct
   GListModel            *model;
 
   /* Template widgets */
-  GtkHeaderBar          *header_bar;
   GtkTreeView           *introspection_tree_view;
   GtkListBox            *names_list_box;
   GtkButton             *refresh_button;
@@ -508,7 +507,6 @@ dspy_view_class_init (DspyViewClass *klass)
   widget_class->destroy = dspy_view_destroy;
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-view.ui");
-  gtk_widget_class_bind_template_child_private (widget_class, DspyView, header_bar);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, introspection_tree_view);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, menu_button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, method_revealer);
