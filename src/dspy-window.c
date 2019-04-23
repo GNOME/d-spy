@@ -415,37 +415,19 @@ notify_child_revealed_cb (DspyWindow  *self,
 }
 
 static void
-session_button_toggled_cb (DspyWindow     *self,
-                           GtkRadioButton *button)
+radio_button_toggled_cb (DspyWindow           *self,
+                         DspyConnectionButton *button)
 {
+  DspyConnection *connection;
+
   g_assert (DSPY_IS_WINDOW (self));
-  g_assert (GTK_IS_RADIO_BUTTON (button));
+  g_assert (DSPY_IS_CONNECTION_BUTTON (button));
 
-  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)))
-    {
-      g_autoptr(DspyConnection) conn = dspy_connection_new_for_bus (G_BUS_TYPE_SESSION);
-      dspy_connection_list_names_async (conn,
-                                        NULL,
-                                        dspy_window_list_names_cb,
-                                        g_object_ref (self));
-    }
-}
-
-static void
-system_button_toggled_cb (DspyWindow     *self,
-                          GtkRadioButton *button)
-{
-  g_assert (DSPY_IS_WINDOW (self));
-  g_assert (GTK_IS_RADIO_BUTTON (button));
-
-  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)))
-    {
-      g_autoptr(DspyConnection) conn = dspy_connection_new_for_bus (G_BUS_TYPE_SYSTEM);
-      dspy_connection_list_names_async (conn,
-                                        NULL,
-                                        dspy_window_list_names_cb,
-                                        g_object_ref (self));
-    }
+  connection = dspy_connection_button_get_connection (button);
+  dspy_connection_list_names_async (connection,
+                                    NULL,
+                                    dspy_window_list_names_cb,
+                                    g_object_ref (self));
 }
 
 static void
@@ -468,22 +450,14 @@ search_entry_changed_cb (DspyWindow     *self,
 static void
 dspy_window_init (DspyWindow *self)
 {
-  g_autoptr(DspyConnection) conn = dspy_connection_new_for_bus (G_BUS_TYPE_SESSION);
   GMenu *menu;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  g_action_map_add_action_entries (G_ACTION_MAP (self),
-                                   actions,
-                                   G_N_ELEMENTS (actions),
-                                   self);
+  g_action_map_add_action_entries (G_ACTION_MAP (self), actions, G_N_ELEMENTS (actions), self);
 
-  dspy_connection_list_names_async (conn,
-                                    NULL,
-                                    dspy_window_list_names_cb,
-                                    g_object_ref (self));
-
-  menu = dzl_application_get_menu_by_id (DZL_APPLICATION (g_application_get_default ()), "connections-menu");
+  menu = dzl_application_get_menu_by_id (DZL_APPLICATION (g_application_get_default ()),
+                                         "connections-menu");
   gtk_menu_button_set_menu_model (self->menu_button, G_MENU_MODEL (menu));
 
   g_signal_connect_object (self,
@@ -518,13 +492,13 @@ dspy_window_init (DspyWindow *self)
 
   g_signal_connect_object (self->session_button,
                            "toggled",
-                           G_CALLBACK (session_button_toggled_cb),
+                           G_CALLBACK (radio_button_toggled_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
   g_signal_connect_object (self->system_button,
                            "toggled",
-                           G_CALLBACK (system_button_toggled_cb),
+                           G_CALLBACK (radio_button_toggled_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
