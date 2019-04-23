@@ -545,7 +545,7 @@ dspy_view_init (DspyView *self)
   gtk_widget_insert_action_group (GTK_WIDGET (self), "dspy", G_ACTION_GROUP (actions));
 
   menu = dzl_application_get_menu_by_id (DZL_APPLICATION (g_application_get_default ()),
-                                         "connections-menu");
+                                         "dspy-connections-menu");
   gtk_menu_button_set_menu_model (priv->menu_button, G_MENU_MODEL (menu));
 
   g_signal_connect_object (self,
