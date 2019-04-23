@@ -115,7 +115,7 @@ connect_to_bus_action (GSimpleAction *action,
                           "button-text", _("Connect"),
                           "message", _("Provide the address of the message bus"),
                           "position", GTK_POS_RIGHT,
-                          "title", _("Connect to Bus"),
+                          "title", _("Connect to Other Bus"),
                           "relative-to", self->system_button,
                           NULL);
 
