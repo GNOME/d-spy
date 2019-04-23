@@ -507,4 +507,6 @@ dspy_window_init (DspyWindow *self)
                            G_CALLBACK (search_entry_changed_cb),
                            self,
                            G_CONNECT_SWAPPED);
+
+  radio_button_toggled_cb (self, self->session_button);
 }
