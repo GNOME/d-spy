@@ -36,7 +36,7 @@ struct _DspyNameRow
   GtkLabel      *subtitle;
 };
 
-G_DEFINE_TYPE (DspyNameRow, dspy_name_row, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_FINAL_TYPE (DspyNameRow, dspy_name_row, GTK_TYPE_LIST_BOX_ROW)
 
 enum {
   PROP_0,
@@ -84,7 +84,7 @@ dspy_name_row_update (DspyNameRow *self)
   if (pid > -1)
     {
       g_string_append (str, ", ");
-      g_string_append_printf (str, _("%s: %u"), _("Pid"), pid);
+      g_string_append_printf (str, _("%s: %u"), _("PID"), pid);
     }
 
   gtk_label_set_label (self->subtitle, str->str);

@@ -198,6 +198,7 @@ dspy_names_model_name_owner_changed_cb (GDBusConnection *connection,
           dspy_name_get_name (item)[0] != ':')
         {
           _dspy_name_clear_pid (item);
+          _dspy_name_set_owner (item, NULL);
         }
       else
         {
@@ -384,7 +385,7 @@ dspy_names_model_init_async (GAsyncInitable      *initable,
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_priority (task, io_priority);
   g_task_set_source_tag (task, dspy_names_model_init_async);
-  g_task_set_task_data (task, g_memdup (&n_active, sizeof n_active), g_free);
+  g_task_set_task_data (task, g_memdup2 (&n_active, sizeof n_active), g_free);
 
   if (self->connection == NULL)
     g_task_return_new_error (task,
@@ -416,7 +417,7 @@ async_initable_iface_init (GAsyncInitableIface *iface)
   iface->init_finish = dspy_names_model_init_finish;
 }
 
-G_DEFINE_TYPE_WITH_CODE (DspyNamesModel, dspy_names_model, G_TYPE_OBJECT,
+G_DEFINE_FINAL_TYPE_WITH_CODE (DspyNamesModel, dspy_names_model, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (G_TYPE_LIST_MODEL, list_model_iface_init)
                          G_IMPLEMENT_INTERFACE (G_TYPE_ASYNC_INITABLE, async_initable_iface_init))
 

@@ -138,12 +138,16 @@ connection_got_error_cb (DspyView       *self,
                          const GError   *error,
                          DspyConnection *connection)
 {
+  static GtkWidget *dialog;
   const gchar *title;
-  GtkWidget *dialog;
 
   g_assert (DSPY_IS_VIEW (self));
   g_assert (error != NULL);
   g_assert (DSPY_IS_CONNECTION (connection));
+
+  /* Only show one dialog at a time */
+  if (dialog != NULL)
+    return;
 
   if (g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED))
     title = _("Access Denied by Peer");
@@ -154,7 +158,7 @@ connection_got_error_cb (DspyView       *self,
   else if (g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_DISCONNECTED))
     title = _("Lost Connection to Bus");
   else
-    title = _("DBus Connection Failed");
+    title = _("D-Bus Connection Failed");
 
   dialog = gtk_message_dialog_new (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (self))),
                                    GTK_DIALOG_MODAL | GTK_DIALOG_USE_HEADER_BAR,
@@ -163,6 +167,7 @@ connection_got_error_cb (DspyView       *self,
                                    "%s", title);
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
   g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
+  g_signal_connect (dialog, "destroy", G_CALLBACK (gtk_widget_destroyed), &dialog);
   gtk_window_present (GTK_WINDOW (dialog));
 }
 
@@ -521,8 +526,6 @@ dspy_view_class_init (DspyViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, session_button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, stack);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, system_button);
-
-  g_resources_register (libdspy_get_resource ());
 
   g_type_ensure (DSPY_TYPE_METHOD_VIEW);
   g_type_ensure (DSPY_TYPE_NAME_MARQUEE);
