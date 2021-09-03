@@ -26,15 +26,7 @@ G_BEGIN_DECLS
 
 #define DSPY_TYPE_VIEW (dspy_view_get_type())
 
-G_DECLARE_DERIVABLE_TYPE (DspyView, dspy_view, DSPY, VIEW, GtkBin)
-
-struct _DspyViewClass
-{
-  GtkBinClass parent_class;
-
-  /*< private >*/
-  gpointer _reserved[16];
-};
+G_DECLARE_FINAL_TYPE (DspyView, dspy_view, DSPY, VIEW, GtkBin)
 
 GtkWidget *dspy_view_new (void);
 

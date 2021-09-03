@@ -22,21 +22,20 @@
 
 #include "config.h"
 
-#include <dazzle.h>
-
+#include "dspy-binding-group.h"
 #include "dspy-name-marquee.h"
 
 struct _DspyNameMarquee
 {
-  GtkBin           parent_instance;
+  GtkBin            parent_instance;
 
-  DspyName        *name;
-  DzlBindingGroup *name_bindings;
+  DspyName         *name;
+  DspyBindingGroup *name_bindings;
 
-  GtkLabel        *label_bus;
-  GtkLabel        *label_name;
-  GtkLabel        *label_owner;
-  GtkLabel        *label_pid;
+  GtkLabel         *label_bus;
+  GtkLabel         *label_name;
+  GtkLabel         *label_owner;
+  GtkLabel         *label_pid;
 };
 
 G_DEFINE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, GTK_TYPE_BIN)
@@ -67,7 +66,7 @@ dspy_name_marquee_finalize (GObject *object)
 {
   DspyNameMarquee *self = (DspyNameMarquee *)object;
 
-  dzl_binding_group_set_source (self->name_bindings, NULL);
+  dspy_binding_group_set_source (self->name_bindings, NULL);
   g_clear_object (&self->name_bindings);
   g_clear_object (&self->name);
 
@@ -143,11 +142,11 @@ dspy_name_marquee_init (DspyNameMarquee *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  self->name_bindings = dzl_binding_group_new ();
+  self->name_bindings = dspy_binding_group_new ();
 
-  dzl_binding_group_bind (self->name_bindings, "pid", self->label_pid, "label", 0);
-  dzl_binding_group_bind (self->name_bindings, "name", self->label_name, "label", 0);
-  dzl_binding_group_bind (self->name_bindings, "owner", self->label_owner, "label", 0);
+  dspy_binding_group_bind (self->name_bindings, "pid", self->label_pid, "label", 0);
+  dspy_binding_group_bind (self->name_bindings, "name", self->label_name, "label", 0);
+  dspy_binding_group_bind (self->name_bindings, "owner", self->label_owner, "label", 0);
 }
 
 /**
@@ -179,7 +178,7 @@ dspy_name_marquee_set_name (DspyNameMarquee *self,
       if (name != NULL)
         address = dspy_connection_get_address (dspy_name_get_connection (name));
 
-      dzl_binding_group_set_source (self->name_bindings, name);
+      dspy_binding_group_set_source (self->name_bindings, name);
       gtk_label_set_label (self->label_bus, address);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_NAME]);
     }

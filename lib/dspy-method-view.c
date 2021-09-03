@@ -22,15 +22,15 @@
 
 #include "config.h"
 
-#include <dazzle.h>
 #include <glib/gi18n.h>
 
+#include "dspy-binding-group.h"
 #include "dspy-method-view.h"
 
 typedef struct
 {
   DspyMethodInvocation *invocation;
-  DzlBindingGroup      *bindings;
+  DspyBindingGroup     *bindings;
   GCancellable         *cancellable;
   GArray               *durations;
 
@@ -55,7 +55,7 @@ typedef struct
   GTimer         *timer;
 } Execute;
 
-G_DEFINE_TYPE_WITH_PRIVATE (DspyMethodView, dspy_method_view, DZL_TYPE_BIN)
+G_DEFINE_TYPE_WITH_PRIVATE (DspyMethodView, dspy_method_view, GTK_TYPE_BIN)
 
 enum {
   PROP_0,
@@ -313,7 +313,7 @@ dspy_method_view_finalize (GObject *object)
   DspyMethodView *self = (DspyMethodView *)object;
   DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
 
-  dzl_binding_group_set_source (priv->bindings, NULL);
+  dspy_binding_group_set_source (priv->bindings, NULL);
 
   g_clear_object (&priv->invocation);
   g_clear_object (&priv->bindings);
@@ -398,18 +398,17 @@ static void
 dspy_method_view_init (DspyMethodView *self)
 {
   DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
-  DzlShortcutController *controller;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
   priv->durations = g_array_new (FALSE, FALSE, sizeof (gdouble));
 
-  priv->bindings = dzl_binding_group_new ();
-  dzl_binding_group_bind (priv->bindings, "interface", priv->label_interface, "label", 0);
-  dzl_binding_group_bind (priv->bindings, "method", priv->label_method, "label", 0);
-  dzl_binding_group_bind (priv->bindings, "object-path", priv->label_object_path, "label", 0);
-  dzl_binding_group_bind_full (priv->bindings, "parameters", priv->buffer_params, "text", 0,
-                               variant_to_string_transform, NULL, NULL, NULL);
+  priv->bindings = dspy_binding_group_new ();
+  dspy_binding_group_bind (priv->bindings, "interface", priv->label_interface, "label", 0);
+  dspy_binding_group_bind (priv->bindings, "method", priv->label_method, "label", 0);
+  dspy_binding_group_bind (priv->bindings, "object-path", priv->label_object_path, "label", 0);
+  dspy_binding_group_bind_full (priv->bindings, "parameters", priv->buffer_params, "text", 0,
+                                variant_to_string_transform, NULL, NULL, NULL);
 
   g_signal_connect_object (priv->button,
                            "clicked",
@@ -422,16 +421,6 @@ dspy_method_view_init (DspyMethodView *self)
                            G_CALLBACK (copy_button_clicked_cb),
                            self,
                            G_CONNECT_SWAPPED);
-
-  controller = dzl_shortcut_controller_find (GTK_WIDGET (priv->textview_params));
-
-  dzl_shortcut_controller_add_command_callback (controller,
-                                                "org.gnome.dspy.invoke-method",
-                                                "<Primary>Return",
-                                                DZL_SHORTCUT_PHASE_DISPATCH,
-                                                dspy_method_view_invoke_method,
-                                                self,
-                                                NULL);
 }
 
 void
@@ -448,7 +437,7 @@ dspy_method_view_set_invocation (DspyMethodView       *self,
       g_cancellable_cancel (priv->cancellable);
       g_clear_object (&priv->cancellable);
 
-      dzl_binding_group_set_source (priv->bindings, invocation);
+      dspy_binding_group_set_source (priv->bindings, invocation);
       gtk_text_buffer_set_text (priv->buffer_reply, "", -1);
 
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_INVOCATION]);

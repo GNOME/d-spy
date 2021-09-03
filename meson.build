@@ -17,7 +17,6 @@ configure_file(
 
 libgio_dep = dependency('gio-2.0', version: '>= 2.60')
 libgtk_dep = dependency('gtk+-3.0', version: '>= 3.24')
-libdazzle_dep = dependency('libdazzle-1.0', version: '>= 3.24')
 
 root_include_directory = include_directories('.')
 

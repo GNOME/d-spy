@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <template class="DspyWindow" parent="DzlApplicationWindow">
+  <template class="DspyWindow" parent="GtkApplicationWindow">
     <property name="can_focus">False</property>
     <property name="default_width">600</property>
     <property name="default_height">300</property>

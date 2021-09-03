@@ -22,22 +22,31 @@
 
 #include "config.h"
 
-#include <dazzle.h>
 #include <glib/gi18n.h>
 
 #include "dspy-connection-button.h"
-#include "dspy-name-marquee.h"
+#include "dspy-empty-state.h"
+#include "dspy-list-model-filter.h"
 #include "dspy-method-view.h"
+#include "dspy-multi-paned.h"
+#include "dspy-name-marquee.h"
 #include "dspy-name-row.h"
+#include "dspy-pattern-spec.h"
+#include "dspy-simple-popover.h"
 #include "dspy-tree-view.h"
 #include "dspy-view.h"
 
 #include "libdspy-resources.h"
 
+struct _DspyView
+{
+  GtkBin parent_instance;
+};
+
 typedef struct
 {
   GCancellable          *cancellable;
-  DzlListModelFilter    *filter_model;
+  DspyListModelFilter   *filter_model;
   GListModel            *model;
 
   /* Template widgets */
@@ -121,16 +130,16 @@ radio_button_toggled_cb (DspyView             *self,
 }
 
 static void
-connect_address_changed_cb (DspyView       *self,
-                            DzlSimplePopover *popover)
+connect_address_changed_cb (DspyView          *self,
+                            DspySimplePopover *popover)
 {
   const gchar *text;
 
   g_assert (DSPY_IS_VIEW (self));
-  g_assert (DZL_IS_SIMPLE_POPOVER (popover));
+  g_assert (DSPY_IS_SIMPLE_POPOVER (popover));
 
-  text = dzl_simple_popover_get_text (popover);
-  dzl_simple_popover_set_ready (popover, text && *text);
+  text = dspy_simple_popover_get_text (popover);
+  dspy_simple_popover_set_ready (popover, text && *text);
 }
 
 static void
@@ -172,16 +181,16 @@ connection_got_error_cb (DspyView       *self,
 }
 
 static void
-connect_address_activate_cb (DspyView         *self,
-                             const gchar      *text,
-                             DzlSimplePopover *popover)
+connect_address_activate_cb (DspyView          *self,
+                             const gchar       *text,
+                             DspySimplePopover *popover)
 {
   DspyViewPrivate *priv = dspy_view_get_instance_private (self);
   g_autoptr(DspyConnection) connection = NULL;
   DspyConnectionButton *button;
 
   g_assert (DSPY_IS_VIEW (self));
-  g_assert (DZL_IS_SIMPLE_POPOVER (popover));
+  g_assert (DSPY_IS_SIMPLE_POPOVER (popover));
 
   connection = dspy_connection_new_for_address (text);
 
@@ -213,17 +222,17 @@ clear_search (DspyView *self)
   g_assert (DSPY_IS_VIEW (self));
 
   if (priv->filter_model != NULL)
-    dzl_list_model_filter_set_filter_func (priv->filter_model, NULL, NULL, NULL);
+    dspy_list_model_filter_set_filter_func (priv->filter_model, NULL, NULL, NULL);
 }
 
 static gboolean
-search_filter_func (DspyName       *name,
-                    DzlPatternSpec *spec)
+search_filter_func (DspyName        *name,
+                    DspyPatternSpec *spec)
 {
   g_assert (DSPY_IS_NAME (name));
   g_assert (spec != NULL);
 
-  return dzl_pattern_spec_match (spec, dspy_name_get_search_text (name));
+  return dspy_pattern_spec_match (spec, dspy_name_get_search_text (name));
 }
 
 static void
@@ -237,10 +246,10 @@ apply_search (DspyView    *self,
   g_assert (text[0] != 0);
 
   if (priv->filter_model != NULL)
-    dzl_list_model_filter_set_filter_func (priv->filter_model,
-                                           (DzlListModelFilterFunc) search_filter_func,
-                                           dzl_pattern_spec_new (text),
-                                           (GDestroyNotify) dzl_pattern_spec_unref);
+    dspy_list_model_filter_set_filter_func (priv->filter_model,
+                                            (DspyListModelFilterFunc) search_filter_func,
+                                            dspy_pattern_spec_new (text),
+                                            (GDestroyNotify) dspy_pattern_spec_unref);
 }
 
 static GtkWidget *
@@ -280,7 +289,7 @@ dspy_view_set_model (DspyView   *self,
   if (model != NULL)
     {
       priv->model = g_object_ref (model);
-      priv->filter_model = dzl_list_model_filter_new (model);
+      priv->filter_model = dspy_list_model_filter_new (model);
     }
 
   text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
@@ -456,7 +465,7 @@ connect_to_bus_action (GSimpleAction *action,
   g_assert (G_IS_SIMPLE_ACTION (action));
   g_assert (DSPY_IS_VIEW (self));
 
-  popover = g_object_new (DZL_TYPE_SIMPLE_POPOVER,
+  popover = g_object_new (DSPY_TYPE_SIMPLE_POPOVER,
                           "button-text", _("Connect"),
                           "message", _("Provide the address of the message bus"),
                           "position", GTK_POS_RIGHT,
@@ -527,7 +536,9 @@ dspy_view_class_init (DspyViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, stack);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, system_button);
 
+  g_type_ensure (DSPY_TYPE_EMPTY_STATE);
   g_type_ensure (DSPY_TYPE_METHOD_VIEW);
+  g_type_ensure (DSPY_TYPE_MULTI_PANED);
   g_type_ensure (DSPY_TYPE_NAME_MARQUEE);
   g_type_ensure (DSPY_TYPE_TREE_VIEW);
 }
@@ -547,15 +558,9 @@ dspy_view_init (DspyView *self)
                                    self);
   gtk_widget_insert_action_group (GTK_WIDGET (self), "dspy", G_ACTION_GROUP (actions));
 
-  menu = dzl_application_get_menu_by_id (DZL_APPLICATION (g_application_get_default ()),
+  menu = gtk_application_get_menu_by_id (GTK_APPLICATION (g_application_get_default ()),
                                          "dspy-connections-menu");
   gtk_menu_button_set_menu_model (priv->menu_button, G_MENU_MODEL (menu));
-
-  g_signal_connect_object (self,
-                           "key-press-event",
-                           G_CALLBACK (dzl_shortcut_manager_handle_event),
-                           NULL,
-                           G_CONNECT_SWAPPED);
 
   g_signal_connect_object (priv->names_list_box,
                            "row-activated",
