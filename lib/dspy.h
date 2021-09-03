@@ -32,6 +32,8 @@
 # include "dspy-name-row.h"
 # include "dspy-names-model.h"
 # include "dspy-tree-view.h"
+# include "dspy-version.h"
+# include "dspy-version-macros.h"
 # include "dspy-view.h"
 
 #undef DSPY_INSIDE

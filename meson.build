@@ -1,6 +1,6 @@
 project('dspy', 'c',
-        version: '0.1.0',
-  meson_version: '>= 0.49.0',
+        version: '42.alpha0',
+  meson_version: '>= 0.58.0',
 )
 
 gnome = import('gnome')
