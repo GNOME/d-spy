@@ -1,9 +1,19 @@
+desktop_file_in_config = configuration_data()
+desktop_file_in_config.set('app_id', app_id)
+desktop_file_in_config.set('app_name', 'org.gnome.dspy')
+desktop_file_in_config.set('app_version', meson.project_version())
+desktop_file_in = configure_file(
+          input: 'org.gnome.dspy.desktop.in.in',
+         output: '@0@.desktop.in'.format(app_id),
+  configuration: desktop_file_in_config,
+)
+
 desktop_file = i18n.merge_file(
-  input: 'org.gnome.dspy.desktop.in',
-  output: 'org.gnome.dspy.desktop',
-  type: 'desktop',
-  po_dir: '../po',
-  install: true,
+        input: desktop_file_in,
+       output: '@0@.desktop'.format(app_id),
+         type: 'desktop',
+       po_dir: '../po',
+      install: true,
   install_dir: join_paths(get_option('datadir'), 'applications')
 )
 
@@ -14,12 +24,19 @@ if desktop_utils.found()
   )
 endif
 
+appconf = configuration_data()
+appconf.set('app_id', app_id)
+appstream_file_in = configure_file(
+          input: 'org.gnome.dspy.appdata.xml.in.in',
+         output: '@0@.appdata.xml.in'.format(app_id),
+  configuration: appconf,
+)
 appstream_file = i18n.merge_file(
-  input: 'org.gnome.dspy.appdata.xml.in',
-  output: 'org.gnome.dspy.appdata.xml',
-  po_dir: '../po',
-  install: true,
-  install_dir: join_paths(get_option('datadir'), 'appdata')
+          input: appstream_file_in,
+         output: '@0@.appdata.xml'.format(app_id),
+         po_dir: '../po',
+        install: true,
+    install_dir: join_paths(get_option('datadir'), 'appdata')
 )
 
 appstream_util = find_program('appstream-util', required: false)

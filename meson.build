@@ -5,11 +5,21 @@ project('dspy', 'c',
 
 gnome = import('gnome')
 i18n = import('i18n')
+cc = meson.get_compiler('c')
+buildtype = get_option('buildtype')
+
+if get_option('development')
+  app_id = 'org.gnome.dspy.devel'
+else
+  app_id = 'org.gnome.dspy'
+endif
 
 config_h = configuration_data()
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_h.set_quoted('GETTEXT_PACKAGE', 'dspy')
 config_h.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
+config_h.set_quoted('APP_ID', app_id)
+
 configure_file(
          output: 'config.h',
   configuration: config_h,
