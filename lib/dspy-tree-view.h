@@ -23,11 +23,13 @@
 #include <gtk/gtk.h>
 
 #include "dspy-method-invocation.h"
+#include "dspy-version-macros.h"
 
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_TREE_VIEW (dspy_tree_view_get_type())
 
+DSPY_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (DspyTreeView, dspy_tree_view, DSPY, TREE_VIEW, GtkTreeView)
 
 struct _DspyTreeViewClass
@@ -41,6 +43,7 @@ struct _DspyTreeViewClass
   gpointer _reserved[8];
 };
 
+DSPY_AVAILABLE_IN_ALL
 GtkWidget *dspy_tree_view_new (void);
 
 G_END_DECLS

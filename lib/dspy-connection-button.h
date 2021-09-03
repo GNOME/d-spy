@@ -23,23 +23,28 @@
 #include <gtk/gtk.h>
 
 #include "dspy-connection.h"
+#include "dspy-version-macros.h"
 
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_CONNECTION_BUTTON (dspy_connection_button_get_type())
 
+DSPY_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (DspyConnectionButton, dspy_connection_button, DSPY, CONNECTION_BUTTON, GtkRadioButton)
 
 struct _DspyConnectionButtonClass
 {
   GtkRadioButtonClass parent_class;
-  
+
   /*< private >*/
   gpointer _reserved[8];
 };
 
+DSPY_AVAILABLE_IN_ALL
 GtkWidget      *dspy_connection_button_new            (void);
+DSPY_AVAILABLE_IN_ALL
 DspyConnection *dspy_connection_button_get_connection (DspyConnectionButton *self);
+DSPY_AVAILABLE_IN_ALL
 void            dspy_connection_button_set_connection (DspyConnectionButton *self,
                                                        DspyConnection       *connection);
 

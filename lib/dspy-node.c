@@ -18,8 +18,6 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "dspy-node"
-
 #include <errno.h>
 #include <glib/gi18n.h>
 

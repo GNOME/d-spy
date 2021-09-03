@@ -18,8 +18,6 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "dspy-window"
-
 #include "config.h"
 
 #include "dspy-window.h"

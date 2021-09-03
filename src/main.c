@@ -52,7 +52,7 @@ main (int   argc,
 	textdomain (GETTEXT_PACKAGE);
 
 	app = g_object_new (GTK_TYPE_APPLICATION,
-                      "application-id", "org.gnome.dspy",
+                      "application-id", APP_ID,
                       "flags", G_APPLICATION_FLAGS_NONE,
                       "resource-base-path", "/org/gnome/dspy",
                       NULL);

@@ -18,8 +18,6 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "dspy-introspection-model"
-
 #include "config.h"
 
 #include <glib/gi18n.h>
@@ -790,7 +788,7 @@ tree_model_iface_init (GtkTreeModelIface *iface)
   iface->iter_parent = dspy_introspection_model_iter_parent;
 }
 
-G_DEFINE_FINAL_TYPE_WITH_CODE (DspyIntrospectionModel, dspy_introspection_model, G_TYPE_OBJECT,
+G_DEFINE_TYPE_WITH_CODE (DspyIntrospectionModel, dspy_introspection_model, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (G_TYPE_ASYNC_INITABLE, async_initable_iface_init)
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_TREE_MODEL, tree_model_iface_init))
 

@@ -18,8 +18,6 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "dspy-connection"
-
 #include "config.h"
 
 #include "dspy-connection.h"
@@ -36,7 +34,7 @@ struct _DspyConnection
   GBusType         bus_type;
 };
 
-G_DEFINE_FINAL_TYPE (DspyConnection, dspy_connection, G_TYPE_OBJECT)
+G_DEFINE_TYPE (DspyConnection, dspy_connection, G_TYPE_OBJECT)
 
 enum {
   PROP_0,

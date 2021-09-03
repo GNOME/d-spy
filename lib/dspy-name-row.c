@@ -18,8 +18,6 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "dspy-name-row"
-
 #include "config.h"
 
 #include <glib/gi18n.h>
@@ -36,7 +34,7 @@ struct _DspyNameRow
   GtkLabel      *subtitle;
 };
 
-G_DEFINE_FINAL_TYPE (DspyNameRow, dspy_name_row, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_TYPE (DspyNameRow, dspy_name_row, GTK_TYPE_LIST_BOX_ROW)
 
 enum {
   PROP_0,

@@ -21,11 +21,13 @@
 #pragma once
 
 #include "dspy-method-invocation.h"
+#include "dspy-version-macros.h"
 
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_METHOD_VIEW (dspy_method_view_get_type())
 
+DSPY_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (DspyMethodView, dspy_method_view, DSPY, METHOD_VIEW, GtkBin)
 
 struct _DspyMethodViewClass
@@ -36,8 +38,11 @@ struct _DspyMethodViewClass
   gpointer _reserved[8];
 };
 
+DSPY_AVAILABLE_IN_ALL
 GtkWidget            *dspy_method_view_new            (void);
+DSPY_AVAILABLE_IN_ALL
 DspyMethodInvocation *dspy_method_view_get_invocation (DspyMethodView       *self);
+DSPY_AVAILABLE_IN_ALL
 void                  dspy_method_view_set_invocation (DspyMethodView       *self,
                                                        DspyMethodInvocation *invocation);
 

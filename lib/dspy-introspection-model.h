@@ -23,13 +23,16 @@
 #include <gio/gio.h>
 
 #include "dspy-name.h"
+#include "dspy-version-macros.h"
 
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_INTROSPECTION_MODEL (dspy_introspection_model_get_type())
 
+DSPY_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (DspyIntrospectionModel, dspy_introspection_model, DSPY, INTROSPECTION_MODEL, GObject)
 
+DSPY_AVAILABLE_IN_ALL
 DspyName *dspy_introspection_model_get_name (DspyIntrospectionModel *self);
 
 G_END_DECLS

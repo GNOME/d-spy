@@ -18,8 +18,6 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "dspy-name"
-
 #include "config.h"
 
 #include "dspy-introspection-model.h"
@@ -47,7 +45,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_FINAL_TYPE (DspyName, dspy_name, G_TYPE_OBJECT)
+G_DEFINE_TYPE (DspyName, dspy_name, G_TYPE_OBJECT)
 
 static GParamSpec *properties [N_PROPS];
 

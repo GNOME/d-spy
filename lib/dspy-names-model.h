@@ -24,15 +24,20 @@
 
 #include "dspy-connection.h"
 #include "dspy-name.h"
+#include "dspy-version-macros.h"
 
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_NAMES_MODEL (dspy_names_model_get_type())
 
+DSPY_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (DspyNamesModel, dspy_names_model, DSPY, NAMES_MODEL, GObject)
 
+DSPY_AVAILABLE_IN_ALL
 DspyNamesModel *dspy_names_model_new            (DspyConnection *connection);
+DSPY_AVAILABLE_IN_ALL
 DspyConnection *dspy_names_model_get_connection (DspyNamesModel *self);
+DSPY_AVAILABLE_IN_ALL
 DspyName       *dspy_names_model_get_by_name    (DspyNamesModel *self,
                                                  const gchar    *name);
 

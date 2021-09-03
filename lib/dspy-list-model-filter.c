@@ -16,8 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define G_LOG_DOMAIN "dspy-list-model-filter"
-
 #include "config.h"
 
 #include "dspy-list-model-filter.h"

@@ -74,9 +74,13 @@ libdspy_sources += gnome.compile_resources('libdspy-resources', 'libdspy.gresour
 )
 
 libdspy = library('libdspy', libdspy_sources,
-         dependencies: libdspy_deps,
-  include_directories: [ root_include_directory ],
-              install: true,
+           dependencies: libdspy_deps,
+    include_directories: [ root_include_directory ],
+                install: true,
+  gnu_symbol_visibility: 'hidden',
+                version: '@0@.0.0'.format(ABI_MAJOR),
+        darwin_versions: '@0@.0'.format(ABI_MAJOR.to_int() + 1),
+              link_args: release_link_args,
 )
 
 libdspy_dep = declare_dependency(

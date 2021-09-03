@@ -22,12 +22,16 @@
 
 #include <gtk/gtk.h>
 
+#include "dspy-version-macros.h"
+
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_VIEW (dspy_view_get_type())
 
+DSPY_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (DspyView, dspy_view, DSPY, VIEW, GtkBin)
 
+DSPY_AVAILABLE_IN_ALL
 GtkWidget *dspy_view_new (void);
 
 G_END_DECLS

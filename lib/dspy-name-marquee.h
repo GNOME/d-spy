@@ -23,15 +23,20 @@
 #include <gtk/gtk.h>
 
 #include "dspy-name.h"
+#include "dspy-version-macros.h"
 
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_NAME_MARQUEE (dspy_name_marquee_get_type())
 
+DSPY_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, DSPY, NAME_MARQUEE, GtkBin)
 
+DSPY_AVAILABLE_IN_ALL
 GtkWidget *dspy_name_marquee_new      (void);
+DSPY_AVAILABLE_IN_ALL
 DspyName  *dspy_name_marquee_get_name (DspyNameMarquee *self);
+DSPY_AVAILABLE_IN_ALL
 void       dspy_name_marquee_set_name (DspyNameMarquee *self,
                                        DspyName        *name);
 

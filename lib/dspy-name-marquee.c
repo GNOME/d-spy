@@ -18,8 +18,6 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "dspy-name-marquee"
-
 #include "config.h"
 
 #include "dspy-binding-group.h"
@@ -38,7 +36,7 @@ struct _DspyNameMarquee
   GtkLabel         *label_pid;
 };
 
-G_DEFINE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, GTK_TYPE_BIN)
+G_DEFINE_TYPE (DspyNameMarquee, dspy_name_marquee, GTK_TYPE_BIN)
 
 enum {
   PROP_0,

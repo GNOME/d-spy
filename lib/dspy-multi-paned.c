@@ -17,8 +17,6 @@
  * Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#define G_LOG_DOMAIN "dspy-multi-paned"
-
 #include "config.h"
 
 #include "dspy-multi-paned.h"

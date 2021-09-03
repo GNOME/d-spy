@@ -18,8 +18,6 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "dspy-method-view"
-
 #include "config.h"
 
 #include <glib/gi18n.h>
@@ -274,6 +272,7 @@ dspy_method_view_button_clicked_cb (DspyMethodView *self,
   gtk_button_set_label (priv->button, _("Cancel"));
 }
 
+#if 0
 static void
 dspy_method_view_invoke_method (GtkWidget *widget,
                                 gpointer   user_data)
@@ -285,6 +284,7 @@ dspy_method_view_invoke_method (GtkWidget *widget,
 
   gtk_widget_activate (GTK_WIDGET (priv->button));
 }
+#endif
 
 static void
 copy_button_clicked_cb (DspyMethodView *self,

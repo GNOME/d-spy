@@ -17,8 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define G_LOG_DOMAIN "dspy-binding-group"
-
 #include "config.h"
 
 #include <glib/gi18n.h>
@@ -468,7 +466,7 @@ dspy_binding_group_set_source (DspyBindingGroup *self,
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SOURCE]);
 }
 
-void
+static void
 dspy_binding_group_bind_helper (DspyBindingGroup  *self,
                                const gchar      *source_property,
                                gpointer          target,

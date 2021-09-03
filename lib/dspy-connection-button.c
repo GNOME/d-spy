@@ -18,8 +18,6 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "dspy-connection-button"
-
 #include "config.h"
 
 #include <glib/gi18n.h>
