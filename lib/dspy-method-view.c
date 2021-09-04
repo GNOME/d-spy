@@ -32,6 +32,7 @@ typedef struct
   GCancellable         *cancellable;
   GArray               *durations;
 
+  GtkGrid              *grid;
   GtkLabel             *label_interface;
   GtkLabel             *label_object_path;
   GtkLabel             *label_method;
@@ -53,7 +54,7 @@ typedef struct
   GTimer         *timer;
 } Execute;
 
-G_DEFINE_TYPE_WITH_PRIVATE (DspyMethodView, dspy_method_view, GTK_TYPE_BIN)
+G_DEFINE_TYPE_WITH_PRIVATE (DspyMethodView, dspy_method_view, GTK_TYPE_WIDGET)
 
 enum {
   PROP_0,
@@ -292,7 +293,7 @@ copy_button_clicked_cb (DspyMethodView *self,
 {
   DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
   g_autofree gchar *text = NULL;
-  GtkClipboard *clipboard;
+  GdkClipboard *clipboard;
   GtkTextIter begin;
   GtkTextIter end;
 
@@ -303,24 +304,29 @@ copy_button_clicked_cb (DspyMethodView *self,
     gtk_text_buffer_get_bounds (priv->buffer_reply, &begin, &end);
 
   text = gtk_text_iter_get_slice (&begin, &end);
-  clipboard = gtk_widget_get_clipboard (GTK_WIDGET (self), GDK_SELECTION_CLIPBOARD);
-  gtk_clipboard_set_text (clipboard, text, -1);
+  clipboard = gtk_widget_get_clipboard (GTK_WIDGET (self));
+  gdk_clipboard_set_text (clipboard, text);
 }
 
 static void
-dspy_method_view_finalize (GObject *object)
+dspy_method_view_dispose (GObject *object)
 {
   DspyMethodView *self = (DspyMethodView *)object;
   DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
 
-  dspy_binding_group_set_source (priv->bindings, NULL);
+  g_clear_pointer ((GtkWidget **)&priv->grid, gtk_widget_unparent);
+
+  if (priv->bindings)
+    {
+      dspy_binding_group_set_source (priv->bindings, NULL);
+      g_clear_object (&priv->bindings);
+    }
 
   g_clear_object (&priv->invocation);
-  g_clear_object (&priv->bindings);
   g_clear_object (&priv->cancellable);
   g_clear_pointer (&priv->durations, g_array_unref);
 
-  G_OBJECT_CLASS (dspy_method_view_parent_class)->finalize (object);
+  G_OBJECT_CLASS (dspy_method_view_parent_class)->dispose (object);
 }
 
 static void
@@ -367,7 +373,7 @@ dspy_method_view_class_init (DspyMethodViewClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  object_class->finalize = dspy_method_view_finalize;
+  object_class->dispose = dspy_method_view_dispose;
   object_class->get_property = dspy_method_view_get_property;
   object_class->set_property = dspy_method_view_set_property;
 
@@ -392,6 +398,9 @@ dspy_method_view_class_init (DspyMethodViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_min);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_object_path);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, textview_params);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, grid);
+
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 }
 
 static void

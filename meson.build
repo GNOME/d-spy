@@ -21,10 +21,12 @@ config_h.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('lo
 config_h.set_quoted('APP_ID', app_id)
 
 glib_req_version = '2.68'
-gtk_req_version = '3.24'
+gtk_req_version = '4.4'
+adwaita_req_version = '1.0'
 
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
+adwaita_req = '>= @0@'.format(adwaita_req_version)
 
 # Specify minimum library versions
 glib_major = glib_req_version.split('.')[0].to_int()
@@ -33,7 +35,8 @@ gtk_major = gtk_req_version.split('.')[0].to_int()
 gtk_minor = gtk_req_version.split('.')[1].to_int()
 
 libgio_dep = dependency('gio-2.0', version: glib_req)
-libgtk_dep = dependency('gtk+-3.0', version: gtk_req)
+libgtk_dep = dependency('gtk4', version: gtk_req)
+libadwaita_dep = dependency('libadwaita-1', version: adwaita_req)
 
 # Compiler flags and warnings
 global_c_args = [

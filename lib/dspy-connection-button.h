@@ -30,14 +30,11 @@ G_BEGIN_DECLS
 #define DSPY_TYPE_CONNECTION_BUTTON (dspy_connection_button_get_type())
 
 DSPY_AVAILABLE_IN_ALL
-G_DECLARE_DERIVABLE_TYPE (DspyConnectionButton, dspy_connection_button, DSPY, CONNECTION_BUTTON, GtkRadioButton)
+G_DECLARE_DERIVABLE_TYPE (DspyConnectionButton, dspy_connection_button, DSPY, CONNECTION_BUTTON, GtkToggleButton)
 
 struct _DspyConnectionButtonClass
 {
-  GtkRadioButtonClass parent_class;
-
-  /*< private >*/
-  gpointer _reserved[8];
+  GtkToggleButtonClass parent_class;
 };
 
 DSPY_AVAILABLE_IN_ALL

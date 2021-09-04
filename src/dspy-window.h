@@ -20,13 +20,14 @@
 
 #pragma once
 
+#include <adwaita.h>
 #include <dspy.h>
 
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_WINDOW (dspy_window_get_type())
 
-G_DECLARE_FINAL_TYPE (DspyWindow, dspy_window, DSPY, WINDOW, GtkApplicationWindow)
+G_DECLARE_FINAL_TYPE (DspyWindow, dspy_window, DSPY, WINDOW, AdwApplicationWindow)
 
 GtkWidget *dspy_window_new (void);
 

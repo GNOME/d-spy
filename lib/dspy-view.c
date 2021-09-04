@@ -20,13 +20,12 @@
 
 #include "config.h"
 
+#include <adwaita.h>
 #include <glib/gi18n.h>
 
 #include "dspy-connection-button.h"
-#include "dspy-empty-state.h"
 #include "dspy-list-model-filter.h"
 #include "dspy-method-view.h"
-#include "dspy-multi-paned.h"
 #include "dspy-name-marquee.h"
 #include "dspy-name-row.h"
 #include "dspy-pattern-spec.h"
@@ -38,7 +37,7 @@
 
 struct _DspyView
 {
-  GtkBin parent_instance;
+  GtkWidget parent_instance;
 };
 
 typedef struct
@@ -61,11 +60,14 @@ typedef struct
   GtkMenuButton         *menu_button;
   GtkBox                *radio_buttons;
   GtkStack              *stack;
+  GtkStackPage          *introspect;
+  GtkStackPage          *empty;
+  GtkWidget             *paned;
 
   guint                  destroyed : 1;
 } DspyViewPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE (DspyView, dspy_view, GTK_TYPE_BIN)
+G_DEFINE_TYPE_WITH_PRIVATE (DspyView, dspy_view, GTK_TYPE_WIDGET)
 
 static void dspy_view_set_model (DspyView   *self,
                                  GListModel *model);
@@ -118,7 +120,7 @@ radio_button_toggled_cb (DspyView             *self,
   if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)))
     return;
 
-  gtk_stack_set_visible_child_name (priv->stack, "empty-state");
+  gtk_stack_set_visible_child (priv->stack, gtk_stack_page_get_child (priv->empty));
 
   connection = dspy_connection_button_get_connection (button);
   dspy_connection_list_names_async (connection,
@@ -167,14 +169,14 @@ connection_got_error_cb (DspyView       *self,
   else
     title = _("D-Bus Connection Failed");
 
-  dialog = gtk_message_dialog_new (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (self))),
+  dialog = gtk_message_dialog_new (GTK_WINDOW (gtk_widget_get_native (GTK_WIDGET (self))),
                                    GTK_DIALOG_MODAL | GTK_DIALOG_USE_HEADER_BAR,
                                    GTK_MESSAGE_WARNING,
                                    GTK_BUTTONS_CLOSE,
                                    "%s", title);
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
-  g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
-  g_signal_connect (dialog, "destroy", G_CALLBACK (gtk_widget_destroyed), &dialog);
+  g_signal_connect (dialog, "response", G_CALLBACK (gtk_window_destroy), NULL);
+  g_signal_connect_swapped (dialog, "response", G_CALLBACK (g_nullify_pointer), &dialog);
   gtk_window_present (GTK_WINDOW (dialog));
 }
 
@@ -207,7 +209,7 @@ connect_address_activate_cb (DspyView          *self,
                            G_CALLBACK (connection_got_error_cb),
                            self,
                            G_CONNECT_SWAPPED);
-  gtk_container_add (GTK_CONTAINER (priv->radio_buttons), GTK_WIDGET (button));
+  gtk_box_append (priv->radio_buttons, GTK_WIDGET (button));
 
   gtk_widget_activate (GTK_WIDGET (button));
 }
@@ -290,7 +292,7 @@ dspy_view_set_model (DspyView   *self,
       priv->filter_model = dspy_list_model_filter_new (model);
     }
 
-  text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
+  text = gtk_editable_get_text (GTK_EDITABLE (priv->search_entry));
 
   if (text && *text)
     apply_search (self, text);
@@ -359,7 +361,7 @@ name_row_activated_cb (DspyView    *self,
                               dspy_view_introspect_cb,
                               g_object_ref (self));
 
-  gtk_stack_set_visible_child_name (priv->stack, "introspect");
+  gtk_stack_set_visible_child (priv->stack, gtk_stack_page_get_child (priv->introspect));
 }
 
 static void
@@ -443,7 +445,7 @@ search_entry_changed_cb (DspyView       *self,
   g_assert (DSPY_IS_VIEW (self));
   g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
 
-  text = gtk_entry_get_text (GTK_ENTRY (search_entry));
+  text = gtk_editable_get_text (GTK_EDITABLE (search_entry));
 
   if (text == NULL || *text == 0)
     clear_search (self);
@@ -468,7 +470,6 @@ connect_to_bus_action (GSimpleAction *action,
                           "message", _("Provide the address of the message bus"),
                           "position", GTK_POS_RIGHT,
                           "title", _("Connect to Other Bus"),
-                          "relative-to", priv->system_button,
                           NULL);
 
   g_signal_connect_object (popover,
@@ -485,8 +486,10 @@ connect_to_bus_action (GSimpleAction *action,
 
   g_signal_connect (popover,
                     "closed",
-                    G_CALLBACK (gtk_widget_destroy),
+                    G_CALLBACK (gtk_widget_unparent),
                     NULL);
+
+  gtk_widget_set_parent (GTK_WIDGET (popover), GTK_WIDGET (priv->system_button));
 
   gtk_popover_popup (popover);
 }
@@ -496,9 +499,20 @@ static GActionEntry action_entries[] = {
 };
 
 static void
-dspy_view_destroy (GtkWidget *widget)
+dspy_view_constructed (GObject *object)
 {
-  DspyView *self = (DspyView *)widget;
+  DspyView *self = (DspyView *)object;
+  DspyViewPrivate *priv = dspy_view_get_instance_private (self);
+
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->session_button), TRUE);
+
+  G_OBJECT_CLASS (dspy_view_parent_class)->constructed (object);
+}
+
+static void
+dspy_view_dispose (GObject *object)
+{
+  DspyView *self = (DspyView *)object;
   DspyViewPrivate *priv = dspy_view_get_instance_private (self);
 
   priv->destroyed = TRUE;
@@ -508,15 +522,19 @@ dspy_view_destroy (GtkWidget *widget)
   g_clear_object (&priv->filter_model);
   g_clear_object (&priv->model);
 
-  GTK_WIDGET_CLASS (dspy_view_parent_class)->destroy (widget);
+  g_clear_pointer (&priv->paned, gtk_widget_unparent);
+
+  G_OBJECT_CLASS (dspy_view_parent_class)->dispose (object);
 }
 
 static void
 dspy_view_class_init (DspyViewClass *klass)
 {
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  widget_class->destroy = dspy_view_destroy;
+  object_class->dispose = dspy_view_dispose;
+  object_class->constructed = dspy_view_constructed;
 
   gtk_widget_class_set_css_name (widget_class, "dspyview");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-view.ui");
@@ -533,10 +551,14 @@ dspy_view_class_init (DspyViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, session_button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, stack);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, system_button);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyView, introspect);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyView, empty);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyView, paned);
 
-  g_type_ensure (DSPY_TYPE_EMPTY_STATE);
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
+
+  g_type_ensure (ADW_TYPE_STATUS_PAGE);
   g_type_ensure (DSPY_TYPE_METHOD_VIEW);
-  g_type_ensure (DSPY_TYPE_MULTI_PANED);
   g_type_ensure (DSPY_TYPE_NAME_MARQUEE);
   g_type_ensure (DSPY_TYPE_TREE_VIEW);
 }

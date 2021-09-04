@@ -16,9 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <glib/gi18n.h>
-
 #include "config.h"
+
+#include <adwaita.h>
+#include <glib/gi18n.h>
 
 #include "dspy-window.h"
 
@@ -51,7 +52,7 @@ main (int   argc,
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-	app = g_object_new (GTK_TYPE_APPLICATION,
+	app = g_object_new (ADW_TYPE_APPLICATION,
                       "application-id", APP_ID,
                       "flags", G_APPLICATION_FLAGS_NONE,
                       "resource-base-path", "/org/gnome/dspy",

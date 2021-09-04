@@ -125,7 +125,7 @@ dspy_simple_popover_get_text (DspySimplePopover *self)
 
   g_return_val_if_fail (DSPY_IS_SIMPLE_POPOVER (self), NULL);
 
-  return gtk_entry_get_text (priv->entry);
+  return gtk_editable_get_text (GTK_EDITABLE (priv->entry));
 }
 
 void
@@ -136,7 +136,7 @@ dspy_simple_popover_set_text (DspySimplePopover *self,
 
   g_return_if_fail (DSPY_IS_SIMPLE_POPOVER (self));
 
-  gtk_entry_set_text (priv->entry, text);
+  gtk_editable_set_text (GTK_EDITABLE (priv->entry), text);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TEXT]);
 }
 
@@ -172,7 +172,7 @@ dspy_simple_popover_button_clicked (DspySimplePopover *self,
   g_assert (DSPY_IS_SIMPLE_POPOVER (self));
   g_assert (GTK_IS_BUTTON (button));
 
-  text = gtk_entry_get_text (GTK_ENTRY (priv->entry));
+  text = gtk_editable_get_text (GTK_EDITABLE (priv->entry));
   g_signal_emit (self, signals [ACTIVATE], 0, text);
   gtk_popover_popdown (GTK_POPOVER (self));
 }

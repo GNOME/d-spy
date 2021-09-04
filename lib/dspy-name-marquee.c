@@ -25,18 +25,19 @@
 
 struct _DspyNameMarquee
 {
-  GtkBin            parent_instance;
+  GtkWidget        parent_instance;
 
   DspyName         *name;
   DspyBindingGroup *name_bindings;
 
+  GtkWidget        *grid;
   GtkLabel         *label_bus;
   GtkLabel         *label_name;
   GtkLabel         *label_owner;
   GtkLabel         *label_pid;
 };
 
-G_DEFINE_TYPE (DspyNameMarquee, dspy_name_marquee, GTK_TYPE_BIN)
+G_DEFINE_TYPE (DspyNameMarquee, dspy_name_marquee, GTK_TYPE_WIDGET)
 
 enum {
   PROP_0,
@@ -60,15 +61,21 @@ dspy_name_marquee_new (void)
 }
 
 static void
-dspy_name_marquee_finalize (GObject *object)
+dspy_name_marquee_dispose (GObject *object)
 {
   DspyNameMarquee *self = (DspyNameMarquee *)object;
 
-  dspy_binding_group_set_source (self->name_bindings, NULL);
-  g_clear_object (&self->name_bindings);
+  g_clear_pointer (&self->grid, gtk_widget_unparent);
+
+  if (self->name_bindings)
+    {
+      dspy_binding_group_set_source (self->name_bindings, NULL);
+      g_clear_object (&self->name_bindings);
+    }
+
   g_clear_object (&self->name);
 
-  G_OBJECT_CLASS (dspy_name_marquee_parent_class)->finalize (object);
+  G_OBJECT_CLASS (dspy_name_marquee_parent_class)->dispose (object);
 }
 
 static void
@@ -115,7 +122,7 @@ dspy_name_marquee_class_init (DspyNameMarqueeClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  object_class->finalize = dspy_name_marquee_finalize;
+  object_class->dispose = dspy_name_marquee_dispose;
   object_class->get_property = dspy_name_marquee_get_property;
   object_class->set_property = dspy_name_marquee_set_property;
 
@@ -133,6 +140,9 @@ dspy_name_marquee_class_init (DspyNameMarqueeClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyNameMarquee, label_name);
   gtk_widget_class_bind_template_child (widget_class, DspyNameMarquee, label_owner);
   gtk_widget_class_bind_template_child (widget_class, DspyNameMarquee, label_pid);
+  gtk_widget_class_bind_template_child (widget_class, DspyNameMarquee, grid);
+
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 }
 
 static void

@@ -27,12 +27,9 @@
 typedef struct
 {
   DspyConnection *connection;
-
-  GtkImage *image;
-  GtkLabel *label;
 } DspyConnectionButtonPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE (DspyConnectionButton, dspy_connection_button, GTK_TYPE_RADIO_BUTTON)
+G_DEFINE_TYPE_WITH_PRIVATE (DspyConnectionButton, dspy_connection_button, GTK_TYPE_TOGGLE_BUTTON)
 
 enum {
   PROP_0,
@@ -188,34 +185,7 @@ dspy_connection_button_class_init (DspyConnectionButtonClass *klass)
 static void
 dspy_connection_button_init (DspyConnectionButton *self)
 {
-  DspyConnectionButtonPrivate *priv = dspy_connection_button_get_instance_private (self);
-  GtkBox *box;
-
-  g_object_set (self,
-                "has-tooltip", TRUE,
-                "draw-indicator", FALSE,
-                NULL);
-
-  box = g_object_new (GTK_TYPE_BOX,
-                      "halign", GTK_ALIGN_CENTER,
-                      "orientation", GTK_ORIENTATION_HORIZONTAL,
-                      "visible", TRUE,
-                      NULL);
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (box));
-
-  priv->image = g_object_new (GTK_TYPE_IMAGE,
-                              "icon-name", "dialog-warning-symbolic",
-                              "valign", GTK_ALIGN_CENTER,
-                              "pixel-size", 16,
-                              "margin-end", 6,
-                              "visible", FALSE,
-                              NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (priv->image));
-
-  priv->label = g_object_new (GTK_TYPE_LABEL,
-                              "visible", TRUE,
-                              NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (priv->label));
+  g_object_set (self, "has-tooltip", TRUE, NULL);
 }
 
 /**
@@ -248,13 +218,11 @@ dspy_connection_button_set_connection (DspyConnectionButton *self,
       GBusType bus_type = dspy_connection_get_bus_type (connection);
 
       if (bus_type == G_BUS_TYPE_SYSTEM)
-        gtk_label_set_label (priv->label, _("System"));
+        gtk_button_set_label (GTK_BUTTON (self), _("System"));
       else if (bus_type == G_BUS_TYPE_SESSION)
-        gtk_label_set_label (priv->label, _("Session"));
+        gtk_button_set_label (GTK_BUTTON (self), _("Session"));
       else
-        gtk_label_set_label (priv->label, _("Other"));
-
-      g_object_bind_property (connection, "has-error", priv->image, "visible", G_BINDING_SYNC_CREATE);
+        gtk_button_set_label (GTK_BUTTON (self), _("Other"));
 
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CONNECTION]);
     }

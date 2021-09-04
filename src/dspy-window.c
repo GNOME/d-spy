@@ -24,11 +24,11 @@
 
 struct _DspyWindow
 {
-  GtkApplicationWindow  parent_instance;
+  AdwApplicationWindow  parent_instance;
   DspyView             *view;
 };
 
-G_DEFINE_TYPE (DspyWindow, dspy_window, GTK_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE (DspyWindow, dspy_window, ADW_TYPE_APPLICATION_WINDOW)
 
 static void
 dspy_window_class_init (DspyWindowClass *klass)

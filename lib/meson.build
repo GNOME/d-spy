@@ -46,12 +46,10 @@ libdspy_sources = [
   'dspy-binding-group.c',
   'dspy-connection.c',
   'dspy-connection-button.c',
-  'dspy-empty-state.c',
   'dspy-introspection-model.c',
   'dspy-list-model-filter.c',
   'dspy-method-invocation.c',
   'dspy-method-view.c',
-  'dspy-multi-paned.c',
   'dspy-name.c',
   'dspy-name-marquee.c',
   'dspy-name-row.c',
@@ -67,13 +65,14 @@ libdspy_sources = [
 libdspy_deps = [
   libgio_dep,
   libgtk_dep,
+  libadwaita_dep,
 ]
 
 libdspy_sources += gnome.compile_resources('libdspy-resources', 'libdspy.gresource.xml',
   c_name: 'libdspy'
 )
 
-libdspy = library('libdspy', libdspy_sources,
+libdspy = library('dspy-@0@'.format(ABI_MAJOR), libdspy_sources,
            dependencies: libdspy_deps,
     include_directories: [ root_include_directory ],
                 install: true,

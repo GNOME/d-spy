@@ -1,126 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.22"/>
-  <template class="DspyMethodView" parent="GtkBin">
+  <requires lib="gtk" version="4.0"/>
+  <template class="DspyMethodView" parent="GtkWidget">
     <child>
-      <object class="GtkGrid">
+      <object class="GtkGrid" id="grid">
         <property name="column-spacing">12</property>
         <property name="row-spacing">3</property>
-        <property name="visible">true</property>
         <child>
           <object class="GtkLabel">
             <property name="label" translatable="yes">Object Path</property>
-            <property name="visible">true</property>
             <property name="xalign">1.0</property>
             <style>
               <class name="dim-label"/>
             </style>
+            <layout>
+              <property name="row">0</property>
+              <property name="column">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">0</property>
-            <property name="left-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel" id="label_object_path">
-            <property name="hexpand">true</property>
-            <property name="visible">true</property>
+            <property name="hexpand">1</property>
             <property name="ellipsize">end</property>
             <property name="xalign">0.0</property>
+            <layout>
+              <property name="row">0</property>
+              <property name="column">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">0</property>
-            <property name="left-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
             <property name="label" translatable="yes">Interface</property>
-            <property name="visible">true</property>
             <property name="xalign">1.0</property>
             <style>
               <class name="dim-label"/>
             </style>
+            <layout>
+              <property name="row">1</property>
+              <property name="column">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">1</property>
-            <property name="left-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel" id="label_interface">
-            <property name="hexpand">true</property>
-            <property name="visible">true</property>
+            <property name="hexpand">1</property>
             <property name="ellipsize">end</property>
             <property name="xalign">0.0</property>
+            <layout>
+              <property name="row">1</property>
+              <property name="column">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">1</property>
-            <property name="left-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
             <property name="label" translatable="yes">Method</property>
-            <property name="visible">true</property>
             <property name="xalign">1.0</property>
             <style>
               <class name="dim-label"/>
             </style>
+            <layout>
+              <property name="row">2</property>
+              <property name="column">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">2</property>
-            <property name="left-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel" id="label_method">
-            <property name="hexpand">true</property>
-            <property name="visible">true</property>
+            <property name="hexpand">1</property>
             <property name="ellipsize">end</property>
             <property name="xalign">0.0</property>
+            <layout>
+              <property name="row">2</property>
+              <property name="column">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">2</property>
-            <property name="left-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
             <property name="label" translatable="yes">Parameters</property>
-            <property name="visible">true</property>
             <property name="xalign">1.0</property>
             <property name="valign">start</property>
             <style>
               <class name="dim-label"/>
             </style>
+            <layout>
+              <property name="row">3</property>
+              <property name="column">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">3</property>
-            <property name="left-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkBox">
-            <property name="orientation">horizontal</property>
-            <property name="hexpand">true</property>
-            <property name="visible">true</property>
-            <style>
-              <class name="linked"/>
-            </style>
+            <property name="hexpand">1</property>
+            <property name="spacing">3</property>
             <child>
-              <object class="GtkScrolledWindow">
-                <property name="hexpand">true</property>
-                <property name="shadow-type">in</property>
-                <property name="hscrollbar-policy">never</property>
-                <property name="propagate-natural-height">true</property>
-                <property name="max-content-height">100</property>
-                <property name="visible">true</property>
+              <object class="GtkFrame">
                 <child>
-                  <object class="GtkTextView" id="textview_params">
-                    <property name="buffer">buffer_params</property>
-                    <property name="wrap-mode">word-char</property>
-                    <property name="visible">true</property>
+                  <object class="GtkScrolledWindow">
+                    <property name="hexpand">1</property>
+                    <property name="hscrollbar-policy">never</property>
+                    <property name="propagate-natural-height">1</property>
+                    <property name="max-content-height">100</property>
+                    <property name="child">
+                      <object class="GtkTextView" id="textview_params">
+                        <property name="buffer">buffer_params</property>
+                        <property name="wrap-mode">word-char</property>
+                      </object>
+                    </property>
                   </object>
                 </child>
               </object>
@@ -128,55 +117,50 @@
             <child>
               <object class="GtkButton" id="button">
                 <property name="label" translatable="yes">Execute</property>
-                <property name="visible">true</property>
                 <style>
                   <class name="suggested-action"/>
                 </style>
               </object>
             </child>
+            <layout>
+              <property name="row">3</property>
+              <property name="column">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">3</property>
-            <property name="left-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
             <property name="label" translatable="yes">Result</property>
-            <property name="visible">true</property>
             <property name="xalign">1.0</property>
             <property name="valign">start</property>
             <style>
               <class name="dim-label"/>
             </style>
+            <layout>
+              <property name="row">4</property>
+              <property name="column">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">4</property>
-            <property name="left-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkBox">
-            <property name="orientation">horizontal</property>
-            <property name="hexpand">true</property>
-            <property name="visible">true</property>
-            <style>
-              <class name="linked"/>
-            </style>
+            <property name="hexpand">1</property>
+            <property name="spacing">3</property>
             <child>
-              <object class="GtkScrolledWindow">
-                <property name="hexpand">true</property>
-                <property name="shadow-type">in</property>
-                <property name="hscrollbar-policy">never</property>
-                <property name="propagate-natural-height">true</property>
-                <property name="max-content-height">100</property>
-                <property name="visible">true</property>
+              <object class="GtkFrame">
                 <child>
-                  <object class="GtkTextView">
-                    <property name="buffer">buffer_reply</property>
-                    <property name="wrap-mode">word-char</property>
-                    <property name="editable">false</property>
-                    <property name="visible">true</property>
+                  <object class="GtkScrolledWindow">
+                    <property name="hexpand">1</property>
+                    <property name="hscrollbar-policy">never</property>
+                    <property name="propagate-natural-height">1</property>
+                    <property name="max-content-height">100</property>
+                    <property name="child">
+                      <object class="GtkTextView">
+                        <property name="buffer">buffer_reply</property>
+                        <property name="wrap-mode">word-char</property>
+                        <property name="editable">0</property>
+                      </object>
+                    </property>
                   </object>
                 </child>
               </object>
@@ -184,40 +168,35 @@
             <child>
               <object class="GtkButton" id="copy_button">
                 <property name="label" translatable="yes">Copy</property>
-                <property name="visible">true</property>
               </object>
             </child>
+            <layout>
+              <property name="row">4</property>
+              <property name="column">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">4</property>
-            <property name="left-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
             <property name="label" translatable="yes">Elapsed Time</property>
             <property name="halign">end</property>
-            <property name="visible">true</property>
             <style>
               <class name="dim-label"/>
             </style>
+            <layout>
+              <property name="row">5</property>
+              <property name="column">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">5</property>
-            <property name="left-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkBox">
-            <property name="orientation">horizontal</property>
-            <property name="homogeneous">true</property>
+            <property name="homogeneous">1</property>
             <property name="spacing">6</property>
-            <property name="visible">true</property>
             <child>
               <object class="GtkLabel">
                 <property name="label">Ø:</property>
                 <property name="halign">end</property>
-                <property name="visible">true</property>
                 <style>
                   <class name="dim-label"/>
                 </style>
@@ -226,14 +205,12 @@
             <child>
               <object class="GtkLabel" id="label_avg">
                 <property name="halign">start</property>
-                <property name="visible">true</property>
               </object>
             </child>
             <child>
               <object class="GtkLabel">
                 <property name="label">Min:</property>
                 <property name="halign">end</property>
-                <property name="visible">true</property>
                 <style>
                   <class name="dim-label"/>
                 </style>
@@ -242,14 +219,12 @@
             <child>
               <object class="GtkLabel" id="label_min">
                 <property name="halign">start</property>
-                <property name="visible">true</property>
               </object>
             </child>
             <child>
               <object class="GtkLabel">
                 <property name="label">Max:</property>
                 <property name="halign">end</property>
-                <property name="visible">true</property>
                 <style>
                   <class name="dim-label"/>
                 </style>
@@ -258,14 +233,13 @@
             <child>
               <object class="GtkLabel" id="label_max">
                 <property name="halign">start</property>
-                <property name="visible">true</property>
               </object>
             </child>
+            <layout>
+              <property name="row">5</property>
+              <property name="column">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">5</property>
-            <property name="left-attach">1</property>
-          </packing>
         </child>
       </object>
     </child>
@@ -273,7 +247,6 @@
   <object class="GtkTextBuffer" id="buffer_params"/>
   <object class="GtkTextBuffer" id="buffer_reply"/>
   <object class="GtkSizeGroup">
-    <property name="mode">horizontal</property>
     <widgets>
       <widget name="button"/>
       <widget name="copy_button"/>

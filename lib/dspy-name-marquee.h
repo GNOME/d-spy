@@ -30,7 +30,7 @@ G_BEGIN_DECLS
 #define DSPY_TYPE_NAME_MARQUEE (dspy_name_marquee_get_type())
 
 DSPY_AVAILABLE_IN_ALL
-G_DECLARE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, DSPY, NAME_MARQUEE, GtkBin)
+G_DECLARE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, DSPY, NAME_MARQUEE, GtkWidget)
 
 DSPY_AVAILABLE_IN_ALL
 GtkWidget *dspy_name_marquee_new      (void);
