@@ -1,7 +1,10 @@
 [Desktop Entry]
-Name=dspy
+Categories=GNOME;GTK;Development;
 Exec=dspy
+Icon=@app_id@
+Name=D-Spy
+Comment=Discover and explore D-Bus services
+StartupNotify=true
 Terminal=false
 Type=Application
-Categories=GTK;
-StartupNotify=true
+X-Flatpak-RenamedFrom=d-spy
