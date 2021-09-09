@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=GNOME;GTK;Development;
-Exec=dspy
+Exec=d-spy
 Icon=@app_id@
 Name=D-Spy
 Comment=Discover and explore D-Bus services
