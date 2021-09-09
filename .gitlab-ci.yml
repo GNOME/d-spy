@@ -1,0 +1,18 @@
+include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+
+flatpak:
+    image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
+    variables:
+        MANIFEST_PATH: "org.gnome.dspy.devel.json"
+        MESON_ARGS: "-Ddevelopment=true"
+        FLATPAK_MODULE: "d-spy"
+        APP_ID: "org.gnome.dspy.devel"
+        RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+        BUNDLE: "org.gnome.dspy.devel.flatpak"
+    extends: .flatpak
+
+nightly:
+    extends: '.publish_nightly'
+    needs: ['flatpak']
+    dependencies: ['flatpak']
+    
