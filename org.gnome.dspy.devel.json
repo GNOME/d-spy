@@ -1,7 +1,7 @@
 {
     "app-id": "org.gnome.dspy.devel",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "master",
+    "runtime-version": "40",
     "sdk": "org.gnome.Sdk",
     "command": "d-spy",
     "finish-args": [
