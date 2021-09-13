@@ -21,7 +21,7 @@ config_h.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('lo
 config_h.set_quoted('APP_ID', app_id)
 
 glib_req_version = '2.68'
-gtk_req_version = '4.4'
+gtk_req_version = '4.2'
 adwaita_req_version = '1.0'
 
 glib_req = '>= @0@'.format(glib_req_version)
