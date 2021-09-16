@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <name xml:lang="en">D-Spy</name>
+  <shortdesc xml:lang="en">Explore the D-Bus</shortdesc>
+  <description xml:lang="en">D-Spy is a tool to explore and test end-points and interfaces on the System or Session D-Bus. You can also connect to D-Bus peers by address. D-Spy was originally part of GNOME Builder.</description>
+  <homepage rdf:resource="https://wiki.gnome.org/Apps/Builder" />
+  <download-page rdf:resource="https://download.gnome.org/sources/d-spy/" />
+  <bug-database rdf:resource="https://gitlab.gnome.org/GNOME/d-spy/issues" />
+
+  <category rdf:resource="http://api.gnome.org/doap-extensions#apps" />
+  <programming-language>C</programming-language>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Christian Hergert</foaf:name>
+      <foaf:mbox rdf:resource="mailto:chergert@gnome.org" />
+      <gnome:userid>chergert</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+</Project>
