@@ -45,6 +45,10 @@ static void
 dspy_window_init (DspyWindow *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+
+#if DEVELOPMENT_BUILD
+  gtk_widget_add_css_class (GTK_WIDGET (self), "devel");
+#endif
 }
 
 GtkWidget *

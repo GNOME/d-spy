@@ -19,6 +19,7 @@ config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_h.set_quoted('GETTEXT_PACKAGE', 'dspy')
 config_h.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
 config_h.set_quoted('APP_ID', app_id)
+config_h.set10('DEVELOPMENT_BUILD', get_option('development'))
 
 glib_req_version = '2.68'
 gtk_req_version = '4.2'
