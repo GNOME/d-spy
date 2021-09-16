@@ -59,7 +59,7 @@
             ]
         },
         {
-            "name": "dspy",
+            "name": "d-spy",
             "builddir": true,
             "buildsystem": "meson",
             "config-opts": [
