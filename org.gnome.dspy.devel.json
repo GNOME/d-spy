@@ -75,7 +75,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/chergert/d-spy.git"
+                    "url": "https://gitlab.gnome.org/GNOME/d-spy.git"
                 }
             ]
         }
