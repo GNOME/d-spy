@@ -1,7 +1,7 @@
 {
     "app-id": "org.gnome.dspy.devel",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "40",
+    "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
     "command": "d-spy",
     "finish-args": [
@@ -11,13 +11,6 @@
         "--socket=session-bus",
         "--socket=system-bus"
     ],
-    "build-options": {
-        "cflags": "-O2 -g",
-        "cxxflags": "-O2 -g",
-        "env": {
-            "V": "1"
-        }
-    },
     "cleanup": [
         "/include",
         "/lib/pkgconfig",
