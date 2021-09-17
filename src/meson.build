@@ -14,7 +14,13 @@ dspy_sources += gnome.compile_resources('dspy-resources', 'dspy.gresource.xml',
   c_name: 'dspy'
 )
 
-dspy = executable('d-spy', dspy_sources,
+build_ident_h = vcs_tag(
+     fallback: meson.project_version(),
+        input: 'build-ident.h.in',
+       output: 'build-ident.h',
+)
+
+dspy = executable('d-spy', dspy_sources + [build_ident_h],
          dependencies: dspy_deps,
               install: true,
   include_directories: root_include_directory,

@@ -12,6 +12,11 @@
         <child>
           <object class="GtkHeaderBar" id="header_bar">
             <property name="show_title_buttons">True</property>
+            <child type="end">
+              <object class="GtkMenuButton" id="primary_menu_button">
+                <property name="icon-name">open-menu-symbolic</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>
@@ -22,4 +27,12 @@
       </object>
     </child>
   </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_About D-Spy</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

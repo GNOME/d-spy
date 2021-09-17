@@ -1,7 +1,14 @@
 project('dspy', 'c',
-        version: '41.beta1',
+        version: '0.99.0',
   meson_version: '>= 0.56.0',
 )
+
+symbolic_version = '41.rc1'
+
+version_split = meson.project_version().split('.')
+version_major = version_split[0]
+version_minor = version_split[1]
+version_micro = version_split[2]
 
 gnome = import('gnome')
 i18n = import('i18n')
@@ -15,10 +22,13 @@ else
 endif
 
 config_h = configuration_data()
+config_h.set_quoted('SYMBOLIC_VERSION', symbolic_version)
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
-config_h.set_quoted('GETTEXT_PACKAGE', 'dspy')
+config_h.set_quoted('PACKAGE_ICON_NAME', app_id)
+config_h.set_quoted('GETTEXT_PACKAGE', 'd-spy')
 config_h.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
 config_h.set_quoted('APP_ID', app_id)
+config_h.set_quoted('PACKAGE_WEBSITE', 'https://gitlab.gnome.org/GNOME/d-spy')
 config_h.set10('DEVELOPMENT_BUILD', get_option('development'))
 
 glib_req_version = '2.68'

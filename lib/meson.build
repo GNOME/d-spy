@@ -1,16 +1,4 @@
-ABI_MAJOR = '0'
-
-lib_header_dir = join_paths(get_option('includedir'), 'dspy-@0@'.format(ABI_MAJOR))
-
-version_split = meson.project_version().split('.')
-version_major = version_split[0]
-if version_split[1].startswith('beta') or version_split[1].startswith('alpha')
-  version_minor = 0
-  version_micro = 0
-else
-  version_minor = version_split[1]
-  version_micro = version_split[2]
-endif
+lib_header_dir = join_paths(get_option('includedir'), 'dspy-@0@'.format(version_major))
 
 version_data = configuration_data()
 version_data.set('VERSION_MAJOR', version_major)
@@ -72,13 +60,13 @@ libdspy_sources += gnome.compile_resources('libdspy-resources', 'libdspy.gresour
   c_name: 'libdspy'
 )
 
-libdspy = library('dspy-@0@'.format(ABI_MAJOR), libdspy_sources,
+libdspy = library('dspy-@0@'.format(version_major), libdspy_sources,
            dependencies: libdspy_deps,
     include_directories: [ root_include_directory ],
                 install: true,
   gnu_symbol_visibility: 'hidden',
-                version: '@0@.0.0'.format(ABI_MAJOR),
-        darwin_versions: '@0@.0'.format(ABI_MAJOR.to_int() + 1),
+                version: '@0@.0.0'.format(version_major),
+        darwin_versions: '@0@.0'.format(version_major.to_int() + 1),
               link_args: release_link_args,
 )
 
@@ -89,4 +77,4 @@ libdspy_dep = declare_dependency(
 )
 
 install_headers(libdspy_headers,
-                subdir: 'dspy-@0@'.format(ABI_MAJOR))
+                subdir: 'dspy-@0@'.format(version_major))

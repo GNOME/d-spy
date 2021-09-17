@@ -21,44 +21,101 @@
 #include <adwaita.h>
 #include <glib/gi18n.h>
 
+#include "build-ident.h"
 #include "dspy-window.h"
+
+static const gchar *authors[] = {
+  "Christian Hergert",
+  NULL
+};
+
+static const gchar *artists[] = {
+  "Jakub Steiner",
+  NULL
+};
 
 static void
 on_activate (GtkApplication *app)
 {
-	GtkWindow *window;
+  GtkWindow *window;
 
-	g_assert (GTK_IS_APPLICATION (app));
+  g_assert (GTK_IS_APPLICATION (app));
 
-	window = gtk_application_get_active_window (app);
-	if (window == NULL)
-		window = g_object_new (DSPY_TYPE_WINDOW,
-		                       "application", app,
-		                       "default-width", 1000,
-		                       "default-height", 700,
-		                       NULL);
+  window = gtk_application_get_active_window (app);
+  if (window == NULL)
+    window = g_object_new (DSPY_TYPE_WINDOW,
+                           "application", app,
+                           "default-width", 1000,
+                           "default-height", 700,
+                           NULL);
 
-	gtk_window_present (window);
+  gtk_window_present (window);
 }
+
+static void
+about_action_cb (GSimpleAction *action,
+                 GVariant      *param,
+                 gpointer       user_data)
+{
+  GtkApplication *app = user_data;
+  g_autofree gchar *program_name = NULL;
+  GtkAboutDialog *dialog;
+  GtkWindow *window;
+
+  g_assert (GTK_IS_APPLICATION (app));
+
+#ifdef DEVELOPMENT_BUILD
+  program_name = g_strdup_printf ("%s (Development)", _("D-Spy"));
+#else
+  program_name = g_strdup (_("D-Spy"));
+#endif
+
+  dialog = GTK_ABOUT_DIALOG (gtk_about_dialog_new ());
+  gtk_about_dialog_set_program_name (dialog, program_name);
+  gtk_about_dialog_set_logo_icon_name (dialog, PACKAGE_ICON_NAME);
+  gtk_about_dialog_set_authors (dialog, authors);
+  gtk_about_dialog_set_artists (dialog, artists);
+#if DEVELOPMENT_BUILD
+  gtk_about_dialog_set_version (dialog, SYMBOLIC_VERSION " (" DSPY_BUILD_IDENTIFIER ")");
+#else
+  gtk_about_dialog_set_version (dialog, SYMBOLIC_VERSION);
+#endif
+  gtk_about_dialog_set_copyright (dialog, "© 2019-2021 Christian Hergert");
+  gtk_about_dialog_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
+  gtk_about_dialog_set_website (dialog, PACKAGE_WEBSITE);
+  gtk_about_dialog_set_website_label (dialog, _("D-Spy Website"));
+  gtk_about_dialog_set_comments (dialog, _("Explore the D-Bus"));
+
+  window = gtk_application_get_active_window (app);
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+
+  gtk_window_present (GTK_WINDOW (dialog));
+}
+
+static const GActionEntry actions[] = {
+  { "about", about_action_cb },
+};
 
 int
 main (int   argc,
       char *argv[])
 {
-	g_autoptr(GtkApplication) app = NULL;
-	int ret;
+  g_autoptr(GtkApplication) app = NULL;
+  int ret;
 
-	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain (GETTEXT_PACKAGE);
+  bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain (GETTEXT_PACKAGE);
 
-	app = g_object_new (ADW_TYPE_APPLICATION,
+  app = g_object_new (ADW_TYPE_APPLICATION,
                       "application-id", APP_ID,
                       "flags", G_APPLICATION_FLAGS_NONE,
                       "resource-base-path", "/org/gnome/dspy",
                       NULL);
-	g_signal_connect (app, "activate", G_CALLBACK (on_activate), NULL);
-	ret = g_application_run (G_APPLICATION (app), argc, argv);
+  g_signal_connect (app, "activate", G_CALLBACK (on_activate), NULL);
+  g_action_map_add_action_entries (G_ACTION_MAP (app), actions, G_N_ELEMENTS (actions), app);
+  ret = g_application_run (G_APPLICATION (app), argc, argv);
 
-	return ret;
+  return ret;
 }
