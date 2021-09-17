@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-	<id>@app_id@.desktop</id>
-	<metadata_license>CC0-1.0</metadata_license>
-	<project_license>GPL-3.0-or-later</project_license>
+  <id>@app_id@.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
   <developer_name>Christian Hergert, et al.</developer_name>
   <launchable type="desktop-id">org.gnome.dspy.desktop</launchable>
   <name>D-Spy</name>
@@ -10,7 +10,7 @@
   <summary>A D-Bus explorer for GNOME</summary>
   <description>
     <p>D-Spy is a simple tool to explore D-Bus connections.</p>
-	</description>
+  </description>
 
   <url type="homepage">https://gitlab.gnome.org/chergert/d-spy</url>
   <url type="bugtracker">https://gitlab.gnome.org/chergert/d-spy/issues</url>
@@ -24,7 +24,7 @@
   </screenshots>
 
   <releases>
-    <release version="41.alpha0" date="2021-09-16"/>
+    <release version="41.0" date="2021-09-17"/>
   </releases>
 
   <kudos>
