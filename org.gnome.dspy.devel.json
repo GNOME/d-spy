@@ -68,7 +68,8 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/d-spy.git"
+                    "url": "https://gitlab.gnome.org/GNOME/d-spy.git",
+                    "branch" : "main"
                 }
             ]
         }
