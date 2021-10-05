@@ -282,6 +282,36 @@ dspy_tree_view_row_expanded (GtkTreeView *view,
     }
 }
 
+static gboolean
+dspy_tree_view_move_cursor (GtkTreeView     *tree_view,
+                            GtkMovementStep  step,
+                            int              count,
+                            gboolean         extend,
+                            gboolean         modify)
+{
+  g_assert (GTK_IS_TREE_VIEW (tree_view));
+
+  if (step == GTK_MOVEMENT_VISUAL_POSITIONS)
+    {
+      g_autoptr(GtkTreePath) path = NULL;
+
+      gtk_tree_view_get_cursor (tree_view, &path, NULL);
+
+      if (count == 1)
+        {
+          gtk_tree_view_expand_row (tree_view, path, FALSE);
+          return TRUE;
+        }
+      else if (count == -1)
+        {
+          gtk_tree_view_collapse_row (tree_view, path);
+          return TRUE;
+        }
+    }
+
+  return GTK_TREE_VIEW_CLASS (dspy_tree_view_parent_class)->move_cursor (tree_view, step, count, extend, modify);
+}
+
 static void
 dspy_tree_view_class_init (DspyTreeViewClass *klass)
 {
@@ -289,6 +319,7 @@ dspy_tree_view_class_init (DspyTreeViewClass *klass)
 
   tree_view_class->row_activated = dspy_tree_view_row_activated;
   tree_view_class->row_expanded = dspy_tree_view_row_expanded;
+  tree_view_class->move_cursor = dspy_tree_view_move_cursor;
 
   signals [METHOD_ACTIVATED] =
     g_signal_new ("method-activated",
