@@ -39,6 +39,7 @@
 #endif
 
 #define DSPY_VERSION_1_0 (G_ENCODE_VERSION (1, 0))
+#define DSPY_VERSION_1_2 (G_ENCODE_VERSION (1, 2))
 
 #if (DSPY_MINOR_VERSION == 99)
 # define DSPY_VERSION_CUR_STABLE (G_ENCODE_VERSION (DSPY_MAJOR_VERSION + 1, 0))
@@ -107,6 +108,7 @@
 
 #define DSPY_AVAILABLE_IN_ALL                  _DSPY_EXTERN
 
+/* 1.0 */
 #if DSPY_VERSION_MIN_REQUIRED >= DSPY_VERSION_1_0
 # define DSPY_DEPRECATED_IN_1_0                DSPY_DEPRECATED
 # define DSPY_DEPRECATED_IN_1_0_FOR(f)         DSPY_DEPRECATED_FOR(f)
@@ -119,4 +121,19 @@
 # define DSPY_AVAILABLE_IN_1_0                 DSPY_UNAVAILABLE(1, 0)
 #else
 # define DSPY_AVAILABLE_IN_1_0                 _DSPY_EXTERN
+#endif
+
+/* 1.2 */
+#if DSPY_VERSION_MIN_REQUIRED >= DSPY_VERSION_1_0
+# define DSPY_DEPRECATED_IN_1_2                DSPY_DEPRECATED
+# define DSPY_DEPRECATED_IN_1_2_FOR(f)         DSPY_DEPRECATED_FOR(f)
+#else
+# define DSPY_DEPRECATED_IN_1_2                _DSPY_EXTERN
+# define DSPY_DEPRECATED_IN_1_2_FOR(f)         _DSPY_EXTERN
+#endif
+
+#if DSPY_VERSION_MAX_ALLOWED < DSPY_VERSION_1_2
+# define DSPY_AVAILABLE_IN_1_2                 DSPY_UNAVAILABLE(1, 2)
+#else
+# define DSPY_AVAILABLE_IN_1_2                 _DSPY_EXTERN
 #endif
