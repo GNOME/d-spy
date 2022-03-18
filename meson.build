@@ -32,7 +32,7 @@ config_h.set_quoted('PACKAGE_WEBSITE', 'https://gitlab.gnome.org/GNOME/d-spy')
 config_h.set10('DEVELOPMENT_BUILD', get_option('development'))
 
 glib_req_version = '2.68'
-gtk_req_version = '4.2'
+gtk_req_version = '4.6'
 adwaita_req_version = '1.0'
 
 glib_req = '>= @0@'.format(glib_req_version)
