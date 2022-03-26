@@ -1,6 +1,6 @@
 project('dspy', 'c',
         version: '1.2.0',
-  meson_version: '>= 0.56.0',
+  meson_version: '>= 0.59.0',
 )
 
 symbolic_version = '42.0'
@@ -188,4 +188,8 @@ subdir('lib')
 subdir('src')
 subdir('po')
 
-meson.add_install_script('build-aux/meson/postinstall.py')
+gnome.post_install(
+  glib_compile_schemas: true,
+  gtk_update_icon_cache: true,
+  update_desktop_database: true,
+)
