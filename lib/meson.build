@@ -76,5 +76,17 @@ libdspy_dep = declare_dependency(
   include_directories: include_directories('.'),
 )
 
-install_headers(libdspy_headers,
-                subdir: 'dspy-@0@'.format(version_major))
+libdspy_header_subdir = 'dspy-@0@'.format(version_major)
+install_headers(libdspy_headers, subdir: libdspy_header_subdir)
+
+pkgg = import('pkgconfig')
+
+pkgg.generate(
+    libraries: [libdspy],
+      subdirs: libdspy_header_subdir,
+         name: 'D-Spy',
+     filebase: 'dspy-@0@'.format(version_major),
+  description: 'Embed D-Spy into applications and IDEs',
+     requires: [ 'gtk4', 'libadwaita-1'],
+)
+
