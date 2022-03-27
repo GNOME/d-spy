@@ -379,7 +379,7 @@ dspy_introspection_model_init_async (GAsyncInitable      *initiable,
       g_task_return_new_error (task,
                                G_IO_ERROR,
                                G_IO_ERROR_NOT_INITIALIZED,
-                               "%s has not been intialized with a name",
+                               "%s has not been initialized with a name",
                                G_OBJECT_TYPE_NAME (self));
       return;
     }
