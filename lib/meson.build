@@ -28,6 +28,7 @@ libdspy_headers = [
   'dspy-names-model.h',
   'dspy-tree-view.h',
   'dspy-view.h',
+  'dspy-version-macros.h',
 ]
 
 libdspy_sources = [
