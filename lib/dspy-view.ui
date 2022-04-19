@@ -101,7 +101,7 @@
                 <property name="name">empty-state</property>
                 <property name="child">
                   <object class="AdwStatusPage">
-                    <property name="icon-name">org.gnome.dfeet-symbolic</property>
+                    <property name="icon-name">org.gnome.dspy-symbolic</property>
                     <property name="title" translatable="yes">Select a D-Bus Name</property>
                     <property name="description" translatable="yes">Select a bus name to introspect the peer.</property>
                   </object>
