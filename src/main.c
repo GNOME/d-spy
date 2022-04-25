@@ -64,7 +64,7 @@ about_action_cb (GSimpleAction *action,
 
   g_assert (GTK_IS_APPLICATION (app));
 
-#ifdef DEVELOPMENT_BUILD
+#if DEVELOPMENT_BUILD
   program_name = g_strdup_printf ("%s (Development)", _("D-Spy"));
 #else
   program_name = g_strdup (_("D-Spy"));
