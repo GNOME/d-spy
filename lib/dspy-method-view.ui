@@ -109,6 +109,10 @@
                     <property name="max-content-height">100</property>
                     <property name="child">
                       <object class="GtkTextView" id="textview_params">
+                        <property name="top-margin">6</property>
+                        <property name="bottom-margin">6</property>
+                        <property name="right-margin">6</property>
+                        <property name="left-margin">6</property>
                         <property name="buffer">buffer_params</property>
                         <property name="wrap-mode">word-char</property>
                       </object>
@@ -159,6 +163,10 @@
                     <property name="max-content-height">100</property>
                     <property name="child">
                       <object class="GtkTextView">
+                        <property name="top-margin">6</property>
+                        <property name="bottom-margin">6</property>
+                        <property name="right-margin">6</property>
+                        <property name="left-margin">6</property>
                         <property name="buffer">buffer_reply</property>
                         <property name="wrap-mode">word-char</property>
                         <property name="editable">0</property>
