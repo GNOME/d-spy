@@ -75,6 +75,9 @@
               </object>
             </child>
             <child>
+              <object class="GtkSeparator"/>
+            </child>
+            <child>
               <object class="GtkScrolledWindow" id="names_scroller">
                 <property name="propagate-natural-width">1</property>
                 <property name="max-content-width">300</property>
@@ -83,6 +86,9 @@
                   <object class="GtkViewport">
                     <property name="child">
                       <object class="GtkListBox" id="names_list_box">
+                        <style>
+                          <class name="navigation-sidebar"/>
+                        </style>
                       </object>
                     </property>
                   </object>

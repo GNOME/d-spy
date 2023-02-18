@@ -59,7 +59,7 @@ about_action_cb (GSimpleAction *action,
 {
   GtkApplication *app = user_data;
   g_autofree gchar *program_name = NULL;
-  GtkAboutDialog *dialog;
+  AdwAboutWindow *dialog;
   GtkWindow *window;
 
   g_assert (GTK_IS_APPLICATION (app));
@@ -70,21 +70,20 @@ about_action_cb (GSimpleAction *action,
   program_name = g_strdup (_("D-Spy"));
 #endif
 
-  dialog = GTK_ABOUT_DIALOG (gtk_about_dialog_new ());
-  gtk_about_dialog_set_program_name (dialog, program_name);
-  gtk_about_dialog_set_logo_icon_name (dialog, PACKAGE_ICON_NAME);
-  gtk_about_dialog_set_authors (dialog, authors);
-  gtk_about_dialog_set_artists (dialog, artists);
+  dialog = ADW_ABOUT_WINDOW (adw_about_window_new ());
+  adw_about_window_set_application_name (dialog, program_name);
+  adw_about_window_set_application_icon (dialog, PACKAGE_ICON_NAME);
+  adw_about_window_set_developers (dialog, authors);
+  adw_about_window_set_designers (dialog, artists);
 #if DEVELOPMENT_BUILD
-  gtk_about_dialog_set_version (dialog, SYMBOLIC_VERSION " (" DSPY_BUILD_IDENTIFIER ")");
+  adw_about_window_set_version (dialog, SYMBOLIC_VERSION " (" DSPY_BUILD_IDENTIFIER ")");
 #else
-  gtk_about_dialog_set_version (dialog, SYMBOLIC_VERSION);
+  adw_about_window_set_version (dialog, SYMBOLIC_VERSION);
 #endif
-  gtk_about_dialog_set_copyright (dialog, "© 2019-2021 Christian Hergert");
-  gtk_about_dialog_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
-  gtk_about_dialog_set_website (dialog, PACKAGE_WEBSITE);
-  gtk_about_dialog_set_website_label (dialog, _("D-Spy Website"));
-  gtk_about_dialog_set_comments (dialog, _("Explore the D-Bus"));
+  adw_about_window_set_copyright (dialog, "© 2019-2021 Christian Hergert");
+  adw_about_window_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
+  adw_about_window_set_website (dialog, PACKAGE_WEBSITE);
+  adw_about_window_set_issue_url (dialog, "https://gitlab.gnome.org/GNOME/d-spy/-/issues/new");
 
   window = gtk_application_get_active_window (app);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
