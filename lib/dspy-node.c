@@ -161,6 +161,48 @@ _dspy_property_info_new (DspyNode          *parent,
   return ret;
 }
 
+static int
+compare_property_info (gconstpointer a,
+                       gconstpointer b,
+                       gpointer      user_data)
+{
+  const DspyPropertyInfo *prop_a = a;
+  const DspyPropertyInfo *prop_b = b;
+
+  g_assert (prop_a->kind == DSPY_NODE_KIND_PROPERTY);
+  g_assert (prop_b->kind == DSPY_NODE_KIND_PROPERTY);
+
+  return g_strcmp0 (prop_a->name, prop_b->name);
+}
+
+static int
+compare_method_info (gconstpointer a,
+                     gconstpointer b,
+                     gpointer      user_data)
+{
+  const DspyMethodInfo *method_a = a;
+  const DspyMethodInfo *method_b = b;
+
+  g_assert (method_a->kind == DSPY_NODE_KIND_METHOD);
+  g_assert (method_b->kind == DSPY_NODE_KIND_METHOD);
+
+  return g_strcmp0 (method_a->name, method_b->name);
+}
+
+static int
+compare_signal_info (gconstpointer a,
+                     gconstpointer b,
+                     gpointer      user_data)
+{
+  const DspySignalInfo *signal_a = a;
+  const DspySignalInfo *signal_b = b;
+
+  g_assert (signal_a->kind == DSPY_NODE_KIND_SIGNAL);
+  g_assert (signal_b->kind == DSPY_NODE_KIND_SIGNAL);
+
+  return g_strcmp0 (signal_a->name, signal_b->name);
+}
+
 static DspyInterfaceInfo *
 _dspy_interface_info_new (DspyNode           *parent,
                           GDBusInterfaceInfo *info,
@@ -181,16 +223,19 @@ _dspy_interface_info_new (DspyNode           *parent,
   for (guint i = 0; info->signals[i] != NULL; i++)
     push_tail (&ret->signals->signals,
                _dspy_signal_info_new ((DspyNode *)ret->signals, info->signals[i], chunks));
+  g_queue_sort (&ret->signals->signals, compare_signal_info, NULL);
 
   for (guint i = 0; info->methods[i] != NULL; i++)
     push_tail (&ret->methods->methods,
                _dspy_method_info_new ((DspyNode *)ret->methods, info->methods[i], chunks));
+  g_queue_sort (&ret->methods->methods, compare_method_info, NULL);
 
   for (guint i = 0; info->properties[i] != NULL; i++)
     push_tail (&ret->properties->properties,
                _dspy_property_info_new ((DspyNode *)ret->properties,
                                         info->properties[i],
                                         chunks));
+  g_queue_sort (&ret->properties->properties, compare_property_info, NULL);
 
   return ret;
 }
