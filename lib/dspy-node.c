@@ -195,6 +195,20 @@ _dspy_interface_info_new (DspyNode           *parent,
   return ret;
 }
 
+static int
+compare_node_by_path (gconstpointer a,
+                      gconstpointer b,
+                      gpointer      user_data)
+{
+  const DspyNodeInfo *info_a = a;
+  const DspyNodeInfo *info_b = b;
+
+  g_assert (info_a->kind == DSPY_NODE_KIND_NODE);
+  g_assert (info_b->kind == DSPY_NODE_KIND_NODE);
+
+  return strcmp (info_a->path, info_b->path);
+}
+
 static DspyNodeInfo *
 _dspy_node_info_new (DspyNode      *parent,
                      GDBusNodeInfo *info,
@@ -213,6 +227,8 @@ _dspy_node_info_new (DspyNode      *parent,
   for (guint i = 0; info->nodes[i] != NULL; i++)
     push_tail (&ret->nodes,
                _dspy_node_info_new ((DspyNode *)ret, info->nodes[i], chunks));
+
+  g_queue_sort (&ret->nodes, compare_node_by_path, NULL);
 
   if (info->interfaces[0])
     {
