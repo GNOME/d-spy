@@ -53,6 +53,24 @@ on_activate (GtkApplication *app)
 }
 
 static void
+new_window_cb (GSimpleAction *action,
+               GVariant      *param,
+               gpointer       user_data)
+{
+  GtkApplication *app = user_data;
+  GtkWindow *window;
+
+  g_assert (GTK_IS_APPLICATION (app));
+
+  window = g_object_new (DSPY_TYPE_WINDOW,
+                         "application", app,
+                         "default-width", 1000,
+                         "default-height", 700,
+                         NULL);
+  gtk_window_present (window);
+}
+
+static void
 about_action_cb (GSimpleAction *action,
                  GVariant      *param,
                  gpointer       user_data)
@@ -94,6 +112,7 @@ about_action_cb (GSimpleAction *action,
 
 static const GActionEntry actions[] = {
   { "about", about_action_cb },
+  { "new-window", new_window_cb },
 };
 
 int
