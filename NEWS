@@ -1,3 +1,15 @@
+# D-Spy 1.5.0
+
+This is a beta release for GNOME 44.beta.
+
+Changes in this release:
+
+ * Use AdwAboutDialog
+ * Install appdata into proper metadata directory
+ * Add spacing around textviews for properties/methods
+ * Sort object-paths, methods, properties, and signals lexicographically
+ * Allow creating a new window from the primary menu
+
 # D-Spy 1.4
 
 This release fixes the project name to match the infrastructure.
