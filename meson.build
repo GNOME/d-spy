@@ -90,7 +90,7 @@ else
     '-Werror=undef',
     '-Werror=write-strings',
     '-Wformat-nonliteral',
-    ['-Werror=format-security', '-Werror=format=2' ],
+    ['-Werror=format-security', '-Werror=format=2'],
     '-Wignored-qualifiers',
     '-Wincompatible-pointer-types',
     '-Wimplicit-function-declaration',
@@ -103,10 +103,6 @@ else
     '-Wno-missing-field-initializers',
     '-Wno-sign-compare',
     '-Wno-unused-parameter',
-
-    # XXX: temporarily during prototyping
-    '-Wno-unused-variable',
-
     '-Wno-typedef-redefinition',
     '-Wold-style-definition',
     '-Wpointer-arith',
