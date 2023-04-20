@@ -200,7 +200,14 @@ dspy_introspection_model_init_parse_cb (GObject      *object,
       /* Now add this node to our root if it contains any intefaces. */
       if (info->interfaces->interfaces.length > 0)
         {
-          g_autofree gchar *abs_path = g_build_path ("/", state->path, info->path, NULL);
+          g_autofree char *abs_path = NULL;
+
+          if (info->path != NULL && info->path[0] == '/')
+            abs_path = g_strdup (info->path);
+          else if (info->path != NULL)
+            abs_path = g_build_path ("/", state->path, info->path, NULL);
+          else
+            abs_path = g_strdup (state->path);
 
           g_mutex_lock (&self->chunks_mutex);
           info->path = g_string_chunk_insert_const (self->chunks, abs_path);
