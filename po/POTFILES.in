@@ -1,0 +1,17 @@
+data/org.gnome.dspy.appdata.xml.in.in
+data/org.gnome.dspy.desktop.in.in
+data/org.gnome.dspy.gschema.xml
+lib/dspy-connection-button.c
+lib/dspy-method-view.c
+lib/dspy-method-view.ui
+lib/dspy-name-marquee.ui
+lib/dspy-name-row.c
+lib/dspy-node.c
+lib/dspy-signature.c
+lib/dspy-tree-view.c
+lib/dspy-view.c
+lib/dspy-view.ui
+lib/gtk/menus.ui
+src/dspy-window.c
+src/dspy-window.ui
+src/main.c
