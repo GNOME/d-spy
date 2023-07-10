@@ -1,5 +1,5 @@
-data/org.gnome.dspy.appdata.xml.in
-data/org.gnome.dspy.desktop.in
+data/org.gnome.dspy.appdata.xml.in.in
+data/org.gnome.dspy.desktop.in.in
 data/org.gnome.dspy.gschema.xml
 lib/dspy-method-view.ui
 lib/dspy-name-marquee.ui
