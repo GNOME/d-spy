@@ -1,0 +1,234 @@
+# Swedish translation for d-spy.
+# Copyright © 2023 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
+"POT-Creation-Date: 2023-07-18 01:00+0000\n"
+"PO-Revision-Date: 2023-07-18 23:31+0200\n"
+"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:6
+msgid "Christian Hergert, et al."
+msgstr "Christian Hergert med flera."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
+#: src/main.c:86 src/main.c:88
+msgid "D-Spy"
+msgstr "D-Spy"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:10
+msgid "A D-Bus explorer for GNOME"
+msgstr "En D-Bus-utforskare för GNOME"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:12
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy är ett enkelt verktyg för att utforska D-Bus-anslutningar."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:21
+msgid "D-Spy Interface"
+msgstr "D-Bus-gränssnitt"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "Discover and explore D-Bus services"
+msgstr "Upptäck och utforska D-Bus-tjänster"
+
+#: data/org.gnome.dspy.desktop.in.in:8
+msgid "dbus;"
+msgstr "dbus;"
+
+#. translators: %s is replaced with the address of the D-Bus bus
+#: lib/dspy-connection-button.c:76
+#, c-format
+msgid "Connected to “%s”"
+msgstr "Ansluten till ”%s”"
+
+#: lib/dspy-connection-button.c:221
+msgid "System"
+msgstr "System"
+
+#: lib/dspy-connection-button.c:223
+msgid "Session"
+msgstr "Session"
+
+#: lib/dspy-connection-button.c:225
+msgid "Other"
+msgstr "Annan"
+
+#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+msgid "Execute"
+msgstr "Kör"
+
+#: lib/dspy-method-view.c:273
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+msgid "Object Path"
+msgstr "Objektsökväg"
+
+#: lib/dspy-method-view.ui:36
+msgid "Interface"
+msgstr "Gränssnitt"
+
+#: lib/dspy-method-view.ui:61
+msgid "Method"
+msgstr "Metod"
+
+#: lib/dspy-method-view.ui:86
+msgid "Parameters"
+msgstr "Parametrar"
+
+#: lib/dspy-method-view.ui:140
+msgid "Result"
+msgstr "Resultat"
+
+#: lib/dspy-method-view.ui:181
+msgid "Copy"
+msgstr "Kopiera"
+
+#: lib/dspy-method-view.ui:192
+msgid "Elapsed Time"
+msgstr "Åtgången tid"
+
+#: lib/dspy-name-marquee.ui:12
+msgid "Bus Address"
+msgstr "Bussadress"
+
+#: lib/dspy-name-marquee.ui:35
+msgid "Name"
+msgstr "Namn"
+
+#: lib/dspy-name-marquee.ui:58
+msgid "Owner"
+msgstr "Ägare"
+
+#: lib/dspy-name-marquee.ui:81
+msgid "Process ID"
+msgstr "Process-ID"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+msgid "Activatable"
+msgstr "Aktiverbar"
+
+#: lib/dspy-name-row.c:78
+msgid "Yes"
+msgstr "Ja"
+
+#: lib/dspy-name-row.c:80
+msgid "No"
+msgstr "Nej"
+
+#: lib/dspy-name-row.c:85
+#, c-format
+msgid "%s: %u"
+msgstr "%s: %u"
+
+#: lib/dspy-name-row.c:85
+msgid "PID"
+msgstr "PID"
+
+#: lib/dspy-node.c:468
+msgid "read/write"
+msgstr "läs/skriv"
+
+#: lib/dspy-node.c:470
+msgid "write-only"
+msgstr "endast skrivning"
+
+#: lib/dspy-node.c:472
+msgid "read-only"
+msgstr "endast läsning"
+
+#: lib/dspy-node.c:587
+msgid "Interfaces"
+msgstr "Gränssnitt"
+
+#: lib/dspy-node.c:590
+msgid "Methods"
+msgstr "Metoder"
+
+#: lib/dspy-node.c:596
+msgid "Properties"
+msgstr "Egenskaper"
+
+#: lib/dspy-node.c:612
+msgid "Signals"
+msgstr "Signaler"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: lib/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr "Vektor av [%s]"
+
+#: lib/dspy-view.c:162
+msgid "Access Denied by Peer"
+msgstr "Åtkomst nekades av motpart"
+
+#: lib/dspy-view.c:164
+msgid "Authentication Failed"
+msgstr "Autentisering misslyckades"
+
+#: lib/dspy-view.c:166
+msgid "Operation Timed Out"
+msgstr "Operationens tidsgräns överskreds"
+
+#: lib/dspy-view.c:168
+msgid "Lost Connection to Bus"
+msgstr "Förlorade anslutning till buss"
+
+#: lib/dspy-view.c:170
+msgid "D-Bus Connection Failed"
+msgstr "D-Bus-anslutning misslyckades"
+
+#: lib/dspy-view.c:469
+msgid "Connect"
+msgstr "Anslut"
+
+#: lib/dspy-view.c:470
+msgid "Provide the address of the message bus"
+msgstr "Tillhandahåll adressen för meddelandebussen"
+
+#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+msgid "Connect to Other Bus"
+msgstr "Anslut till annan buss"
+
+#: lib/dspy-view.ui:40
+msgid "Search Bus Names"
+msgstr "Sök bussnamn"
+
+#: lib/dspy-view.ui:54
+msgid "Bus Names"
+msgstr "Bussnamn"
+
+#: lib/dspy-view.ui:111
+msgid "Select a D-Bus Name"
+msgstr "Välj ett D-Bus-namn"
+
+#: lib/dspy-view.ui:112
+msgid "Select a bus name to introspect the peer."
+msgstr "Välj ett bussnamn för att introspektera motparten."
+
+#: src/dspy-window.ui:33
+msgid "_New Window"
+msgstr "_Nytt fönster"
+
+#: src/dspy-window.ui:39
+msgid "_About D-Spy"
+msgstr "_Om D-Spy"
