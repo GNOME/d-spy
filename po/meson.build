@@ -1,1 +1,1 @@
-i18n.gettext('dspy', preset: 'glib')
+i18n.gettext('d-spy', preset: 'glib')
