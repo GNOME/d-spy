@@ -1,0 +1,234 @@
+# Finnish translation for d-spy.
+# Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
+"POT-Creation-Date: 2023-08-05 11:29+0000\n"
+"PO-Revision-Date: 2023-08-07 19:34+0300\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
+"Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:6
+msgid "Christian Hergert, et al."
+msgstr ""
+
+#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
+#: src/main.c:86 src/main.c:88
+msgid "D-Spy"
+msgstr "D-Spy"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:10
+msgid "A D-Bus explorer for GNOME"
+msgstr "D-Bus-selain Gnomelle"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:12
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy on yksinkertainen työkalu D-Bus-yhteyksien selaamiseen."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:21
+msgid "D-Spy Interface"
+msgstr ""
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "Discover and explore D-Bus services"
+msgstr "Löydä ja selaa D-Bus-palveluja"
+
+#: data/org.gnome.dspy.desktop.in.in:8
+msgid "dbus;"
+msgstr "dbus;"
+
+#. translators: %s is replaced with the address of the D-Bus bus
+#: lib/dspy-connection-button.c:76
+#, c-format
+msgid "Connected to “%s”"
+msgstr "Yhdistetty väylään “%s”"
+
+#: lib/dspy-connection-button.c:221
+msgid "System"
+msgstr "Järjestelmä"
+
+#: lib/dspy-connection-button.c:223
+msgid "Session"
+msgstr "Istunto"
+
+#: lib/dspy-connection-button.c:225
+msgid "Other"
+msgstr "Muu"
+
+#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+msgid "Execute"
+msgstr "Suorita"
+
+#: lib/dspy-method-view.c:273
+msgid "Cancel"
+msgstr "Peru"
+
+#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+msgid "Object Path"
+msgstr "Objektin polku"
+
+#: lib/dspy-method-view.ui:36
+msgid "Interface"
+msgstr "Liitäntä"
+
+#: lib/dspy-method-view.ui:61
+msgid "Method"
+msgstr "Menetelmä"
+
+#: lib/dspy-method-view.ui:86
+msgid "Parameters"
+msgstr "Parametrit"
+
+#: lib/dspy-method-view.ui:140
+msgid "Result"
+msgstr "Tulos"
+
+#: lib/dspy-method-view.ui:181
+msgid "Copy"
+msgstr "Kopioi"
+
+#: lib/dspy-method-view.ui:192
+msgid "Elapsed Time"
+msgstr "Aikaa kulunut"
+
+#: lib/dspy-name-marquee.ui:12
+msgid "Bus Address"
+msgstr "Väylän osoite"
+
+#: lib/dspy-name-marquee.ui:35
+msgid "Name"
+msgstr "Nimi"
+
+#: lib/dspy-name-marquee.ui:58
+msgid "Owner"
+msgstr "Omistaja"
+
+#: lib/dspy-name-marquee.ui:81
+msgid "Process ID"
+msgstr "Prosessin ID"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+msgid "Activatable"
+msgstr "Aktivoitavissa"
+
+#: lib/dspy-name-row.c:78
+msgid "Yes"
+msgstr "Kyllä"
+
+#: lib/dspy-name-row.c:80
+msgid "No"
+msgstr "Ei"
+
+#: lib/dspy-name-row.c:85
+#, c-format
+msgid "%s: %u"
+msgstr "%s: %u"
+
+#: lib/dspy-name-row.c:85
+msgid "PID"
+msgstr "PID"
+
+#: lib/dspy-node.c:468
+msgid "read/write"
+msgstr "luku/kirjoitus"
+
+#: lib/dspy-node.c:470
+msgid "write-only"
+msgstr "vain kirjoitus"
+
+#: lib/dspy-node.c:472
+msgid "read-only"
+msgstr "vain luku"
+
+#: lib/dspy-node.c:587
+msgid "Interfaces"
+msgstr "Liitännät"
+
+#: lib/dspy-node.c:590
+msgid "Methods"
+msgstr "Menetelmät"
+
+#: lib/dspy-node.c:596
+msgid "Properties"
+msgstr "Ominaisuudet"
+
+#: lib/dspy-node.c:612
+msgid "Signals"
+msgstr ""
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: lib/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr ""
+
+#: lib/dspy-view.c:162
+msgid "Access Denied by Peer"
+msgstr ""
+
+#: lib/dspy-view.c:164
+msgid "Authentication Failed"
+msgstr "Tunnistus epäonnistui"
+
+#: lib/dspy-view.c:166
+msgid "Operation Timed Out"
+msgstr "Toimenpide aikakatkaistiin"
+
+#: lib/dspy-view.c:168
+msgid "Lost Connection to Bus"
+msgstr "Yhteys väylään kadotettu"
+
+#: lib/dspy-view.c:170
+msgid "D-Bus Connection Failed"
+msgstr "D-Bus-yhteys epäonnistui"
+
+#: lib/dspy-view.c:469
+msgid "Connect"
+msgstr "Yhdistä"
+
+#: lib/dspy-view.c:470
+msgid "Provide the address of the message bus"
+msgstr "Anna viestiväylän osoite"
+
+#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+msgid "Connect to Other Bus"
+msgstr "Yhdistä muuhun väylään"
+
+#: lib/dspy-view.ui:40
+msgid "Search Bus Names"
+msgstr "Etsi väylien nimiä"
+
+#: lib/dspy-view.ui:54
+msgid "Bus Names"
+msgstr "Väylien nimet"
+
+#: lib/dspy-view.ui:111
+msgid "Select a D-Bus Name"
+msgstr "Valitse D-Bus-nimi"
+
+#: lib/dspy-view.ui:112
+msgid "Select a bus name to introspect the peer."
+msgstr ""
+
+#: src/dspy-window.ui:33
+msgid "_New Window"
+msgstr "_Uusi ikkuna"
+
+#: src/dspy-window.ui:39
+msgid "_About D-Spy"
+msgstr "Tietoja - D-Spy"
