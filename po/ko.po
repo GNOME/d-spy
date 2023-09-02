@@ -1,0 +1,234 @@
+# Korean translation for d-spy.
+# Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# Seong-ho Cho <shcho@gnome.org>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
+"POT-Creation-Date: 2023-08-17 19:33+0000\n"
+"PO-Revision-Date: 2023-08-27 02:19+0900\n"
+"Language-Team: Korean <gnome-kr@googlegroups.com>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:6
+msgid "Christian Hergert, et al."
+msgstr "Christian Hergert, et al."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
+#: src/main.c:86 src/main.c:88
+msgid "D-Spy"
+msgstr "디-스파이"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:10
+msgid "A D-Bus explorer for GNOME"
+msgstr "그놈용 D-Bus 탐색기"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:12
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "디-스파이는 D-Bus 연결을 탐색하는 간단한 도구입니다."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:21
+msgid "D-Spy Interface"
+msgstr "디-스파이 인터페이스"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "Discover and explore D-Bus services"
+msgstr "D-Bus 서비스를 찾고 탐색합니다"
+
+#: data/org.gnome.dspy.desktop.in.in:8
+msgid "dbus;"
+msgstr "dbus;"
+
+#. translators: %s is replaced with the address of the D-Bus bus
+#: lib/dspy-connection-button.c:76
+#, c-format
+msgid "Connected to “%s”"
+msgstr "“%s”에 연결했습니다"
+
+#: lib/dspy-connection-button.c:221
+msgid "System"
+msgstr "시스템"
+
+#: lib/dspy-connection-button.c:223
+msgid "Session"
+msgstr "세션"
+
+#: lib/dspy-connection-button.c:225
+msgid "Other"
+msgstr "기타"
+
+#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+msgid "Execute"
+msgstr "실행"
+
+#: lib/dspy-method-view.c:273
+msgid "Cancel"
+msgstr "취소"
+
+#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+msgid "Object Path"
+msgstr "객체 경로"
+
+#: lib/dspy-method-view.ui:36
+msgid "Interface"
+msgstr "인터페이스"
+
+#: lib/dspy-method-view.ui:61
+msgid "Method"
+msgstr "메서드"
+
+#: lib/dspy-method-view.ui:86
+msgid "Parameters"
+msgstr "매개변수"
+
+#: lib/dspy-method-view.ui:140
+msgid "Result"
+msgstr "결과"
+
+#: lib/dspy-method-view.ui:181
+msgid "Copy"
+msgstr "복사"
+
+#: lib/dspy-method-view.ui:192
+msgid "Elapsed Time"
+msgstr "경과 시간"
+
+#: lib/dspy-name-marquee.ui:12
+msgid "Bus Address"
+msgstr "버스 주소"
+
+#: lib/dspy-name-marquee.ui:35
+msgid "Name"
+msgstr "이름"
+
+#: lib/dspy-name-marquee.ui:58
+msgid "Owner"
+msgstr "소유자"
+
+#: lib/dspy-name-marquee.ui:81
+msgid "Process ID"
+msgstr "프로세스 ID"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+msgid "Activatable"
+msgstr "활성 가능"
+
+#: lib/dspy-name-row.c:78
+msgid "Yes"
+msgstr "예"
+
+#: lib/dspy-name-row.c:80
+msgid "No"
+msgstr "아니요"
+
+#: lib/dspy-name-row.c:85
+#, c-format
+msgid "%s: %u"
+msgstr "%s: %u"
+
+#: lib/dspy-name-row.c:85
+msgid "PID"
+msgstr "ㅖ야"
+
+#: lib/dspy-node.c:468
+msgid "read/write"
+msgstr "읽기/쓰기"
+
+#: lib/dspy-node.c:470
+msgid "write-only"
+msgstr "쓰기 전용"
+
+#: lib/dspy-node.c:472
+msgid "read-only"
+msgstr "읽기 전용"
+
+#: lib/dspy-node.c:587
+msgid "Interfaces"
+msgstr "인터페이스"
+
+#: lib/dspy-node.c:590
+msgid "Methods"
+msgstr "메서드"
+
+#: lib/dspy-node.c:596
+msgid "Properties"
+msgstr "속성"
+
+#: lib/dspy-node.c:612
+msgid "Signals"
+msgstr "시그널"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: lib/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr "[%s] 배열"
+
+#: lib/dspy-view.c:162
+msgid "Access Denied by Peer"
+msgstr "피어에서 접근 거부함"
+
+#: lib/dspy-view.c:164
+msgid "Authentication Failed"
+msgstr "인증 실패"
+
+#: lib/dspy-view.c:166
+msgid "Operation Timed Out"
+msgstr "처리 시간 초과"
+
+#: lib/dspy-view.c:168
+msgid "Lost Connection to Bus"
+msgstr "버스 연결이 끊어졌습니다"
+
+#: lib/dspy-view.c:170
+msgid "D-Bus Connection Failed"
+msgstr "D-Bus 연결 실패"
+
+#: lib/dspy-view.c:469
+msgid "Connect"
+msgstr "연결"
+
+#: lib/dspy-view.c:470
+msgid "Provide the address of the message bus"
+msgstr "메시지 버스 주소를 제공합니다"
+
+#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+msgid "Connect to Other Bus"
+msgstr "기타 버스에 연결"
+
+#: lib/dspy-view.ui:40
+msgid "Search Bus Names"
+msgstr "버스 이름 검색"
+
+#: lib/dspy-view.ui:54
+msgid "Bus Names"
+msgstr "버스 이름"
+
+#: lib/dspy-view.ui:111
+msgid "Select a D-Bus Name"
+msgstr "D-Bus 이름 선택"
+
+#: lib/dspy-view.ui:112
+msgid "Select a bus name to introspect the peer."
+msgstr "피어를 살펴볼 버스 이름을 선택합니다."
+
+#: src/dspy-window.ui:33
+msgid "_New Window"
+msgstr "새 창(_N)"
+
+#: src/dspy-window.ui:39
+msgid "_About D-Spy"
+msgstr "디-스파이 정보(_A)"
