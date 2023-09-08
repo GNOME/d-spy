@@ -1,0 +1,233 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
+"POT-Creation-Date: 2023-08-28 18:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:6
+msgid "Christian Hergert, et al."
+msgstr "Christian Hergert, et al."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
+#: src/main.c:86 src/main.c:88
+msgid "D-Spy"
+msgstr "D-Spy"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:10
+msgid "A D-Bus explorer for GNOME"
+msgstr "Un explorador D-Bus per a GNOME"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:12
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy és una eina senzilla per explorar les connexions D-Bus."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:21
+msgid "D-Spy Interface"
+msgstr "Intefície D-Spy"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "Discover and explore D-Bus services"
+msgstr "Descobreix i explora els serveis de D-Bus"
+
+#: data/org.gnome.dspy.desktop.in.in:8
+msgid "dbus;"
+msgstr "dbus;"
+
+#. translators: %s is replaced with the address of the D-Bus bus
+#: lib/dspy-connection-button.c:76
+#, c-format
+msgid "Connected to “%s”"
+msgstr "Connectat a %s"
+
+#: lib/dspy-connection-button.c:221
+msgid "System"
+msgstr "Sistema"
+
+#: lib/dspy-connection-button.c:223
+msgid "Session"
+msgstr "Sessió"
+
+#: lib/dspy-connection-button.c:225
+msgid "Other"
+msgstr "Altres"
+
+#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+msgid "Execute"
+msgstr "Executa"
+
+#: lib/dspy-method-view.c:273
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+msgid "Object Path"
+msgstr "Camí d'objecte"
+
+#: lib/dspy-method-view.ui:36
+msgid "Interface"
+msgstr "Interfície"
+
+#: lib/dspy-method-view.ui:61
+msgid "Method"
+msgstr "Mètode"
+
+#: lib/dspy-method-view.ui:86
+msgid "Parameters"
+msgstr "Paràmetres"
+
+#: lib/dspy-method-view.ui:140
+msgid "Result"
+msgstr "Resultat"
+
+#: lib/dspy-method-view.ui:181
+msgid "Copy"
+msgstr "Copia"
+
+#: lib/dspy-method-view.ui:192
+msgid "Elapsed Time"
+msgstr "Elapse de temps"
+
+#: lib/dspy-name-marquee.ui:12
+msgid "Bus Address"
+msgstr "Adreça de Bus"
+
+#: lib/dspy-name-marquee.ui:35
+msgid "Name"
+msgstr "Nom"
+
+#: lib/dspy-name-marquee.ui:58
+msgid "Owner"
+msgstr "Propietari"
+
+#: lib/dspy-name-marquee.ui:81
+msgid "Process ID"
+msgstr "ID del procés"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+msgid "Activatable"
+msgstr "Activable"
+
+#: lib/dspy-name-row.c:78
+msgid "Yes"
+msgstr "Sí"
+
+#: lib/dspy-name-row.c:80
+msgid "No"
+msgstr "No"
+
+#: lib/dspy-name-row.c:85
+#, c-format
+msgid "%s: %u"
+msgstr "%s: %u"
+
+#: lib/dspy-name-row.c:85
+msgid "PID"
+msgstr "PID"
+
+#: lib/dspy-node.c:468
+msgid "read/write"
+msgstr "llegir/escriure"
+
+#: lib/dspy-node.c:470
+msgid "write-only"
+msgstr "només-escriure"
+
+#: lib/dspy-node.c:472
+msgid "read-only"
+msgstr "només-llegir"
+
+#: lib/dspy-node.c:587
+msgid "Interfaces"
+msgstr "Interfícies"
+
+#: lib/dspy-node.c:590
+msgid "Methods"
+msgstr "Mètodes"
+
+#: lib/dspy-node.c:596
+msgid "Properties"
+msgstr "Propietats"
+
+#: lib/dspy-node.c:612
+msgid "Signals"
+msgstr "Senyals"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: lib/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr "Matriu de [%s]"
+
+#: lib/dspy-view.c:162
+msgid "Access Denied by Peer"
+msgstr "Accés denegat per un punt (peer)"
+
+#: lib/dspy-view.c:164
+msgid "Authentication Failed"
+msgstr "Autentificació a fallat"
+
+#: lib/dspy-view.c:166
+msgid "Operation Timed Out"
+msgstr "Operació fora de temps"
+
+#: lib/dspy-view.c:168
+msgid "Lost Connection to Bus"
+msgstr "Connexió al bus perduda"
+
+#: lib/dspy-view.c:170
+msgid "D-Bus Connection Failed"
+msgstr "Connexió al D-Bus ha fallat "
+
+#: lib/dspy-view.c:469
+msgid "Connect"
+msgstr "Connecta"
+
+#: lib/dspy-view.c:470
+msgid "Provide the address of the message bus"
+msgstr "Proporcioneu l'adreça del bus de missatges"
+
+#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+msgid "Connect to Other Bus"
+msgstr "Connecteu-vos a un altre bus"
+
+#: lib/dspy-view.ui:40
+msgid "Search Bus Names"
+msgstr "Cerca noms de Bus"
+
+#: lib/dspy-view.ui:54
+msgid "Bus Names"
+msgstr "Noms de Bus"
+
+#: lib/dspy-view.ui:111
+msgid "Select a D-Bus Name"
+msgstr "Selecciona un nom de D-Bus"
+
+#: lib/dspy-view.ui:112
+msgid "Select a bus name to introspect the peer."
+msgstr "Seleccioneu un nom d'un bus per introspeccionar el punt (peer)"
+
+#: src/dspy-window.ui:33
+msgid "_New Window"
+msgstr "_Finestra nova"
+
+#: src/dspy-window.ui:39
+msgid "_About D-Spy"
+msgstr "_Quant al D-Spy"
