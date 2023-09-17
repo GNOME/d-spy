@@ -24,6 +24,7 @@
           <object class="GtkLabel" id="label_bus">
             <property name="xalign">0.0</property>
             <property name="selectable">1</property>
+            <property name="ellipsize">end</property>
             <layout>
               <property name="row">0</property>
               <property name="column">1</property>
@@ -47,6 +48,7 @@
           <object class="GtkLabel" id="label_name">
             <property name="xalign">0.0</property>
             <property name="selectable">1</property>
+            <property name="ellipsize">end</property>
             <layout>
               <property name="row">1</property>
               <property name="column">1</property>
@@ -70,6 +72,7 @@
           <object class="GtkLabel" id="label_owner">
             <property name="xalign">0.0</property>
             <property name="selectable">1</property>
+            <property name="ellipsize">end</property>
             <layout>
               <property name="row">2</property>
               <property name="column">1</property>
@@ -93,6 +96,7 @@
           <object class="GtkLabel" id="label_pid">
             <property name="xalign">0.0</property>
             <property name="selectable">1</property>
+            <property name="ellipsize">end</property>
             <layout>
               <property name="row">3</property>
               <property name="column">1</property>
