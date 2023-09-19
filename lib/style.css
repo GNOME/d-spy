@@ -14,3 +14,6 @@ dspyview .sidebar button.popup.toggle {
 dspyview .sidebar button:not(:hover) image {
   color: alpha(currentColor, 0.6);
 }
+dspyview .methodview {
+  padding: 12px;
+}

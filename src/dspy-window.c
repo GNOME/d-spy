@@ -26,8 +26,6 @@ struct _DspyWindow
 {
   AdwApplicationWindow  parent_instance;
   DspyView             *view;
-  GtkMenuButton        *primary_menu_button;
-  GMenu                *primary_menu;
 };
 
 G_DEFINE_TYPE (DspyWindow, dspy_window, ADW_TYPE_APPLICATION_WINDOW)
@@ -39,8 +37,6 @@ dspy_window_class_init (DspyWindowClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, view);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, primary_menu);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, primary_menu_button);
 
   g_type_ensure (DSPY_TYPE_VIEW);
 }
@@ -49,12 +45,6 @@ static void
 dspy_window_init (DspyWindow *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  gtk_menu_button_set_menu_model (self->primary_menu_button, G_MENU_MODEL (self->primary_menu));
-
-#if GTK_CHECK_VERSION(4,4,0)
-  gtk_menu_button_set_primary (self->primary_menu_button, TRUE);
-#endif
 
 #if DEVELOPMENT_BUILD
   gtk_widget_add_css_class (GTK_WIDGET (self), "devel");
