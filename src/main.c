@@ -128,7 +128,7 @@ main (int   argc,
 
   app = g_object_new (ADW_TYPE_APPLICATION,
                       "application-id", APP_ID,
-                      "flags", G_APPLICATION_FLAGS_NONE,
+                      "flags", G_APPLICATION_DEFAULT_FLAGS,
                       "resource-base-path", "/org/gnome/dspy",
                       NULL);
   g_signal_connect (app, "activate", G_CALLBACK (on_activate), NULL);
