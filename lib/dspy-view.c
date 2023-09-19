@@ -402,8 +402,8 @@ method_activated_cb (DspyView             *self,
 }
 
 static void
-notify_child_revealed_cb (DspyView    *self,
-                          GParamSpec  *pspec,
+notify_child_revealed_cb (DspyView       *self,
+                          GParamSpec     *pspec,
                           AdwToolbarView *toolbar_view)
 {
   DspyViewPrivate *priv = dspy_view_get_instance_private (self);
