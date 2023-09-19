@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-07-18 01:00+0000\n"
-"PO-Revision-Date: 2023-07-18 21:03+0300\n"
+"POT-Creation-Date: 2023-09-19 17:08+0000\n"
+"PO-Revision-Date: 2023-09-19 21:11+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -24,7 +24,7 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert та інші"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: src/main.c:86 src/main.c:88
+#: lib/dspy-view.ui:13 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -106,15 +106,15 @@ msgstr "Час, що минув"
 msgid "Bus Address"
 msgstr "Адреса шини"
 
-#: lib/dspy-name-marquee.ui:35
+#: lib/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Назва"
 
-#: lib/dspy-name-marquee.ui:58
+#: lib/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Власник"
 
-#: lib/dspy-name-marquee.ui:81
+#: lib/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "Ід. процесу"
 
@@ -178,58 +178,62 @@ msgstr "Сигнали"
 msgid "Array of [%s]"
 msgstr "Масив [%s]"
 
-#: lib/dspy-view.c:162
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr "Шина"
+
+#: lib/dspy-view.c:164
 msgid "Access Denied by Peer"
 msgstr "Доступ заборонено вузлом"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:166
 msgid "Authentication Failed"
 msgstr "Помилка розпізнавання"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:168
 msgid "Operation Timed Out"
 msgstr "Перевищено час очікування на результати дії"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:170
 msgid "Lost Connection to Bus"
 msgstr "Розірвано з'єднання із шиною"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:172
 msgid "D-Bus Connection Failed"
 msgstr "Помилка з'єднання D-Bus"
 
-#: lib/dspy-view.c:469
+#: lib/dspy-view.c:474
 msgid "Connect"
 msgstr "З'єднатися"
 
-#: lib/dspy-view.c:470
+#: lib/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "Надати адресу шини повідомлень"
 
-#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477 lib/gtk/menus.ui:5
 msgid "Connect to Other Bus"
 msgstr "З'єднатися із іншою шиною"
 
-#: lib/dspy-view.ui:40
+#: lib/dspy-view.ui:51
 msgid "Search Bus Names"
 msgstr "Шукати у назвах шин"
 
-#: lib/dspy-view.ui:54
+#: lib/dspy-view.ui:65
 msgid "Bus Names"
 msgstr "Назва шин"
 
-#: lib/dspy-view.ui:111
+#: lib/dspy-view.ui:129
 msgid "Select a D-Bus Name"
 msgstr "Виберіть назву D-Bus"
 
-#: lib/dspy-view.ui:112
+#: lib/dspy-view.ui:130
 msgid "Select a bus name to introspect the peer."
 msgstr "Вибрати назву шини для інтроспекції вузла."
 
-#: src/dspy-window.ui:33
+#: lib/dspy-view.ui:215
 msgid "_New Window"
 msgstr "С_творити вікно"
 
-#: src/dspy-window.ui:39
+#: lib/dspy-view.ui:221
 msgid "_About D-Spy"
 msgstr "_Про D-Spy"
