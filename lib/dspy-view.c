@@ -122,7 +122,7 @@ radio_button_toggled_cb (DspyView             *self,
     return;
 
   gtk_stack_set_visible_child (priv->stack, gtk_stack_page_get_child (priv->empty));
-  adw_navigation_page_set_title(priv->bus_navigation_page, _("Bus"));
+  adw_navigation_page_set_title (priv->bus_navigation_page, _("Bus"));
 
   connection = dspy_connection_button_get_connection (button);
   dspy_connection_list_names_async (connection,
@@ -356,15 +356,15 @@ name_row_activated_cb (DspyView    *self,
   gtk_tree_view_set_model (priv->introspection_tree_view, NULL);
   dspy_name_marquee_set_name (priv->name_marquee, name);
 
-  adw_navigation_page_set_title(priv->bus_navigation_page, dspy_name_get_name(name));
-  adw_toolbar_view_set_reveal_bottom_bars(priv->bus_toolbar_view, FALSE);
+  adw_navigation_page_set_title (priv->bus_navigation_page, dspy_name_get_name (name));
+  adw_toolbar_view_set_reveal_bottom_bars (priv->bus_toolbar_view, FALSE);
 
   dspy_name_introspect_async (name,
                               priv->cancellable,
                               dspy_view_introspect_cb,
                               g_object_ref (self));
 
-  adw_navigation_split_view_set_show_content(priv->paned, TRUE);
+  adw_navigation_split_view_set_show_content (priv->paned, TRUE);
 
   gtk_stack_set_visible_child (priv->stack, gtk_stack_page_get_child (priv->introspect));
 }
