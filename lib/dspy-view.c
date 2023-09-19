@@ -519,6 +519,7 @@ dspy_view_dispose (GObject *object)
 {
   DspyView *self = (DspyView *)object;
   DspyViewPrivate *priv = dspy_view_get_instance_private (self);
+  GtkWidget *child;
 
   priv->destroyed = TRUE;
 
@@ -527,7 +528,10 @@ dspy_view_dispose (GObject *object)
   g_clear_object (&priv->filter_model);
   g_clear_object (&priv->model);
 
-  g_clear_pointer ((GtkWidget **) priv->paned, gtk_widget_unparent);
+  gtk_widget_dispose_template (GTK_WIDGET (self), DSPY_TYPE_VIEW);
+
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
+    gtk_widget_unparent (child);
 
   G_OBJECT_CLASS (dspy_view_parent_class)->dispose (object);
 }
