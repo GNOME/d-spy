@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-08-05 11:29+0000\n"
-"PO-Revision-Date: 2023-08-06 17:33+0300\n"
+"POT-Creation-Date: 2023-09-19 17:08+0000\n"
+"PO-Revision-Date: 2023-09-19 23:26+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -25,7 +25,7 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert ve arkadaşları."
 
 #: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: src/main.c:86 src/main.c:88
+#: lib/dspy-view.ui:13 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -107,15 +107,15 @@ msgstr "Geçen Süre"
 msgid "Bus Address"
 msgstr "Veriyolu Adresi"
 
-#: lib/dspy-name-marquee.ui:35
+#: lib/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Ad"
 
-#: lib/dspy-name-marquee.ui:58
+#: lib/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Sahip"
 
-#: lib/dspy-name-marquee.ui:81
+#: lib/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "Süreç Kimliği"
 
@@ -179,58 +179,62 @@ msgstr "Sinyaller"
 msgid "Array of [%s]"
 msgstr "[%s] dizisi"
 
-#: lib/dspy-view.c:162
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr "Veri Yolu"
+
+#: lib/dspy-view.c:164
 msgid "Access Denied by Peer"
 msgstr "Erişim Eşçe Reddedildi"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:166
 msgid "Authentication Failed"
 msgstr "Kimlik Doğrulanamadı"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:168
 msgid "Operation Timed Out"
 msgstr "İşlem Zaman Aşımına Uğradı"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:170
 msgid "Lost Connection to Bus"
 msgstr "Veriyolu Bağlantısı Kesildi"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:172
 msgid "D-Bus Connection Failed"
 msgstr "D-Bus Bağlantısı Başarısız"
 
-#: lib/dspy-view.c:469
+#: lib/dspy-view.c:474
 msgid "Connect"
 msgstr "Bağlan"
 
-#: lib/dspy-view.c:470
+#: lib/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "İleti veriyolunun adresini gir"
 
-#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477 lib/gtk/menus.ui:5
 msgid "Connect to Other Bus"
 msgstr "Diğer Veriyoluna Bağlan"
 
-#: lib/dspy-view.ui:40
+#: lib/dspy-view.ui:51
 msgid "Search Bus Names"
 msgstr "Veriyolu Adlarını Ara"
 
-#: lib/dspy-view.ui:54
+#: lib/dspy-view.ui:65
 msgid "Bus Names"
 msgstr "Veriyolu Adları"
 
-#: lib/dspy-view.ui:111
+#: lib/dspy-view.ui:129
 msgid "Select a D-Bus Name"
 msgstr "D-Bus Adı Seç"
 
-#: lib/dspy-view.ui:112
+#: lib/dspy-view.ui:130
 msgid "Select a bus name to introspect the peer."
 msgstr "Eşi incelemek için veriyolu adı seç."
 
-#: src/dspy-window.ui:33
+#: lib/dspy-view.ui:215
 msgid "_New Window"
 msgstr "_Yeni Pencere"
 
-#: src/dspy-window.ui:39
+#: lib/dspy-view.ui:221
 msgid "_About D-Spy"
 msgstr "D-Spy _Hakkında"
