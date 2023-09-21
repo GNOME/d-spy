@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-08-07 16:35+0000\n"
-"PO-Revision-Date: 2023-08-09 10:03+0200\n"
+"POT-Creation-Date: 2023-09-19 17:08+0000\n"
+"PO-Revision-Date: 2023-09-21 12:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -22,7 +22,7 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, e outros"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: src/main.c:86 src/main.c:88
+#: lib/dspy-view.ui:13 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -104,15 +104,15 @@ msgstr "Tempo pasado"
 msgid "Bus Address"
 msgstr "Enderezo do bus"
 
-#: lib/dspy-name-marquee.ui:35
+#: lib/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Nome"
 
-#: lib/dspy-name-marquee.ui:58
+#: lib/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Propietario"
 
-#: lib/dspy-name-marquee.ui:81
+#: lib/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "ID do proceso"
 
@@ -176,58 +176,62 @@ msgstr "Sinais"
 msgid "Array of [%s]"
 msgstr "Array de [%s]"
 
-#: lib/dspy-view.c:162
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr "Bus"
+
+#: lib/dspy-view.c:164
 msgid "Access Denied by Peer"
 msgstr "Acceso denegado polo par"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:166
 msgid "Authentication Failed"
 msgstr "Fallou a autenticación"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:168
 msgid "Operation Timed Out"
 msgstr "A operación superou o tempo máximo de espera"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:170
 msgid "Lost Connection to Bus"
 msgstr "Conexión perdida ao Bus"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:172
 msgid "D-Bus Connection Failed"
 msgstr "Produciuse un fallo ao conectarse a D-Bus"
 
-#: lib/dspy-view.c:469
+#: lib/dspy-view.c:474
 msgid "Connect"
 msgstr "Conectar"
 
-#: lib/dspy-view.c:470
+#: lib/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "Forneza o enderezo do bus de mensaxes"
 
-#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477 lib/gtk/menus.ui:5
 msgid "Connect to Other Bus"
 msgstr "Conectar a outro Bus"
 
-#: lib/dspy-view.ui:40
+#: lib/dspy-view.ui:51
 msgid "Search Bus Names"
 msgstr "Buscar nomes de Bus"
 
-#: lib/dspy-view.ui:54
+#: lib/dspy-view.ui:65
 msgid "Bus Names"
 msgstr "Nomes de bus"
 
-#: lib/dspy-view.ui:111
+#: lib/dspy-view.ui:129
 msgid "Select a D-Bus Name"
 msgstr "Seleccione un nome de D-Bus"
 
-#: lib/dspy-view.ui:112
+#: lib/dspy-view.ui:130
 msgid "Select a bus name to introspect the peer."
 msgstr "Seleccione un nome de bus para introspeccionar o par."
 
-#: src/dspy-window.ui:33
+#: lib/dspy-view.ui:215
 msgid "_New Window"
 msgstr "_Nova xanela"
 
-#: src/dspy-window.ui:39
+#: lib/dspy-view.ui:221
 msgid "_About D-Spy"
 msgstr "_Sobre D-Spy"
