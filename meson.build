@@ -3,7 +3,7 @@ project('d-spy', 'c',
   meson_version: '>= 0.59.0',
 )
 
-symbolic_version = '44.0'
+symbolic_version = '45.0'
 
 version_split = meson.project_version().split('.')
 version_major = version_split[0]
