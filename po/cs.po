@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-08-28 18:29+0000\n"
-"PO-Revision-Date: 2023-08-31 23:56+0200\n"
+"POT-Creation-Date: 2023-09-19 17:08+0000\n"
+"PO-Revision-Date: 2023-09-21 14:44+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -23,7 +23,7 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert a kol."
 
 #: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: src/main.c:86 src/main.c:88
+#: lib/dspy-view.ui:13 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -105,15 +105,15 @@ msgstr "Uplynulý čas"
 msgid "Bus Address"
 msgstr "Adresa sběrnice"
 
-#: lib/dspy-name-marquee.ui:35
+#: lib/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Název"
 
-#: lib/dspy-name-marquee.ui:58
+#: lib/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Vlastník"
 
-#: lib/dspy-name-marquee.ui:81
+#: lib/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "ID procesu"
 
@@ -177,58 +177,62 @@ msgstr "Signály"
 msgid "Array of [%s]"
 msgstr "Pole [%s]"
 
-#: lib/dspy-view.c:162
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr "Sběrnice"
+
+#: lib/dspy-view.c:164
 msgid "Access Denied by Peer"
 msgstr "Přístup byl zamítnut protějškem"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:166
 msgid "Authentication Failed"
 msgstr "Ověření selhalo"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:168
 msgid "Operation Timed Out"
 msgstr "Vypršel časový limit operace"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:170
 msgid "Lost Connection to Bus"
 msgstr "Spojení se sběrnicí bylo ztraceno"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:172
 msgid "D-Bus Connection Failed"
 msgstr "Připojení D-Bus selhalo"
 
-#: lib/dspy-view.c:469
+#: lib/dspy-view.c:474
 msgid "Connect"
 msgstr "Připojit"
 
-#: lib/dspy-view.c:470
+#: lib/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "Zadejte adresu sběrnice zpráv"
 
-#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477 lib/gtk/menus.ui:5
 msgid "Connect to Other Bus"
 msgstr "Připojit k jiné sběrnici"
 
-#: lib/dspy-view.ui:40
+#: lib/dspy-view.ui:51
 msgid "Search Bus Names"
 msgstr "Hledat názvy sběrnic"
 
-#: lib/dspy-view.ui:54
+#: lib/dspy-view.ui:65
 msgid "Bus Names"
 msgstr "Názvy sběrnic"
 
-#: lib/dspy-view.ui:111
+#: lib/dspy-view.ui:129
 msgid "Select a D-Bus Name"
 msgstr "Vyberte název D-Bus"
 
-#: lib/dspy-view.ui:112
+#: lib/dspy-view.ui:130
 msgid "Select a bus name to introspect the peer."
 msgstr "Vyberte název sběrnice pro introspekci protějšku."
 
-#: src/dspy-window.ui:33
+#: lib/dspy-view.ui:215
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: src/dspy-window.ui:39
+#: lib/dspy-view.ui:221
 msgid "_About D-Spy"
 msgstr "O _aplikaci D-Spy"
