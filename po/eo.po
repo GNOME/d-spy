@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-09-13 13:59+0000\n"
-"PO-Revision-Date: 2023-09-14 12:38+0200\n"
+"POT-Creation-Date: 2023-09-21 16:00+0000\n"
+"PO-Revision-Date: 2023-09-27 22:51+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
@@ -222,9 +222,8 @@ msgid "Select a D-Bus Name"
 msgstr "Elekti D-Bus-nomon"
 
 #: lib/dspy-view.ui:112
-#, fuzzy
 msgid "Select a bus name to introspect the peer."
-msgstr "Elektu busnomon por introspekti la saman konekton."
+msgstr "Elekti busnomon por introspekti la alian flankon."
 
 #: src/dspy-window.ui:33
 msgid "_New Window"
