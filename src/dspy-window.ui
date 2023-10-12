@@ -14,6 +14,12 @@
             <property name="action">action(app.new-window)</property>
           </object>
         </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Control&gt;w</property>
+            <property name="action">action(window.close)</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
