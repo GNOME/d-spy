@@ -140,7 +140,7 @@
                               <object class="AdwStatusPage">
                                 <property name="icon-name">org.gnome.dspy-symbolic</property>
                                 <property name="title" translatable="yes">Select a D-Bus Name</property>
-                                <property name="description" translatable="yes">Select a bus name to introspect the peer.</property>
+                                <property name="description" translatable="yes">Select a bus name to introspect the peer</property>
                               </object>
                             </child>
                           </object>
