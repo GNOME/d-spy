@@ -3,6 +3,17 @@
   <requires lib="gtk" version="4.0"/>
   <template class="DspyView" parent="GtkWidget">
     <child>
+      <object class="GtkShortcutController">
+        <property name="scope">managed</property>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Control&gt;N</property>
+            <property name="action">action(app.new-window)</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
       <object class="AdwBreakpointBin">
         <property name="width-request">360</property>
         <property name="height-request">500</property>
