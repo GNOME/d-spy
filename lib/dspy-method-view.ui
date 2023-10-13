@@ -123,7 +123,8 @@
             </child>
             <child>
               <object class="GtkButton" id="button">
-                <property name="label" translatable="yes">Execute</property>
+                <property name="label" translatable="yes">_Execute</property>
+                <property name="use-underline">True</property>
                 <style>
                   <class name="suggested-action"/>
                 </style>
@@ -178,7 +179,8 @@
             </child>
             <child>
               <object class="GtkButton" id="copy_button">
-                <property name="label" translatable="yes">Copy</property>
+                <property name="label" translatable="yes">_Copy</property>
+                <property name="use-underline">True</property>
               </object>
             </child>
             <layout>
