@@ -49,12 +49,14 @@
                         <child>
                           <object class="DspyConnectionButton" id="session_button">
                             <property name="bus-type">session</property>
+                            <property name="use-underline">True</property>
                           </object>
                         </child>
                         <child>
                           <object class="DspyConnectionButton" id="system_button">
                             <property name="bus-type">system</property>
                             <property name="group">session_button</property>
+                            <property name="use-underline">True</property>
                           </object>
                         </child>
                       </object>

@@ -218,11 +218,11 @@ dspy_connection_button_set_connection (DspyConnectionButton *self,
       GBusType bus_type = dspy_connection_get_bus_type (connection);
 
       if (bus_type == G_BUS_TYPE_SYSTEM)
-        gtk_button_set_label (GTK_BUTTON (self), _("System"));
+        gtk_button_set_label (GTK_BUTTON (self), _("S_ystem"));
       else if (bus_type == G_BUS_TYPE_SESSION)
-        gtk_button_set_label (GTK_BUTTON (self), _("Session"));
+        gtk_button_set_label (GTK_BUTTON (self), _("_Session"));
       else
-        gtk_button_set_label (GTK_BUTTON (self), _("Other"));
+        gtk_button_set_label (GTK_BUTTON (self), _("_Other"));
 
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CONNECTION]);
     }
