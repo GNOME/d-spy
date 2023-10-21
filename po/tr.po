@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-09-19 17:08+0000\n"
-"PO-Revision-Date: 2023-09-19 23:26+0300\n"
+"POT-Creation-Date: 2023-10-13 18:32+0000\n"
+"PO-Revision-Date: 2023-10-21 14:21+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -18,14 +18,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
 msgstr "Christian Hergert ve arkadaşları."
 
 #: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:13 src/main.c:86 src/main.c:88
+#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -37,7 +37,7 @@ msgstr "GNOME için D-Bus gezgini"
 msgid "D-Spy is a simple tool to explore D-Bus connections."
 msgstr "D-Spy, D-Bus bağlantılarını keşfetmek için basit araçtır."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:21
+#: data/org.gnome.dspy.appdata.xml.in.in:23
 msgid "D-Spy Interface"
 msgstr "D-Spy Arayüzü"
 
@@ -46,8 +46,9 @@ msgid "Discover and explore D-Bus services"
 msgstr "D-Bus hizmetlerini keşfet ve gez"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-msgid "dbus;"
-msgstr "dbus;"
+#| msgid "dbus;"
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: lib/dspy-connection-button.c:76
@@ -56,18 +57,18 @@ msgid "Connected to “%s”"
 msgstr "“%s”e bağlandı"
 
 #: lib/dspy-connection-button.c:221
-msgid "System"
-msgstr "Sistem"
+msgid "S_ystem"
+msgstr "_Sistem"
 
 #: lib/dspy-connection-button.c:223
-msgid "Session"
-msgstr "Oturum"
+msgid "_Session"
+msgstr "_Oturum"
 
 #: lib/dspy-connection-button.c:225
-msgid "Other"
-msgstr "Diğer"
+msgid "_Other"
+msgstr "_Diğer"
 
-#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+#: lib/dspy-method-view.c:191
 msgid "Execute"
 msgstr "Çalıştır"
 
@@ -91,21 +92,25 @@ msgstr "Yöntem"
 msgid "Parameters"
 msgstr "Parametreler"
 
-#: lib/dspy-method-view.ui:140
+#: lib/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "_Çalıştır"
+
+#: lib/dspy-method-view.ui:141
 msgid "Result"
 msgstr "Sonuç"
 
-#: lib/dspy-method-view.ui:181
-msgid "Copy"
-msgstr "Kopyala"
+#: lib/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "K_opyala"
 
-#: lib/dspy-method-view.ui:192
+#: lib/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "Geçen Süre"
 
 #: lib/dspy-name-marquee.ui:12
 msgid "Bus Address"
-msgstr "Veriyolu Adresi"
+msgstr "Veri Yolu Adresi"
 
 #: lib/dspy-name-marquee.ui:36
 msgid "Name"
@@ -197,7 +202,7 @@ msgstr "İşlem Zaman Aşımına Uğradı"
 
 #: lib/dspy-view.c:170
 msgid "Lost Connection to Bus"
-msgstr "Veriyolu Bağlantısı Kesildi"
+msgstr "Veri Yolu Bağlantısı Kesildi"
 
 #: lib/dspy-view.c:172
 msgid "D-Bus Connection Failed"
@@ -209,32 +214,44 @@ msgstr "Bağlan"
 
 #: lib/dspy-view.c:475
 msgid "Provide the address of the message bus"
-msgstr "İleti veriyolunun adresini gir"
+msgstr "İleti veri yolunun adresini gir"
 
-#: lib/dspy-view.c:477 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477
 msgid "Connect to Other Bus"
-msgstr "Diğer Veriyoluna Bağlan"
+msgstr "Diğer Veri Yoluna Bağlan"
 
-#: lib/dspy-view.ui:51
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Ana Menü"
+
+#: lib/dspy-view.ui:66
 msgid "Search Bus Names"
-msgstr "Veriyolu Adlarını Ara"
+msgstr "Veri Yolu Adlarını Ara"
 
-#: lib/dspy-view.ui:65
+#: lib/dspy-view.ui:80
 msgid "Bus Names"
-msgstr "Veriyolu Adları"
+msgstr "Veri Yolu Adları"
 
-#: lib/dspy-view.ui:129
+#: lib/dspy-view.ui:144
 msgid "Select a D-Bus Name"
 msgstr "D-Bus Adı Seç"
 
-#: lib/dspy-view.ui:130
-msgid "Select a bus name to introspect the peer."
-msgstr "Eşi incelemek için veriyolu adı seç."
+#: lib/dspy-view.ui:145
+msgid "Select a bus name to introspect the peer"
+msgstr "Eşi incelemek için veri yolu adı seç"
 
-#: lib/dspy-view.ui:215
+#: lib/dspy-view.ui:161
+msgid "Refresh"
+msgstr "Yenile"
+
+#: lib/dspy-view.ui:231
 msgid "_New Window"
 msgstr "_Yeni Pencere"
 
-#: lib/dspy-view.ui:221
+#: lib/dspy-view.ui:237
 msgid "_About D-Spy"
 msgstr "D-Spy _Hakkında"
+
+#: lib/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "Diğer Veri Yoluna Bağlan…"
