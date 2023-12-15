@@ -3,8 +3,10 @@
   <id>@app_id@.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  <developer_name>Christian Hergert, et al.</developer_name>
+  <developer id="gnome.org"><name>Christian Hergert, et al.</name></developer>
   <launchable type="desktop-id">org.gnome.dspy.desktop</launchable>
+  <translation type="gettext">d-spy</translation>
+  <provides><binary>d-spy</binary></provides>
   <name>D-Spy</name>
   <project_group>GNOME</project_group>
   <summary>A D-Bus explorer for GNOME</summary>
