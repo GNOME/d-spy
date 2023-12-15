@@ -39,10 +39,10 @@ appstream_file = i18n.merge_file(
     install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
 
-appstream_util = find_program('appstream-util', required: false)
-if appstream_util.found()
-  validate_args = ['validate', '--nonet', appstream_file]
-  test('Validate appstream file', appstream_util, args: validate_args)
+appstreamcli = find_program('appstreamcli', required: false)
+if appstreamcli.found()
+  validate_args = ['validate', '--no-net', appstream_file]
+  test('Validate appstream file', appstreamcli, args: validate_args)
 endif
 
 install_data('org.gnome.dspy.gschema.xml',
