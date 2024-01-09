@@ -13,7 +13,7 @@
   <provides><binary>d-spy</binary></provides>
   <name>D-Spy</name>
   <project_group>GNOME</project_group>
-  <summary>A D-Bus explorer for GNOME</summary>
+  <summary>Analyze D-Bus connections</summary>
   <description>
     <p>D-Spy is a simple tool to explore D-Bus connections.</p>
   </description>
