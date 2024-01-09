@@ -1,3 +1,8 @@
+# D-Spy 1.9.0 (GNOME 46.alpha)
+
+ * Various styling improvements to match GNOME HIG
+ * Various tooltips, mnemonics, and shortcuts were added
+
 # D-Spy 1.8.0 (GNOME 45.0)
 
  * Fixes to support translations properly
