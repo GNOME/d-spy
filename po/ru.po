@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-10-13 18:32+0000\n"
-"PO-Revision-Date: 2023-10-14 14:20+0300\n"
+"POT-Creation-Date: 2024-01-09 18:34+0000\n"
+"PO-Revision-Date: 2024-01-10 14:05+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -17,26 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
 msgid "Christian Hergert, et al."
 msgstr "Кристиан Хергерт и др."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
 #: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:10
-msgid "A D-Bus explorer for GNOME"
-msgstr "Навигатор D-Bus для GNOME"
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Анализ соединений D-Bus"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:12
+#: data/org.gnome.dspy.appdata.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
 msgstr "D-Spy – простой инструмент для изучения соединений D-Bus."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:23
+#: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "Интерфейс D-Spy"
 
@@ -253,3 +254,6 @@ msgstr "_О приложении"
 #: lib/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "Соединиться с другой шиной…"
+
+#~ msgid "A D-Bus explorer for GNOME"
+#~ msgstr "Навигатор D-Bus для GNOME"
