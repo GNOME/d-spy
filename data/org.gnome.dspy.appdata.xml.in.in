@@ -18,11 +18,11 @@
     <p>D-Spy is a simple tool to explore D-Bus connections.</p>
   </description>
 
-  <url type="homepage">https://gitlab.gnome.org/chergert/d-spy</url>
-  <url type="bugtracker">https://gitlab.gnome.org/chergert/d-spy/issues</url>
+  <url type="homepage">https://apps.gnome.org/Dspy</url>
+  <url type="bugtracker">https://gitlab.gnome.org/GNOME/d-spy/issues</url>
   <url type="donation">https://www.gnome.org/donate/</url>
   <url type="translate">https://l10n.gnome.org/module/d-spy/</url>
-  <url type="vcs-browser">https://gitlab.gnome.org/chergert/d-spy</url>
+  <url type="vcs-browser">https://gitlab.gnome.org/GNOME/d-spy</url>
 
   <screenshots>
     <screenshot type="default">
@@ -41,4 +41,11 @@
   </kudos>
 
   <content_rating type="oars-1.1" />
+
+  <keywords>
+    <keyword>spy</keyword>
+    <keyword>D-Bus</keyword>
+    <keyword>inspect</keyword>
+    <keyword>development</keyword>
+  </keywords>
 </component>

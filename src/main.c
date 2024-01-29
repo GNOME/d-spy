@@ -76,38 +76,29 @@ about_action_cb (GSimpleAction *action,
                  gpointer       user_data)
 {
   GtkApplication *app = user_data;
-  g_autofree gchar *program_name = NULL;
-  AdwAboutWindow *dialog;
   GtkWindow *window;
+  AdwDialog *dialog;
 
   g_assert (GTK_IS_APPLICATION (app));
 
+  dialog = adw_about_dialog_new ();
+  adw_about_dialog_set_application_name (ADW_ABOUT_DIALOG(dialog), _("D-Spy"));
+  adw_about_dialog_set_application_icon (ADW_ABOUT_DIALOG(dialog), PACKAGE_ICON_NAME);
+  adw_about_dialog_set_developers (ADW_ABOUT_DIALOG(dialog), authors);
+  adw_about_dialog_set_designers (ADW_ABOUT_DIALOG(dialog), artists);
 #if DEVELOPMENT_BUILD
-  program_name = g_strdup_printf ("%s (Development)", _("D-Spy"));
+  adw_about_dialog_set_version (ADW_ABOUT_DIALOG(dialog), SYMBOLIC_VERSION " (" DSPY_BUILD_IDENTIFIER ")");
 #else
-  program_name = g_strdup (_("D-Spy"));
+  adw_about_dialog_set_version (ADW_ABOUT_DIALOG(dialog), SYMBOLIC_VERSION);
 #endif
-
-  dialog = ADW_ABOUT_WINDOW (adw_about_window_new ());
-  adw_about_window_set_application_name (dialog, program_name);
-  adw_about_window_set_application_icon (dialog, PACKAGE_ICON_NAME);
-  adw_about_window_set_developers (dialog, authors);
-  adw_about_window_set_designers (dialog, artists);
-#if DEVELOPMENT_BUILD
-  adw_about_window_set_version (dialog, SYMBOLIC_VERSION " (" DSPY_BUILD_IDENTIFIER ")");
-#else
-  adw_about_window_set_version (dialog, SYMBOLIC_VERSION);
-#endif
-  adw_about_window_set_copyright (dialog, "© 2019-2021 Christian Hergert");
-  adw_about_window_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
-  adw_about_window_set_website (dialog, PACKAGE_WEBSITE);
-  adw_about_window_set_issue_url (dialog, "https://gitlab.gnome.org/GNOME/d-spy/-/issues/new");
+  adw_about_dialog_set_copyright (ADW_ABOUT_DIALOG(dialog), "© 2019-2021 Christian Hergert");
+  adw_about_dialog_set_license_type (ADW_ABOUT_DIALOG(dialog), GTK_LICENSE_GPL_3_0);
+  adw_about_dialog_set_website (ADW_ABOUT_DIALOG(dialog), PACKAGE_WEBSITE);
+  adw_about_dialog_set_issue_url (ADW_ABOUT_DIALOG(dialog), "https://gitlab.gnome.org/GNOME/d-spy/-/issues/new");
 
   window = gtk_application_get_active_window (app);
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
-  gtk_window_present (GTK_WINDOW (dialog));
+  adw_dialog_present (ADW_DIALOG (dialog), GTK_WIDGET(window));
 }
 
 static const GActionEntry actions[] = {
