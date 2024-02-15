@@ -1,13 +1,13 @@
 # Basque translation for d-spy.
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
-# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2023.
+# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2023, 2024.
 #
 msgid ""
 msgstr "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-07-18 18:04+0000\n"
-"PO-Revision-Date: 2023-07-24 18:04+0000\n"
+"POT-Creation-Date: 2024-01-09 18:34+0000\n"
+"PO-Revision-Date: 2024-02-15 18:04+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -15,24 +15,25 @@ msgstr "Project-Id-Version: d-spy main\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
 msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, et al."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: src/main.c:86 src/main.c:88
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:10
-msgid "A D-Bus explorer for GNOME"
-msgstr "D-Bus konexioak esploratzeko aplikazio bat GNOMErako"
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analizatu D-Bus konexioa"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:12
+#: data/org.gnome.dspy.appdata.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
 msgstr "D-Spy D-Bus konexioak esploratzeko tresna sinple bat da.."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:21
+#: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "D-Spy interfazea"
 
@@ -41,8 +42,8 @@ msgid "Discover and explore D-Bus services"
 msgstr "Aurkitu eta esploratu D-Bus zerbitzuak"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-msgid "dbus;"
-msgstr "dbus;"
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: lib/dspy-connection-button.c:76
@@ -51,18 +52,18 @@ msgid "Connected to “%s”"
 msgstr "Honekin konektatua: “%s”"
 
 #: lib/dspy-connection-button.c:221
-msgid "System"
-msgstr "Sistema"
+msgid "S_ystem"
+msgstr "S_istema"
 
 #: lib/dspy-connection-button.c:223
-msgid "Session"
-msgstr "Saioa"
+msgid "_Session"
+msgstr "_Saioa"
 
 #: lib/dspy-connection-button.c:225
-msgid "Other"
-msgstr "Bestelakoa"
+msgid "_Other"
+msgstr "_Bestelakoak"
 
-#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+#: lib/dspy-method-view.c:191
 msgid "Execute"
 msgstr "Exekutatu"
 
@@ -86,15 +87,19 @@ msgstr "Metodoa"
 msgid "Parameters"
 msgstr "Parametroak"
 
-#: lib/dspy-method-view.ui:140
+#: lib/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "_Exekutatu"
+
+#: lib/dspy-method-view.ui:141
 msgid "Result"
 msgstr "Emaitza"
 
-#: lib/dspy-method-view.ui:181
-msgid "Copy"
-msgstr "Kopiatu"
+#: lib/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "_Kopiatu"
 
-#: lib/dspy-method-view.ui:192
+#: lib/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "Igarotako denbora"
 
@@ -102,15 +107,15 @@ msgstr "Igarotako denbora"
 msgid "Bus Address"
 msgstr "Bus-helbidea"
 
-#: lib/dspy-name-marquee.ui:35
+#: lib/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Izena"
 
-#: lib/dspy-name-marquee.ui:58
+#: lib/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Jabea"
 
-#: lib/dspy-name-marquee.ui:81
+#: lib/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "Prozesuaren IDa"
 
@@ -174,58 +179,77 @@ msgstr "Seinaleak"
 msgid "Array of [%s]"
 msgstr "[%s] matrizea"
 
-#: lib/dspy-view.c:162
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr "Bus-a"
+
+#: lib/dspy-view.c:164
 msgid "Access Denied by Peer"
 msgstr "Parekoak sarbidea ukatu du"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:166
 msgid "Authentication Failed"
 msgstr "Autentifikazioak huts egin du"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:168
 msgid "Operation Timed Out"
 msgstr "Eragiketak denbora agortu du"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:170
 msgid "Lost Connection to Bus"
 msgstr "Busaren konexioa galdu da"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:172
 msgid "D-Bus Connection Failed"
 msgstr "D-Bus konexioak huts egin du"
 
-#: lib/dspy-view.c:469
+#: lib/dspy-view.c:474
 msgid "Connect"
 msgstr "Konektatu"
 
-#: lib/dspy-view.c:470
+#: lib/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "Eman mezu-busaren helbidea"
 
-#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "Konektatu beste bus batekin"
 
-#: lib/dspy-view.ui:40
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Menu nagusia"
+
+#: lib/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "Bilatu bus-izenak"
 
-#: lib/dspy-view.ui:54
+#: lib/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "Bus-izenak"
 
-#: lib/dspy-view.ui:111
+#: lib/dspy-view.ui:144
 msgid "Select a D-Bus Name"
 msgstr "Hautatu D-Bus izen bat"
 
-#: lib/dspy-view.ui:112
-msgid "Select a bus name to introspect the peer."
-msgstr "Hautatu bus-izen bat parekoaren introspekziorako."
+#: lib/dspy-view.ui:145
+msgid "Select a bus name to introspect the peer"
+msgstr "Hautatu bus-izen bat parekoaren introspekziorako"
 
-#: src/dspy-window.ui:33
+#: lib/dspy-view.ui:161
+msgid "Refresh"
+msgstr "Freskatu"
+
+#: lib/dspy-view.ui:231
 msgid "_New Window"
 msgstr "_Leiho berria"
 
-#: src/dspy-window.ui:39
+#: lib/dspy-view.ui:237
 msgid "_About D-Spy"
 msgstr "D-Spy aplizazioari _buruz"
+
+#: lib/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "Konektatu beste bus batekin…"
+
+#~ msgid "A D-Bus explorer for GNOME"
+#~ msgstr "D-Bus konexioak esploratzeko aplikazio bat GNOMErako"
