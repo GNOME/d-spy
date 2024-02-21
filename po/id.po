@@ -2,40 +2,42 @@
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
 # Andika Triwidada <atriwidada@gnome.org>, 2023.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-08-13 16:14+0000\n"
-"PO-Revision-Date: 2023-08-14 13:11+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"POT-Creation-Date: 2024-01-09 18:34+0000\n"
+"PO-Revision-Date: 2024-02-21 19:59+0700\n"
+"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
 msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, dkk."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: src/main.c:86 src/main.c:88
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:10
-msgid "A D-Bus explorer for GNOME"
-msgstr "Pengeksplorasi D-Bus bagi GNOME"
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analisis Koneksi D-Bus"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:12
+#: data/org.gnome.dspy.appdata.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
 msgstr "D-Spy adalah sebuah alat sederhana untuk mengeksplorasi koneksi D-Bus."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:21
+#: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "Antar Muka D-Spy"
 
@@ -44,8 +46,8 @@ msgid "Discover and explore D-Bus services"
 msgstr "Menemukan dan mengeksplorasi layanan D-Bus"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-msgid "dbus;"
-msgstr "dbus;"
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: lib/dspy-connection-button.c:76
@@ -54,18 +56,18 @@ msgid "Connected to “%s”"
 msgstr "Tersambung ke \"%s\""
 
 #: lib/dspy-connection-button.c:221
-msgid "System"
-msgstr "Sistem"
+msgid "S_ystem"
+msgstr "S_istem"
 
 #: lib/dspy-connection-button.c:223
-msgid "Session"
-msgstr "Sesi"
+msgid "_Session"
+msgstr "_Sesi"
 
 #: lib/dspy-connection-button.c:225
-msgid "Other"
-msgstr "Lainnya"
+msgid "_Other"
+msgstr "_Lainnya"
 
-#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+#: lib/dspy-method-view.c:191
 msgid "Execute"
 msgstr "Jalankan"
 
@@ -89,15 +91,19 @@ msgstr "Metode"
 msgid "Parameters"
 msgstr "Parameter"
 
-#: lib/dspy-method-view.ui:140
+#: lib/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "_Eksekusi"
+
+#: lib/dspy-method-view.ui:141
 msgid "Result"
 msgstr "Hasil"
 
-#: lib/dspy-method-view.ui:181
-msgid "Copy"
-msgstr "Salin"
+#: lib/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "Sa_lin"
 
-#: lib/dspy-method-view.ui:192
+#: lib/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "Waktu Berlalu"
 
@@ -105,15 +111,15 @@ msgstr "Waktu Berlalu"
 msgid "Bus Address"
 msgstr "Alamat Bus"
 
-#: lib/dspy-name-marquee.ui:35
+#: lib/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Nama"
 
-#: lib/dspy-name-marquee.ui:58
+#: lib/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Pemilik"
 
-#: lib/dspy-name-marquee.ui:81
+#: lib/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "ID Proses"
 
@@ -177,58 +183,77 @@ msgstr "Sinyal"
 msgid "Array of [%s]"
 msgstr "Larik dari [%s]"
 
-#: lib/dspy-view.c:162
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr "Bus"
+
+#: lib/dspy-view.c:164
 msgid "Access Denied by Peer"
 msgstr "Akses Ditolak oleh Peer"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:166
 msgid "Authentication Failed"
 msgstr "Otentikasi Gagal"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:168
 msgid "Operation Timed Out"
 msgstr "Operasi Habis Waktu"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:170
 msgid "Lost Connection to Bus"
 msgstr "Kehilangan Koneksi ke Bus"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:172
 msgid "D-Bus Connection Failed"
 msgstr "Koneksi D-Bus Gagal"
 
-#: lib/dspy-view.c:469
+#: lib/dspy-view.c:474
 msgid "Connect"
 msgstr "Sambung"
 
-#: lib/dspy-view.c:470
+#: lib/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "Menyediakan alamat dari bus pesan"
 
-#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "Menyambung ke Bus Lain"
 
-#: lib/dspy-view.ui:40
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Menu Utama"
+
+#: lib/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "Cari Nama Bus"
 
-#: lib/dspy-view.ui:54
+#: lib/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "Nama Bus"
 
-#: lib/dspy-view.ui:111
+#: lib/dspy-view.ui:144
 msgid "Select a D-Bus Name"
 msgstr "Pilih suatu Nama D-Bus"
 
-#: lib/dspy-view.ui:112
-msgid "Select a bus name to introspect the peer."
-msgstr "Pilih suatu nama bus untuk mengintrospeksi peer."
+#: lib/dspy-view.ui:145
+msgid "Select a bus name to introspect the peer"
+msgstr "Pilih suatu nama bus untuk mengintrospeksi peer"
 
-#: src/dspy-window.ui:33
+#: lib/dspy-view.ui:161
+msgid "Refresh"
+msgstr "Segarkan"
+
+#: lib/dspy-view.ui:231
 msgid "_New Window"
 msgstr "Je_ndela Baru"
 
-#: src/dspy-window.ui:39
+#: lib/dspy-view.ui:237
 msgid "_About D-Spy"
 msgstr "Tent_ang D-Spy"
+
+#: lib/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "Menyambung ke Bus Lain…"
+
+#~ msgid "A D-Bus explorer for GNOME"
+#~ msgstr "Pengeksplorasi D-Bus bagi GNOME"
