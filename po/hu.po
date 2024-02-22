@@ -1,14 +1,14 @@
 # Hungarian translation for d-spy.
-# Copyright (C) 2023 Free Software Foundation, Inc.
+# Copyright (C) 2023, 2024 Free Software Foundation, Inc.
 # This file is distributed under the same license as the d-spy package.
 #
-# Balázs Úr <ur.balazs at fsf dot hu>, 2023.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-09-21 15:59+0000\n"
-"PO-Revision-Date: 2023-09-23 18:08+0200\n"
+"POT-Creation-Date: 2024-01-09 18:34+0000\n"
+"PO-Revision-Date: 2024-02-22 01:14+0100\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -16,26 +16,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.04.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
 msgid "Christian Hergert, et al."
 msgstr "Christian Hergert és mások"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:13 src/main.c:86 src/main.c:88
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-kém"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:10
-msgid "A D-Bus explorer for GNOME"
-msgstr "Egy D-busz felfedező a GNOME-hoz"
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+#| msgid "D-Bus Connection Failed"
+msgid "Analyze D-Bus connections"
+msgstr "D-busz kapcsolatok elemzése"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:12
+#: data/org.gnome.dspy.appdata.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
 msgstr "A D-kém egy egyszerű eszköz a D-busz kapcsolatainak felderítéséhez."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:21
+#: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "D-kém interfész"
 
@@ -44,8 +46,9 @@ msgid "Discover and explore D-Bus services"
 msgstr "D-busz szolgáltatások felfedezése és vizsgálata"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-msgid "dbus;"
-msgstr "dbus;"
+#| msgid "dbus;"
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: lib/dspy-connection-button.c:76
@@ -54,18 +57,21 @@ msgid "Connected to “%s”"
 msgstr "Kapcsolódva ehhez: „%s”"
 
 #: lib/dspy-connection-button.c:221
-msgid "System"
-msgstr "Rendszer"
+#| msgid "System"
+msgid "S_ystem"
+msgstr "_Rendszer"
 
 #: lib/dspy-connection-button.c:223
-msgid "Session"
-msgstr "Munkamenet"
+#| msgid "Session"
+msgid "_Session"
+msgstr "_Munkamenet"
 
 #: lib/dspy-connection-button.c:225
-msgid "Other"
-msgstr "Egyéb"
+#| msgid "Other"
+msgid "_Other"
+msgstr "_Egyéb"
 
-#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+#: lib/dspy-method-view.c:191
 msgid "Execute"
 msgstr "Végrehajtás"
 
@@ -89,15 +95,21 @@ msgstr "Metódus"
 msgid "Parameters"
 msgstr "Paraméterek"
 
-#: lib/dspy-method-view.ui:140
+#: lib/dspy-method-view.ui:126
+#| msgid "Execute"
+msgid "_Execute"
+msgstr "_Végrehajtás"
+
+#: lib/dspy-method-view.ui:141
 msgid "Result"
 msgstr "Eredmény"
 
-#: lib/dspy-method-view.ui:181
-msgid "Copy"
-msgstr "Másolás"
+#: lib/dspy-method-view.ui:182
+#| msgid "Copy"
+msgid "_Copy"
+msgstr "_Másolás"
 
-#: lib/dspy-method-view.ui:192
+#: lib/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "Eltelt idő"
 
@@ -209,30 +221,44 @@ msgstr "Kapcsolódás"
 msgid "Provide the address of the message bus"
 msgstr "Adja meg az üzenetbusz címét"
 
-#: lib/dspy-view.c:477 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "Kapcsolódás másik buszhoz"
 
-#: lib/dspy-view.ui:51
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Főmenü"
+
+#: lib/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "Busznevek keresése"
 
-#: lib/dspy-view.ui:65
+#: lib/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "Busznevek"
 
-#: lib/dspy-view.ui:129
+#: lib/dspy-view.ui:144
 msgid "Select a D-Bus Name"
 msgstr "Válasszon D-busz nevet"
 
-#: lib/dspy-view.ui:130
-msgid "Select a bus name to introspect the peer."
-msgstr "Válasszon egy busznevet a partner elemzéséhez."
+#: lib/dspy-view.ui:145
+#| msgid "Select a bus name to introspect the peer."
+msgid "Select a bus name to introspect the peer"
+msgstr "Válasszon egy busznevet a partner elemzéséhez"
 
-#: lib/dspy-view.ui:215
+#: lib/dspy-view.ui:161
+msgid "Refresh"
+msgstr "Frissítés"
+
+#: lib/dspy-view.ui:231
 msgid "_New Window"
 msgstr "Új _ablak"
 
-#: lib/dspy-view.ui:221
+#: lib/dspy-view.ui:237
 msgid "_About D-Spy"
 msgstr "A D-kém _névjegye"
+
+#: lib/gtk/menus.ui:5
+#| msgid "Connect to Other Bus"
+msgid "Connect to Other Bus…"
+msgstr "Kapcsolódás másik buszhoz…"
