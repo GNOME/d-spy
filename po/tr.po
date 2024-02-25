@@ -1,15 +1,15 @@
 # Turkish translation for d-spy
-# Copyright (C) 2023 d-spy'S COPYRIGHT HOLDER
+# Copyright (C) 2023-2024 d-spy'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
 #
-# Sabri Ünal <libreajans@gmail.com>, 2023.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2023.
+# Sabri Ünal <libreajans@gmail.com>, 2023, 2024.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2023, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2024-01-09 18:34+0000\n"
+"POT-Creation-Date: 2024-01-25 15:41+0000\n"
 "PO-Revision-Date: 2024-01-17 04:57+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
@@ -255,6 +255,3 @@ msgstr "D-Spy _Hakkında"
 #: lib/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "Diğer Veri Yoluna Bağlan…"
-
-#~ msgid "A D-Bus explorer for GNOME"
-#~ msgstr "GNOME için D-Bus gezgini"
