@@ -1,40 +1,44 @@
 # Chinese (China) translation for d-spy.
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
+# Boyuan Yang <073plan@gmail.com>, 2023.
 # Victor_Trista <ljlzjzm@hotmail.com>, 2023.
+# lumingzh <lumingzh@qq.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-09-14 10:39+0000\n"
-"PO-Revision-Date: 2023-09-17 13:40-0400\n"
-"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
-"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
+"POT-Creation-Date: 2024-01-09 18:34+0000\n"
+"PO-Revision-Date: 2024-03-03 19:29+0800\n"
+"Last-Translator: lumingzh <lumingzh@qq.com>\n"
+"Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Gtranslator 45.3\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
 msgid "Christian Hergert, et al."
 msgstr "Christian Hergert 等。"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: src/main.c:86 src/main.c:88
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:10
-msgid "A D-Bus explorer for GNOME"
-msgstr "GNOME 的 D-Bus 浏览器"
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "分析 D-Bus 连接"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:12
+#: data/org.gnome.dspy.appdata.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
 msgstr "D-Spy 是浏览 D-Bus 连接的简单工具。"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:21
+#: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "D-Spy 接口"
 
@@ -43,8 +47,8 @@ msgid "Discover and explore D-Bus services"
 msgstr "发现和浏览 D-Bus 服务"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-msgid "dbus;"
-msgstr "dbus;"
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;连接;接口;总线;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: lib/dspy-connection-button.c:76
@@ -53,18 +57,18 @@ msgid "Connected to “%s”"
 msgstr "已连接到“%s”"
 
 #: lib/dspy-connection-button.c:221
-msgid "System"
-msgstr "系统"
+msgid "S_ystem"
+msgstr "系统(_Y)"
 
 #: lib/dspy-connection-button.c:223
-msgid "Session"
-msgstr "会话"
+msgid "_Session"
+msgstr "会话(_S)"
 
 #: lib/dspy-connection-button.c:225
-msgid "Other"
-msgstr "其他"
+msgid "_Other"
+msgstr "其它(_O)"
 
-#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+#: lib/dspy-method-view.c:191
 msgid "Execute"
 msgstr "执行"
 
@@ -88,15 +92,19 @@ msgstr "方法"
 msgid "Parameters"
 msgstr "参数"
 
-#: lib/dspy-method-view.ui:140
+#: lib/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "执行(_E)"
+
+#: lib/dspy-method-view.ui:141
 msgid "Result"
 msgstr "结果"
 
-#: lib/dspy-method-view.ui:181
-msgid "Copy"
-msgstr "复制"
+#: lib/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "复制(_C)"
 
-#: lib/dspy-method-view.ui:192
+#: lib/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "已用时间"
 
@@ -104,15 +112,15 @@ msgstr "已用时间"
 msgid "Bus Address"
 msgstr "总线地址"
 
-#: lib/dspy-name-marquee.ui:35
+#: lib/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "名称"
 
-#: lib/dspy-name-marquee.ui:58
+#: lib/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "所有者"
 
-#: lib/dspy-name-marquee.ui:81
+#: lib/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "进程 ID"
 
@@ -176,58 +184,77 @@ msgstr "信号"
 msgid "Array of [%s]"
 msgstr "[%s] 数组"
 
-#: lib/dspy-view.c:162
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr "总线"
+
+#: lib/dspy-view.c:164
 msgid "Access Denied by Peer"
 msgstr "访问被对方拒绝"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:166
 msgid "Authentication Failed"
 msgstr "认证失败"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:168
 msgid "Operation Timed Out"
 msgstr "操作超时"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:170
 msgid "Lost Connection to Bus"
 msgstr "已断开与总线的连接"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:172
 msgid "D-Bus Connection Failed"
 msgstr "D-Bus 连接失败"
 
-#: lib/dspy-view.c:469
+#: lib/dspy-view.c:474
 msgid "Connect"
 msgstr "连接"
 
-#: lib/dspy-view.c:470
+#: lib/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "提供消息总线的地址"
 
-#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "连接到其他总线"
 
-#: lib/dspy-view.ui:40
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "主菜单"
+
+#: lib/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "搜索总线名称"
 
-#: lib/dspy-view.ui:54
+#: lib/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "总线名称"
 
-#: lib/dspy-view.ui:111
+#: lib/dspy-view.ui:144
 msgid "Select a D-Bus Name"
 msgstr "选择 D-Bus 名称"
 
-#: lib/dspy-view.ui:112
-msgid "Select a bus name to introspect the peer."
-msgstr "选择总线名称以检视对象信息。"
+#: lib/dspy-view.ui:145
+msgid "Select a bus name to introspect the peer"
+msgstr "选择总线名称以检视对等点"
 
-#: src/dspy-window.ui:33
+#: lib/dspy-view.ui:161
+msgid "Refresh"
+msgstr "刷新"
+
+#: lib/dspy-view.ui:231
 msgid "_New Window"
 msgstr "新建窗口(_N)"
 
-#: src/dspy-window.ui:39
+#: lib/dspy-view.ui:237
 msgid "_About D-Spy"
 msgstr "关于 D-Spy(_A)"
+
+#: lib/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "连接到其它总线…"
+
+#~ msgid "A D-Bus explorer for GNOME"
+#~ msgstr "GNOME 的 D-Bus 浏览器"
