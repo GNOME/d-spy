@@ -1,0 +1,262 @@
+# Serbian translation for d-spy.
+# Copyright (C) 2024 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Dušan Simić <dusan.simic1810@gmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2024-03-17 23:10+0000\n"
+"PO-Revision-Date: 2024-03-23 14:44+0100\n"
+"Last-Translator: Dušan Simić <dusan.simic1810@gmail.com>\n"
+"Language-Team: Serbian <gnome-sr@googlegroups.com>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-DL-Lang: sr\n"
+"X-DL-Module: d-spy\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"X-Generator: Gtranslator 46.0\n"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
+msgid "Christian Hergert, et al."
+msgstr "Kristijan Hergert (Christian Hergert), i sar."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: lib/dspy-view.ui:24 src/main.c:85
+msgid "D-Spy"
+msgstr "D-Špijun"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analiziraj veze na D-magistrali"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Šijun je jednostavan alat za istraživanje veza na D-magistrali."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "D-špijun sučelje"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "Discover and explore D-Bus services"
+msgstr "Istraži i otkrij servise na D-magistrali"
+
+#: data/org.gnome.dspy.desktop.in.in:8
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;dšpijun;dmagistrala;dšpijun;dmagistrala;"
+
+#. translators: %s is replaced with the address of the D-Bus bus
+#: lib/dspy-connection-button.c:76
+#, c-format
+msgid "Connected to “%s”"
+msgstr "povezan na „%s“"
+
+#: lib/dspy-connection-button.c:221
+msgid "S_ystem"
+msgstr "S_istem"
+
+#: lib/dspy-connection-button.c:223
+msgid "_Session"
+msgstr "_Sesija"
+
+#: lib/dspy-connection-button.c:225
+msgid "_Other"
+msgstr "_Ostali"
+
+#: lib/dspy-method-view.c:191
+msgid "Execute"
+msgstr "Izvrši"
+
+#: lib/dspy-method-view.c:273
+msgid "Cancel"
+msgstr "Otkaži"
+
+#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+msgid "Object Path"
+msgstr "putanja objekta"
+
+#: lib/dspy-method-view.ui:36
+msgid "Interface"
+msgstr "sučelje"
+
+#: lib/dspy-method-view.ui:61
+msgid "Method"
+msgstr "metoda"
+
+#: lib/dspy-method-view.ui:86
+msgid "Parameters"
+msgstr "parametri"
+
+#: lib/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "_Izvrši"
+
+#: lib/dspy-method-view.ui:141
+msgid "Result"
+msgstr "rezultat"
+
+#: lib/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "_Kopiraj"
+
+#: lib/dspy-method-view.ui:194
+msgid "Elapsed Time"
+msgstr "proteklo vreme"
+
+#: lib/dspy-name-marquee.ui:12
+msgid "Bus Address"
+msgstr "aresa na magistrali"
+
+#: lib/dspy-name-marquee.ui:36
+msgid "Name"
+msgstr "ime"
+
+#: lib/dspy-name-marquee.ui:60
+msgid "Owner"
+msgstr "vlasnik"
+
+#: lib/dspy-name-marquee.ui:84
+msgid "Process ID"
+msgstr "IB procesa"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+msgid "Activatable"
+msgstr "može se uključiti"
+
+#: lib/dspy-name-row.c:78
+msgid "Yes"
+msgstr "da"
+
+#: lib/dspy-name-row.c:80
+msgid "No"
+msgstr "ne"
+
+#: lib/dspy-name-row.c:85
+#, c-format
+msgid "%s: %u"
+msgstr "%s: %u"
+
+#: lib/dspy-name-row.c:85
+msgid "PID"
+msgstr "PIB"
+
+#: lib/dspy-node.c:468
+msgid "read/write"
+msgstr "čitanje/pisanje"
+
+#: lib/dspy-node.c:470
+msgid "write-only"
+msgstr "samo pisanje"
+
+#: lib/dspy-node.c:472
+msgid "read-only"
+msgstr "samo čitanje"
+
+#: lib/dspy-node.c:587
+msgid "Interfaces"
+msgstr "sučelja"
+
+#: lib/dspy-node.c:590
+msgid "Methods"
+msgstr "metode"
+
+#: lib/dspy-node.c:596
+msgid "Properties"
+msgstr "osobine"
+
+#: lib/dspy-node.c:612
+msgid "Signals"
+msgstr "signali"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: lib/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr "niz [%s]"
+
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr "magistrala"
+
+#: lib/dspy-view.c:164
+msgid "Access Denied by Peer"
+msgstr "parnjak je odbio pristup"
+
+#: lib/dspy-view.c:166
+msgid "Authentication Failed"
+msgstr "potvrda identiteta je neuspešna"
+
+#: lib/dspy-view.c:168
+msgid "Operation Timed Out"
+msgstr "radnja je istekla"
+
+#: lib/dspy-view.c:170
+msgid "Lost Connection to Bus"
+msgstr "izgubljena veza sa magistralom"
+
+#: lib/dspy-view.c:172
+msgid "D-Bus Connection Failed"
+msgstr "Veza sa D-magistralom neuspešna"
+
+#: lib/dspy-view.c:474
+msgid "Connect"
+msgstr "Poveži se"
+
+#: lib/dspy-view.c:475
+msgid "Provide the address of the message bus"
+msgstr "obezbedi adresu magistrale za poruke"
+
+#: lib/dspy-view.c:477
+msgid "Connect to Other Bus"
+msgstr "Poveži se na drugu magistralu"
+
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "glavni meni"
+
+#: lib/dspy-view.ui:66
+msgid "Search Bus Names"
+msgstr "pretraži nazive magistrala"
+
+#: lib/dspy-view.ui:80
+msgid "Bus Names"
+msgstr "nazivi magistrala"
+
+#: lib/dspy-view.ui:144
+msgid "Select a D-Bus Name"
+msgstr "Odaberi naziv D-magistrale"
+
+#: lib/dspy-view.ui:145
+msgid "Select a bus name to introspect the peer"
+msgstr "odaberi naziv magistrale za sagledavanje parnjaka"
+
+#: lib/dspy-view.ui:161
+msgid "Refresh"
+msgstr "Osveži"
+
+#: lib/dspy-view.ui:231
+msgid "_New Window"
+msgstr "_Novi prozor"
+
+#: lib/dspy-view.ui:237
+msgid "_About D-Spy"
+msgstr "_O D-špijunu"
+
+#: lib/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "Poveži se na drugu magistralu…"
