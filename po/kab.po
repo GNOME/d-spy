@@ -1,0 +1,261 @@
+# Kabyle translation for d-spy.
+# Copyright (C) 2024 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# ButterflyOfFire <ButterflyOfFire@protonmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2024-03-23 13:53+0000\n"
+"PO-Revision-Date: 2024-03-26 12:42+0100\n"
+"Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
+"Language-Team: Kabyle <>\n"
+"Language: kab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-Team: kab\n"
+"X-DL-Module: d-spy\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=n>1\n"
+"X-Generator: Gtranslator 41.0\n"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
+msgid "Christian Hergert, et al."
+msgstr "Christian Hergert, et al."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: lib/dspy-view.ui:24 src/main.c:85
+msgid "D-Spy"
+msgstr "D-Spy"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr ""
+
+#: data/org.gnome.dspy.appdata.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr ""
+
+#: data/org.gnome.dspy.appdata.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr ""
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "Discover and explore D-Bus services"
+msgstr ""
+
+#: data/org.gnome.dspy.desktop.in.in:8
+msgid "dspy;dbus;"
+msgstr ""
+
+#. translators: %s is replaced with the address of the D-Bus bus
+#: lib/dspy-connection-button.c:76
+#, c-format
+msgid "Connected to “%s”"
+msgstr "Yettwaqqen ɣer “%s”"
+
+#: lib/dspy-connection-button.c:221
+msgid "S_ystem"
+msgstr "Anagraw (_Y)"
+
+#: lib/dspy-connection-button.c:223
+msgid "_Session"
+msgstr "Tiɣimit (_S)"
+
+#: lib/dspy-connection-button.c:225
+msgid "_Other"
+msgstr "Ayen-nniḍen"
+
+#: lib/dspy-method-view.c:191
+msgid "Execute"
+msgstr ""
+
+#: lib/dspy-method-view.c:273
+msgid "Cancel"
+msgstr "Semmet"
+
+#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+msgid "Object Path"
+msgstr ""
+
+#: lib/dspy-method-view.ui:36
+msgid "Interface"
+msgstr "Agrudem"
+
+#: lib/dspy-method-view.ui:61
+msgid "Method"
+msgstr "Tarrayt"
+
+#: lib/dspy-method-view.ui:86
+msgid "Parameters"
+msgstr ""
+
+#: lib/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr ""
+
+#: lib/dspy-method-view.ui:141
+msgid "Result"
+msgstr "Agmuḍ"
+
+#: lib/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "Nɣel (_C)"
+
+#: lib/dspy-method-view.ui:194
+msgid "Elapsed Time"
+msgstr ""
+
+#: lib/dspy-name-marquee.ui:12
+msgid "Bus Address"
+msgstr ""
+
+#: lib/dspy-name-marquee.ui:36
+msgid "Name"
+msgstr "Isem"
+
+#: lib/dspy-name-marquee.ui:60
+msgid "Owner"
+msgstr "Bab-is"
+
+#: lib/dspy-name-marquee.ui:84
+msgid "Process ID"
+msgstr ""
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+msgid "Activatable"
+msgstr ""
+
+#: lib/dspy-name-row.c:78
+msgid "Yes"
+msgstr "Ih"
+
+#: lib/dspy-name-row.c:80
+msgid "No"
+msgstr "Uhu"
+
+#: lib/dspy-name-row.c:85
+#, c-format
+msgid "%s: %u"
+msgstr "%s: %u"
+
+#: lib/dspy-name-row.c:85
+msgid "PID"
+msgstr ""
+
+#: lib/dspy-node.c:468
+msgid "read/write"
+msgstr ""
+
+#: lib/dspy-node.c:470
+msgid "write-only"
+msgstr ""
+
+#: lib/dspy-node.c:472
+msgid "read-only"
+msgstr ""
+
+#: lib/dspy-node.c:587
+msgid "Interfaces"
+msgstr ""
+
+#: lib/dspy-node.c:590
+msgid "Methods"
+msgstr ""
+
+#: lib/dspy-node.c:596
+msgid "Properties"
+msgstr "Iraten"
+
+#: lib/dspy-node.c:612
+msgid "Signals"
+msgstr ""
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: lib/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr ""
+
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr ""
+
+#: lib/dspy-view.c:164
+msgid "Access Denied by Peer"
+msgstr ""
+
+#: lib/dspy-view.c:166
+msgid "Authentication Failed"
+msgstr ""
+
+#: lib/dspy-view.c:168
+msgid "Operation Timed Out"
+msgstr ""
+
+#: lib/dspy-view.c:170
+msgid "Lost Connection to Bus"
+msgstr ""
+
+#: lib/dspy-view.c:172
+msgid "D-Bus Connection Failed"
+msgstr ""
+
+#: lib/dspy-view.c:474
+msgid "Connect"
+msgstr "Qqen"
+
+#: lib/dspy-view.c:475
+msgid "Provide the address of the message bus"
+msgstr ""
+
+#: lib/dspy-view.c:477
+msgid "Connect to Other Bus"
+msgstr ""
+
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Umuɣ agejdan"
+
+#: lib/dspy-view.ui:66
+msgid "Search Bus Names"
+msgstr ""
+
+#: lib/dspy-view.ui:80
+msgid "Bus Names"
+msgstr ""
+
+#: lib/dspy-view.ui:144
+msgid "Select a D-Bus Name"
+msgstr ""
+
+#: lib/dspy-view.ui:145
+msgid "Select a bus name to introspect the peer"
+msgstr ""
+
+#: lib/dspy-view.ui:161
+msgid "Refresh"
+msgstr "Smiren"
+
+#: lib/dspy-view.ui:231
+msgid "_New Window"
+msgstr "Asfaylu amay_nut"
+
+#: lib/dspy-view.ui:237
+msgid "_About D-Spy"
+msgstr "Ɣef D-Spy"
+
+#: lib/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr ""
