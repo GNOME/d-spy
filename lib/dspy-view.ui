@@ -139,8 +139,7 @@
                               <object class="AdwHeaderBar"/>
                             </child>
                             <child>
-                              <object class="AdwStatusPage">
-                                <property name="icon-name">org.gnome.dspy-symbolic</property>
+                              <object class="AdwStatusPage" id="status_page">
                                 <property name="title" translatable="yes">Select a D-Bus Name</property>
                                 <property name="description" translatable="yes">Select a bus name to introspect the peer</property>
                               </object>

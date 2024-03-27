@@ -64,6 +64,7 @@ typedef struct
   AdwNavigationSplitView  *paned;
   AdwNavigationPage       *bus_navigation_page;
   AdwToolbarView          *bus_toolbar_view;
+  AdwStatusPage           *status_page;
 
   guint                  destroyed : 1;
 } DspyViewPrivate;
@@ -512,6 +513,8 @@ dspy_view_constructed (GObject *object)
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->session_button), TRUE);
 
   G_OBJECT_CLASS (dspy_view_parent_class)->constructed (object);
+
+  adw_status_page_set_icon_name (priv->status_page, APP_ID "-symbolic");
 }
 
 static void
@@ -564,6 +567,7 @@ dspy_view_class_init (DspyViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, paned);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, bus_navigation_page);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, bus_toolbar_view);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyView, status_page);
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
