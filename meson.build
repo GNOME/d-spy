@@ -1,14 +1,11 @@
 project('d-spy', 'c',
-        version: '1.10.1',
+        version: '47.alpha',
   meson_version: '>= 0.59.0',
 )
 
-symbolic_version = '47.alpha'
-
-version_split = meson.project_version().split('.')
-version_major = version_split[0]
-version_minor = version_split[1]
-version_micro = version_split[2]
+api_version_major = 1
+api_version_minor = 12
+api_version_micro = 0
 
 gnome = import('gnome')
 i18n = import('i18n')
@@ -22,7 +19,6 @@ else
 endif
 
 config_h = configuration_data()
-config_h.set_quoted('SYMBOLIC_VERSION', symbolic_version)
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_h.set_quoted('PACKAGE_ICON_NAME', app_id)
 config_h.set_quoted('GETTEXT_PACKAGE', 'd-spy')

@@ -87,11 +87,11 @@ about_action_cb (GSimpleAction *action,
   adw_about_dialog_set_developers (ADW_ABOUT_DIALOG(dialog), authors);
   adw_about_dialog_set_designers (ADW_ABOUT_DIALOG(dialog), artists);
 #if DEVELOPMENT_BUILD
-  adw_about_dialog_set_version (ADW_ABOUT_DIALOG(dialog), SYMBOLIC_VERSION " (" DSPY_BUILD_IDENTIFIER ")");
+  adw_about_dialog_set_version (ADW_ABOUT_DIALOG(dialog), PACKAGE_VERSION " (" DSPY_BUILD_IDENTIFIER ")");
 #else
-  adw_about_dialog_set_version (ADW_ABOUT_DIALOG(dialog), SYMBOLIC_VERSION);
+  adw_about_dialog_set_version (ADW_ABOUT_DIALOG(dialog), PACKAGE_VERSION);
 #endif
-  adw_about_dialog_set_copyright (ADW_ABOUT_DIALOG(dialog), "© 2019-2021 Christian Hergert");
+  adw_about_dialog_set_copyright (ADW_ABOUT_DIALOG(dialog), "© 2019-2024 Christian Hergert");
   adw_about_dialog_set_license_type (ADW_ABOUT_DIALOG(dialog), GTK_LICENSE_GPL_3_0);
   adw_about_dialog_set_website (ADW_ABOUT_DIALOG(dialog), PACKAGE_WEBSITE);
   adw_about_dialog_set_issue_url (ADW_ABOUT_DIALOG(dialog), "https://gitlab.gnome.org/GNOME/d-spy/-/issues/new");

@@ -1,9 +1,9 @@
-lib_header_dir = join_paths(get_option('includedir'), 'dspy-@0@'.format(version_major))
+lib_header_dir = join_paths(get_option('includedir'), 'dspy-@0@'.format(api_version_major))
 
 version_data = configuration_data()
-version_data.set('VERSION_MAJOR', version_major)
-version_data.set('VERSION_MINOR', version_minor)
-version_data.set('VERSION_MICRO', version_micro)
+version_data.set('VERSION_MAJOR', api_version_major)
+version_data.set('VERSION_MINOR', api_version_minor)
+version_data.set('VERSION_MICRO', api_version_micro)
 version_data.set('VERSION', meson.project_version())
 
 dspy_version_h = configure_file(
@@ -61,13 +61,13 @@ libdspy_sources += gnome.compile_resources('libdspy-resources', 'libdspy.gresour
   c_name: 'libdspy'
 )
 
-libdspy = library('dspy-@0@'.format(version_major), libdspy_sources,
+libdspy = library('dspy-@0@'.format(api_version_major), libdspy_sources,
            dependencies: libdspy_deps,
     include_directories: [ root_include_directory ],
                 install: true,
   gnu_symbol_visibility: 'hidden',
-                version: '@0@.0.0'.format(version_major),
-        darwin_versions: '@0@.0'.format(version_major.to_int() + 1),
+                version: '@0@.0.0'.format(api_version_major),
+        darwin_versions: '@0@.0'.format(api_version_major + 1),
               link_args: release_link_args,
 )
 
@@ -77,7 +77,7 @@ libdspy_dep = declare_dependency(
   include_directories: include_directories('.'),
 )
 
-libdspy_header_subdir = 'dspy-@0@'.format(version_major)
+libdspy_header_subdir = 'dspy-@0@'.format(api_version_major)
 install_headers(libdspy_headers, subdir: libdspy_header_subdir)
 
 pkgg = import('pkgconfig')
@@ -86,7 +86,7 @@ pkgg.generate(
     libraries: [libdspy],
       subdirs: libdspy_header_subdir,
          name: 'D-Spy',
-     filebase: 'dspy-@0@'.format(version_major),
+     filebase: 'dspy-@0@'.format(api_version_major),
   description: 'Embed D-Spy into applications and IDEs',
      requires: [ 'gtk4', 'libadwaita-1'],
 )
