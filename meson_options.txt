@@ -1,1 +1,2 @@
 option('development', type: 'boolean', value: false, description: 'If this is a development build')
+option('builder', type: 'boolean', value: false, description: 'If this is bundled with GNOME Builder')

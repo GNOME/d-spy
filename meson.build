@@ -12,10 +12,18 @@ i18n = import('i18n')
 cc = meson.get_compiler('c')
 buildtype = get_option('buildtype')
 
-if get_option('development')
-  app_id = 'org.gnome.dspy.devel'
+if not get_option('builder')
+  if get_option('development')
+    app_id = 'org.gnome.dspy.devel'
+  else
+    app_id = 'org.gnome.dspy'
+  endif
 else
-  app_id = 'org.gnome.dspy'
+  if get_option('development')
+    app_id = 'org.gnome.Builder.Devel.dspy'
+  else
+    app_id = 'org.gnome.Builder.dspy'
+  endif
 endif
 
 config_h = configuration_data()
