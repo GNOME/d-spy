@@ -4,30 +4,29 @@
 #
 # Matej Urbančič <mateju@svn.gnome.org>, 2024–.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-02-14 23:51+0000\n"
-"PO-Revision-Date: 2024-02-16 16:46+0100\n"
-"Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
+"POT-Creation-Date: 2024-05-16 22:11+0000\n"
+"PO-Revision-Date: 2024-05-17 18:44+0200\n"
+"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
-"n%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-Basepath: ../../po-files\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert s sodelavci"
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
 #: lib/dspy-view.ui:24 src/main.c:85
@@ -188,39 +187,39 @@ msgstr "Signali"
 msgid "Array of [%s]"
 msgstr "Podatkovno polje [%s]"
 
-#: lib/dspy-view.c:125
+#: lib/dspy-view.c:126
 msgid "Bus"
 msgstr "Vodilo"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:165
 msgid "Access Denied by Peer"
 msgstr "Dostop onemogoča soležno opravilo"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:167
 msgid "Authentication Failed"
 msgstr "Overitev je spodletela"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:169
 msgid "Operation Timed Out"
 msgstr "Opravilo je časovno poteklo"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:171
 msgid "Lost Connection to Bus"
 msgstr "Povezava z vodilom je izgubljena"
 
-#: lib/dspy-view.c:172
+#: lib/dspy-view.c:173
 msgid "D-Bus Connection Failed"
 msgstr "Povezava z vodilom D-Bus je spodletela"
 
-#: lib/dspy-view.c:474
+#: lib/dspy-view.c:475
 msgid "Connect"
 msgstr "Poveži"
 
-#: lib/dspy-view.c:475
+#: lib/dspy-view.c:476
 msgid "Provide the address of the message bus"
 msgstr "Vpis naslova sporočilnega vodila"
 
-#: lib/dspy-view.c:477
+#: lib/dspy-view.c:478
 msgid "Connect to Other Bus"
 msgstr "Poveži z drugim vodilom"
 
@@ -236,23 +235,23 @@ msgstr "Preišči imena vodil"
 msgid "Bus Names"
 msgstr "Imena Vodil"
 
-#: lib/dspy-view.ui:144
+#: lib/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "Izbor imena vodila D-Bus"
 
-#: lib/dspy-view.ui:145
+#: lib/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
 msgstr "Izbor imena vodila za preverjanje soležnih opravil"
 
-#: lib/dspy-view.ui:161
+#: lib/dspy-view.ui:160
 msgid "Refresh"
 msgstr "Osveži"
 
-#: lib/dspy-view.ui:231
+#: lib/dspy-view.ui:230
 msgid "_New Window"
 msgstr "_Novo okno"
 
-#: lib/dspy-view.ui:237
+#: lib/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "_O programu"
 
