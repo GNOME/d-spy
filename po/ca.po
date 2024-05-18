@@ -6,24 +6,24 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2024-01-09 18:34+0000\n"
-"PO-Revision-Date: 2024-05-14 22:14+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2024-05-16 22:11+0000\n"
+"PO-Revision-Date: 2024-05-17 21:51+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.4.2\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, et al."
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
+#: lib/dspy-view.ui:24 src/main.c:85
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -181,39 +181,39 @@ msgstr "Senyals"
 msgid "Array of [%s]"
 msgstr "Matriu de [%s]"
 
-#: lib/dspy-view.c:125
+#: lib/dspy-view.c:126
 msgid "Bus"
 msgstr "Bus"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:165
 msgid "Access Denied by Peer"
 msgstr "Accés denegat per un punt (peer)"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:167
 msgid "Authentication Failed"
 msgstr "Autentificació a fallat"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:169
 msgid "Operation Timed Out"
 msgstr "Operació fora de temps"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:171
 msgid "Lost Connection to Bus"
 msgstr "Connexió al bus perduda"
 
-#: lib/dspy-view.c:172
+#: lib/dspy-view.c:173
 msgid "D-Bus Connection Failed"
 msgstr "La connexió al D-Bus ha fallat"
 
-#: lib/dspy-view.c:474
+#: lib/dspy-view.c:475
 msgid "Connect"
 msgstr "Connecta"
 
-#: lib/dspy-view.c:475
+#: lib/dspy-view.c:476
 msgid "Provide the address of the message bus"
 msgstr "Proporcioneu l'adreça del bus de missatges"
 
-#: lib/dspy-view.c:477
+#: lib/dspy-view.c:478
 msgid "Connect to Other Bus"
 msgstr "Connecteu-vos a un altre bus"
 
@@ -229,25 +229,23 @@ msgstr "Cerca noms de Bus"
 msgid "Bus Names"
 msgstr "Noms de Bus"
 
-#: lib/dspy-view.ui:144
+#: lib/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "Selecciona un nom de D-Bus"
 
-#: lib/dspy-view.ui:145
-#, fuzzy
-#| msgid "Select a bus name to introspect the peer."
+#: lib/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
-msgstr "Seleccioneu un nom d'un bus per introspeccionar el punt (peer)"
+msgstr "Seleccioneu un nom de bus per a introspeccionar el «peer»"
 
-#: lib/dspy-view.ui:161
+#: lib/dspy-view.ui:160
 msgid "Refresh"
 msgstr "Actualitza"
 
-#: lib/dspy-view.ui:231
+#: lib/dspy-view.ui:230
 msgid "_New Window"
 msgstr "_Finestra nova"
 
-#: lib/dspy-view.ui:237
+#: lib/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "_Quant al D-Spy"
 
