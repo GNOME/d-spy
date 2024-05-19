@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2024-01-09 18:34+0000\n"
-"PO-Revision-Date: 2024-02-22 01:14+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2024-05-16 22:11+0000\n"
+"PO-Revision-Date: 2024-05-19 10:40+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -20,16 +20,16 @@ msgstr ""
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert és mások"
+#| msgid "Christian Hergert, et al."
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
+#: lib/dspy-view.ui:24 src/main.c:85
 msgid "D-Spy"
 msgstr "D-kém"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:16
-#| msgid "D-Bus Connection Failed"
 msgid "Analyze D-Bus connections"
 msgstr "D-busz kapcsolatok elemzése"
 
@@ -46,7 +46,6 @@ msgid "Discover and explore D-Bus services"
 msgstr "D-busz szolgáltatások felfedezése és vizsgálata"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-#| msgid "dbus;"
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
@@ -57,17 +56,14 @@ msgid "Connected to “%s”"
 msgstr "Kapcsolódva ehhez: „%s”"
 
 #: lib/dspy-connection-button.c:221
-#| msgid "System"
 msgid "S_ystem"
 msgstr "_Rendszer"
 
 #: lib/dspy-connection-button.c:223
-#| msgid "Session"
 msgid "_Session"
 msgstr "_Munkamenet"
 
 #: lib/dspy-connection-button.c:225
-#| msgid "Other"
 msgid "_Other"
 msgstr "_Egyéb"
 
@@ -96,7 +92,6 @@ msgid "Parameters"
 msgstr "Paraméterek"
 
 #: lib/dspy-method-view.ui:126
-#| msgid "Execute"
 msgid "_Execute"
 msgstr "_Végrehajtás"
 
@@ -105,7 +100,6 @@ msgid "Result"
 msgstr "Eredmény"
 
 #: lib/dspy-method-view.ui:182
-#| msgid "Copy"
 msgid "_Copy"
 msgstr "_Másolás"
 
@@ -189,39 +183,39 @@ msgstr "Szignálok"
 msgid "Array of [%s]"
 msgstr "[%s] tömb"
 
-#: lib/dspy-view.c:125
+#: lib/dspy-view.c:126
 msgid "Bus"
 msgstr "Busz"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:165
 msgid "Access Denied by Peer"
 msgstr "A partner megtagadta a hozzáférést"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:167
 msgid "Authentication Failed"
 msgstr "Hitelesítés sikertelen"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:169
 msgid "Operation Timed Out"
 msgstr "A művelet túllépte az időkorlátot"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:171
 msgid "Lost Connection to Bus"
 msgstr "A buszkapcsolat elveszett"
 
-#: lib/dspy-view.c:172
+#: lib/dspy-view.c:173
 msgid "D-Bus Connection Failed"
 msgstr "A D-busz kapcsolat sikertelen"
 
-#: lib/dspy-view.c:474
+#: lib/dspy-view.c:475
 msgid "Connect"
 msgstr "Kapcsolódás"
 
-#: lib/dspy-view.c:475
+#: lib/dspy-view.c:476
 msgid "Provide the address of the message bus"
 msgstr "Adja meg az üzenetbusz címét"
 
-#: lib/dspy-view.c:477
+#: lib/dspy-view.c:478
 msgid "Connect to Other Bus"
 msgstr "Kapcsolódás másik buszhoz"
 
@@ -237,28 +231,26 @@ msgstr "Busznevek keresése"
 msgid "Bus Names"
 msgstr "Busznevek"
 
-#: lib/dspy-view.ui:144
+#: lib/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "Válasszon D-busz nevet"
 
-#: lib/dspy-view.ui:145
-#| msgid "Select a bus name to introspect the peer."
+#: lib/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
 msgstr "Válasszon egy busznevet a partner elemzéséhez"
 
-#: lib/dspy-view.ui:161
+#: lib/dspy-view.ui:160
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: lib/dspy-view.ui:231
+#: lib/dspy-view.ui:230
 msgid "_New Window"
 msgstr "Új _ablak"
 
-#: lib/dspy-view.ui:237
+#: lib/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "A D-kém _névjegye"
 
 #: lib/gtk/menus.ui:5
-#| msgid "Connect to Other Bus"
 msgid "Connect to Other Bus…"
 msgstr "Kapcsolódás másik buszhoz…"
