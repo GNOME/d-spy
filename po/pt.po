@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-02-07 12:34+0000\n"
-"PO-Revision-Date: 2024-03-17 23:09+0000\n"
+"POT-Creation-Date: 2024-05-20 17:10+0000\n"
+"PO-Revision-Date: 2024-05-21 23:11+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Unknown\n"
 "Language: zxx\n"
@@ -13,12 +13,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 "X-Loco-Source-Locale: en_GB\n"
 "X-Loco-Parser: loco_parse_po\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, et al."
+#| msgid "Christian Hergert, et al."
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
 #: lib/dspy-view.ui:24 src/main.c:85
@@ -42,7 +43,6 @@ msgid "Discover and explore D-Bus services"
 msgstr "Descubra e explore os serviços D-Bus"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-#| msgid "dbus;"
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
