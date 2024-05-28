@@ -1,0 +1,255 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Gnome Nepali Translation Project\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2024-05-28 12:36+0000\n"
+"PO-Revision-Date: 2024-05-28 22:41+0545\n"
+"Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
+"Language-Team: Nepali Translation Team<chautari@gmail.com>\n"
+"Language: ne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "क्रिश्चियन हर्गर्ट"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: lib/dspy-view.ui:24 src/main.c:85
+msgid "D-Spy"
+msgstr "डि-स्पाई"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr ""
+
+#: data/org.gnome.dspy.appdata.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr ""
+
+#: data/org.gnome.dspy.appdata.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "डि-स्पाई इन्टरफेस"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "Discover and explore D-Bus services"
+msgstr ""
+
+#: data/org.gnome.dspy.desktop.in.in:8
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
+
+#. translators: %s is replaced with the address of the D-Bus bus
+#: lib/dspy-connection-button.c:76
+#, c-format
+msgid "Connected to “%s”"
+msgstr "%s जडान भयो"
+
+#: lib/dspy-connection-button.c:221
+msgid "S_ystem"
+msgstr "प्रणाली"
+
+#: lib/dspy-connection-button.c:223
+msgid "_Session"
+msgstr "सत्र"
+
+#: lib/dspy-connection-button.c:225
+msgid "_Other"
+msgstr "अन्य"
+
+#: lib/dspy-method-view.c:191
+msgid "Execute"
+msgstr "कार्यान्वयन गर्नुहोस्"
+
+#: lib/dspy-method-view.c:273
+msgid "Cancel"
+msgstr "रद्द गर्ने"
+
+#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+msgid "Object Path"
+msgstr "वस्तु मार्ग"
+
+#: lib/dspy-method-view.ui:36
+msgid "Interface"
+msgstr "इन्टरफेस"
+
+#: lib/dspy-method-view.ui:61
+msgid "Method"
+msgstr "विधि"
+
+#: lib/dspy-method-view.ui:86
+msgid "Parameters"
+msgstr "परामितिहरू"
+
+#: lib/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "कार्यान्वयन गर्नुहोस्"
+
+#: lib/dspy-method-view.ui:141
+msgid "Result"
+msgstr "परिणाम"
+
+#: lib/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "प्रतिलिपि बनाउनुहोस्"
+
+#: lib/dspy-method-view.ui:194
+msgid "Elapsed Time"
+msgstr "बितेको समय"
+
+#: lib/dspy-name-marquee.ui:12
+msgid "Bus Address"
+msgstr "बस ठेगाना"
+
+#: lib/dspy-name-marquee.ui:36
+msgid "Name"
+msgstr "नाम"
+
+#: lib/dspy-name-marquee.ui:60
+msgid "Owner"
+msgstr "मालिक"
+
+#: lib/dspy-name-marquee.ui:84
+msgid "Process ID"
+msgstr "प्रक्रिया आईडी"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+msgid "Activatable"
+msgstr "सक्रिय भएको अवस्था"
+
+#: lib/dspy-name-row.c:78
+msgid "Yes"
+msgstr "हो"
+
+#: lib/dspy-name-row.c:80
+msgid "No"
+msgstr "होईन"
+
+#: lib/dspy-name-row.c:85
+#, c-format
+msgid "%s: %u"
+msgstr "%s: %u"
+
+#: lib/dspy-name-row.c:85
+msgid "PID"
+msgstr "(पीआईडी) PID"
+
+#: lib/dspy-node.c:468
+msgid "read/write"
+msgstr "पढ्नुहोस् र लेख्नुहोस्"
+
+#: lib/dspy-node.c:470
+msgid "write-only"
+msgstr "लेखन मात्र"
+
+#: lib/dspy-node.c:472
+msgid "read-only"
+msgstr "पढ्न मात्रै मिल्ने"
+
+#: lib/dspy-node.c:587
+msgid "Interfaces"
+msgstr "इन्टरफेस"
+
+#: lib/dspy-node.c:590
+msgid "Methods"
+msgstr "विधि"
+
+#: lib/dspy-node.c:596
+msgid "Properties"
+msgstr "गुणहरू"
+
+#: lib/dspy-node.c:612
+msgid "Signals"
+msgstr "सङ्केत"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: lib/dspy-signature.c:77
+#, fuzzy, c-format
+msgid "Array of [%s]"
+msgstr "अपेक्षित <gda_array>,मा<gda_array_data>,<%s> प्राप्त भयो"
+
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr "बस"
+
+#: lib/dspy-view.c:164
+msgid "Access Denied by Peer"
+msgstr "सहकर्मीद्वारा पहुँच अस्वीकृत गरियो"
+
+#: lib/dspy-view.c:166
+msgid "Authentication Failed"
+msgstr "प्रमाणीकरण असफल भयो"
+
+#: lib/dspy-view.c:168
+msgid "Operation Timed Out"
+msgstr "सञ्चालन समय समाप्त भयो"
+
+#: lib/dspy-view.c:170
+msgid "Lost Connection to Bus"
+msgstr ""
+
+#: lib/dspy-view.c:172
+msgid "D-Bus Connection Failed"
+msgstr ""
+
+#: lib/dspy-view.c:474
+msgid "Connect"
+msgstr "जडान गर्नुहोस्"
+
+#: lib/dspy-view.c:475
+msgid "Provide the address of the message bus"
+msgstr "सन्देश बसको ठेगाना प्रदान गर्नुहोस्"
+
+#: lib/dspy-view.c:477
+msgid "Connect to Other Bus"
+msgstr ""
+
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "मुख्य मेनु"
+
+#: lib/dspy-view.ui:66
+msgid "Search Bus Names"
+msgstr ""
+
+#: lib/dspy-view.ui:80
+msgid "Bus Names"
+msgstr ""
+
+#: lib/dspy-view.ui:144
+msgid "Select a D-Bus Name"
+msgstr ""
+
+#: lib/dspy-view.ui:145
+msgid "Select a bus name to introspect the peer"
+msgstr ""
+
+#: lib/dspy-view.ui:161
+msgid "Refresh"
+msgstr "ताजा पार्नुहोस्"
+
+#: lib/dspy-view.ui:231
+msgid "_New Window"
+msgstr "नयाँ सञ्झ्याल"
+
+#: lib/dspy-view.ui:237
+msgid "_About D-Spy"
+msgstr "डि-स्पाई बारेमा"
+
+#: lib/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr ""
