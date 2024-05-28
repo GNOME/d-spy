@@ -7,21 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-04-18 08:33+0000\n"
-"PO-Revision-Date: 2024-04-18 14:40+0530\n"
+"POT-Creation-Date: 2024-05-16 22:11+0000\n"
+"PO-Revision-Date: 2024-05-17 17:41+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
-"Language-Team: Hindi\n"
+"Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 46.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 46.1\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert, et al."
-msgstr "क्रिश्चियन हेर्गर्ट, और अन्य।"
+msgid "Christian Hergert"
+msgstr "क्रिश्चियन हेर्गर्ट"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
 #: lib/dspy-view.ui:24 src/main.c:85
@@ -72,7 +72,7 @@ msgstr "निष्पादित करें"
 
 #: lib/dspy-method-view.c:273
 msgid "Cancel"
-msgstr "रद्द"
+msgstr "रद्द करें"
 
 #: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
 msgid "Object Path"
@@ -133,7 +133,7 @@ msgstr "सक्रिययोग्य"
 
 #: lib/dspy-name-row.c:78
 msgid "Yes"
-msgstr "हाँ"
+msgstr "हां"
 
 #: lib/dspy-name-row.c:80
 msgid "No"
@@ -166,7 +166,7 @@ msgstr "इंटरफेस"
 
 #: lib/dspy-node.c:590
 msgid "Methods"
-msgstr "विधियाँ"
+msgstr "विधियां"
 
 #: lib/dspy-node.c:596
 msgid "Properties"
@@ -196,7 +196,7 @@ msgstr "प्रमाणीकरण विफल"
 
 #: lib/dspy-view.c:169
 msgid "Operation Timed Out"
-msgstr "ऑपरेशन का समय समाप्त"
+msgstr "अभियान का समय समाप्त"
 
 #: lib/dspy-view.c:171
 msgid "Lost Connection to Bus"
@@ -240,7 +240,7 @@ msgstr "पीयर का आत्मविश्लेषण करने �
 
 #: lib/dspy-view.ui:160
 msgid "Refresh"
-msgstr "ताज़ा करें"
+msgstr "ताजा करें"
 
 #: lib/dspy-view.ui:230
 msgid "_New Window"
