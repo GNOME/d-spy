@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2024-01-09 18:34+0000\n"
-"PO-Revision-Date: 2024-02-17 00:04+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2024-05-28 17:46+0000\n"
+"PO-Revision-Date: 2024-05-29 12:26+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert, et al."
-msgstr "כריסטיאן הרגרט ושותפים."
+msgid "Christian Hergert"
+msgstr "כריסטיאן הרגרט"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
+#: lib/dspy-view.ui:24 src/main.c:85
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -45,7 +45,6 @@ msgid "Discover and explore D-Bus services"
 msgstr "גילוי וחקירת שירותי D-Bus"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-#| msgid "dbus;"
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;חוקר אפיק;חוקר אפיק מערכת;דיבאס;"
 
