@@ -1,3 +1,9 @@
+# D-Spy 47.alpha
+
+ * Transition to GNOME release numbering
+ * Build changes to accomidate bundling from Builder
+ * Translation updates
+
 # D-Spy 1.10.0 (GNOME 46.0)
 
  * Translation updates
