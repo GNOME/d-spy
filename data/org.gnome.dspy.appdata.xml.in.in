@@ -8,7 +8,7 @@
   <developer id="gnome.org">
     <name>Christian Hergert</name>
   </developer>
-  <launchable type="desktop-id">org.gnome.dspy.desktop</launchable>
+  <launchable type="desktop-id">@app_id@.desktop</launchable>
   <translation type="gettext">d-spy</translation>
   <provides><binary>d-spy</binary></provides>
   <name>D-Spy</name>
