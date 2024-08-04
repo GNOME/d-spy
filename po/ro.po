@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-09-19 17:08+0000\n"
-"PO-Revision-Date: 2023-10-09 15:13+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2024-07-29 23:28+0000\n"
+"PO-Revision-Date: 2024-08-04 13:00+0300\n"
 "Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
 "gmail [dot] com>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
@@ -18,26 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.4\n"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, și alții."
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:13 src/main.c:86 src/main.c:88
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: lib/dspy-view.ui:24 src/main.c:85
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:10
-msgid "A D-Bus explorer for GNOME"
-msgstr "Un explorator D-Bus pentru GNOME"
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analizează conexiunile D-Bus"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:12
+#: data/org.gnome.dspy.appdata.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
 msgstr "D-Spy este o unealtă simplă pentru a explora conexiunile D-Bus."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:21
+#: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "Interfață D-Spy"
 
@@ -46,8 +47,8 @@ msgid "Discover and explore D-Bus services"
 msgstr "Descoperă și explorează servicii D-Bus"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-msgid "dbus;"
-msgstr "dbus;magistrală d;"
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: lib/dspy-connection-button.c:76
@@ -56,18 +57,18 @@ msgid "Connected to “%s”"
 msgstr "Conectat la „%s”"
 
 #: lib/dspy-connection-button.c:221
-msgid "System"
-msgstr "Sistem"
+msgid "S_ystem"
+msgstr "S_istem"
 
 #: lib/dspy-connection-button.c:223
-msgid "Session"
-msgstr "Sesiune"
+msgid "_Session"
+msgstr "_Sesiune"
 
 #: lib/dspy-connection-button.c:225
-msgid "Other"
-msgstr "Altele"
+msgid "_Other"
+msgstr "_Altele"
 
-#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+#: lib/dspy-method-view.c:191
 msgid "Execute"
 msgstr "Execută"
 
@@ -91,15 +92,19 @@ msgstr "Metodă"
 msgid "Parameters"
 msgstr "Parametri"
 
-#: lib/dspy-method-view.ui:140
+#: lib/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "_Execută"
+
+#: lib/dspy-method-view.ui:141
 msgid "Result"
 msgstr "Rezultat"
 
-#: lib/dspy-method-view.ui:181
-msgid "Copy"
-msgstr "Copiază"
+#: lib/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "_Copiază"
 
-#: lib/dspy-method-view.ui:192
+#: lib/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "Timpul scurs"
 
@@ -211,30 +216,45 @@ msgstr "Conectare"
 msgid "Provide the address of the message bus"
 msgstr "Furnizează adresa magistralei de mesaj"
 
-#: lib/dspy-view.c:477 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "Conectare la altă magistrală"
 
-#: lib/dspy-view.ui:51
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Meniu principal"
+
+#: lib/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "Caută numele de magistrale"
 
-#: lib/dspy-view.ui:65
+#: lib/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "Nume de magistrale"
 
-#: lib/dspy-view.ui:129
+#: lib/dspy-view.ui:144
 msgid "Select a D-Bus Name"
 msgstr "Selectați un nume de D-Bus"
 
-#: lib/dspy-view.ui:130
-msgid "Select a bus name to introspect the peer."
-msgstr "Selectați un nume de magistrală pentru a introspecta partenerul."
+#: lib/dspy-view.ui:145
+msgid "Select a bus name to introspect the peer"
+msgstr "Selectați un nume de magistrală pentru a introspecta partenerul"
 
-#: lib/dspy-view.ui:215
+#: lib/dspy-view.ui:161
+msgid "Refresh"
+msgstr "Reîmprospătează"
+
+#: lib/dspy-view.ui:231
 msgid "_New Window"
 msgstr "Fereastră _nouă"
 
-#: lib/dspy-view.ui:221
+#: lib/dspy-view.ui:237
 msgid "_About D-Spy"
 msgstr "_Despre D-Spy"
+
+#: lib/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "Conectare la altă magistrală…"
+
+#~ msgid "A D-Bus explorer for GNOME"
+#~ msgstr "Un explorator D-Bus pentru GNOME"
