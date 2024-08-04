@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-02-14 23:51+0000\n"
-"PO-Revision-Date: 2024-02-16 16:46+0100\n"
+"POT-Creation-Date: 2024-08-04 18:15+0000\n"
+"PO-Revision-Date: 2024-08-04 23:05+0200\n"
 "Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -20,14 +20,14 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ../../po-files\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert s sodelavci"
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
 #: lib/dspy-view.ui:24 src/main.c:85
@@ -40,7 +40,7 @@ msgstr "Analiza povezav vodila D-Bus"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "Program D-Spy je enostavno orodje za raziskovanje vodil D-Bus."
+msgstr "Program D-Spy je enostavno orodje za pregledovanje vodil D-Bus."
 
 #: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
@@ -48,7 +48,7 @@ msgstr "Vmesnik D-Spy"
 
 #: data/org.gnome.dspy.desktop.in.in:7
 msgid "Discover and explore D-Bus services"
-msgstr "Odkrivanje in raziskovanje storitev vodila D-Bus"
+msgstr "Odkrivanje in pregledovanje storitev vodila D-Bus"
 
 #: data/org.gnome.dspy.desktop.in.in:8
 msgid "dspy;dbus;"
@@ -58,7 +58,7 @@ msgstr "dspy;dbus;vodila;vodilo;"
 #: lib/dspy-connection-button.c:76
 #, c-format
 msgid "Connected to “%s”"
-msgstr "Povezano z »%s«"
+msgstr "Povezano z vodilom »%s«"
 
 #: lib/dspy-connection-button.c:221
 msgid "S_ystem"
