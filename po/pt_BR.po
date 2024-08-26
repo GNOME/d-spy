@@ -2,29 +2,30 @@
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2023.
+# Juliano de Souza Camargo <julianosc@pm.me>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2024-01-09 18:34+0000\n"
-"PO-Revision-Date: 2024-04-04 18:42-0300\n"
-"Last-Translator: Leônidas Araújo <leorusvellt@hotmail.com>\n"
-"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2024-08-16 11:55+0000\n"
+"PO-Revision-Date: 2024-08-26 09:09-0300\n"
+"Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
+"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Gtranslator 46.1\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, et al."
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
+#: lib/dspy-view.ui:24 src/main.c:85
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -45,7 +46,6 @@ msgid "Discover and explore D-Bus services"
 msgstr "Descubra e explore serviços D-Bus"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-#| msgid "dbus;"
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
@@ -183,39 +183,39 @@ msgstr "Sinais"
 msgid "Array of [%s]"
 msgstr "Array de [%s]"
 
-#: lib/dspy-view.c:125
+#: lib/dspy-view.c:126
 msgid "Bus"
 msgstr "Barramento"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:165
 msgid "Access Denied by Peer"
 msgstr "Acesso negado pelo par"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:167
 msgid "Authentication Failed"
 msgstr "Falha de autenticação"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:169
 msgid "Operation Timed Out"
 msgstr "A operação expirou"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:171
 msgid "Lost Connection to Bus"
 msgstr "Conexão perdida com o barramento"
 
-#: lib/dspy-view.c:172
+#: lib/dspy-view.c:173
 msgid "D-Bus Connection Failed"
 msgstr "Falha na conexão do D-Bus"
 
-#: lib/dspy-view.c:474
+#: lib/dspy-view.c:475
 msgid "Connect"
 msgstr "Conectar"
 
-#: lib/dspy-view.c:475
+#: lib/dspy-view.c:476
 msgid "Provide the address of the message bus"
 msgstr "Forneça o endereço do barramento de mensagens"
 
-#: lib/dspy-view.c:477
+#: lib/dspy-view.c:478
 msgid "Connect to Other Bus"
 msgstr "Conectar a outro barramento"
 
@@ -231,23 +231,23 @@ msgstr "Pesquisar nomes de barramentos"
 msgid "Bus Names"
 msgstr "Nomes de barramentos"
 
-#: lib/dspy-view.ui:144
+#: lib/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "Selecionar um nome D-Bus"
 
-#: lib/dspy-view.ui:145
+#: lib/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
 msgstr "Selecione um nome de barramento para examinar o par"
 
-#: lib/dspy-view.ui:161
+#: lib/dspy-view.ui:160
 msgid "Refresh"
 msgstr "Atualizar"
 
-#: lib/dspy-view.ui:231
+#: lib/dspy-view.ui:230
 msgid "_New Window"
 msgstr "_Nova janela"
 
-#: lib/dspy-view.ui:237
+#: lib/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "_Sobre o D-Spy"
 
