@@ -47,6 +47,7 @@ on_activate (GtkApplication *app)
                            "application", app,
                            "default-width", 1000,
                            "default-height", 700,
+                           "icon-name", PACKAGE_ICON_NAME,
                            NULL);
 
   gtk_window_present (window);
@@ -66,6 +67,7 @@ new_window_cb (GSimpleAction *action,
                          "application", app,
                          "default-width", 1000,
                          "default-height", 700,
+                         "icon-name", PACKAGE_ICON_NAME,
                          NULL);
   gtk_window_present (window);
 }
