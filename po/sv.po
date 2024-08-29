@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-02-07 12:34+0000\n"
-"PO-Revision-Date: 2024-03-03 13:36+0100\n"
+"POT-Creation-Date: 2024-05-16 22:11+0000\n"
+"PO-Revision-Date: 2024-05-17 11:06+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -20,8 +20,9 @@ msgstr ""
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert med flera."
+#| msgid "Christian Hergert, et al."
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
 #: lib/dspy-view.ui:24 src/main.c:85
@@ -182,39 +183,39 @@ msgstr "Signaler"
 msgid "Array of [%s]"
 msgstr "Vektor av [%s]"
 
-#: lib/dspy-view.c:125
+#: lib/dspy-view.c:126
 msgid "Bus"
 msgstr "Buss"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:165
 msgid "Access Denied by Peer"
 msgstr "Åtkomst nekades av motpart"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:167
 msgid "Authentication Failed"
 msgstr "Autentisering misslyckades"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:169
 msgid "Operation Timed Out"
 msgstr "Operationens tidsgräns överskreds"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:171
 msgid "Lost Connection to Bus"
 msgstr "Förlorade anslutning till buss"
 
-#: lib/dspy-view.c:172
+#: lib/dspy-view.c:173
 msgid "D-Bus Connection Failed"
 msgstr "D-Bus-anslutning misslyckades"
 
-#: lib/dspy-view.c:474
+#: lib/dspy-view.c:475
 msgid "Connect"
 msgstr "Anslut"
 
-#: lib/dspy-view.c:475
+#: lib/dspy-view.c:476
 msgid "Provide the address of the message bus"
 msgstr "Tillhandahåll adressen för meddelandebussen"
 
-#: lib/dspy-view.c:477
+#: lib/dspy-view.c:478
 msgid "Connect to Other Bus"
 msgstr "Anslut till annan buss"
 
@@ -230,23 +231,23 @@ msgstr "Sök bussnamn"
 msgid "Bus Names"
 msgstr "Bussnamn"
 
-#: lib/dspy-view.ui:144
+#: lib/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "Välj ett D-Bus-namn"
 
-#: lib/dspy-view.ui:145
+#: lib/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
 msgstr "Välj ett bussnamn för att introspektera motparten"
 
-#: lib/dspy-view.ui:161
+#: lib/dspy-view.ui:160
 msgid "Refresh"
 msgstr "Uppdatera"
 
-#: lib/dspy-view.ui:231
+#: lib/dspy-view.ui:230
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: lib/dspy-view.ui:237
+#: lib/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "_Om D-Spy"
 
