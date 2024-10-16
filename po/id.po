@@ -1,15 +1,15 @@
 # Indonesian translation for d-spy.
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
-# Andika Triwidada <atriwidada@gnome.org>, 2023.
+# Andika Triwidada <atriwidada@gnome.org>, 2023, 2024.
 # Kukuh Syafaat <kukuhsyafaat@gnome.org, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: d-spy main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2024-01-09 18:34+0000\n"
-"PO-Revision-Date: 2024-02-21 19:59+0700\n"
+"Project-Id-Version: d-spy gnome-46\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2024-09-14 18:59+0000\n"
+"PO-Revision-Date: 2024-10-16 21:31+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -17,15 +17,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, dkk."
+#| msgid "Christian Hergert, et al."
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
+#: lib/dspy-view.ui:24 src/main.c:85
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -254,6 +255,3 @@ msgstr "Tent_ang D-Spy"
 #: lib/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "Menyambung ke Bus Lain…"
-
-#~ msgid "A D-Bus explorer for GNOME"
-#~ msgstr "Pengeksplorasi D-Bus bagi GNOME"
