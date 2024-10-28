@@ -1,14 +1,14 @@
 # Dutch translation for d-spy.
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
-# Nathan Follens <nfollens@gnome.org>, 2023.
+# Nathan Follens <nfollens@gnome.org>, 2023-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-09-02 19:06+0000\n"
-"PO-Revision-Date: 2023-09-03 17:28+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2024-07-29 20:48+0000\n"
+"PO-Revision-Date: 2024-10-28 01:24+0100\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
 "Language: nl\n"
@@ -16,26 +16,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, et al."
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
+#| msgid "Christian Hergert, et al."
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: src/main.c:86 src/main.c:88
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: lib/dspy-view.ui:24 src/main.c:85
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:10
-msgid "A D-Bus explorer for GNOME"
-msgstr "Een D-Bus-verkenner voor GNOME"
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analyseer D-Bus-verbindingen"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:12
+#: data/org.gnome.dspy.appdata.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
 msgstr "D-Spy is een eenvoudig hulpmiddel om D-Bus-verbindingen te verkennen."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:21
+#: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "D-Spy-interface"
 
@@ -44,8 +46,9 @@ msgid "Discover and explore D-Bus services"
 msgstr "Ontdek en verken D-Bus-diensten"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-msgid "dbus;"
-msgstr "dbus;"
+#| msgid "dbus;"
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: lib/dspy-connection-button.c:76
@@ -54,18 +57,18 @@ msgid "Connected to “%s”"
 msgstr "Verbonden met ‘%s’"
 
 #: lib/dspy-connection-button.c:221
-msgid "System"
-msgstr "Systeem"
+msgid "S_ystem"
+msgstr "S_ysteem"
 
 #: lib/dspy-connection-button.c:223
-msgid "Session"
-msgstr "Sessie"
+msgid "_Session"
+msgstr "_Sessie"
 
 #: lib/dspy-connection-button.c:225
-msgid "Other"
-msgstr "Overig"
+msgid "_Other"
+msgstr "_Overig"
 
-#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+#: lib/dspy-method-view.c:191
 msgid "Execute"
 msgstr "Uitvoeren"
 
@@ -89,15 +92,19 @@ msgstr "Methode"
 msgid "Parameters"
 msgstr "Parameters"
 
-#: lib/dspy-method-view.ui:140
+#: lib/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "Uitvoer_en"
+
+#: lib/dspy-method-view.ui:141
 msgid "Result"
 msgstr "Resultaat"
 
-#: lib/dspy-method-view.ui:181
-msgid "Copy"
-msgstr "Kopiëren"
+#: lib/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "_Kopiëren"
 
-#: lib/dspy-method-view.ui:192
+#: lib/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "Verlopen tijd"
 
@@ -105,15 +112,15 @@ msgstr "Verlopen tijd"
 msgid "Bus Address"
 msgstr "Busadres"
 
-#: lib/dspy-name-marquee.ui:35
+#: lib/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Naam"
 
-#: lib/dspy-name-marquee.ui:58
+#: lib/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Eigenaar"
 
-#: lib/dspy-name-marquee.ui:81
+#: lib/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "Proces-ID"
 
@@ -177,58 +184,77 @@ msgstr "Signalen"
 msgid "Array of [%s]"
 msgstr "Array van [%s]"
 
-#: lib/dspy-view.c:162
+#: lib/dspy-view.c:126
+msgid "Bus"
+msgstr "Bus"
+
+#: lib/dspy-view.c:165
 msgid "Access Denied by Peer"
 msgstr "Toegang geweigerd door peer"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:167
 msgid "Authentication Failed"
 msgstr "Aanmelding mislukt"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:169
 msgid "Operation Timed Out"
 msgstr "Time-out bij bewerking"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:171
 msgid "Lost Connection to Bus"
 msgstr "Verbinding met bus verbroken"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:173
 msgid "D-Bus Connection Failed"
 msgstr "Verbinding met D-Bus is mislukt"
 
-#: lib/dspy-view.c:469
+#: lib/dspy-view.c:475
 msgid "Connect"
 msgstr "Verbinden"
 
-#: lib/dspy-view.c:470
+#: lib/dspy-view.c:476
 msgid "Provide the address of the message bus"
 msgstr "Voer het adres van de berichtenbus is"
 
-#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:478
 msgid "Connect to Other Bus"
 msgstr "Verbinden met andere bus"
 
-#: lib/dspy-view.ui:40
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Hoofdmenu"
+
+#: lib/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "Busnamen zoeken"
 
-#: lib/dspy-view.ui:54
+#: lib/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "Busnamen"
 
-#: lib/dspy-view.ui:111
+#: lib/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "Selecteer een D-Bus-naam"
 
-#: lib/dspy-view.ui:112
-msgid "Select a bus name to introspect the peer."
-msgstr "Selecteer een busnaam om de peer te introspecteren."
+#: lib/dspy-view.ui:144
+msgid "Select a bus name to introspect the peer"
+msgstr "Selecteer een busnaam om de peer te introspecteren"
 
-#: src/dspy-window.ui:33
+#: lib/dspy-view.ui:160
+msgid "Refresh"
+msgstr "Vernieuwen"
+
+#: lib/dspy-view.ui:230
 msgid "_New Window"
 msgstr "_Nieuw venster"
 
-#: src/dspy-window.ui:39
+#: lib/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "_Over D-Spy"
+
+#: lib/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "Verbinden met andere bus…"
+
+#~ msgid "A D-Bus explorer for GNOME"
+#~ msgstr "Een D-Bus-verkenner voor GNOME"
