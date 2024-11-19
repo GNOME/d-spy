@@ -1,41 +1,42 @@
 # Italian translation for d-spy.
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
-# Davide Ferracin <davide.ferracin@protonmail.com>, 2023
+# Davide Ferracin <davide.ferracin@protonmail.com>, 2023, 2024
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-08-17 19:33+0000\n"
-"PO-Revision-Date: 2023-08-23 12:30+0200\n"
+"POT-Creation-Date: 2024-01-09 18:34+0000\n"
+"PO-Revision-Date: 2024-02-29 18:38+0100\n"
 "Last-Translator: Davide Ferracin <davide.ferracin@protonmail.com>\n"
-"Language: it\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
 msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, et al."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: src/main.c:86 src/main.c:88
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: lib/dspy-view.ui:24 src/main.c:86 src/main.c:88
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:10
-msgid "A D-Bus explorer for GNOME"
-msgstr "Un esploratore di D-Bus per GNOME"
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analizza connessioni D-Bus"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:12
+#: data/org.gnome.dspy.appdata.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
 msgstr "D-Spy è un semplice strumento per esplorare le connessioni D-Bus."
 
-#: data/org.gnome.dspy.appdata.xml.in.in:21
+#: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "Interfaccia di D-Spy"
 
@@ -44,28 +45,28 @@ msgid "Discover and explore D-Bus services"
 msgstr "Scopri ed esplora i servizi D-Bus"
 
 #: data/org.gnome.dspy.desktop.in.in:8
-msgid "dbus;"
-msgstr "dbus;"
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: lib/dspy-connection-button.c:76
-#, c-format, python-format
+#, c-format
 msgid "Connected to “%s”"
 msgstr "Connesso a «%s»"
 
 #: lib/dspy-connection-button.c:221
-msgid "System"
-msgstr "Sistema"
+msgid "S_ystem"
+msgstr "S_istema"
 
 #: lib/dspy-connection-button.c:223
-msgid "Session"
-msgstr "Sessione"
+msgid "_Session"
+msgstr "_Sessione"
 
 #: lib/dspy-connection-button.c:225
-msgid "Other"
-msgstr "Altro"
+msgid "_Other"
+msgstr "_Altro"
 
-#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
+#: lib/dspy-method-view.c:191
 msgid "Execute"
 msgstr "Esegui"
 
@@ -89,15 +90,19 @@ msgstr "Metodo"
 msgid "Parameters"
 msgstr "Parametri"
 
-#: lib/dspy-method-view.ui:140
+#: lib/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "_Esegui"
+
+#: lib/dspy-method-view.ui:141
 msgid "Result"
 msgstr "Risultato"
 
-#: lib/dspy-method-view.ui:181
-msgid "Copy"
-msgstr "Copia"
+#: lib/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "_Copia"
 
-#: lib/dspy-method-view.ui:192
+#: lib/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "Tempo trascorso"
 
@@ -105,20 +110,20 @@ msgstr "Tempo trascorso"
 msgid "Bus Address"
 msgstr "Indirizzo del bus"
 
-#: lib/dspy-name-marquee.ui:35
+#: lib/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Nome"
 
-#: lib/dspy-name-marquee.ui:58
+#: lib/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Proprietario"
 
-#: lib/dspy-name-marquee.ui:81
+#: lib/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "ID processo"
 
 #: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
-#, c-format, python-format
+#, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
@@ -135,7 +140,7 @@ msgid "No"
 msgstr "No"
 
 #: lib/dspy-name-row.c:85
-#, c-format, python-format
+#, c-format
 msgid "%s: %u"
 msgstr "%s: %u"
 
@@ -173,63 +178,81 @@ msgstr "Segnali"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: lib/dspy-signature.c:77
-#, c-format, python-format
+#, c-format
 msgid "Array of [%s]"
 msgstr "Array di [%s]"
 
-#: lib/dspy-view.c:162
+#: lib/dspy-view.c:125
+msgid "Bus"
+msgstr "Bus"
+
+#: lib/dspy-view.c:164
 msgid "Access Denied by Peer"
 msgstr "Accesso negato dal peer"
 
-#: lib/dspy-view.c:164
+#: lib/dspy-view.c:166
 msgid "Authentication Failed"
 msgstr "Autenticazione non riuscita"
 
-#: lib/dspy-view.c:166
+#: lib/dspy-view.c:168
 msgid "Operation Timed Out"
 msgstr "Tempo scaduto per l'operazione"
 
-#: lib/dspy-view.c:168
+#: lib/dspy-view.c:170
 msgid "Lost Connection to Bus"
 msgstr "Connessione al bus persa"
 
-#: lib/dspy-view.c:170
+#: lib/dspy-view.c:172
 msgid "D-Bus Connection Failed"
 msgstr "Connessione al bus non riuscita"
 
-#: lib/dspy-view.c:469
+#: lib/dspy-view.c:474
 msgid "Connect"
 msgstr "Connetti"
 
-#: lib/dspy-view.c:470
+#: lib/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "Fornire l'indirizzo del bus dei messaggi"
 
-#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
+#: lib/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "Connetti ad un altro bus"
 
-#: lib/dspy-view.ui:40
+#: lib/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Menù principale"
+
+#: lib/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "Cerca nomi di bus"
 
-#: lib/dspy-view.ui:54
+#: lib/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "Nomi bus"
 
-#: lib/dspy-view.ui:111
+#: lib/dspy-view.ui:144
 msgid "Select a D-Bus Name"
 msgstr "Selezionare un nome di un D-Bus"
 
-#: lib/dspy-view.ui:112
-msgid "Select a bus name to introspect the peer."
-msgstr "Selezionare il nome di un bus per ispezionare il peer."
+#: lib/dspy-view.ui:145
+msgid "Select a bus name to introspect the peer"
+msgstr "Selezionare il nome di un bus per ispezionare il peer"
 
-#: src/dspy-window.ui:33
+#: lib/dspy-view.ui:161
+msgid "Refresh"
+msgstr "Aggiorna"
+
+#: lib/dspy-view.ui:231
 msgid "_New Window"
 msgstr "_Nuova finestra"
 
-#: src/dspy-window.ui:39
+#: lib/dspy-view.ui:237
 msgid "_About D-Spy"
 msgstr "_Informazioni su D-Spy"
 
+#: lib/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "Connetti ad un altro bus…"
+
+#~ msgid "A D-Bus explorer for GNOME"
+#~ msgstr "Un esploratore di D-Bus per GNOME"
