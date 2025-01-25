@@ -36,7 +36,7 @@
 
 struct _DspyView
 {
-  GtkWidget parent_instance;
+  AdwBreakpointBin parent_instance;
 };
 
 typedef struct
@@ -60,15 +60,13 @@ typedef struct
   GtkStack                *stack;
   GtkStackPage            *introspect;
   GtkStackPage            *empty;
-  AdwNavigationSplitView  *paned;
-  AdwNavigationPage       *bus_navigation_page;
-  AdwToolbarView          *bus_toolbar_view;
   AdwStatusPage           *status_page;
+  AdwWindowTitle          *title;
 
-  guint                  destroyed : 1;
+  guint                    destroyed : 1;
 } DspyViewPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE (DspyView, dspy_view, GTK_TYPE_WIDGET)
+G_DEFINE_TYPE_WITH_PRIVATE (DspyView, dspy_view, ADW_TYPE_BREAKPOINT_BIN)
 
 static void dspy_view_set_model (DspyView   *self,
                                  GListModel *model);
@@ -122,7 +120,8 @@ radio_button_toggled_cb (DspyView             *self,
     return;
 
   gtk_stack_set_visible_child (priv->stack, gtk_stack_page_get_child (priv->empty));
-  adw_navigation_page_set_title (priv->bus_navigation_page, _("Bus"));
+
+  adw_window_title_set_title (priv->title, _("Bus"));
 
   connection = dspy_connection_button_get_connection (button);
   dspy_connection_list_names_async (connection,
@@ -356,15 +355,12 @@ name_row_activated_cb (DspyView    *self,
   gtk_tree_view_set_model (priv->introspection_tree_view, NULL);
   dspy_name_marquee_set_name (priv->name_marquee, name);
 
-  adw_navigation_page_set_title (priv->bus_navigation_page, dspy_name_get_name (name));
-  adw_toolbar_view_set_reveal_bottom_bars (priv->bus_toolbar_view, FALSE);
+  adw_window_title_set_title (priv->title, dspy_name_get_name (name));
 
   dspy_name_introspect_async (name,
                               priv->cancellable,
                               dspy_view_introspect_cb,
                               g_object_ref (self));
-
-  adw_navigation_split_view_set_show_content (priv->paned, TRUE);
 
   gtk_stack_set_visible_child (priv->stack, gtk_stack_page_get_child (priv->introspect));
 }
@@ -395,10 +391,7 @@ method_activated_cb (DspyView             *self,
   g_assert (DSPY_IS_TREE_VIEW (tree_view));
 
   if (DSPY_IS_METHOD_INVOCATION (invocation))
-    {
-      dspy_method_view_set_invocation (priv->method_view, invocation);
-      adw_toolbar_view_set_reveal_bottom_bars (priv->bus_toolbar_view, TRUE);
-    }
+    dspy_method_view_set_invocation (priv->method_view, invocation);
 }
 
 static void
@@ -521,19 +514,16 @@ dspy_view_dispose (GObject *object)
 {
   DspyView *self = (DspyView *)object;
   DspyViewPrivate *priv = dspy_view_get_instance_private (self);
-  GtkWidget *child;
 
   priv->destroyed = TRUE;
 
   g_cancellable_cancel (priv->cancellable);
-  g_clear_object (&priv->cancellable);
-  g_clear_object (&priv->filter_model);
-  g_clear_object (&priv->model);
 
   gtk_widget_dispose_template (GTK_WIDGET (self), DSPY_TYPE_VIEW);
 
-  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
-    gtk_widget_unparent (child);
+  g_clear_object (&priv->cancellable);
+  g_clear_object (&priv->filter_model);
+  g_clear_object (&priv->model);
 
   G_OBJECT_CLASS (dspy_view_parent_class)->dispose (object);
 }
@@ -563,10 +553,8 @@ dspy_view_class_init (DspyViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, system_button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, introspect);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, empty);
-  gtk_widget_class_bind_template_child_private (widget_class, DspyView, paned);
-  gtk_widget_class_bind_template_child_private (widget_class, DspyView, bus_navigation_page);
-  gtk_widget_class_bind_template_child_private (widget_class, DspyView, bus_toolbar_view);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, status_page);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyView, title);
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
@@ -605,12 +593,6 @@ dspy_view_init (DspyView *self)
   g_signal_connect_object (priv->refresh_button,
                            "clicked",
                            G_CALLBACK (refresh_button_clicked_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  g_signal_connect_object (priv->bus_toolbar_view,
-                           "notify::reveal-bottom-bars",
-                           G_CALLBACK (notify_child_revealed_cb),
                            self,
                            G_CONNECT_SWAPPED);
 

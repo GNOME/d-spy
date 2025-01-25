@@ -18,8 +18,10 @@
 
 #include "config.h"
 
-#include <adwaita.h>
 #include <glib/gi18n.h>
+
+#include <adwaita.h>
+#include <libpanel.h>
 
 #include "build-ident.h"
 #include "dspy-window.h"
@@ -118,6 +120,10 @@ main (int   argc,
   bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
+
+  gtk_init ();
+  adw_init ();
+  panel_init ();
 
   app = g_object_new (ADW_TYPE_APPLICATION,
                       "application-id", APP_ID,

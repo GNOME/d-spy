@@ -20,13 +20,13 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <adwaita.h>
 
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_VIEW (dspy_view_get_type())
 
-G_DECLARE_FINAL_TYPE (DspyView, dspy_view, DSPY, VIEW, GtkWidget)
+G_DECLARE_FINAL_TYPE (DspyView, dspy_view, DSPY, VIEW, AdwBreakpointBin)
 
 GtkWidget *dspy_view_new (void);
 

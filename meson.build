@@ -38,20 +38,25 @@ config_h.set10('DEVELOPMENT_BUILD', get_option('development'))
 glib_req_version = '2.76'
 gtk_req_version = '4.12'
 adwaita_req_version = '1.4'
+panel_req_version = '1.8'
 
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
 adwaita_req = '>= @0@'.format(adwaita_req_version)
+panel_req = '>= @0@'.format(panel_req_version)
 
 # Specify minimum library versions
 glib_major = glib_req_version.split('.')[0].to_int()
 glib_minor = glib_req_version.split('.')[1].to_int()
 gtk_major = gtk_req_version.split('.')[0].to_int()
 gtk_minor = gtk_req_version.split('.')[1].to_int()
+panel_major = panel_req_version.split('.')[0].to_int()
+panel_minor = panel_req_version.split('.')[1].to_int()
 
 libgio_dep = dependency('gio-2.0', version: glib_req)
 libgtk_dep = dependency('gtk4', version: gtk_req)
 libadwaita_dep = dependency('libadwaita-1', version: adwaita_req)
+libpanel_dep = dependency('libpanel-1', version: panel_req)
 
 # Compiler flags and warnings
 global_c_args = [
@@ -61,6 +66,8 @@ global_c_args = [
   '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_@0@_@1@'.format(glib_major, glib_minor),
   '-DGDK_VERSION_MIN_REQUIRED=GDK_VERSION_@0@_@1@'.format(gtk_major, gtk_minor),
   '-DGDK_VERSION_MAX_ALLOWED=GDK_VERSION_@0@_@1@'.format(gtk_major, gtk_minor),
+  '-DPANEL_VERSION_MIN_REQUIRED=PANEL_VERSION_@0@_@1@'.format(panel_major, panel_minor),
+  '-DPANEL_VERSION_MAX_ALLOWED=PANEL_VERSION_@0@_@1@'.format(panel_major, panel_minor),
 ]
 if cc.get_id() == 'msvc'
   test_c_args = [
