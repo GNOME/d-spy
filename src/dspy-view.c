@@ -20,8 +20,9 @@
 
 #include "config.h"
 
-#include <adwaita.h>
 #include <glib/gi18n.h>
+
+#include <adwaita.h>
 
 #include "dspy-connection-button.h"
 #include "dspy-list-model-filter.h"
@@ -32,8 +33,6 @@
 #include "dspy-simple-popover.h"
 #include "dspy-tree-view.h"
 #include "dspy-view.h"
-
-#include "libdspy-resources.h"
 
 struct _DspyView
 {
@@ -572,6 +571,7 @@ dspy_view_class_init (DspyViewClass *klass)
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
   g_type_ensure (ADW_TYPE_STATUS_PAGE);
+  g_type_ensure (DSPY_TYPE_CONNECTION_BUTTON);
   g_type_ensure (DSPY_TYPE_METHOD_VIEW);
   g_type_ensure (DSPY_TYPE_NAME_MARQUEE);
   g_type_ensure (DSPY_TYPE_TREE_VIEW);

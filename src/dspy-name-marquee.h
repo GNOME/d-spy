@@ -1,4 +1,4 @@
-/* dspy-method-view.h
+/* dspy-name-marquee.h
  *
  * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
@@ -20,27 +20,19 @@
 
 #pragma once
 
-#include "dspy-method-invocation.h"
-#include "dspy-version-macros.h"
+#include <gtk/gtk.h>
+
+#include "dspy-name.h"
 
 G_BEGIN_DECLS
 
-#define DSPY_TYPE_METHOD_VIEW (dspy_method_view_get_type())
+#define DSPY_TYPE_NAME_MARQUEE (dspy_name_marquee_get_type())
 
-DSPY_AVAILABLE_IN_ALL
-G_DECLARE_DERIVABLE_TYPE (DspyMethodView, dspy_method_view, DSPY, METHOD_VIEW, GtkWidget)
+G_DECLARE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, DSPY, NAME_MARQUEE, GtkWidget)
 
-struct _DspyMethodViewClass
-{
-  GtkWidgetClass parent_class;
-};
-
-DSPY_AVAILABLE_IN_ALL
-GtkWidget            *dspy_method_view_new            (void);
-DSPY_AVAILABLE_IN_ALL
-DspyMethodInvocation *dspy_method_view_get_invocation (DspyMethodView       *self);
-DSPY_AVAILABLE_IN_ALL
-void                  dspy_method_view_set_invocation (DspyMethodView       *self,
-                                                       DspyMethodInvocation *invocation);
+GtkWidget *dspy_name_marquee_new      (void);
+DspyName  *dspy_name_marquee_get_name (DspyNameMarquee *self);
+void       dspy_name_marquee_set_name (DspyNameMarquee *self,
+                                       DspyName        *name);
 
 G_END_DECLS

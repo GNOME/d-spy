@@ -184,7 +184,6 @@ configure_file(
 root_include_directory = include_directories('.')
 
 subdir('data')
-subdir('lib')
 subdir('src')
 subdir('po')
 

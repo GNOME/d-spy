@@ -1,4 +1,4 @@
-/* dspy.h
+/* dspy-view.h
  *
  * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
@@ -20,20 +20,14 @@
 
 #pragma once
 
-#define DSPY_INSIDE
+#include <gtk/gtk.h>
 
-# include "dspy-connection.h"
-# include "dspy-connection-button.h"
-# include "dspy-introspection-model.h"
-# include "dspy-method-invocation.h"
-# include "dspy-method-view.h"
-# include "dspy-name.h"
-# include "dspy-name-marquee.h"
-# include "dspy-name-row.h"
-# include "dspy-names-model.h"
-# include "dspy-tree-view.h"
-# include "dspy-version.h"
-# include "dspy-version-macros.h"
-# include "dspy-view.h"
+G_BEGIN_DECLS
 
-#undef DSPY_INSIDE
+#define DSPY_TYPE_VIEW (dspy_view_get_type())
+
+G_DECLARE_FINAL_TYPE (DspyView, dspy_view, DSPY, VIEW, GtkWidget)
+
+GtkWidget *dspy_view_new (void);
+
+G_END_DECLS

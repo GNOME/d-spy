@@ -1,4 +1,4 @@
-/* dspy-tree-view.h
+/* dspy-introspection-model.h
  *
  * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
@@ -20,30 +20,16 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <gio/gio.h>
 
-#include "dspy-method-invocation.h"
-#include "dspy-version-macros.h"
+#include "dspy-name.h"
 
 G_BEGIN_DECLS
 
-#define DSPY_TYPE_TREE_VIEW (dspy_tree_view_get_type())
+#define DSPY_TYPE_INTROSPECTION_MODEL (dspy_introspection_model_get_type())
 
-DSPY_AVAILABLE_IN_ALL
-G_DECLARE_DERIVABLE_TYPE (DspyTreeView, dspy_tree_view, DSPY, TREE_VIEW, GtkTreeView)
+G_DECLARE_FINAL_TYPE (DspyIntrospectionModel, dspy_introspection_model, DSPY, INTROSPECTION_MODEL, GObject)
 
-struct _DspyTreeViewClass
-{
-  GtkTreeViewClass parent_class;
-
-  void (*method_activated) (DspyTreeView         *self,
-                            DspyMethodInvocation *invocation);
-
-  /*< private >*/
-  gpointer _reserved[8];
-};
-
-DSPY_AVAILABLE_IN_ALL
-GtkWidget *dspy_tree_view_new (void);
+DspyName *dspy_introspection_model_get_name (DspyIntrospectionModel *self);
 
 G_END_DECLS

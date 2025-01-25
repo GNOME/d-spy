@@ -1,4 +1,4 @@
-/* dspy-connection-button.h
+/* dspy-method-view.h
  *
  * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
@@ -20,29 +20,22 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
-
-#include "dspy-connection.h"
-#include "dspy-version-macros.h"
+#include "dspy-method-invocation.h"
 
 G_BEGIN_DECLS
 
-#define DSPY_TYPE_CONNECTION_BUTTON (dspy_connection_button_get_type())
+#define DSPY_TYPE_METHOD_VIEW (dspy_method_view_get_type())
 
-DSPY_AVAILABLE_IN_ALL
-G_DECLARE_DERIVABLE_TYPE (DspyConnectionButton, dspy_connection_button, DSPY, CONNECTION_BUTTON, GtkToggleButton)
+G_DECLARE_DERIVABLE_TYPE (DspyMethodView, dspy_method_view, DSPY, METHOD_VIEW, GtkWidget)
 
-struct _DspyConnectionButtonClass
+struct _DspyMethodViewClass
 {
-  GtkToggleButtonClass parent_class;
+  GtkWidgetClass parent_class;
 };
 
-DSPY_AVAILABLE_IN_ALL
-GtkWidget      *dspy_connection_button_new            (void);
-DSPY_AVAILABLE_IN_ALL
-DspyConnection *dspy_connection_button_get_connection (DspyConnectionButton *self);
-DSPY_AVAILABLE_IN_ALL
-void            dspy_connection_button_set_connection (DspyConnectionButton *self,
-                                                       DspyConnection       *connection);
+GtkWidget            *dspy_method_view_new            (void);
+DspyMethodInvocation *dspy_method_view_get_invocation (DspyMethodView       *self);
+void                  dspy_method_view_set_invocation (DspyMethodView       *self,
+                                                       DspyMethodInvocation *invocation);
 
 G_END_DECLS

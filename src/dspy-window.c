@@ -20,6 +20,7 @@
 
 #include "config.h"
 
+#include "dspy-view.h"
 #include "dspy-window.h"
 
 struct _DspyWindow

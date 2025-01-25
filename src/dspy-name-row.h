@@ -23,18 +23,14 @@
 #include <gtk/gtk.h>
 
 #include "dspy-name.h"
-#include "dspy-version-macros.h"
 
 G_BEGIN_DECLS
 
 #define DSPY_TYPE_NAME_ROW (dspy_name_row_get_type())
 
-DSPY_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (DspyNameRow, dspy_name_row, DSPY, NAME_ROW, GtkListBoxRow)
 
-DSPY_AVAILABLE_IN_ALL
 GtkWidget *dspy_name_row_new      (DspyName    *name);
-DSPY_AVAILABLE_IN_ALL
 DspyName  *dspy_name_row_get_name (DspyNameRow *self);
 
 G_END_DECLS

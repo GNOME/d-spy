@@ -1,4 +1,4 @@
-/* dspy-names-model.h
+/* dspy-tree-view.h
  *
  * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
@@ -20,25 +20,27 @@
 
 #pragma once
 
-#include <gio/gio.h>
+#include <gtk/gtk.h>
 
-#include "dspy-connection.h"
-#include "dspy-name.h"
-#include "dspy-version-macros.h"
+#include "dspy-method-invocation.h"
 
 G_BEGIN_DECLS
 
-#define DSPY_TYPE_NAMES_MODEL (dspy_names_model_get_type())
+#define DSPY_TYPE_TREE_VIEW (dspy_tree_view_get_type())
 
-DSPY_AVAILABLE_IN_ALL
-G_DECLARE_FINAL_TYPE (DspyNamesModel, dspy_names_model, DSPY, NAMES_MODEL, GObject)
+G_DECLARE_DERIVABLE_TYPE (DspyTreeView, dspy_tree_view, DSPY, TREE_VIEW, GtkTreeView)
 
-DSPY_AVAILABLE_IN_ALL
-DspyNamesModel *dspy_names_model_new            (DspyConnection *connection);
-DSPY_AVAILABLE_IN_ALL
-DspyConnection *dspy_names_model_get_connection (DspyNamesModel *self);
-DSPY_AVAILABLE_IN_ALL
-DspyName       *dspy_names_model_get_by_name    (DspyNamesModel *self,
-                                                 const gchar    *name);
+struct _DspyTreeViewClass
+{
+  GtkTreeViewClass parent_class;
+
+  void (*method_activated) (DspyTreeView         *self,
+                            DspyMethodInvocation *invocation);
+
+  /*< private >*/
+  gpointer _reserved[8];
+};
+
+GtkWidget *dspy_tree_view_new (void);
 
 G_END_DECLS

@@ -1,10 +1,9 @@
-/* dspy-name-marquee.h
+/* dspy-names-model.h
  *
  * Copyright 2019 Christian Hergert <chergert@redhat.com>
  *
  * This file is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation; either version 3 of the
  * License, or (at your option) any later version.
  *
  * This file is distributed in the hope that it will be useful, but
@@ -20,24 +19,20 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <gio/gio.h>
 
+#include "dspy-connection.h"
 #include "dspy-name.h"
-#include "dspy-version-macros.h"
 
 G_BEGIN_DECLS
 
-#define DSPY_TYPE_NAME_MARQUEE (dspy_name_marquee_get_type())
+#define DSPY_TYPE_NAMES_MODEL (dspy_names_model_get_type())
 
-DSPY_AVAILABLE_IN_ALL
-G_DECLARE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, DSPY, NAME_MARQUEE, GtkWidget)
+G_DECLARE_FINAL_TYPE (DspyNamesModel, dspy_names_model, DSPY, NAMES_MODEL, GObject)
 
-DSPY_AVAILABLE_IN_ALL
-GtkWidget *dspy_name_marquee_new      (void);
-DSPY_AVAILABLE_IN_ALL
-DspyName  *dspy_name_marquee_get_name (DspyNameMarquee *self);
-DSPY_AVAILABLE_IN_ALL
-void       dspy_name_marquee_set_name (DspyNameMarquee *self,
-                                       DspyName        *name);
+DspyNamesModel *dspy_names_model_new            (DspyConnection *connection);
+DspyConnection *dspy_names_model_get_connection (DspyNamesModel *self);
+DspyName       *dspy_names_model_get_by_name    (DspyNamesModel *self,
+                                                 const gchar    *name);
 
 G_END_DECLS

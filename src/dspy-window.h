@@ -21,7 +21,6 @@
 #pragma once
 
 #include <adwaita.h>
-#include <dspy.h>
 
 G_BEGIN_DECLS
 
