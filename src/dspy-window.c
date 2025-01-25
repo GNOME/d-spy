@@ -61,7 +61,6 @@ typedef struct
   GtkStackPage            *introspect;
   GtkStackPage            *empty;
   AdwStatusPage           *status_page;
-  AdwWindowTitle          *title;
   AdwBottomSheet          *bottom_sheet;
 
   guint                    destroyed : 1;
@@ -121,8 +120,6 @@ radio_button_toggled_cb (DspyWindow           *self,
     return;
 
   gtk_stack_set_visible_child (priv->stack, gtk_stack_page_get_child (priv->empty));
-
-  adw_window_title_set_title (priv->title, _("Bus"));
 
   connection = dspy_connection_button_get_connection (button);
   dspy_connection_list_names_async (connection,
@@ -356,8 +353,6 @@ name_row_activated_cb (DspyWindow  *self,
   gtk_tree_view_set_model (priv->introspection_tree_view, NULL);
   dspy_name_marquee_set_name (priv->name_marquee, name);
 
-  adw_window_title_set_title (priv->title, dspy_name_get_name (name));
-
   dspy_name_introspect_async (name,
                               priv->cancellable,
                               dspy_window_introspect_cb,
@@ -557,7 +552,6 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, introspect);
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, empty);
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, status_page);
-  gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, title);
 
   g_type_ensure (ADW_TYPE_STATUS_PAGE);
   g_type_ensure (DSPY_TYPE_CONNECTION_BUTTON);
