@@ -24,6 +24,21 @@
     ],
     "modules": [
         {
+            "name": "libpanel",
+            "buildsystem": "meson",
+            "config-opts": [
+                "--libdir=lib",
+                "-Ddevelopment=true"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libpanel.git",
+                    "branch" : "main"
+                }
+            ]
+        },
+        {
             "name": "d-spy",
             "builddir": true,
             "buildsystem": "meson",
