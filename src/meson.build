@@ -15,7 +15,6 @@ dspy_sources = [
   'dspy-signature.c',
   'dspy-simple-popover.c',
   'dspy-tree-view.c',
-  'dspy-view.c',
   'dspy-window.c',
   'main.c',
 ]
