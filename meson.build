@@ -1,6 +1,6 @@
 project('d-spy', 'c',
-        version: '47.1',
-  meson_version: '>= 0.59.0',
+        version: '48.alpha',
+  meson_version: '>= 1.0',
 )
 
 api_version_major = 1
