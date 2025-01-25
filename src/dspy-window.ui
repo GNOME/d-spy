@@ -23,6 +23,12 @@
         </child>
       </object>
     </child>
+    <child>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 600sp</condition>
+        <setter object="multi_layout" property="layout-name">narrow</setter>
+      </object>
+    </child>
     <property name="content">
       <object class="AdwMultiLayoutView" id="multi_layout">
         <child type="sidebar">
@@ -256,8 +262,40 @@
           <object class="AdwLayout">
             <property name="name">narrow</property>
             <property name="content">
-              <object class="GtkLabel">
-                <property name="label">narrow here</property>
+              <object class="AdwBottomSheet" id="bottom_sheet">
+                <property name="vexpand">true</property>
+                <property name="content">
+                  <object class="AdwToolbarView">
+                    <style>
+                      <class name="sidebar"/>
+                    </style>
+                    <child type="top">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">sidebar_header</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">sidebar</property>
+                        <property name="vexpand">true</property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+                <property name="sheet">
+                  <object class="AdwToolbarView">
+                    <child type="top">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">content_header</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">content</property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
               </object>
             </property>
           </object>

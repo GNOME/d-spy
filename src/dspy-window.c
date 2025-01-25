@@ -62,6 +62,7 @@ typedef struct
   GtkStackPage            *empty;
   AdwStatusPage           *status_page;
   AdwWindowTitle          *title;
+  AdwBottomSheet          *bottom_sheet;
 
   guint                    destroyed : 1;
 } DspyWindowPrivate;
@@ -363,6 +364,7 @@ name_row_activated_cb (DspyWindow  *self,
                               g_object_ref (self));
 
   gtk_stack_set_visible_child (priv->stack, gtk_stack_page_get_child (priv->introspect));
+  adw_bottom_sheet_set_open (priv->bottom_sheet, TRUE);
 }
 
 static void
@@ -539,6 +541,7 @@ dspy_window_class_init (DspyWindowClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
 
+  gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, bottom_sheet);
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, introspection_tree_view);
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, menu_button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, method_view);
