@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <adwaita.h>
 
 #include "dspy-name.h"
 
@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 
 #define DSPY_TYPE_NAME_MARQUEE (dspy_name_marquee_get_type())
 
-G_DECLARE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, DSPY, NAME_MARQUEE, GtkWidget)
+G_DECLARE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, DSPY, NAME_MARQUEE, AdwPreferencesGroup)
 
 GtkWidget *dspy_name_marquee_new      (void);
 DspyName  *dspy_name_marquee_get_name (DspyNameMarquee *self);

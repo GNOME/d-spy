@@ -25,19 +25,11 @@
 
 struct _DspyNameMarquee
 {
-  GtkWidget        parent_instance;
-
-  DspyName         *name;
-  DspyBindingGroup *name_bindings;
-
-  GtkWidget        *grid;
-  GtkLabel         *label_bus;
-  GtkLabel         *label_name;
-  GtkLabel         *label_owner;
-  GtkLabel         *label_pid;
+  AdwPreferencesGroup  parent_instance;
+  DspyName            *name;
 };
 
-G_DEFINE_TYPE (DspyNameMarquee, dspy_name_marquee, GTK_TYPE_WIDGET)
+G_DEFINE_FINAL_TYPE (DspyNameMarquee, dspy_name_marquee, ADW_TYPE_PREFERENCES_GROUP)
 
 enum {
   PROP_0,
@@ -64,14 +56,6 @@ static void
 dspy_name_marquee_dispose (GObject *object)
 {
   DspyNameMarquee *self = (DspyNameMarquee *)object;
-
-  g_clear_pointer (&self->grid, gtk_widget_unparent);
-
-  if (self->name_bindings)
-    {
-      dspy_binding_group_set_source (self->name_bindings, NULL);
-      g_clear_object (&self->name_bindings);
-    }
 
   g_clear_object (&self->name);
 
@@ -136,11 +120,6 @@ dspy_name_marquee_class_init (DspyNameMarqueeClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-name-marquee.ui");
-  gtk_widget_class_bind_template_child (widget_class, DspyNameMarquee, label_bus);
-  gtk_widget_class_bind_template_child (widget_class, DspyNameMarquee, label_name);
-  gtk_widget_class_bind_template_child (widget_class, DspyNameMarquee, label_owner);
-  gtk_widget_class_bind_template_child (widget_class, DspyNameMarquee, label_pid);
-  gtk_widget_class_bind_template_child (widget_class, DspyNameMarquee, grid);
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 }
@@ -149,12 +128,6 @@ static void
 dspy_name_marquee_init (DspyNameMarquee *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  self->name_bindings = dspy_binding_group_new ();
-
-  dspy_binding_group_bind (self->name_bindings, "pid", self->label_pid, "label", 0);
-  dspy_binding_group_bind (self->name_bindings, "name", self->label_name, "label", 0);
-  dspy_binding_group_bind (self->name_bindings, "owner", self->label_owner, "label", 0);
 }
 
 /**
@@ -180,14 +153,5 @@ dspy_name_marquee_set_name (DspyNameMarquee *self,
   g_return_if_fail (!name || DSPY_IS_NAME (name));
 
   if (g_set_object (&self->name, name))
-    {
-      const gchar *address = NULL;
-
-      if (name != NULL)
-        address = dspy_connection_get_address (dspy_name_get_connection (name));
-
-      dspy_binding_group_set_source (self->name_bindings, name);
-      gtk_label_set_label (self->label_bus, address);
-      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_NAME]);
-    }
+    g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_NAME]);
 }
