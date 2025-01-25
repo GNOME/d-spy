@@ -21,7 +21,7 @@
             <property name="ellipsize">end</property>
             <property name="xalign">0</property>
             <attributes>
-              <attribute name="scale" value="0.83330000000000004"></attribute>
+              <attribute name="scale" value="0.8333"></attribute>
             </attributes>
             <style>
               <class name="dim-label"/>
