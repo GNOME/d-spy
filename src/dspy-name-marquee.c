@@ -20,7 +20,6 @@
 
 #include "config.h"
 
-#include "dspy-binding-group.h"
 #include "dspy-name-marquee.h"
 
 struct _DspyNameMarquee

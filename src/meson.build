@@ -1,5 +1,4 @@
 dspy_sources = [
-  'dspy-binding-group.c',
   'dspy-connection-button.c',
   'dspy-connection.c',
   'dspy-introspection-model.c',
