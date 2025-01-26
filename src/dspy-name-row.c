@@ -26,7 +26,7 @@
 
 struct _DspyNameRow
 {
-  GtkListBoxRow  parent_instance;
+  GtkWidget      parent_instance;
 
   DspyName      *name;
 
@@ -34,7 +34,7 @@ struct _DspyNameRow
   GtkLabel      *subtitle;
 };
 
-G_DEFINE_TYPE (DspyNameRow, dspy_name_row, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_FINAL_TYPE (DspyNameRow, dspy_name_row, GTK_TYPE_WIDGET)
 
 enum {
   PROP_0,
@@ -43,25 +43,6 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
-
-/**
- * dspy_name_row_new:
- * @name: a #DspyName
- *
- * Create a new #DspyNameRow.
- *
- * Returns: (transfer full): a newly created #DspyNameRow
- */
-GtkWidget *
-dspy_name_row_new (DspyName *name)
-{
-  g_return_val_if_fail (DSPY_IS_NAME (name), NULL);
-
-  return g_object_new (DSPY_TYPE_NAME_ROW,
-                       "name", name,
-                       "visible", TRUE,
-                       NULL);
-}
 
 static void
 dspy_name_row_update (DspyNameRow *self)
@@ -96,36 +77,54 @@ dspy_name_row_set_name (DspyNameRow *self,
                         DspyName    *name)
 {
   g_assert (DSPY_IS_NAME_ROW (self));
-  g_assert (DSPY_IS_NAME (name));
-  g_assert (self->name == NULL);
+  g_assert (!name || DSPY_IS_NAME (name));
+
+  if (self->name == name)
+    return;
+
+  if (self->name != NULL)
+    g_signal_handlers_disconnect_by_func (self->name,
+                                          G_CALLBACK (dspy_name_row_update),
+                                          self);
 
   g_set_object (&self->name, name);
 
-  g_signal_connect_object (self->name,
-                           "notify::pid",
-                           G_CALLBACK (dspy_name_row_update),
-                           self,
-                           G_CONNECT_SWAPPED);
+  if (self->name != NULL)
+    {
+      g_signal_connect_object (self->name,
+                               "notify::pid",
+                               G_CALLBACK (dspy_name_row_update),
+                               self,
+                               G_CONNECT_SWAPPED);
 
-  g_signal_connect_object (self->name,
-                           "notify::activatable",
-                           G_CALLBACK (dspy_name_row_update),
-                           self,
-                           G_CONNECT_SWAPPED);
+      g_signal_connect_object (self->name,
+                               "notify::activatable",
+                               G_CALLBACK (dspy_name_row_update),
+                               self,
+                               G_CONNECT_SWAPPED);
 
-  gtk_label_set_label (self->title, dspy_name_get_name (self->name));
+      gtk_label_set_label (self->title, dspy_name_get_name (self->name));
 
-  dspy_name_row_update (self);
+      dspy_name_row_update (self);
+
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NAME]);
+    }
 }
 
 static void
-dspy_name_row_finalize (GObject *object)
+dspy_name_row_dispose (GObject *object)
 {
   DspyNameRow *self = (DspyNameRow *)object;
+  GtkWidget *child;
+
+  dspy_name_row_set_name (self, NULL);
+
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
+    gtk_widget_unparent (child);
 
   g_clear_object (&self->name);
 
-  G_OBJECT_CLASS (dspy_name_row_parent_class)->finalize (object);
+  G_OBJECT_CLASS (dspy_name_row_parent_class)->dispose (object);
 }
 
 static void
@@ -139,7 +138,7 @@ dspy_name_row_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_NAME:
-      g_value_set_object (value, dspy_name_row_get_name (self));
+      g_value_set_object (value, self->name);
       break;
 
     default:
@@ -172,7 +171,7 @@ dspy_name_row_class_init (DspyNameRowClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  object_class->finalize = dspy_name_row_finalize;
+  object_class->dispose = dspy_name_row_dispose;
   object_class->get_property = dspy_name_row_get_property;
   object_class->set_property = dspy_name_row_set_property;
 
@@ -181,11 +180,14 @@ dspy_name_row_class_init (DspyNameRowClass *klass)
                          "Name",
                          "The DspyName for the row",
                          DSPY_TYPE_NAME,
-                         (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-name-row.ui");
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_bind_template_child (widget_class, DspyNameRow, subtitle);
   gtk_widget_class_bind_template_child (widget_class, DspyNameRow, title);
 }
@@ -194,19 +196,4 @@ static void
 dspy_name_row_init (DspyNameRow *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
-}
-
-/**
- * dspy_name_row_get_name:
- *
- * Gets the #DspyName for the row.
- *
- * Returns: (transfer none): a #DspyName
- */
-DspyName *
-dspy_name_row_get_name (DspyNameRow *self)
-{
-  g_return_val_if_fail (DSPY_IS_NAME_ROW (self), NULL);
-
-  return self->name;
 }

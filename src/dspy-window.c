@@ -47,7 +47,7 @@ typedef struct
 
   /* Template widgets */
   GtkTreeView             *introspection_tree_view;
-  GtkListBox              *names_list_box;
+  GtkListView             *names_list_view;
   GtkButton               *refresh_button;
   DspyNameMarquee         *name_marquee;
   GtkScrolledWindow       *names_scroller;
@@ -251,23 +251,12 @@ apply_search (DspyWindow *self,
                                             (GDestroyNotify) dspy_pattern_spec_unref);
 }
 
-static GtkWidget *
-create_name_row_cb (gpointer item,
-                    gpointer user_data)
-{
-  DspyName *name = item;
-
-  g_assert (DSPY_IS_NAME (name));
-  g_assert (user_data == NULL);
-
-  return dspy_name_row_new (name);
-}
-
 static void
 dspy_window_set_model (DspyWindow *self,
                        GListModel *model)
 {
   DspyWindowPrivate *priv = dspy_window_get_instance_private (self);
+  GtkSelectionModel *selection;
   const gchar *text;
   GtkAdjustment *adj;
 
@@ -280,7 +269,7 @@ dspy_window_set_model (DspyWindow *self,
   if (priv->destroyed)
     return;
 
-  gtk_list_box_bind_model (priv->names_list_box, NULL, NULL, NULL, NULL);
+  gtk_list_view_set_model (priv->names_list_view, NULL);
 
   g_clear_object (&priv->filter_model);
   g_clear_object (&priv->model);
@@ -298,11 +287,11 @@ dspy_window_set_model (DspyWindow *self,
   else
     clear_search (self);
 
-  gtk_list_box_bind_model (priv->names_list_box,
-                           G_LIST_MODEL (priv->filter_model),
-                           create_name_row_cb,
-                           NULL,
-                           NULL);
+  selection = g_object_new (GTK_TYPE_SINGLE_SELECTION,
+                            "model", priv->filter_model,
+                            NULL);
+
+  gtk_list_view_set_model (priv->names_list_view, selection);
 
   adj = gtk_scrolled_window_get_vadjustment (priv->names_scroller);
   gtk_adjustment_set_value (adj, 0.0);
@@ -333,18 +322,19 @@ dspy_window_introspect_cb (GObject      *object,
 }
 
 static void
-name_row_activated_cb (DspyWindow  *self,
-                       DspyNameRow *row,
-                       GtkListBox  *list_box)
+name_row_activate_cb (DspyWindow  *self,
+                      guint        position,
+                      GtkListView *list_view)
 {
   DspyWindowPrivate *priv = dspy_window_get_instance_private (self);
-  DspyName *name;
+  g_autoptr(DspyName) name = NULL;
+  GtkSelectionModel *model;
 
   g_assert (DSPY_IS_WINDOW (self));
-  g_assert (DSPY_IS_NAME_ROW (row));
-  g_assert (GTK_IS_LIST_BOX (list_box));
+  g_assert (GTK_IS_LIST_VIEW (list_view));
 
-  name = dspy_name_row_get_name (row);
+  model = gtk_list_view_get_model (list_view);
+  name = g_list_model_get_item (G_LIST_MODEL (model), position);
 
   g_cancellable_cancel (priv->cancellable);
   g_clear_object (&priv->cancellable);
@@ -366,14 +356,10 @@ static void
 refresh_button_clicked_cb (DspyWindow *self,
                            GtkButton  *button)
 {
-  DspyWindowPrivate *priv = dspy_window_get_instance_private (self);
-  GtkListBoxRow *row;
-
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (GTK_IS_BUTTON (button));
 
-  if ((row = gtk_list_box_get_selected_row (priv->names_list_box)))
-    name_row_activated_cb (self, DSPY_NAME_ROW (row), priv->names_list_box);
+  g_warning ("TODO: refresh button");
 }
 
 static void
@@ -389,46 +375,6 @@ method_activated_cb (DspyWindow           *self,
 
   if (DSPY_IS_METHOD_INVOCATION (invocation))
     dspy_method_view_set_invocation (priv->method_view, invocation);
-}
-
-static void
-notify_child_revealed_cb (DspyWindow     *self,
-                          GParamSpec     *pspec,
-                          AdwToolbarView *toolbar_view)
-{
-  DspyWindowPrivate *priv = dspy_window_get_instance_private (self);
-
-  g_assert (DSPY_IS_WINDOW (self));
-  g_assert (ADW_IS_TOOLBAR_VIEW (toolbar_view));
-
-  if (!adw_toolbar_view_get_reveal_bottom_bars (toolbar_view))
-    {
-      dspy_method_view_set_invocation (priv->method_view, NULL);
-    }
-  else
-    {
-      GtkTreeSelection *selection;
-      GtkTreeModel *model = NULL;
-      GtkTreeIter iter;
-
-      selection = gtk_tree_view_get_selection (priv->introspection_tree_view);
-
-      if (gtk_tree_selection_get_selected (selection, &model, &iter))
-        {
-          g_autoptr(GtkTreePath) path = gtk_tree_model_get_path (model, &iter);
-          GtkTreeViewColumn *column = gtk_tree_view_get_column (priv->introspection_tree_view, 0);
-
-          /* Move the selected row as far up as we can so that the bottom bars
-           * for the method invocation does not cover the selected area.
-           */
-          gtk_tree_view_scroll_to_cell (priv->introspection_tree_view,
-                                        path,
-                                        column,
-                                        TRUE,
-                                        0.0,
-                                        0.0);
-        }
-    }
 }
 
 static void
@@ -541,7 +487,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, menu_button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, method_view);
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, name_marquee);
-  gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, names_list_box);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, names_list_view);
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, names_scroller);
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, radio_buttons);
   gtk_widget_class_bind_template_child_private (widget_class, DspyWindow, refresh_button);
@@ -557,6 +503,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   g_type_ensure (DSPY_TYPE_CONNECTION_BUTTON);
   g_type_ensure (DSPY_TYPE_METHOD_VIEW);
   g_type_ensure (DSPY_TYPE_NAME_MARQUEE);
+  g_type_ensure (DSPY_TYPE_NAME_ROW);
   g_type_ensure (DSPY_TYPE_TREE_VIEW);
 }
 
@@ -583,9 +530,9 @@ dspy_window_init (DspyWindow *self)
                                          "dspy-connections-menu");
   gtk_menu_button_set_menu_model (priv->menu_button, G_MENU_MODEL (menu));
 
-  g_signal_connect_object (priv->names_list_box,
-                           "row-activated",
-                           G_CALLBACK (name_row_activated_cb),
+  g_signal_connect_object (priv->names_list_view,
+                           "activate",
+                           G_CALLBACK (name_row_activate_cb),
                            self,
                            G_CONNECT_SWAPPED);
 

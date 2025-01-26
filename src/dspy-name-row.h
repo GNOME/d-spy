@@ -28,9 +28,6 @@ G_BEGIN_DECLS
 
 #define DSPY_TYPE_NAME_ROW (dspy_name_row_get_type())
 
-G_DECLARE_FINAL_TYPE (DspyNameRow, dspy_name_row, DSPY, NAME_ROW, GtkListBoxRow)
-
-GtkWidget *dspy_name_row_new      (DspyName    *name);
-DspyName  *dspy_name_row_get_name (DspyNameRow *self);
+G_DECLARE_FINAL_TYPE (DspyNameRow, dspy_name_row, DSPY, NAME_ROW, GtkWidget)
 
 G_END_DECLS

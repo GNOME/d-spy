@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <template class="DspyNameRow" parent="GtkListBoxRow">
-    <property name="child">
+  <template class="DspyNameRow" parent="GtkWidget">
+    <child>
       <object class="GtkBox">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -29,6 +29,6 @@
           </object>
         </child>
       </object>
-    </property>
+    </child>
   </template>
 </interface>

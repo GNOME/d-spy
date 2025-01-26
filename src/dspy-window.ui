@@ -104,12 +104,25 @@
                 <property name="propagate-natural-width">true</property>
                 <property name="vexpand">true</property>
                 <property name="child">
-                  <object class="GtkViewport">
-                    <property name="child">
-                      <object class="GtkListBox" id="names_list_box">
-                        <style>
-                          <class name="navigation-sidebar"/>
-                        </style>
+                  <object class="GtkListView" id="names_list_view">
+                    <property name="single-click-activate">true</property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="DspyNameRow">
+        <binding name="name">
+          <lookup name="item">GtkListItem</lookup>
+        </binding>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                        </property>
                       </object>
                     </property>
                   </object>
