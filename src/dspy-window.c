@@ -322,19 +322,13 @@ dspy_window_introspect_cb (GObject      *object,
 }
 
 static void
-name_row_activate_cb (DspyWindow  *self,
-                      guint        position,
-                      GtkListView *list_view)
+dspy_window_set_name (DspyWindow *self,
+                      DspyName   *name)
 {
   DspyWindowPrivate *priv = dspy_window_get_instance_private (self);
-  g_autoptr(DspyName) name = NULL;
-  GtkSelectionModel *model;
 
   g_assert (DSPY_IS_WINDOW (self));
-  g_assert (GTK_IS_LIST_VIEW (list_view));
-
-  model = gtk_list_view_get_model (list_view);
-  name = g_list_model_get_item (G_LIST_MODEL (model), position);
+  g_assert (DSPY_IS_NAME (name));
 
   g_cancellable_cancel (priv->cancellable);
   g_clear_object (&priv->cancellable);
@@ -353,13 +347,34 @@ name_row_activate_cb (DspyWindow  *self,
 }
 
 static void
+name_row_activate_cb (DspyWindow  *self,
+                      guint        position,
+                      GtkListView *list_view)
+{
+  DspyWindowPrivate *priv = dspy_window_get_instance_private (self);
+  g_autoptr(DspyName) name = NULL;
+  GtkSelectionModel *model;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (GTK_IS_LIST_VIEW (list_view));
+
+  if ((model = gtk_list_view_get_model (list_view)) &&
+      (name = g_list_model_get_item (G_LIST_MODEL (model), position)))
+    dspy_window_set_name (self, name);
+}
+
+static void
 refresh_button_clicked_cb (DspyWindow *self,
                            GtkButton  *button)
 {
+  DspyWindowPrivate *priv = dspy_window_get_instance_private (self);
+  DspyName *name;
+
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (GTK_IS_BUTTON (button));
 
-  g_warning ("TODO: refresh button");
+  if ((name = dspy_name_marquee_get_name (priv->name_marquee)))
+    dspy_window_set_name (self, name);
 }
 
 static void
