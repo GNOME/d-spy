@@ -31,7 +31,6 @@ typedef struct
   GCancellable         *cancellable;
   GArray               *durations;
 
-  GtkGrid              *grid;
   GtkLabel             *label_interface;
   GtkLabel             *label_object_path;
   GtkLabel             *label_method;
@@ -42,7 +41,6 @@ typedef struct
   GtkButton            *copy_button;
   GtkTextBuffer        *buffer_params;
   GtkTextBuffer        *buffer_reply;
-  GtkTextView          *textview_params;
 
   guint                 busy : 1;
 } DspyMethodViewPrivate;
@@ -312,8 +310,12 @@ dspy_method_view_dispose (GObject *object)
 {
   DspyMethodView *self = (DspyMethodView *)object;
   DspyMethodViewPrivate *priv = dspy_method_view_get_instance_private (self);
+  GtkWidget *child;
 
-  g_clear_pointer ((GtkWidget **)&priv->grid, gtk_widget_unparent);
+  gtk_widget_dispose_template (GTK_WIDGET (self), DSPY_TYPE_METHOD_VIEW);
+
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
+    gtk_widget_unparent (child);
 
   if (priv->bindings)
     {
@@ -396,8 +398,6 @@ dspy_method_view_class_init (DspyMethodViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_method);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_min);
   gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, label_object_path);
-  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, textview_params);
-  gtk_widget_class_bind_template_child_private (widget_class, DspyMethodView, grid);
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 }

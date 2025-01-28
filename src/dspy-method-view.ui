@@ -3,255 +3,143 @@
   <requires lib="gtk" version="4.0"/>
   <template class="DspyMethodView" parent="GtkWidget">
     <child>
-      <object class="GtkGrid" id="grid">
-        <property name="column-spacing">12</property>
-        <property name="row-spacing">3</property>
+      <object class="AdwPreferencesPage">
         <child>
-          <object class="GtkLabel">
-            <property name="label" translatable="yes">Object Path</property>
-            <property name="xalign">1.0</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-            <layout>
-              <property name="row">0</property>
-              <property name="column">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel" id="label_object_path">
-            <property name="hexpand">1</property>
-            <property name="ellipsize">end</property>
-            <property name="xalign">0.0</property>
-            <property name="selectable">1</property>
-            <layout>
-              <property name="row">0</property>
-              <property name="column">1</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="label" translatable="yes">Interface</property>
-            <property name="xalign">1.0</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-            <layout>
-              <property name="row">1</property>
-              <property name="column">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel" id="label_interface">
-            <property name="hexpand">1</property>
-            <property name="ellipsize">end</property>
-            <property name="xalign">0.0</property>
-            <property name="selectable">1</property>
-            <layout>
-              <property name="row">1</property>
-              <property name="column">1</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="label" translatable="yes">Method</property>
-            <property name="xalign">1.0</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-            <layout>
-              <property name="row">2</property>
-              <property name="column">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel" id="label_method">
-            <property name="hexpand">1</property>
-            <property name="ellipsize">end</property>
-            <property name="xalign">0.0</property>
-            <property name="selectable">1</property>
-            <layout>
-              <property name="row">2</property>
-              <property name="column">1</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="label" translatable="yes">Parameters</property>
-            <property name="xalign">1.0</property>
-            <property name="valign">start</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-            <layout>
-              <property name="row">3</property>
-              <property name="column">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="hexpand">1</property>
-            <property name="spacing">3</property>
+          <object class="AdwPreferencesGroup">
             <child>
-              <object class="GtkFrame">
-                <child>
-                  <object class="GtkScrolledWindow">
-                    <property name="hexpand">1</property>
-                    <property name="hscrollbar-policy">never</property>
-                    <property name="propagate-natural-height">1</property>
-                    <property name="max-content-height">100</property>
-                    <property name="child">
-                      <object class="GtkTextView" id="textview_params">
-                        <property name="top-margin">6</property>
-                        <property name="bottom-margin">6</property>
-                        <property name="right-margin">6</property>
-                        <property name="left-margin">6</property>
-                        <property name="buffer">buffer_params</property>
-                        <property name="wrap-mode">word-char</property>
-                      </object>
-                    </property>
+              <object class="AdwActionRow">
+                <style>
+                  <class name="property"/>
+                </style>
+                <property name="title" translatable="yes">Object Path</property>
+                <binding name="subtitle">
+                  <lookup name="object-path" type="DspyMethodInvocation">
+                    <lookup name="invocation">DspyMethodView</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <style>
+                  <class name="property"/>
+                </style>
+                <property name="title" translatable="yes">Interface</property>
+                <binding name="subtitle">
+                  <lookup name="interface" type="DspyMethodInvocation">
+                    <lookup name="invocation">DspyMethodView</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <style>
+                  <class name="property"/>
+                </style>
+                <property name="title" translatable="yes">Method</property>
+                <binding name="subtitle">
+                  <lookup name="method" type="DspyMethodInvocation">
+                    <lookup name="invocation">DspyMethodView</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <style>
+                  <class name="property"/>
+                </style>
+                <property name="title" translatable="yes">Parameter Signature</property>
+                <binding name="subtitle">
+                  <lookup name="pretty-signature" type="DspyMethodInvocation">
+                    <lookup name="invocation">DspyMethodView</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <style>
+                  <class name="property"/>
+                </style>
+                <property name="title" translatable="yes">Reply Signature</property>
+                <binding name="subtitle">
+                  <lookup name="pretty-reply-signature" type="DspyMethodInvocation">
+                    <lookup name="invocation">DspyMethodView</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwEntryRow" id="params">
+                <property name="title" translatable="yes">Parameters</property>
+                <child type="suffix">
+                  <object class="GtkButton">
+                    <property name="valign">center</property>
+                    <property name="icon-name">media-playback-start-symbolic</property>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
                   </object>
                 </child>
               </object>
             </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
             <child>
-              <object class="GtkButton" id="button">
-                <property name="label" translatable="yes">_Execute</property>
-                <property name="use-underline">True</property>
+              <object class="AdwActionRow" id="result">
+                <property name="title" translatable="yes">Return Value</property>
+                <property name="subtitle-lines">3</property>
                 <style>
-                  <class name="suggested-action"/>
+                  <class name="property"/>
                 </style>
-              </object>
-            </child>
-            <layout>
-              <property name="row">3</property>
-              <property name="column">1</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="label" translatable="yes">Result</property>
-            <property name="xalign">1.0</property>
-            <property name="valign">start</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-            <layout>
-              <property name="row">4</property>
-              <property name="column">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="hexpand">1</property>
-            <property name="spacing">3</property>
-            <child>
-              <object class="GtkFrame">
-                <child>
-                  <object class="GtkScrolledWindow">
-                    <property name="hexpand">1</property>
-                    <property name="hscrollbar-policy">never</property>
-                    <property name="propagate-natural-height">1</property>
-                    <property name="max-content-height">100</property>
-                    <property name="child">
-                      <object class="GtkTextView">
-                        <property name="top-margin">6</property>
-                        <property name="bottom-margin">6</property>
-                        <property name="right-margin">6</property>
-                        <property name="left-margin">6</property>
-                        <property name="buffer">buffer_reply</property>
-                        <property name="wrap-mode">word-char</property>
-                        <property name="editable">0</property>
-                      </object>
-                    </property>
+                <child type="suffix">
+                  <object class="GtkButton">
+                    <property name="valign">center</property>
+                    <property name="icon-name">edit-copy-symbolic</property>
+                    <style>
+                      <class name="flat"/>
+                    </style>
                   </object>
                 </child>
               </object>
             </child>
-            <child>
-              <object class="GtkButton" id="copy_button">
-                <property name="label" translatable="yes">_Copy</property>
-                <property name="use-underline">True</property>
-              </object>
-            </child>
-            <layout>
-              <property name="row">4</property>
-              <property name="column">1</property>
-            </layout>
           </object>
         </child>
         <child>
-          <object class="GtkLabel">
-            <property name="label" translatable="yes">Elapsed Time</property>
-            <property name="halign">end</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-            <layout>
-              <property name="row">5</property>
-              <property name="column">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="homogeneous">1</property>
-            <property name="spacing">6</property>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Duration</property>
             <child>
-              <object class="GtkLabel">
-                <property name="label">Ø:</property>
-                <property name="halign">end</property>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Average</property>
                 <style>
-                  <class name="dim-label"/>
+                  <class name="property"/>
                 </style>
               </object>
             </child>
             <child>
-              <object class="GtkLabel" id="label_avg">
-                <property name="halign">start</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="label">Min:</property>
-                <property name="halign">end</property>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Mininum</property>
                 <style>
-                  <class name="dim-label"/>
+                  <class name="property"/>
                 </style>
               </object>
             </child>
             <child>
-              <object class="GtkLabel" id="label_min">
-                <property name="halign">start</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="label">Max:</property>
-                <property name="halign">end</property>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Maximum</property>
                 <style>
-                  <class name="dim-label"/>
+                  <class name="property"/>
                 </style>
               </object>
             </child>
-            <child>
-              <object class="GtkLabel" id="label_max">
-                <property name="halign">start</property>
-              </object>
-            </child>
-            <layout>
-              <property name="row">5</property>
-              <property name="column">1</property>
-            </layout>
           </object>
         </child>
       </object>
