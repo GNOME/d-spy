@@ -78,9 +78,17 @@ dspy_tree_view_selection_changed (DspyTreeView     *self,
 
       if (node->any.kind == DSPY_NODE_KIND_METHOD)
         {
+          g_autofree char *pstring = _dspy_method_info_dup_parameter_string (&node->method);
+          g_autofree char *rstring = _dspy_method_info_dup_reply_string (&node->method);
+
           invocation = dspy_method_invocation_new ();
           dspy_method_invocation_set_interface (invocation, _dspy_node_get_interface (node));
           dspy_method_invocation_set_method (invocation, node->method.name);
+
+          g_object_set (invocation,
+                        "pretty-signature", pstring,
+                        "pretty-reply-signature", rstring,
+                        NULL);
 
           if (node->method.in_args.length == 0)
             {

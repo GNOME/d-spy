@@ -21,6 +21,7 @@
 #include "config.h"
 
 #include "dspy-method-invocation.h"
+#include "dspy-private.h"
 
 typedef struct
 {
@@ -29,6 +30,8 @@ typedef struct
   gchar    *object_path;
   gchar    *method;
   gchar    *reply_signature;
+  gchar    *pretty_signature;
+  gchar    *pretty_reply_signature;
   DspyName *name;
   GVariant *parameters;
   gint      timeout_msec;
@@ -43,6 +46,8 @@ enum {
   PROP_NAME,
   PROP_OBJECT_PATH,
   PROP_PARAMETERS,
+  PROP_PRETTY_SIGNATURE,
+  PROP_PRETTY_REPLY_SIGNATURE,
   PROP_REPLY_SIGNATURE,
   PROP_SIGNATURE,
   PROP_TIMEOUT,
@@ -71,6 +76,8 @@ dspy_method_invocation_finalize (GObject *object)
   DspyMethodInvocationPrivate *priv = dspy_method_invocation_get_instance_private (self);
 
   g_clear_pointer (&priv->interface, g_free);
+  g_clear_pointer (&priv->pretty_signature, g_free);
+  g_clear_pointer (&priv->pretty_reply_signature, g_free);
   g_clear_pointer (&priv->signature, g_free);
   g_clear_pointer (&priv->object_path, g_free);
   g_clear_pointer (&priv->method, g_free);
@@ -88,6 +95,7 @@ dspy_method_invocation_get_property (GObject    *object,
                                      GParamSpec *pspec)
 {
   DspyMethodInvocation *self = DSPY_METHOD_INVOCATION (object);
+  DspyMethodInvocationPrivate *priv = dspy_method_invocation_get_instance_private (self);
 
   switch (prop_id)
     {
@@ -101,6 +109,14 @@ dspy_method_invocation_get_property (GObject    *object,
 
     case PROP_METHOD:
       g_value_set_string (value, dspy_method_invocation_get_method (self));
+      break;
+
+    case PROP_PRETTY_SIGNATURE:
+      g_value_set_string (value, priv->pretty_signature);
+      break;
+
+    case PROP_PRETTY_REPLY_SIGNATURE:
+      g_value_set_string (value, priv->pretty_reply_signature);
       break;
 
     case PROP_SIGNATURE:
@@ -135,6 +151,7 @@ dspy_method_invocation_set_property (GObject      *object,
                                      GParamSpec   *pspec)
 {
   DspyMethodInvocation *self = DSPY_METHOD_INVOCATION (object);
+  DspyMethodInvocationPrivate *priv = dspy_method_invocation_get_instance_private (self);
 
   switch (prop_id)
     {
@@ -148,6 +165,16 @@ dspy_method_invocation_set_property (GObject      *object,
 
     case PROP_METHOD:
       dspy_method_invocation_set_method (self, g_value_get_string (value));
+      break;
+
+    case PROP_PRETTY_SIGNATURE:
+      if (g_set_str (&priv->pretty_signature, g_value_get_string (value)))
+        g_object_notify_by_pspec (object, pspec);
+      break;
+
+    case PROP_PRETTY_REPLY_SIGNATURE:
+      if (g_set_str (&priv->pretty_reply_signature, g_value_get_string (value)))
+        g_object_notify_by_pspec (object, pspec);
       break;
 
     case PROP_SIGNATURE:
@@ -204,6 +231,16 @@ dspy_method_invocation_class_init (DspyMethodInvocationClass *klass)
                          "The method of the interface to execute",
                          NULL,
                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_PRETTY_SIGNATURE] =
+    g_param_spec_string ("pretty-signature", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_PRETTY_REPLY_SIGNATURE] =
+    g_param_spec_string ("pretty-reply-signature", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_SIGNATURE] =
     g_param_spec_string ("signature",
