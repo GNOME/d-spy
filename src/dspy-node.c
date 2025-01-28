@@ -499,6 +499,54 @@ arg_name_is_generated (const gchar *str)
   return FALSE;
 }
 
+char *
+_dspy_method_info_dup_parameter_string (DspyMethodInfo *info)
+{
+  GString *str;
+
+  str = g_string_new (LPAREN);
+
+  for (const GList *iter = info->in_args.head; iter; iter = iter->next)
+    {
+      DspyArgInfo *arg = iter->data;
+      g_autofree gchar *sig = _dspy_signature_humanize (arg->signature);
+
+      if (iter->prev != NULL)
+        g_string_append (str, ", ");
+      g_string_append_printf (str, BOLD(DIM("%s")), sig);
+      if (!arg_name_is_generated (arg->name))
+        g_string_append_printf (str, DIM(" %s"), arg->name);
+    }
+
+  g_string_append (str, RPAREN);
+
+  return g_string_free (str, FALSE);
+}
+
+char *
+_dspy_method_info_dup_reply_string (DspyMethodInfo *info)
+{
+  GString *str;
+
+  str = g_string_new (LPAREN);
+
+  for (const GList *iter = info->out_args.head; iter; iter = iter->next)
+    {
+      DspyArgInfo *arg = iter->data;
+      g_autofree gchar *sig = _dspy_signature_humanize (arg->signature);
+
+      if (iter->prev != NULL)
+        g_string_append (str, ", ");
+      g_string_append_printf (str, BOLD(DIM("%s")), sig);
+      if (!arg_name_is_generated (arg->name))
+        g_string_append_printf (str, DIM(" %s"), arg->name);
+    }
+
+  g_string_append (str, RPAREN);
+
+  return g_string_free (str, FALSE);
+}
+
 static gchar *
 _dspy_method_info_to_string (DspyMethodInfo *info)
 {

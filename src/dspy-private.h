@@ -199,4 +199,7 @@ void                    _dspy_name_set_activatable    (DspyName                 
 DspyIntrospectionModel *_dspy_introspection_model_new (DspyName                 *name);
 gchar                  *_dspy_signature_humanize      (const gchar              *signature);
 
+char                   *_dspy_method_info_dup_reply_string     (DspyMethodInfo *info);
+char                   *_dspy_method_info_dup_parameter_string (DspyMethodInfo *info);
+
 G_END_DECLS
