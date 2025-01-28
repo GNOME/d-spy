@@ -81,11 +81,8 @@
                     <property name="xalign">0.0</property>
                     <style>
                       <class name="dim-label"/>
+                      <class name="heading"/>
                     </style>
-                    <attributes>
-                      <attribute name="weight" value="bold"></attribute>
-                      <attribute name="scale" value=".833333"></attribute>
-                    </attributes>
                   </object>
                 </child>
                 <child>
