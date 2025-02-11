@@ -1,0 +1,261 @@
+# Interlingua translation for d-spy.
+# Copyright (C) 2025 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FULL NAME <EMAIL@ADDRESS>, 2025.
+# Emilio Sepúlveda <emism.translations@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2025-02-10 19:25+0000\n"
+"PO-Revision-Date: 2025-02-11 11:18-0300\n"
+"Last-Translator: Emilio Sepúlveda <emism.translations@gmail.com>\n"
+"Language-Team: Interlingua <softinterlingua@gmail.com>\n"
+"Language: ia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-Lang: ia\n"
+"X-DL-Module: d-spy\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"X-Generator: Gtranslator 47.1\n"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: src/dspy-view.ui:24 src/main.c:87
+msgid "D-Spy"
+msgstr "D-Spy"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analysa connexiones D-Bus"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy es un instrumento simple pro explorar connexiones D-Bus."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "Interfacie de D-Spy"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "Discover and explore D-Bus services"
+msgstr "Discoperi e explora le servicios D-Bus"
+
+#: data/org.gnome.dspy.desktop.in.in:8
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
+
+#. translators: %s is replaced with the address of the D-Bus bus
+#: src/dspy-connection-button.c:76
+#, c-format
+msgid "Connected to “%s”"
+msgstr "Connectite a “%s”"
+
+#: src/dspy-connection-button.c:221
+msgid "S_ystem"
+msgstr "S_ystema"
+
+#: src/dspy-connection-button.c:223
+msgid "_Session"
+msgstr "_Session"
+
+#: src/dspy-connection-button.c:225
+msgid "_Other"
+msgstr "_Altere"
+
+#: src/dspy-method-view.c:191
+msgid "Execute"
+msgstr "Executar"
+
+#: src/dspy-method-view.c:273
+msgid "Cancel"
+msgstr "Cancellar"
+
+#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
+msgid "Object Path"
+msgstr "Percurso de objecto"
+
+#: src/dspy-method-view.ui:36
+msgid "Interface"
+msgstr "Interfacie"
+
+#: src/dspy-method-view.ui:61
+msgid "Method"
+msgstr "Methodo"
+
+#: src/dspy-method-view.ui:86
+msgid "Parameters"
+msgstr "Parametros"
+
+#: src/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "_Executar"
+
+#: src/dspy-method-view.ui:141
+msgid "Result"
+msgstr "Resultato"
+
+#: src/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "_Copiar"
+
+#: src/dspy-method-view.ui:194
+msgid "Elapsed Time"
+msgstr "Tempore passate"
+
+#: src/dspy-name-marquee.ui:12
+msgid "Bus Address"
+msgstr "Adresse de bus"
+
+#: src/dspy-name-marquee.ui:36
+msgid "Name"
+msgstr "Nomine"
+
+#: src/dspy-name-marquee.ui:60
+msgid "Owner"
+msgstr "Proprietario"
+
+#: src/dspy-name-marquee.ui:84
+msgid "Process ID"
+msgstr "ID de processo"
+
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
+msgid "Activatable"
+msgstr "Activabile"
+
+#: src/dspy-name-row.c:78
+msgid "Yes"
+msgstr "Si"
+
+#: src/dspy-name-row.c:80
+msgid "No"
+msgstr "No"
+
+#: src/dspy-name-row.c:85
+#, c-format
+msgid "%s: %u"
+msgstr "%s: %u"
+
+#: src/dspy-name-row.c:85
+msgid "PID"
+msgstr "PID"
+
+#: src/dspy-node.c:468
+msgid "read/write"
+msgstr "lectura/scriptura"
+
+#: src/dspy-node.c:470
+msgid "write-only"
+msgstr "sol lectura"
+
+#: src/dspy-node.c:472
+msgid "read-only"
+msgstr "sol scriptura"
+
+#: src/dspy-node.c:587
+msgid "Interfaces"
+msgstr "Interfacies"
+
+#: src/dspy-node.c:590
+msgid "Methods"
+msgstr "Methodos"
+
+#: src/dspy-node.c:596
+msgid "Properties"
+msgstr "Proprietates"
+
+#: src/dspy-node.c:612
+msgid "Signals"
+msgstr "Signales"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: src/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr "Matrice de [%s]"
+
+#: src/dspy-view.c:125
+msgid "Bus"
+msgstr "Bus"
+
+#: src/dspy-view.c:164
+msgid "Access Denied by Peer"
+msgstr "Acceso denegate per le par"
+
+#: src/dspy-view.c:166
+msgid "Authentication Failed"
+msgstr "Falleva le authentication"
+
+#: src/dspy-view.c:168
+msgid "Operation Timed Out"
+msgstr "Le operation habeva un limite de tempore"
+
+#: src/dspy-view.c:170
+msgid "Lost Connection to Bus"
+msgstr "Connexion perdite al bus"
+
+#: src/dspy-view.c:172
+msgid "D-Bus Connection Failed"
+msgstr "Falleva le connexion D-Bus"
+
+#: src/dspy-view.c:474
+msgid "Connect"
+msgstr "Connecter"
+
+#: src/dspy-view.c:475
+msgid "Provide the address of the message bus"
+msgstr "Forni le adresse del bus de message"
+
+#: src/dspy-view.c:477
+msgid "Connect to Other Bus"
+msgstr "Connecter a altere bus"
+
+#: src/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: src/dspy-view.ui:66
+msgid "Search Bus Names"
+msgstr "Cercar nomines de bus"
+
+#: src/dspy-view.ui:80
+msgid "Bus Names"
+msgstr "Nomines de bus"
+
+#: src/dspy-view.ui:143
+msgid "Select a D-Bus Name"
+msgstr "Selectiona un nomine de D-Bus"
+
+#: src/dspy-view.ui:144
+msgid "Select a bus name to introspect the peer"
+msgstr "Selectiona un nomine de bus pro introspicer le par"
+
+#: src/dspy-view.ui:160
+msgid "Refresh"
+msgstr "Actualisar"
+
+#: src/dspy-view.ui:230
+msgid "_New Window"
+msgstr "_Nove fenestra"
+
+#: src/dspy-view.ui:236
+msgid "_About D-Spy"
+msgstr "_A proposito de D-Spy"
+
+#: src/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "Connecter a altere bus…"
