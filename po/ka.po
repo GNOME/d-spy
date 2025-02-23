@@ -1,14 +1,14 @@
 # Georgian translation for d-spy.
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
-# Ekaterine Papava <papava.e@gtu.ge>, 2023-2024.
+# Ekaterine Papava <papava.e@gtu.ge>, 2023-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-08-16 11:55+0000\n"
-"PO-Revision-Date: 2024-08-23 10:21+0200\n"
+"POT-Creation-Date: 2025-02-17 22:28+0000\n"
+"PO-Revision-Date: 2025-02-23 07:02+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "Language: ka\n"
@@ -16,16 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
-#| msgid "Christian Hergert, et al."
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:85
+#: src/dspy-view.ui:24 src/main.c:87
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -50,208 +49,212 @@ msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
-#: lib/dspy-connection-button.c:76
+#: src/dspy-connection-button.c:76
 #, c-format
 msgid "Connected to “%s”"
 msgstr "მიერთებულია %s-თან"
 
-#: lib/dspy-connection-button.c:221
+#: src/dspy-connection-button.c:221
 msgid "S_ystem"
 msgstr "ს_ისტემა"
 
-#: lib/dspy-connection-button.c:223
+#: src/dspy-connection-button.c:223
 msgid "_Session"
 msgstr "ს_ესია"
 
-#: lib/dspy-connection-button.c:225
+#: src/dspy-connection-button.c:225
 msgid "_Other"
 msgstr "_სხვა"
 
-#: lib/dspy-method-view.c:191
+#: src/dspy-method-view.c:191
 msgid "Execute"
 msgstr "გაშვება"
 
-#: lib/dspy-method-view.c:273
+#: src/dspy-method-view.c:273
 msgid "Cancel"
 msgstr "გაუქმება"
 
-#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
 msgid "Object Path"
 msgstr "ობიექტის ბილიკი"
 
-#: lib/dspy-method-view.ui:36
+#: src/dspy-method-view.ui:36
 msgid "Interface"
 msgstr "ინტერფეისი"
 
-#: lib/dspy-method-view.ui:61
+#: src/dspy-method-view.ui:61
 msgid "Method"
 msgstr "მეთოდი"
 
-#: lib/dspy-method-view.ui:86
+#: src/dspy-method-view.ui:86
 msgid "Parameters"
 msgstr "პარამეტრები"
 
-#: lib/dspy-method-view.ui:126
+#: src/dspy-method-view.ui:126
 msgid "_Execute"
 msgstr "შ_ესრულება"
 
-#: lib/dspy-method-view.ui:141
+#: src/dspy-method-view.ui:141
 msgid "Result"
 msgstr "შედეგი"
 
-#: lib/dspy-method-view.ui:182
+#: src/dspy-method-view.ui:182
 msgid "_Copy"
 msgstr "_კოპირება"
 
-#: lib/dspy-method-view.ui:194
+#: src/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "გასული დრო"
 
-#: lib/dspy-name-marquee.ui:12
+#: src/dspy-name-marquee.ui:12
 msgid "Bus Address"
 msgstr "მატარებლის მისამართი"
 
-#: lib/dspy-name-marquee.ui:36
+#: src/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "სახელი"
 
-#: lib/dspy-name-marquee.ui:60
+#: src/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "მფლობელი"
 
-#: lib/dspy-name-marquee.ui:84
+#: src/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "პროცესის ID"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 msgid "Activatable"
 msgstr "გააქტიურებადი"
 
-#: lib/dspy-name-row.c:78
+#: src/dspy-name-row.c:78
 msgid "Yes"
 msgstr "დიახ"
 
-#: lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:80
 msgid "No"
 msgstr "არა"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 #, c-format
 msgid "%s: %u"
 msgstr "%s: %u"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 msgid "PID"
 msgstr "PID"
 
-#: lib/dspy-node.c:468
+#: src/dspy-node.c:468
 msgid "read/write"
 msgstr "ჩაწერადი"
 
-#: lib/dspy-node.c:470
+#: src/dspy-node.c:470
 msgid "write-only"
 msgstr "მხოლოდ-ჩაწერადი"
 
-#: lib/dspy-node.c:472
+#: src/dspy-node.c:472
 msgid "read-only"
 msgstr "მხოლოდ-წაკითხვადი"
 
-#: lib/dspy-node.c:587
+#: src/dspy-node.c:587
 msgid "Interfaces"
 msgstr "ინტერფეისები"
 
-#: lib/dspy-node.c:590
+#: src/dspy-node.c:590
 msgid "Methods"
 msgstr "მეთოდები"
 
-#: lib/dspy-node.c:596
+#: src/dspy-node.c:596
 msgid "Properties"
 msgstr "_თვისებები"
 
-#: lib/dspy-node.c:612
+#: src/dspy-node.c:612
 msgid "Signals"
 msgstr "სიგნალები"
 
 #. translators: %s is replaced with the simple D-Bus type string
-#: lib/dspy-signature.c:77
+#: src/dspy-signature.c:77
 #, c-format
 msgid "Array of [%s]"
 msgstr "[%s]-ის მასივი"
 
-#: lib/dspy-view.c:126
+#: src/dspy-view.c:125
 msgid "Bus"
 msgstr "მატარებელი"
 
-#: lib/dspy-view.c:165
+#: src/dspy-view.c:167
 msgid "Access Denied by Peer"
 msgstr "წვდომა აკრძალულია პარტნიორის მიერ"
 
-#: lib/dspy-view.c:167
+#: src/dspy-view.c:169
 msgid "Authentication Failed"
 msgstr "ავთენტიკაციის შეცდომა"
 
-#: lib/dspy-view.c:169
+#: src/dspy-view.c:171
 msgid "Operation Timed Out"
 msgstr "ოპერაციის ვადა გავიდა"
 
-#: lib/dspy-view.c:171
+#: src/dspy-view.c:173
 msgid "Lost Connection to Bus"
 msgstr "მატარებელთან კავშირი დაარგულია"
 
-#: lib/dspy-view.c:173
+#: src/dspy-view.c:175
 msgid "D-Bus Connection Failed"
 msgstr "D-Bus-თან კავშირის შეცდომა"
 
-#: lib/dspy-view.c:475
+#: src/dspy-view.c:179
+msgid "_Close"
+msgstr "და_ხურვა"
+
+#: src/dspy-view.c:474
 msgid "Connect"
 msgstr "დაკავშირება"
 
-#: lib/dspy-view.c:476
+#: src/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "შეიყვანეთ შეტყობინებების მატარებლის მისამართი"
 
-#: lib/dspy-view.c:478
+#: src/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "სხვა მატარებელთან მიერთება"
 
-#: lib/dspy-view.ui:31
+#: src/dspy-view.ui:31
 msgid "Main Menu"
 msgstr "მთავარი მენიუ"
 
-#: lib/dspy-view.ui:66
+#: src/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "მატარებლის სახელების ძებნა"
 
-#: lib/dspy-view.ui:80
+#: src/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "მატარებლის სახელები"
 
-#: lib/dspy-view.ui:143
+#: src/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "აირჩიეთ D-Bus-ის სახელი"
 
-#: lib/dspy-view.ui:144
+#: src/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
 msgstr "აირჩიეთ მატარებლის სახელი პარტნიორის ინტროსპექციისთვის"
 
-#: lib/dspy-view.ui:160
+#: src/dspy-view.ui:160
 msgid "Refresh"
 msgstr "განახლება"
 
-#: lib/dspy-view.ui:230
+#: src/dspy-view.ui:230
 msgid "_New Window"
 msgstr "_ახალი ფანჯარა"
 
-#: lib/dspy-view.ui:236
+#: src/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "D-Spy-ის _შესახებ"
 
-#: lib/gtk/menus.ui:5
+#: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "სხვა მატარებელთან მიერთება…"
 
