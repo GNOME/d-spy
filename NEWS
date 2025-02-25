@@ -1,3 +1,9 @@
+# D-Spy 48.rc
+
+ * Use AdwAlertDialog
+ * Use + icon for connecting to new bus
+ * Translation updates
+
 # D-Spy 48.beta
 
  * Removal of libdspy. This is no longer used by Builder and will
