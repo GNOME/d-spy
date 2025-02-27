@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-05-16 22:11+0000\n"
-"PO-Revision-Date: 2024-05-19 12:37+0300\n"
+"POT-Creation-Date: 2025-02-17 22:28+0000\n"
+"PO-Revision-Date: 2025-02-27 09:31+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
@@ -24,7 +24,7 @@ msgid "Christian Hergert"
 msgstr "כריסטיאן הרגרט"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:85
+#: src/dspy-view.ui:24 src/main.c:87
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -49,208 +49,212 @@ msgid "dspy;dbus;"
 msgstr "dspy;dbus;חוקר אפיק;חוקר אפיק מערכת;דיבאס;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
-#: lib/dspy-connection-button.c:76
+#: src/dspy-connection-button.c:76
 #, c-format
 msgid "Connected to “%s”"
 msgstr "התחבר אל „%s”"
 
-#: lib/dspy-connection-button.c:221
+#: src/dspy-connection-button.c:221
 msgid "S_ystem"
 msgstr "מ_ערכת"
 
-#: lib/dspy-connection-button.c:223
+#: src/dspy-connection-button.c:223
 msgid "_Session"
 msgstr "ה_פעלה"
 
-#: lib/dspy-connection-button.c:225
+#: src/dspy-connection-button.c:225
 msgid "_Other"
 msgstr "_אחר"
 
-#: lib/dspy-method-view.c:191
+#: src/dspy-method-view.c:191
 msgid "Execute"
 msgstr "הפעלה"
 
-#: lib/dspy-method-view.c:273
+#: src/dspy-method-view.c:273
 msgid "Cancel"
 msgstr "ביטול"
 
-#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
 msgid "Object Path"
 msgstr "נתיב אובייקט"
 
-#: lib/dspy-method-view.ui:36
+#: src/dspy-method-view.ui:36
 msgid "Interface"
 msgstr "ממשק"
 
-#: lib/dspy-method-view.ui:61
+#: src/dspy-method-view.ui:61
 msgid "Method"
 msgstr "שיטה"
 
-#: lib/dspy-method-view.ui:86
+#: src/dspy-method-view.ui:86
 msgid "Parameters"
 msgstr "פרמטרים"
 
-#: lib/dspy-method-view.ui:126
+#: src/dspy-method-view.ui:126
 msgid "_Execute"
 msgstr "ה_פעלה"
 
-#: lib/dspy-method-view.ui:141
+#: src/dspy-method-view.ui:141
 msgid "Result"
 msgstr "תוצאה"
 
-#: lib/dspy-method-view.ui:182
+#: src/dspy-method-view.ui:182
 msgid "_Copy"
 msgstr "הע_תקה"
 
-#: lib/dspy-method-view.ui:194
+#: src/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "זמן שחלף"
 
-#: lib/dspy-name-marquee.ui:12
+#: src/dspy-name-marquee.ui:12
 msgid "Bus Address"
 msgstr "כתובת אפיק"
 
-#: lib/dspy-name-marquee.ui:36
+#: src/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "שם"
 
-#: lib/dspy-name-marquee.ui:60
+#: src/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "בעלים"
 
-#: lib/dspy-name-marquee.ui:84
+#: src/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "מזהה תהליך"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 #, c-format
 msgid "%s: %s"
 msgstr "‏%s: ‏%s"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 msgid "Activatable"
 msgstr "ניתן להפעלה"
 
-#: lib/dspy-name-row.c:78
+#: src/dspy-name-row.c:78
 msgid "Yes"
 msgstr "כן"
 
-#: lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:80
 msgid "No"
 msgstr "לא"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 #, c-format
 msgid "%s: %u"
 msgstr "‏%s: ‏%u"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 msgid "PID"
 msgstr "מזהה תהליך"
 
-#: lib/dspy-node.c:468
+#: src/dspy-node.c:468
 msgid "read/write"
 msgstr "קריאה/כתיבה"
 
-#: lib/dspy-node.c:470
+#: src/dspy-node.c:470
 msgid "write-only"
 msgstr "כתיבה בלבד"
 
-#: lib/dspy-node.c:472
+#: src/dspy-node.c:472
 msgid "read-only"
 msgstr "קיראב בלבד"
 
-#: lib/dspy-node.c:587
+#: src/dspy-node.c:587
 msgid "Interfaces"
 msgstr "ממשקים"
 
-#: lib/dspy-node.c:590
+#: src/dspy-node.c:590
 msgid "Methods"
 msgstr "שיטות"
 
-#: lib/dspy-node.c:596
+#: src/dspy-node.c:596
 msgid "Properties"
 msgstr "מאפיינים"
 
-#: lib/dspy-node.c:612
+#: src/dspy-node.c:612
 msgid "Signals"
 msgstr "אותות"
 
 #. translators: %s is replaced with the simple D-Bus type string
-#: lib/dspy-signature.c:77
+#: src/dspy-signature.c:77
 #, c-format
 msgid "Array of [%s]"
 msgstr "מערך של ‏‎[%s]"
 
-#: lib/dspy-view.c:126
+#: src/dspy-view.c:125
 msgid "Bus"
 msgstr "אפיק"
 
-#: lib/dspy-view.c:165
+#: src/dspy-view.c:167
 msgid "Access Denied by Peer"
 msgstr "הגישה נדחתה על ידי העמית"
 
-#: lib/dspy-view.c:167
+#: src/dspy-view.c:169
 msgid "Authentication Failed"
 msgstr "אימות נכשל"
 
-#: lib/dspy-view.c:169
+#: src/dspy-view.c:171
 msgid "Operation Timed Out"
 msgstr "תם הזמן לפעולה"
 
-#: lib/dspy-view.c:171
+#: src/dspy-view.c:173
 msgid "Lost Connection to Bus"
 msgstr "החיבור עם האפיק אבד"
 
-#: lib/dspy-view.c:173
+#: src/dspy-view.c:175
 msgid "D-Bus Connection Failed"
 msgstr "החיבור עם D-Bus כשל"
 
-#: lib/dspy-view.c:475
+#: src/dspy-view.c:179
+msgid "_Close"
+msgstr "_סגירה"
+
+#: src/dspy-view.c:474
 msgid "Connect"
 msgstr "התחברות"
 
-#: lib/dspy-view.c:476
+#: src/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "אספקת כתובת אפיק ההודעות"
 
-#: lib/dspy-view.c:478
+#: src/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "התחברות לאפיק אחר"
 
-#: lib/dspy-view.ui:31
+#: src/dspy-view.ui:31
 msgid "Main Menu"
 msgstr "תפריט ראשי"
 
-#: lib/dspy-view.ui:66
+#: src/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "חיפוש שם אפיק"
 
-#: lib/dspy-view.ui:80
+#: src/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "שמות אפיקים"
 
-#: lib/dspy-view.ui:143
+#: src/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "בחירת שם D-Bus"
 
-#: lib/dspy-view.ui:144
+#: src/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
 msgstr "נא לבחור את שם האפיק כדי לחקור את העמית"
 
-#: lib/dspy-view.ui:160
+#: src/dspy-view.ui:160
 msgid "Refresh"
 msgstr "רענון"
 
-#: lib/dspy-view.ui:230
+#: src/dspy-view.ui:230
 msgid "_New Window"
 msgstr "_חלון חדש"
 
-#: lib/dspy-view.ui:236
+#: src/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "_על D-Spy"
 
-#: lib/gtk/menus.ui:5
+#: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "התחברות לאפיק אחר…"
 
