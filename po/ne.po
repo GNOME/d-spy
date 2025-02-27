@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-05-28 16:57+0000\n"
-"PO-Revision-Date: 2024-06-03 15:06+0545\n"
+"POT-Creation-Date: 2025-02-17 22:28+0000\n"
+"PO-Revision-Date: 2025-02-27 15:34+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team<chautari@gmail.com>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
@@ -24,7 +24,7 @@ msgid "Christian Hergert"
 msgstr "क्रिश्चियन हर्गर्ट"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:85
+#: src/dspy-view.ui:24 src/main.c:87
 msgid "D-Spy"
 msgstr "डि-स्पाई"
 
@@ -34,7 +34,7 @@ msgstr "डी-बस जडानहरू विश्लेषण गर्�
 
 #: data/org.gnome.dspy.appdata.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "डी-जासूस डी-बस जडानहरू अन्वेषण गर्न एक सरल उपकरण हो।"
+msgstr "डी-जासूस डी-बस जडानहरू अन्वेषण गर्न एक सरल उपकरण हो।."
 
 #: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
@@ -49,207 +49,211 @@ msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
-#: lib/dspy-connection-button.c:76
+#: src/dspy-connection-button.c:76
 #, c-format
 msgid "Connected to “%s”"
 msgstr "%s जडान भयो"
 
-#: lib/dspy-connection-button.c:221
+#: src/dspy-connection-button.c:221
 msgid "S_ystem"
 msgstr "प्रणाली"
 
-#: lib/dspy-connection-button.c:223
+#: src/dspy-connection-button.c:223
 msgid "_Session"
 msgstr "सत्र"
 
-#: lib/dspy-connection-button.c:225
+#: src/dspy-connection-button.c:225
 msgid "_Other"
 msgstr "अन्य"
 
-#: lib/dspy-method-view.c:191
+#: src/dspy-method-view.c:191
 msgid "Execute"
 msgstr "कार्यान्वयन गर्नुहोस्"
 
-#: lib/dspy-method-view.c:273
+#: src/dspy-method-view.c:273
 msgid "Cancel"
 msgstr "रद्द गर्ने"
 
-#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
 msgid "Object Path"
 msgstr "वस्तु मार्ग"
 
-#: lib/dspy-method-view.ui:36
+#: src/dspy-method-view.ui:36
 msgid "Interface"
 msgstr "इन्टरफेस"
 
-#: lib/dspy-method-view.ui:61
+#: src/dspy-method-view.ui:61
 msgid "Method"
 msgstr "विधि"
 
-#: lib/dspy-method-view.ui:86
+#: src/dspy-method-view.ui:86
 msgid "Parameters"
 msgstr "परामितिहरू"
 
-#: lib/dspy-method-view.ui:126
+#: src/dspy-method-view.ui:126
 msgid "_Execute"
 msgstr "कार्यान्वयन गर्नुहोस्"
 
-#: lib/dspy-method-view.ui:141
+#: src/dspy-method-view.ui:141
 msgid "Result"
 msgstr "परिणाम"
 
-#: lib/dspy-method-view.ui:182
+#: src/dspy-method-view.ui:182
 msgid "_Copy"
 msgstr "प्रतिलिपि बनाउनुहोस्"
 
-#: lib/dspy-method-view.ui:194
+#: src/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "बितेको समय"
 
-#: lib/dspy-name-marquee.ui:12
+#: src/dspy-name-marquee.ui:12
 msgid "Bus Address"
 msgstr "बस ठेगाना"
 
-#: lib/dspy-name-marquee.ui:36
+#: src/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "नाम"
 
-#: lib/dspy-name-marquee.ui:60
+#: src/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "मालिक"
 
-#: lib/dspy-name-marquee.ui:84
+#: src/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "प्रक्रिया आईडी"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 msgid "Activatable"
 msgstr "सक्रिय भएको अवस्था"
 
-#: lib/dspy-name-row.c:78
+#: src/dspy-name-row.c:78
 msgid "Yes"
 msgstr "हो"
 
-#: lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:80
 msgid "No"
 msgstr "होईन"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 #, c-format
 msgid "%s: %u"
 msgstr "%s: %u"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 msgid "PID"
 msgstr "(पीआईडी) PID"
 
-#: lib/dspy-node.c:468
+#: src/dspy-node.c:468
 msgid "read/write"
 msgstr "पढ्नुहोस् र लेख्नुहोस्"
 
-#: lib/dspy-node.c:470
+#: src/dspy-node.c:470
 msgid "write-only"
 msgstr "लेखन मात्र"
 
-#: lib/dspy-node.c:472
+#: src/dspy-node.c:472
 msgid "read-only"
 msgstr "पढ्न मात्रै मिल्ने"
 
-#: lib/dspy-node.c:587
+#: src/dspy-node.c:587
 msgid "Interfaces"
 msgstr "इन्टरफेस"
 
-#: lib/dspy-node.c:590
+#: src/dspy-node.c:590
 msgid "Methods"
 msgstr "विधि"
 
-#: lib/dspy-node.c:596
+#: src/dspy-node.c:596
 msgid "Properties"
 msgstr "गुणहरू"
 
-#: lib/dspy-node.c:612
+#: src/dspy-node.c:612
 msgid "Signals"
 msgstr "सङ्केत"
 
 #. translators: %s is replaced with the simple D-Bus type string
-#: lib/dspy-signature.c:77
+#: src/dspy-signature.c:77
 #, c-format
 msgid "Array of [%s]"
 msgstr "[%s] को एरे"
 
-#: lib/dspy-view.c:125
+#: src/dspy-view.c:125
 msgid "Bus"
 msgstr "बस"
 
-#: lib/dspy-view.c:164
+#: src/dspy-view.c:167
 msgid "Access Denied by Peer"
 msgstr "सहकर्मीद्वारा पहुँच अस्वीकृत गरियो"
 
-#: lib/dspy-view.c:166
+#: src/dspy-view.c:169
 msgid "Authentication Failed"
 msgstr "प्रमाणीकरण असफल भयो"
 
-#: lib/dspy-view.c:168
+#: src/dspy-view.c:171
 msgid "Operation Timed Out"
 msgstr "सञ्चालन समय समाप्त भयो"
 
-#: lib/dspy-view.c:170
+#: src/dspy-view.c:173
 msgid "Lost Connection to Bus"
 msgstr "बसमा जडान हरायो"
 
-#: lib/dspy-view.c:172
+#: src/dspy-view.c:175
 msgid "D-Bus Connection Failed"
 msgstr "डी-बस जडान असफल भयो"
 
-#: lib/dspy-view.c:474
+#: src/dspy-view.c:179
+msgid "_Close"
+msgstr "बन्द गर्नुहोस्"
+
+#: src/dspy-view.c:474
 msgid "Connect"
 msgstr "जडान गर्नुहोस्"
 
-#: lib/dspy-view.c:475
+#: src/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "सन्देश बसको ठेगाना प्रदान गर्नुहोस्"
 
-#: lib/dspy-view.c:477
+#: src/dspy-view.c:477
 msgid "Connect to Other Bus"
-msgstr "अन्य बसमा जडान गर्नुहोस्..."
+msgstr "अन्य बसमा जडान गर्नुहोस्"
 
-#: lib/dspy-view.ui:31
+#: src/dspy-view.ui:31
 msgid "Main Menu"
 msgstr "मुख्य मेनु"
 
-#: lib/dspy-view.ui:66
+#: src/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "बस नामहरू खोजी गर्नुहोस्"
 
-#: lib/dspy-view.ui:80
+#: src/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "बसको नाम"
 
-#: lib/dspy-view.ui:144
+#: src/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "डी-बस नाम चयन गर्नुहोस्"
 
-#: lib/dspy-view.ui:145
+#: src/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
 msgstr "सहकर्मीलाई आत्मनिरीक्षण गर्न बस नाम चयन गर्नुहोस्"
 
-#: lib/dspy-view.ui:161
+#: src/dspy-view.ui:160
 msgid "Refresh"
 msgstr "ताजा पार्नुहोस्"
 
-#: lib/dspy-view.ui:231
+#: src/dspy-view.ui:230
 msgid "_New Window"
 msgstr "नयाँ सञ्झ्याल"
 
-#: lib/dspy-view.ui:237
+#: src/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "डि-स्पाई बारेमा"
 
-#: lib/gtk/menus.ui:5
+#: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
-msgstr "अन्य बसमा जडान गर्नुहोस्..."
+msgstr "अन्य बसमा जडान गर्नुहोस्…"
