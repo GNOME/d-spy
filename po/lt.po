@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-05-19 11:42+0000\n"
-"PO-Revision-Date: 2024-05-24 22:51+0300\n"
+"POT-Creation-Date: 2025-02-17 22:28+0000\n"
+"PO-Revision-Date: 2025-02-28 23:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
@@ -25,7 +25,7 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:85
+#: src/dspy-view.ui:24 src/main.c:87
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -50,208 +50,212 @@ msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
-#: lib/dspy-connection-button.c:76
+#: src/dspy-connection-button.c:76
 #, c-format
 msgid "Connected to “%s”"
 msgstr "Prisijungta prie „%s“"
 
-#: lib/dspy-connection-button.c:221
+#: src/dspy-connection-button.c:221
 msgid "S_ystem"
 msgstr "S_isteminė"
 
-#: lib/dspy-connection-button.c:223
+#: src/dspy-connection-button.c:223
 msgid "_Session"
 msgstr "_Seanso"
 
-#: lib/dspy-connection-button.c:225
+#: src/dspy-connection-button.c:225
 msgid "_Other"
 msgstr "_Kita"
 
-#: lib/dspy-method-view.c:191
+#: src/dspy-method-view.c:191
 msgid "Execute"
 msgstr "Vykdyti"
 
-#: lib/dspy-method-view.c:273
+#: src/dspy-method-view.c:273
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
 msgid "Object Path"
 msgstr "Objekto kelias"
 
-#: lib/dspy-method-view.ui:36
+#: src/dspy-method-view.ui:36
 msgid "Interface"
 msgstr "Sąsaja"
 
-#: lib/dspy-method-view.ui:61
+#: src/dspy-method-view.ui:61
 msgid "Method"
 msgstr "Metodas"
 
-#: lib/dspy-method-view.ui:86
+#: src/dspy-method-view.ui:86
 msgid "Parameters"
 msgstr "Parametrai"
 
-#: lib/dspy-method-view.ui:126
+#: src/dspy-method-view.ui:126
 msgid "_Execute"
 msgstr "_Vykdyti"
 
-#: lib/dspy-method-view.ui:141
+#: src/dspy-method-view.ui:141
 msgid "Result"
 msgstr "Rezultatas"
 
-#: lib/dspy-method-view.ui:182
+#: src/dspy-method-view.ui:182
 msgid "_Copy"
 msgstr "_Kopijuoti"
 
-#: lib/dspy-method-view.ui:194
+#: src/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "Praėjo laiko"
 
-#: lib/dspy-name-marquee.ui:12
+#: src/dspy-name-marquee.ui:12
 msgid "Bus Address"
 msgstr "Magistralės adresas"
 
-#: lib/dspy-name-marquee.ui:36
+#: src/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Pavadinimas"
 
-#: lib/dspy-name-marquee.ui:60
+#: src/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Savininkas"
 
-#: lib/dspy-name-marquee.ui:84
+#: src/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "Proceso ID"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 msgid "Activatable"
 msgstr "Aktyvinama"
 
-#: lib/dspy-name-row.c:78
+#: src/dspy-name-row.c:78
 msgid "Yes"
 msgstr "Taip"
 
-#: lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:80
 msgid "No"
 msgstr "Ne"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 #, c-format
 msgid "%s: %u"
 msgstr "%s: %u"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 msgid "PID"
 msgstr "PID"
 
-#: lib/dspy-node.c:468
+#: src/dspy-node.c:468
 msgid "read/write"
 msgstr "skaitoma/rašomas"
 
-#: lib/dspy-node.c:470
+#: src/dspy-node.c:470
 msgid "write-only"
 msgstr "tik rašoma"
 
-#: lib/dspy-node.c:472
+#: src/dspy-node.c:472
 msgid "read-only"
 msgstr "tik skaitoma"
 
-#: lib/dspy-node.c:587
+#: src/dspy-node.c:587
 msgid "Interfaces"
 msgstr "Sąsajos"
 
-#: lib/dspy-node.c:590
+#: src/dspy-node.c:590
 msgid "Methods"
 msgstr "Metodai"
 
-#: lib/dspy-node.c:596
+#: src/dspy-node.c:596
 msgid "Properties"
 msgstr "Savybės"
 
-#: lib/dspy-node.c:612
+#: src/dspy-node.c:612
 msgid "Signals"
 msgstr "Signalai"
 
 #. translators: %s is replaced with the simple D-Bus type string
-#: lib/dspy-signature.c:77
+#: src/dspy-signature.c:77
 #, c-format
 msgid "Array of [%s]"
 msgstr "[%s] masyvas"
 
-#: lib/dspy-view.c:125
+#: src/dspy-view.c:125
 msgid "Bus"
 msgstr "Magistralė"
 
-#: lib/dspy-view.c:164
+#: src/dspy-view.c:167
 msgid "Access Denied by Peer"
 msgstr "Porininkas neleido prieigos"
 
-#: lib/dspy-view.c:166
+#: src/dspy-view.c:169
 msgid "Authentication Failed"
 msgstr "Nepavyko patvirtinti tapatybės"
 
-#: lib/dspy-view.c:168
+#: src/dspy-view.c:171
 msgid "Operation Timed Out"
 msgstr "Baigėsi veiksmo laikas"
 
-#: lib/dspy-view.c:170
+#: src/dspy-view.c:173
 msgid "Lost Connection to Bus"
 msgstr "Prarastas ryšys su magistrale"
 
-#: lib/dspy-view.c:172
+#: src/dspy-view.c:175
 msgid "D-Bus Connection Failed"
 msgstr "Nepavyko užmegzti D-Bus ryšio"
 
-#: lib/dspy-view.c:474
+#: src/dspy-view.c:179
+msgid "_Close"
+msgstr "_Užverti"
+
+#: src/dspy-view.c:474
 msgid "Connect"
 msgstr "Jungtis"
 
-#: lib/dspy-view.c:475
+#: src/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "Pateikite pranešimų magistralės adresą"
 
-#: lib/dspy-view.c:477
+#: src/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "Prisijungti prie kitos magistralės"
 
-#: lib/dspy-view.ui:31
+#: src/dspy-view.ui:31
 msgid "Main Menu"
 msgstr "Pagrindinis meniu"
 
-#: lib/dspy-view.ui:66
+#: src/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "Ieškoti magistralių pavadinimų"
 
-#: lib/dspy-view.ui:80
+#: src/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "Magistralių pavadinimai"
 
-#: lib/dspy-view.ui:144
+#: src/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "Pasirinkite D-Bus pavadinimą"
 
-#: lib/dspy-view.ui:145
+#: src/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
 msgstr "Pasirinkite magistralės pavadinimą porininkui tirti"
 
-#: lib/dspy-view.ui:161
+#: src/dspy-view.ui:160
 msgid "Refresh"
 msgstr "Atnaujinti"
 
-#: lib/dspy-view.ui:231
+#: src/dspy-view.ui:230
 msgid "_New Window"
 msgstr "_Naujas langas"
 
-#: lib/dspy-view.ui:237
+#: src/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "_Apie D-Spy"
 
-#: lib/gtk/menus.ui:5
+#: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "Prisijungti prie kitos magistralės…"
 
