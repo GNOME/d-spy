@@ -37,7 +37,7 @@ config_h.set10('DEVELOPMENT_BUILD', get_option('development'))
 
 glib_req_version = '2.76'
 gtk_req_version = '4.12'
-adwaita_req_version = '1.4'
+adwaita_req_version = '1.5'
 
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
