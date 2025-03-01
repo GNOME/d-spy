@@ -1,14 +1,14 @@
 # Basque translation for d-spy.
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
-# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2023, 2024.
+# Asier Saratsua Garmendia <asiersarasua@ni.eus>, 2023, 2024, 2025.
 #
 msgid ""
 msgstr "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-07-29 20:48+0000\n"
-"PO-Revision-Date: 2024-08-26 18:04+0000\n"
-"Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
+"POT-Creation-Date: 2025-02-17 22:28+0000\n"
+"PO-Revision-Date: 2026-03-01 18:04+0000\n"
+"Last-Translator: Asier Saratsua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:85
+#: src/dspy-view.ui:24 src/main.c:87
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -46,208 +46,212 @@ msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
-#: lib/dspy-connection-button.c:76
+#: src/dspy-connection-button.c:76
 #, c-format
 msgid "Connected to “%s”"
 msgstr "Honekin konektatua: “%s”"
 
-#: lib/dspy-connection-button.c:221
+#: src/dspy-connection-button.c:221
 msgid "S_ystem"
 msgstr "S_istema"
 
-#: lib/dspy-connection-button.c:223
+#: src/dspy-connection-button.c:223
 msgid "_Session"
 msgstr "_Saioa"
 
-#: lib/dspy-connection-button.c:225
+#: src/dspy-connection-button.c:225
 msgid "_Other"
 msgstr "_Bestelakoak"
 
-#: lib/dspy-method-view.c:191
+#: src/dspy-method-view.c:191
 msgid "Execute"
 msgstr "Exekutatu"
 
-#: lib/dspy-method-view.c:273
+#: src/dspy-method-view.c:273
 msgid "Cancel"
 msgstr "Utzi"
 
-#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
 msgid "Object Path"
 msgstr "Objektuaren bide-izena"
 
-#: lib/dspy-method-view.ui:36
+#: src/dspy-method-view.ui:36
 msgid "Interface"
 msgstr "Interfazea"
 
-#: lib/dspy-method-view.ui:61
+#: src/dspy-method-view.ui:61
 msgid "Method"
 msgstr "Metodoa"
 
-#: lib/dspy-method-view.ui:86
+#: src/dspy-method-view.ui:86
 msgid "Parameters"
 msgstr "Parametroak"
 
-#: lib/dspy-method-view.ui:126
+#: src/dspy-method-view.ui:126
 msgid "_Execute"
 msgstr "_Exekutatu"
 
-#: lib/dspy-method-view.ui:141
+#: src/dspy-method-view.ui:141
 msgid "Result"
 msgstr "Emaitza"
 
-#: lib/dspy-method-view.ui:182
+#: src/dspy-method-view.ui:182
 msgid "_Copy"
 msgstr "_Kopiatu"
 
-#: lib/dspy-method-view.ui:194
+#: src/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "Igarotako denbora"
 
-#: lib/dspy-name-marquee.ui:12
+#: src/dspy-name-marquee.ui:12
 msgid "Bus Address"
 msgstr "Bus-helbidea"
 
-#: lib/dspy-name-marquee.ui:36
+#: src/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Izena"
 
-#: lib/dspy-name-marquee.ui:60
+#: src/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Jabea"
 
-#: lib/dspy-name-marquee.ui:84
+#: src/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "Prozesuaren IDa"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 msgid "Activatable"
 msgstr "Aktibagarria"
 
-#: lib/dspy-name-row.c:78
+#: src/dspy-name-row.c:78
 msgid "Yes"
 msgstr "Bai"
 
-#: lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:80
 msgid "No"
 msgstr "Ez"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 #, c-format
 msgid "%s: %u"
 msgstr "%s: %u"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 msgid "PID"
 msgstr "PIDa"
 
-#: lib/dspy-node.c:468
+#: src/dspy-node.c:468
 msgid "read/write"
 msgstr "irakurtzeko/idazteko"
 
-#: lib/dspy-node.c:470
+#: src/dspy-node.c:470
 msgid "write-only"
 msgstr "idazteko soilik"
 
-#: lib/dspy-node.c:472
+#: src/dspy-node.c:472
 msgid "read-only"
 msgstr "irakurtzeko soilik"
 
-#: lib/dspy-node.c:587
+#: src/dspy-node.c:587
 msgid "Interfaces"
 msgstr "Interfazeak"
 
-#: lib/dspy-node.c:590
+#: src/dspy-node.c:590
 msgid "Methods"
 msgstr "Metodoakd"
 
-#: lib/dspy-node.c:596
+#: src/dspy-node.c:596
 msgid "Properties"
 msgstr "Propietateak"
 
-#: lib/dspy-node.c:612
+#: src/dspy-node.c:612
 msgid "Signals"
 msgstr "Seinaleak"
 
 #. translators: %s is replaced with the simple D-Bus type string
-#: lib/dspy-signature.c:77
+#: src/dspy-signature.c:77
 #, c-format
 msgid "Array of [%s]"
 msgstr "[%s] matrizea"
 
-#: lib/dspy-view.c:126
+#: src/dspy-view.c:125
 msgid "Bus"
 msgstr "Bus-a"
 
-#: lib/dspy-view.c:165
+#: src/dspy-view.c:167
 msgid "Access Denied by Peer"
 msgstr "Parekoak sarbidea ukatu du"
 
-#: lib/dspy-view.c:167
+#: src/dspy-view.c:169
 msgid "Authentication Failed"
 msgstr "Autentifikazioak huts egin du"
 
-#: lib/dspy-view.c:169
+#: src/dspy-view.c:171
 msgid "Operation Timed Out"
 msgstr "Eragiketak denbora agortu du"
 
-#: lib/dspy-view.c:171
+#: src/dspy-view.c:173
 msgid "Lost Connection to Bus"
 msgstr "Busaren konexioa galdu da"
 
-#: lib/dspy-view.c:173
+#: src/dspy-view.c:175
 msgid "D-Bus Connection Failed"
 msgstr "D-Bus konexioak huts egin du"
 
-#: lib/dspy-view.c:475
+#: src/dspy-view.c:179
+msgid "_Close"
+msgstr "It_xi"
+
+#: src/dspy-view.c:474
 msgid "Connect"
 msgstr "Konektatu"
 
-#: lib/dspy-view.c:476
+#: src/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "Eman mezu-busaren helbidea"
 
-#: lib/dspy-view.c:478
+#: src/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "Konektatu beste bus batekin"
 
-#: lib/dspy-view.ui:31
+#: src/dspy-view.ui:31
 msgid "Main Menu"
 msgstr "Menu nagusia"
 
-#: lib/dspy-view.ui:66
+#: src/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "Bilatu bus-izenak"
 
-#: lib/dspy-view.ui:80
+#: src/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "Bus-izenak"
 
-#: lib/dspy-view.ui:143
+#: src/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "Hautatu D-Bus izen bat"
 
-#: lib/dspy-view.ui:144
+#: src/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
 msgstr "Hautatu bus-izen bat parekoaren introspekziorako"
 
-#: lib/dspy-view.ui:160
+#: src/dspy-view.ui:160
 msgid "Refresh"
 msgstr "Freskatu"
 
-#: lib/dspy-view.ui:230
+#: src/dspy-view.ui:230
 msgid "_New Window"
 msgstr "_Leiho berria"
 
-#: lib/dspy-view.ui:236
+#: src/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "D-Spy aplizazioari _buruz"
 
-#: lib/gtk/menus.ui:5
+#: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "Konektatu beste bus batekin…"
 
