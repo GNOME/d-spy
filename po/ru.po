@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-05-16 22:11+0000\n"
-"PO-Revision-Date: 2024-05-16 10:49+0300\n"
+"POT-Creation-Date: 2025-02-17 22:28+0000\n"
+"PO-Revision-Date: 2025-02-18 17:16+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
@@ -25,7 +25,7 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:85
+#: src/dspy-view.ui:24 src/main.c:87
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -50,208 +50,212 @@ msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
 #. translators: %s is replaced with the address of the D-Bus bus
-#: lib/dspy-connection-button.c:76
+#: src/dspy-connection-button.c:76
 #, c-format
 msgid "Connected to “%s”"
 msgstr "Соединено с «%s»"
 
-#: lib/dspy-connection-button.c:221
+#: src/dspy-connection-button.c:221
 msgid "S_ystem"
 msgstr "С_истема"
 
-#: lib/dspy-connection-button.c:223
+#: src/dspy-connection-button.c:223
 msgid "_Session"
 msgstr "С_еанс"
 
-#: lib/dspy-connection-button.c:225
+#: src/dspy-connection-button.c:225
 msgid "_Other"
 msgstr "_Другое"
 
-#: lib/dspy-method-view.c:191
+#: src/dspy-method-view.c:191
 msgid "Execute"
 msgstr "Выполнить"
 
-#: lib/dspy-method-view.c:273
+#: src/dspy-method-view.c:273
 msgid "Cancel"
 msgstr "Отменить"
 
-#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
+#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
 msgid "Object Path"
 msgstr "Путь к объекту"
 
-#: lib/dspy-method-view.ui:36
+#: src/dspy-method-view.ui:36
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: lib/dspy-method-view.ui:61
+#: src/dspy-method-view.ui:61
 msgid "Method"
 msgstr "Метод"
 
-#: lib/dspy-method-view.ui:86
+#: src/dspy-method-view.ui:86
 msgid "Parameters"
 msgstr "Параметры"
 
-#: lib/dspy-method-view.ui:126
+#: src/dspy-method-view.ui:126
 msgid "_Execute"
 msgstr "_Выполнить"
 
-#: lib/dspy-method-view.ui:141
+#: src/dspy-method-view.ui:141
 msgid "Result"
 msgstr "Результат"
 
-#: lib/dspy-method-view.ui:182
+#: src/dspy-method-view.ui:182
 msgid "_Copy"
 msgstr "_Копировать"
 
-#: lib/dspy-method-view.ui:194
+#: src/dspy-method-view.ui:194
 msgid "Elapsed Time"
 msgstr "Прошедшее время"
 
-#: lib/dspy-name-marquee.ui:12
+#: src/dspy-name-marquee.ui:12
 msgid "Bus Address"
 msgstr "Адрес шины"
 
-#: lib/dspy-name-marquee.ui:36
+#: src/dspy-name-marquee.ui:36
 msgid "Name"
 msgstr "Название"
 
-#: lib/dspy-name-marquee.ui:60
+#: src/dspy-name-marquee.ui:60
 msgid "Owner"
 msgstr "Владелец"
 
-#: lib/dspy-name-marquee.ui:84
+#: src/dspy-name-marquee.ui:84
 msgid "Process ID"
 msgstr "ID процесса"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
 msgid "Activatable"
 msgstr "Активируемый"
 
-#: lib/dspy-name-row.c:78
+#: src/dspy-name-row.c:78
 msgid "Yes"
 msgstr "Да"
 
-#: lib/dspy-name-row.c:80
+#: src/dspy-name-row.c:80
 msgid "No"
 msgstr "Нет"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 #, c-format
 msgid "%s: %u"
 msgstr "%s: %u"
 
-#: lib/dspy-name-row.c:85
+#: src/dspy-name-row.c:85
 msgid "PID"
 msgstr "PID"
 
-#: lib/dspy-node.c:468
+#: src/dspy-node.c:468
 msgid "read/write"
 msgstr "чтение/запись"
 
-#: lib/dspy-node.c:470
+#: src/dspy-node.c:470
 msgid "write-only"
 msgstr "только запись"
 
-#: lib/dspy-node.c:472
+#: src/dspy-node.c:472
 msgid "read-only"
 msgstr "только чтение"
 
-#: lib/dspy-node.c:587
+#: src/dspy-node.c:587
 msgid "Interfaces"
 msgstr "Интерфейсы"
 
-#: lib/dspy-node.c:590
+#: src/dspy-node.c:590
 msgid "Methods"
 msgstr "Методы"
 
-#: lib/dspy-node.c:596
+#: src/dspy-node.c:596
 msgid "Properties"
 msgstr "Свойства"
 
-#: lib/dspy-node.c:612
+#: src/dspy-node.c:612
 msgid "Signals"
 msgstr "Сигналы"
 
 #. translators: %s is replaced with the simple D-Bus type string
-#: lib/dspy-signature.c:77
+#: src/dspy-signature.c:77
 #, c-format
 msgid "Array of [%s]"
 msgstr "Массив [%s]"
 
-#: lib/dspy-view.c:126
+#: src/dspy-view.c:125
 msgid "Bus"
 msgstr "Шина"
 
-#: lib/dspy-view.c:165
+#: src/dspy-view.c:167
 msgid "Access Denied by Peer"
 msgstr "Доступ запрёщен узлом"
 
-#: lib/dspy-view.c:167
+#: src/dspy-view.c:169
 msgid "Authentication Failed"
 msgstr "Ошибка аутентификации"
 
-#: lib/dspy-view.c:169
+#: src/dspy-view.c:171
 msgid "Operation Timed Out"
 msgstr "Время ожидания операции истекло"
 
-#: lib/dspy-view.c:171
+#: src/dspy-view.c:173
 msgid "Lost Connection to Bus"
 msgstr "Разорвано соединение с шиной"
 
-#: lib/dspy-view.c:173
+#: src/dspy-view.c:175
 msgid "D-Bus Connection Failed"
 msgstr "Ошибка соединения D-Bus"
 
-#: lib/dspy-view.c:475
+#: src/dspy-view.c:179
+msgid "_Close"
+msgstr "_Закрыть"
+
+#: src/dspy-view.c:474
 msgid "Connect"
 msgstr "Соединение"
 
-#: lib/dspy-view.c:476
+#: src/dspy-view.c:475
 msgid "Provide the address of the message bus"
 msgstr "Предоставить адрес шины сообщений"
 
-#: lib/dspy-view.c:478
+#: src/dspy-view.c:477
 msgid "Connect to Other Bus"
 msgstr "Соединиться с другой шиной"
 
-#: lib/dspy-view.ui:31
+#: src/dspy-view.ui:31
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: lib/dspy-view.ui:66
+#: src/dspy-view.ui:66
 msgid "Search Bus Names"
 msgstr "Искать в названиях шин"
 
-#: lib/dspy-view.ui:80
+#: src/dspy-view.ui:80
 msgid "Bus Names"
 msgstr "Название шин"
 
-#: lib/dspy-view.ui:143
+#: src/dspy-view.ui:143
 msgid "Select a D-Bus Name"
 msgstr "Выберите название D-Bus"
 
-#: lib/dspy-view.ui:144
+#: src/dspy-view.ui:144
 msgid "Select a bus name to introspect the peer"
 msgstr "Выберите название шины для интроспекции узла"
 
-#: lib/dspy-view.ui:160
+#: src/dspy-view.ui:160
 msgid "Refresh"
 msgstr "Обновить"
 
-#: lib/dspy-view.ui:230
+#: src/dspy-view.ui:230
 msgid "_New Window"
 msgstr "_Новое окно"
 
-#: lib/dspy-view.ui:236
+#: src/dspy-view.ui:236
 msgid "_About D-Spy"
 msgstr "_О приложении"
 
-#: lib/gtk/menus.ui:5
+#: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "Соединиться с другой шиной…"
 
