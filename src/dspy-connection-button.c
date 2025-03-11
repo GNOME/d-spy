@@ -224,6 +224,8 @@ dspy_connection_button_set_connection (DspyConnectionButton *self,
       else
         gtk_button_set_label (GTK_BUTTON (self), _("_Other"));
 
+      gtk_button_set_use_underline (GTK_BUTTON (self), TRUE);
+
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CONNECTION]);
     }
 }
