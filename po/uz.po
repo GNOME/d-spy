@@ -1,0 +1,260 @@
+# Uzbek (Latin) translation for d-spy.
+# Copyright (C) 2025 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# Otabek To'lqinov <otabektolqinov30@gmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2025-03-20 16:58+0000\n"
+"PO-Revision-Date: 2025-03-27 02:07+0500\n"
+"Last-Translator: \n"
+"Language-Team: Uzbek (Latin) <uz@li.org>\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: src/dspy-view.ui:24 src/main.c:87
+msgid "D-Spy"
+msgstr "D-Spy"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "D-Bus aloqasini tahlil qilish"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy D-bus aloqalarini o'rganish uchun oddiy vosita."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "D-Spy Interfeysi"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "Discover and explore D-Bus services"
+msgstr "D-Bus xizmatlarini ko'ring va o'rganing"
+
+#: data/org.gnome.dspy.desktop.in.in:8
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
+
+#. translators: %s is replaced with the address of the D-Bus bus
+#: src/dspy-connection-button.c:76
+#, c-format
+msgid "Connected to “%s”"
+msgstr "\"%s\" ga bog'langan"
+
+#: src/dspy-connection-button.c:221
+msgid "S_ystem"
+msgstr ""
+
+#: src/dspy-connection-button.c:223
+msgid "_Session"
+msgstr "_Sessiya"
+
+#: src/dspy-connection-button.c:225
+msgid "_Other"
+msgstr "_Boshqalar"
+
+#: src/dspy-method-view.c:191
+msgid "Execute"
+msgstr "Amalga oshirish"
+
+#: src/dspy-method-view.c:273
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
+msgid "Object Path"
+msgstr "Obyekt joylashuvi"
+
+#: src/dspy-method-view.ui:36
+msgid "Interface"
+msgstr "Interfeys"
+
+#: src/dspy-method-view.ui:61
+msgid "Method"
+msgstr "Metod"
+
+#: src/dspy-method-view.ui:86
+msgid "Parameters"
+msgstr "Parametrlar"
+
+#: src/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "_Amalga oshirish"
+
+#: src/dspy-method-view.ui:141
+msgid "Result"
+msgstr "Natija"
+
+#: src/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "_Nusxalash"
+
+#: src/dspy-method-view.ui:194
+msgid "Elapsed Time"
+msgstr "O'tgan vaqt"
+
+#: src/dspy-name-marquee.ui:12
+msgid "Bus Address"
+msgstr "Bus manzili"
+
+#: src/dspy-name-marquee.ui:36
+msgid "Name"
+msgstr "Ism"
+
+#: src/dspy-name-marquee.ui:60
+msgid "Owner"
+msgstr "Ega"
+
+#: src/dspy-name-marquee.ui:84
+msgid "Process ID"
+msgstr "Jarayon ID si"
+
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
+msgid "Activatable"
+msgstr "Faollashtiriladigan"
+
+#: src/dspy-name-row.c:78
+msgid "Yes"
+msgstr "Ha"
+
+#: src/dspy-name-row.c:80
+msgid "No"
+msgstr "Yo'q"
+
+#: src/dspy-name-row.c:85
+#, c-format
+msgid "%s: %u"
+msgstr "%s: %u"
+
+#: src/dspy-name-row.c:85
+msgid "PID"
+msgstr "PID"
+
+#: src/dspy-node.c:468
+msgid "read/write"
+msgstr "o'qish/yozish"
+
+#: src/dspy-node.c:470
+msgid "write-only"
+msgstr "faqat-yozish"
+
+#: src/dspy-node.c:472
+msgid "read-only"
+msgstr "faqat-o'qish"
+
+#: src/dspy-node.c:587
+msgid "Interfaces"
+msgstr ""
+"I\n"
+"nterfeyslar"
+
+#: src/dspy-node.c:590
+msgid "Methods"
+msgstr "Metodlar"
+
+#: src/dspy-node.c:596
+msgid "Properties"
+msgstr "Xususiyatlari"
+
+#: src/dspy-node.c:612
+msgid "Signals"
+msgstr "Signallar"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: src/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr "[%s] to'plami"
+
+#: src/dspy-view.c:125
+msgid "Bus"
+msgstr "Bus"
+
+#: src/dspy-view.c:167
+msgid "Access Denied by Peer"
+msgstr "Kirish huquqi sherik tomonidan rad etildi"
+
+#: src/dspy-view.c:169
+msgid "Authentication Failed"
+msgstr "Autentifikatsiya muvaffaqiyatsizlikka uchradi"
+
+#: src/dspy-view.c:171
+msgid "Operation Timed Out"
+msgstr "Operatsiya vaqtidan o'tib ketdi"
+
+#: src/dspy-view.c:173
+msgid "Lost Connection to Bus"
+msgstr "Bus bilan aloqa yo'qoldi"
+
+#: src/dspy-view.c:175
+msgid "D-Bus Connection Failed"
+msgstr "D-Bus aloqasi muvaffaqiyatsizlikka uchradi"
+
+#: src/dspy-view.c:179
+msgid "_Close"
+msgstr "_Yopish"
+
+#: src/dspy-view.c:474
+msgid "Connect"
+msgstr "Bog'lanish"
+
+#: src/dspy-view.c:475
+msgid "Provide the address of the message bus"
+msgstr "Message busning manzilini taqdim eting"
+
+#: src/dspy-view.c:477
+msgid "Connect to Other Bus"
+msgstr "Boshqa Bus ga ulanish"
+
+#: src/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Asosiy menyu"
+
+#: src/dspy-view.ui:66
+msgid "Search Bus Names"
+msgstr "Bus nomlarini qidirish"
+
+#: src/dspy-view.ui:80
+msgid "Bus Names"
+msgstr "Bus nomlari"
+
+#: src/dspy-view.ui:143
+msgid "Select a D-Bus Name"
+msgstr "D-Bus nomini tanlash"
+
+#: src/dspy-view.ui:144
+msgid "Select a bus name to introspect the peer"
+msgstr "Sherikni tahlil qilish uchun bus nomini tanlash"
+
+#: src/dspy-view.ui:160
+msgid "Refresh"
+msgstr "Yangilash"
+
+#: src/dspy-view.ui:230
+msgid "_New Window"
+msgstr "_Yangi Oyna"
+
+#: src/dspy-view.ui:236
+msgid "_About D-Spy"
+msgstr "_D-Spy haqida"
+
+#: src/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "Boshqa Busga Ulanish…"
