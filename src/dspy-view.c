@@ -62,7 +62,7 @@ typedef struct
   GtkStackPage            *empty;
   AdwNavigationSplitView  *paned;
   AdwNavigationPage       *bus_navigation_page;
-  AdwToolbarView          *bus_toolbar_view;
+  GtkRevealer             *bottom_revealer;
   AdwStatusPage           *status_page;
 
   guint                  destroyed : 1;
@@ -357,7 +357,7 @@ name_row_activated_cb (DspyView    *self,
   dspy_name_marquee_set_name (priv->name_marquee, name);
 
   adw_navigation_page_set_title (priv->bus_navigation_page, dspy_name_get_name (name));
-  adw_toolbar_view_set_reveal_bottom_bars (priv->bus_toolbar_view, FALSE);
+  gtk_revealer_set_reveal_child (priv->bottom_revealer, FALSE);
 
   dspy_name_introspect_async (name,
                               priv->cancellable,
@@ -397,21 +397,21 @@ method_activated_cb (DspyView             *self,
   if (DSPY_IS_METHOD_INVOCATION (invocation))
     {
       dspy_method_view_set_invocation (priv->method_view, invocation);
-      adw_toolbar_view_set_reveal_bottom_bars (priv->bus_toolbar_view, TRUE);
+      gtk_revealer_set_reveal_child (priv->bottom_revealer, TRUE);
     }
 }
 
 static void
 notify_child_revealed_cb (DspyView       *self,
                           GParamSpec     *pspec,
-                          AdwToolbarView *toolbar_view)
+                          GtkRevealer    *revealer)
 {
   DspyViewPrivate *priv = dspy_view_get_instance_private (self);
 
   g_assert (DSPY_IS_VIEW (self));
-  g_assert (ADW_IS_TOOLBAR_VIEW (toolbar_view));
+  g_assert (GTK_IS_REVEALER (revealer));
 
-  if (!adw_toolbar_view_get_reveal_bottom_bars (toolbar_view))
+  if (!gtk_revealer_get_reveal_child (revealer))
     {
       dspy_method_view_set_invocation (priv->method_view, NULL);
     }
@@ -565,7 +565,7 @@ dspy_view_class_init (DspyViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, empty);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, paned);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, bus_navigation_page);
-  gtk_widget_class_bind_template_child_private (widget_class, DspyView, bus_toolbar_view);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyView, bottom_revealer);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, status_page);
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
@@ -608,8 +608,8 @@ dspy_view_init (DspyView *self)
                            self,
                            G_CONNECT_SWAPPED);
 
-  g_signal_connect_object (priv->bus_toolbar_view,
-                           "notify::reveal-bottom-bars",
+  g_signal_connect_object (priv->bottom_revealer,
+                           "notify::reveal-child",
                            G_CALLBACK (notify_child_revealed_cb),
                            self,
                            G_CONNECT_SWAPPED);

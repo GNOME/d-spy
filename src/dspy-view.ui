@@ -152,7 +152,6 @@
                       <object class="GtkStackPage" id="introspect">
                         <property name="child">
                           <object class="AdwToolbarView" id="bus_toolbar_view">
-                            <property name="reveal-bottom-bars">false</property>
                             <child type="top">
                               <object class="AdwHeaderBar">
                                 <child type="start">
@@ -195,14 +194,20 @@
                                     </child>
                                   </object>
                                 </child>
-                              </object>
-                            </child>
-                            <child type="bottom">
-                              <object class="DspyMethodView" id="method_view">
-                                <property name="margin-start">12</property>
-                                <style>
-                                  <class name="methodview"/>
-                                </style>
+                                <child>
+                                  <object class="GtkRevealer" id="bottom_revealer">
+                                    <property name="transition-type">slide-down</property>
+                                    <property name="reveal-child">false</property>
+                                    <child>
+                                      <object class="DspyMethodView" id="method_view">
+                                        <property name="margin-start">12</property>
+                                        <style>
+                                          <class name="methodview"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>
