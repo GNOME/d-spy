@@ -9,3 +9,8 @@ StartupNotify=true
 Terminal=false
 Type=Application
 X-Flatpak-RenamedFrom=d-spy
+Actions=new-window;
+
+[Desktop Action new-window]
+Exec=d-spy --new-window
+Name=New Window

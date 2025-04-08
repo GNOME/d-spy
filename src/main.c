@@ -53,6 +53,44 @@ on_activate (GtkApplication *app)
   gtk_window_present (window);
 }
 
+static int
+on_command_line (GApplication            *app,
+                 GApplicationCommandLine *command_line,
+                 gpointer                 user_data)
+{
+  GVariantDict *options;
+  gboolean new_window = FALSE;
+
+  g_assert (G_IS_APPLICATION (app));
+  g_assert (G_IS_APPLICATION_COMMAND_LINE (command_line));
+
+  options = g_application_command_line_get_options_dict (command_line);
+
+  if (g_variant_dict_lookup (options, "new-window", "b", &new_window) && new_window)
+    g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
+  else
+    g_application_activate (app);
+
+  return EXIT_SUCCESS;
+}
+
+static int
+on_handle_local_options (GApplication *app,
+                         GVariantDict *options,
+                         gpointer      user_data)
+{
+  gboolean version = FALSE;
+
+  g_assert (G_IS_APPLICATION (app));
+
+  if (g_variant_dict_lookup (options, "version", "b", &version) && version)
+    {
+      g_print ("%s - %s\n", _("D-Spy"), PACKAGE_VERSION);
+      return 0;
+    }
+  return -1;
+}
+
 static void
 new_window_cb (GSimpleAction *action,
                GVariant      *param,
@@ -108,6 +146,12 @@ static const GActionEntry actions[] = {
   { "new-window", new_window_cb },
 };
 
+static const GOptionEntry options[] = {
+    {"new-window", 'w', 0, G_OPTION_ARG_NONE, NULL, N_("Open a new window"), NULL},
+    {"version", 'v', 0, G_OPTION_ARG_NONE, NULL, N_("Print version information and exit"), NULL},
+    {NULL}
+};
+
 int
 main (int   argc,
       char *argv[])
@@ -121,11 +165,14 @@ main (int   argc,
 
   app = g_object_new (ADW_TYPE_APPLICATION,
                       "application-id", APP_ID,
-                      "flags", G_APPLICATION_DEFAULT_FLAGS,
+                      "flags", G_APPLICATION_HANDLES_COMMAND_LINE,
                       "resource-base-path", "/org/gnome/dspy",
                       NULL);
   g_signal_connect (app, "activate", G_CALLBACK (on_activate), NULL);
+  g_signal_connect (app, "command-line", G_CALLBACK (on_command_line), NULL);
+  g_signal_connect (app, "handle-local-options", G_CALLBACK (on_handle_local_options), NULL);
   g_action_map_add_action_entries (G_ACTION_MAP (app), actions, G_N_ELEMENTS (actions), app);
+  g_application_add_main_option_entries (G_APPLICATION (app), options);
   ret = g_application_run (G_APPLICATION (app), argc, argv);
 
   return ret;
