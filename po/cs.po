@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-17 22:28+0000\n"
-"PO-Revision-Date: 2025-02-22 00:04+0100\n"
+"POT-Creation-Date: 2025-04-08 20:19+0000\n"
+"PO-Revision-Date: 2025-04-08 22:22+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -24,7 +24,7 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -47,6 +47,10 @@ msgstr "Objevujte a prozkoumávejte služby D-Bus"
 #: data/org.gnome.dspy.desktop.in.in:8
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
+
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "Nové okno"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: src/dspy-connection-button.c:76
@@ -242,21 +246,29 @@ msgstr "Vyberte název D-Bus"
 msgid "Select a bus name to introspect the peer"
 msgstr "Vyberte název sběrnice pro introspekci protějšku"
 
-#: src/dspy-view.ui:160
+#: src/dspy-view.ui:159
 msgid "Refresh"
 msgstr "Aktualizovat"
 
-#: src/dspy-view.ui:230
+#: src/dspy-view.ui:235
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: src/dspy-view.ui:236
+#: src/dspy-view.ui:241
 msgid "_About D-Spy"
 msgstr "O _aplikaci D-Spy"
 
 #: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "Připojit k jiné sběrnici…"
+
+#: src/main.c:150
+msgid "Open a new window"
+msgstr "Otevřít nové okno"
+
+#: src/main.c:151
+msgid "Print version information and exit"
+msgstr "Vypsat informace o verzi a skončit"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "Prohlížeč D-Bus pro GNOME"
