@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-17 22:28+0000\n"
-"PO-Revision-Date: 2025-02-18 22:48+0100\n"
+"POT-Creation-Date: 2025-04-08 20:19+0000\n"
+"PO-Revision-Date: 2025-04-09 16:19+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -29,7 +29,7 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -52,6 +52,10 @@ msgstr "Odkrivanje in raziskovanje storitev vodila D-Bus"
 #: data/org.gnome.dspy.desktop.in.in:8
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;vodila;vodilo;"
+
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "Novo okno"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: src/dspy-connection-button.c:76
@@ -247,18 +251,26 @@ msgstr "Izbor imena vodila D-Bus"
 msgid "Select a bus name to introspect the peer"
 msgstr "Izbor imena vodila za preverjanje soležnih opravil"
 
-#: src/dspy-view.ui:160
+#: src/dspy-view.ui:159
 msgid "Refresh"
 msgstr "Osveži"
 
-#: src/dspy-view.ui:230
+#: src/dspy-view.ui:235
 msgid "_New Window"
 msgstr "_Novo okno"
 
-#: src/dspy-view.ui:236
+#: src/dspy-view.ui:241
 msgid "_About D-Spy"
 msgstr "_O programu"
 
 #: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "Poveži z drugim vodilom …"
+
+#: src/main.c:150
+msgid "Open a new window"
+msgstr "Odprite novo okno."
+
+#: src/main.c:151
+msgid "Print version information and exit"
+msgstr "Izpiši podatke o različici in končaj"
