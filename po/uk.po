@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-17 22:28+0000\n"
-"PO-Revision-Date: 2025-02-24 16:18+0200\n"
+"POT-Creation-Date: 2025-04-08 20:19+0000\n"
+"PO-Revision-Date: 2025-04-09 18:36+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -25,7 +25,7 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -48,6 +48,11 @@ msgstr "Навігація і вивчення служб D-Bus"
 #: data/org.gnome.dspy.desktop.in.in:8
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
+
+#: data/org.gnome.dspy.desktop.in.in:17
+#| msgid "_New Window"
+msgid "New Window"
+msgstr "Створити вікно"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: src/dspy-connection-button.c:76
@@ -243,21 +248,29 @@ msgstr "Виберіть назву D-Bus"
 msgid "Select a bus name to introspect the peer"
 msgstr "Вибрати назву шини для інтроспекції вузла"
 
-#: src/dspy-view.ui:160
+#: src/dspy-view.ui:159
 msgid "Refresh"
 msgstr "Оновити"
 
-#: src/dspy-view.ui:230
+#: src/dspy-view.ui:235
 msgid "_New Window"
 msgstr "С_творити вікно"
 
-#: src/dspy-view.ui:236
+#: src/dspy-view.ui:241
 msgid "_About D-Spy"
 msgstr "_Про D-Spy"
 
 #: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "З'єднатися із іншою шиною…"
+
+#: src/main.c:150
+msgid "Open a new window"
+msgstr "Відкрити нове вікно"
+
+#: src/main.c:151
+msgid "Print version information and exit"
+msgstr "Показати версію та вийти"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "Навігатор D-Bus для GNOME"
