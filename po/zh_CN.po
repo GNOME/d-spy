@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-17 22:28+0000\n"
-"PO-Revision-Date: 2025-02-25 09:22+0800\n"
+"POT-Creation-Date: 2025-04-08 20:19+0000\n"
+"PO-Revision-Date: 2025-04-09 18:08+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 47.1\n"
+"X-Generator: Gtranslator 48.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. developer_name tag deprecated with Appstream 1.0
@@ -26,7 +26,7 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -49,6 +49,10 @@ msgstr "发现和浏览 D-Bus 服务"
 #: data/org.gnome.dspy.desktop.in.in:8
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;连接;接口;总线;"
+
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "新建窗口"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: src/dspy-connection-button.c:76
@@ -244,21 +248,29 @@ msgstr "选择 D-Bus 名称"
 msgid "Select a bus name to introspect the peer"
 msgstr "选择总线名称以检视对等点"
 
-#: src/dspy-view.ui:160
+#: src/dspy-view.ui:159
 msgid "Refresh"
 msgstr "刷新"
 
-#: src/dspy-view.ui:230
+#: src/dspy-view.ui:235
 msgid "_New Window"
 msgstr "新建窗口(_N)"
 
-#: src/dspy-view.ui:236
+#: src/dspy-view.ui:241
 msgid "_About D-Spy"
 msgstr "关于 D-Spy(_A)"
 
 #: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "连接到其它总线…"
+
+#: src/main.c:150
+msgid "Open a new window"
+msgstr "打开新窗口"
+
+#: src/main.c:151
+msgid "Print version information and exit"
+msgstr "显示版本信息并退出"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "GNOME 的 D-Bus 浏览器"
