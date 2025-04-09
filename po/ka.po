@@ -1,5 +1,5 @@
 # Georgian translation for d-spy.
-# Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
+# Copyright (C) 2023 d-spy's authors
 # This file is distributed under the same license as the d-spy package.
 # Ekaterine Papava <papava.e@gtu.ge>, 2023-2025.
 #
@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-17 22:28+0000\n"
-"PO-Revision-Date: 2025-02-23 07:02+0100\n"
+"POT-Creation-Date: 2025-04-08 20:19+0000\n"
+"PO-Revision-Date: 2025-04-09 04:00+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "Language: ka\n"
@@ -24,7 +24,7 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -47,6 +47,10 @@ msgstr "აღმოაჩინეთ და დაათვალიერე�
 #: data/org.gnome.dspy.desktop.in.in:8
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
+
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "ახალი ფანჯარა"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: src/dspy-connection-button.c:76
@@ -242,21 +246,29 @@ msgstr "აირჩიეთ D-Bus-ის სახელი"
 msgid "Select a bus name to introspect the peer"
 msgstr "აირჩიეთ მატარებლის სახელი პარტნიორის ინტროსპექციისთვის"
 
-#: src/dspy-view.ui:160
+#: src/dspy-view.ui:159
 msgid "Refresh"
 msgstr "განახლება"
 
-#: src/dspy-view.ui:230
+#: src/dspy-view.ui:235
 msgid "_New Window"
 msgstr "_ახალი ფანჯარა"
 
-#: src/dspy-view.ui:236
+#: src/dspy-view.ui:241
 msgid "_About D-Spy"
 msgstr "D-Spy-ის _შესახებ"
 
 #: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "სხვა მატარებელთან მიერთება…"
+
+#: src/main.c:150
+msgid "Open a new window"
+msgstr "ახალი ფანჯრის გახსნა"
+
+#: src/main.c:151
+msgid "Print version information and exit"
+msgstr "ვერსიის ჩვენება და გასვლა"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "D-Bus-ის ბრაუზერი GNOME-სთვის"
