@@ -56,4 +56,16 @@ if compile_schemas.found()
   )
 endif
 
+# D-Bus service file.
+dbusconf = configuration_data()
+dbusconf.set('app_id', app_id)
+dbusconf.set('bindir', join_paths(get_option('prefix'), get_option('bindir')))
+configure_file(
+          input: 'org.gnome.dspy.service.in',
+         output: '@0@.service'.format(app_id),
+  configuration: dbusconf,
+        install: true,
+    install_dir: join_paths(get_option('datadir'), 'dbus-1', 'services'),
+)
+
 subdir('icons')

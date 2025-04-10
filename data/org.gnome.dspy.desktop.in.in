@@ -5,6 +5,7 @@ Icon=@app_id@
 Name=D-Spy
 Comment=Discover and explore D-Bus services
 Keywords=dspy;dbus;
+DBusActivatable=true
 StartupNotify=true
 Terminal=false
 Type=Application
