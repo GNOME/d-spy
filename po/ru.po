@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-17 22:28+0000\n"
-"PO-Revision-Date: 2025-02-18 17:16+0300\n"
+"POT-Creation-Date: 2025-04-08 20:19+0000\n"
+"PO-Revision-Date: 2025-04-09 12:50+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
@@ -25,7 +25,7 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -48,6 +48,10 @@ msgstr "Навигация и изучение служб D-Bus"
 #: data/org.gnome.dspy.desktop.in.in:8
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
+
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "Новое окно"
 
 #. translators: %s is replaced with the address of the D-Bus bus
 #: src/dspy-connection-button.c:76
@@ -243,21 +247,29 @@ msgstr "Выберите название D-Bus"
 msgid "Select a bus name to introspect the peer"
 msgstr "Выберите название шины для интроспекции узла"
 
-#: src/dspy-view.ui:160
+#: src/dspy-view.ui:159
 msgid "Refresh"
 msgstr "Обновить"
 
-#: src/dspy-view.ui:230
+#: src/dspy-view.ui:235
 msgid "_New Window"
 msgstr "_Новое окно"
 
-#: src/dspy-view.ui:236
+#: src/dspy-view.ui:241
 msgid "_About D-Spy"
 msgstr "_О приложении"
 
 #: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "Соединиться с другой шиной…"
+
+#: src/main.c:150
+msgid "Open a new window"
+msgstr "Открыть новое окно"
+
+#: src/main.c:151
+msgid "Print version information and exit"
+msgstr "Показать информацию о версии и выйти"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "Навигатор D-Bus для GNOME"
