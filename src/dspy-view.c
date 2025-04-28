@@ -25,7 +25,6 @@
 #include <adwaita.h>
 
 #include "dspy-connection-button.h"
-#include "dspy-list-model-filter.h"
 #include "dspy-method-view.h"
 #include "dspy-name-marquee.h"
 #include "dspy-name-row.h"
@@ -42,7 +41,7 @@ struct _DspyView
 typedef struct
 {
   GCancellable          *cancellable;
-  DspyListModelFilter   *filter_model;
+  GtkFilterListModel    *filter_model;
   GListModel            *model;
 
   /* Template widgets */
@@ -224,7 +223,7 @@ clear_search (DspyView *self)
   g_assert (DSPY_IS_VIEW (self));
 
   if (priv->filter_model != NULL)
-    dspy_list_model_filter_set_filter_func (priv->filter_model, NULL, NULL, NULL);
+    gtk_filter_list_model_set_filter (priv->filter_model, NULL);
 }
 
 static gboolean
@@ -248,10 +247,14 @@ apply_search (DspyView    *self,
   g_assert (text[0] != 0);
 
   if (priv->filter_model != NULL)
-    dspy_list_model_filter_set_filter_func (priv->filter_model,
-                                            (DspyListModelFilterFunc) search_filter_func,
-                                            dspy_pattern_spec_new (text),
-                                            (GDestroyNotify) dspy_pattern_spec_unref);
+    {
+      g_autoptr(GtkCustomFilter) filter = NULL;
+
+      filter = gtk_custom_filter_new ((GtkCustomFilterFunc) search_filter_func,
+                                      dspy_pattern_spec_new (text),
+                                      (GDestroyNotify) dspy_pattern_spec_unref);
+      gtk_filter_list_model_set_filter (priv->filter_model, GTK_FILTER (filter));
+    }
 }
 
 static GtkWidget *
@@ -291,7 +294,7 @@ dspy_view_set_model (DspyView   *self,
   if (model != NULL)
     {
       priv->model = g_object_ref (model);
-      priv->filter_model = dspy_list_model_filter_new (model);
+      priv->filter_model = gtk_filter_list_model_new (g_object_ref (model), NULL);
     }
 
   text = gtk_editable_get_text (GTK_EDITABLE (priv->search_entry));
