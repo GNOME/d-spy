@@ -22,13 +22,12 @@
 
 #include <glib/gi18n.h>
 
-#include "dspy-binding-group.h"
 #include "dspy-method-view.h"
 
 typedef struct
 {
   DspyMethodInvocation *invocation;
-  DspyBindingGroup     *bindings;
+  GBindingGroup        *bindings;
   GCancellable         *cancellable;
   GArray               *durations;
 
@@ -318,7 +317,7 @@ dspy_method_view_dispose (GObject *object)
 
   if (priv->bindings)
     {
-      dspy_binding_group_set_source (priv->bindings, NULL);
+      g_binding_group_set_source (priv->bindings, NULL);
       g_clear_object (&priv->bindings);
     }
 
@@ -412,11 +411,11 @@ dspy_method_view_init (DspyMethodView *self)
 
   priv->durations = g_array_new (FALSE, FALSE, sizeof (gdouble));
 
-  priv->bindings = dspy_binding_group_new ();
-  dspy_binding_group_bind (priv->bindings, "interface", priv->label_interface, "label", 0);
-  dspy_binding_group_bind (priv->bindings, "method", priv->label_method, "label", 0);
-  dspy_binding_group_bind (priv->bindings, "object-path", priv->label_object_path, "label", 0);
-  dspy_binding_group_bind_full (priv->bindings, "parameters", priv->buffer_params, "text", 0,
+  priv->bindings = g_binding_group_new ();
+  g_binding_group_bind (priv->bindings, "interface", priv->label_interface, "label", 0);
+  g_binding_group_bind (priv->bindings, "method", priv->label_method, "label", 0);
+  g_binding_group_bind (priv->bindings, "object-path", priv->label_object_path, "label", 0);
+  g_binding_group_bind_full (priv->bindings, "parameters", priv->buffer_params, "text", 0,
                                 variant_to_string_transform, NULL, NULL, NULL);
 
   g_signal_connect_object (priv->button,
@@ -446,7 +445,7 @@ dspy_method_view_set_invocation (DspyMethodView       *self,
       g_cancellable_cancel (priv->cancellable);
       g_clear_object (&priv->cancellable);
 
-      dspy_binding_group_set_source (priv->bindings, invocation);
+      g_binding_group_set_source (priv->bindings, invocation);
       gtk_text_buffer_set_text (priv->buffer_reply, "", -1);
 
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_INVOCATION]);

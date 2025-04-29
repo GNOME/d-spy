@@ -20,7 +20,6 @@
 
 #include "config.h"
 
-#include "dspy-binding-group.h"
 #include "dspy-name-marquee.h"
 
 struct _DspyNameMarquee
@@ -28,7 +27,7 @@ struct _DspyNameMarquee
   GtkWidget        parent_instance;
 
   DspyName         *name;
-  DspyBindingGroup *name_bindings;
+  GBindingGroup    *name_bindings;
 
   GtkWidget        *grid;
   GtkLabel         *label_bus;
@@ -69,7 +68,7 @@ dspy_name_marquee_dispose (GObject *object)
 
   if (self->name_bindings)
     {
-      dspy_binding_group_set_source (self->name_bindings, NULL);
+      g_binding_group_set_source (self->name_bindings, NULL);
       g_clear_object (&self->name_bindings);
     }
 
@@ -150,11 +149,11 @@ dspy_name_marquee_init (DspyNameMarquee *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  self->name_bindings = dspy_binding_group_new ();
+  self->name_bindings = g_binding_group_new ();
 
-  dspy_binding_group_bind (self->name_bindings, "pid", self->label_pid, "label", 0);
-  dspy_binding_group_bind (self->name_bindings, "name", self->label_name, "label", 0);
-  dspy_binding_group_bind (self->name_bindings, "owner", self->label_owner, "label", 0);
+  g_binding_group_bind (self->name_bindings, "pid", self->label_pid, "label", 0);
+  g_binding_group_bind (self->name_bindings, "name", self->label_name, "label", 0);
+  g_binding_group_bind (self->name_bindings, "owner", self->label_owner, "label", 0);
 }
 
 /**
@@ -186,7 +185,7 @@ dspy_name_marquee_set_name (DspyNameMarquee *self,
       if (name != NULL)
         address = dspy_connection_get_address (dspy_name_get_connection (name));
 
-      dspy_binding_group_set_source (self->name_bindings, name);
+      g_binding_group_set_source (self->name_bindings, name);
       gtk_label_set_label (self->label_bus, address);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_NAME]);
     }
