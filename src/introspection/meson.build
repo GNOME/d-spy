@@ -6,4 +6,5 @@ dspy_sources += files([
   'dspy-node.c',
   'dspy-property.c',
   'dspy-signal.c',
+  'dspy-titled-model.c',
 ])

@@ -1,0 +1,36 @@
+/*
+ * dspy-titled-model.h
+ *
+ * Copyright 2025 Christian Hergert <chergert@redhat.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+#pragma once
+
+#include <gio/gio.h>
+
+G_BEGIN_DECLS
+
+#define DSPY_TYPE_TITLED_MODEL (dspy_titled_model_get_type())
+
+G_DECLARE_FINAL_TYPE (DspyTitledModel, dspy_titled_model, DSPY, TITLED_MODEL, GObject)
+
+GListModel *dspy_titled_model_new       (GListModel      *model,
+                                         const char      *title);
+const char *dspy_titled_model_get_title (DspyTitledModel *self);
+
+G_END_DECLS
