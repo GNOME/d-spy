@@ -1,0 +1,109 @@
+/*
+ * dspy-signal.c
+ *
+ * Copyright 2025 Christian Hergert <chergert@redhat.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+#include "config.h"
+
+#include "dspy-signal.h"
+
+enum {
+  PROP_0,
+  PROP_ARGS,
+  PROP_NAME,
+  PROP_SIGNATURE,
+  N_PROPS
+};
+
+G_DEFINE_FINAL_TYPE (DspySignal, dspy_signal, DSPY_TYPE_INTROSPECTABLE)
+
+static GParamSpec *properties[N_PROPS];
+
+static void
+dspy_signal_dispose (GObject *object)
+{
+  DspySignal *self = (DspySignal *)object;
+
+  dspy_introspectable_clear_queue (DSPY_INTROSPECTABLE (self), &self->args);
+  g_clear_pointer (&self->name, g_free);
+  g_clear_pointer (&self->signature, g_free);
+
+  G_OBJECT_CLASS (dspy_signal_parent_class)->dispose (object);
+}
+
+static void
+dspy_signal_get_property (GObject    *object,
+                          guint       prop_id,
+                          GValue     *value,
+                          GParamSpec *pspec)
+{
+  DspySignal *self = DSPY_SIGNAL (object);
+
+  switch (prop_id)
+    {
+    case PROP_NAME:
+      g_value_set_string (value, self->name);
+      break;
+
+    case PROP_SIGNATURE:
+      g_value_set_string (value, self->signature);
+      break;
+
+    case PROP_ARGS:
+      g_value_take_object (value, dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->args));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+dspy_signal_class_init (DspySignalClass *klass)
+{
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+  object_class->dispose = dspy_signal_dispose;
+  object_class->get_property = dspy_signal_get_property;
+
+  properties[PROP_NAME] =
+    g_param_spec_string ("name", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_SIGNATURE] =
+    g_param_spec_string ("signature", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_ARGS] =
+    g_param_spec_object ("args", NULL, NULL,
+                         G_TYPE_LIST_MODEL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
+}
+
+static void
+dspy_signal_init (DspySignal *self)
+{
+}

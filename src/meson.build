@@ -28,6 +28,8 @@ dspy_sources += gnome.compile_resources('dspy-resources', 'dspy.gresource.xml',
   c_name: 'dspy'
 )
 
+subdir('introspection')
+
 build_ident_h = vcs_tag(
      fallback: meson.project_version(),
         input: 'build-ident.h.in',
