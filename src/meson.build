@@ -28,6 +28,8 @@ dspy_sources += gnome.compile_resources('dspy-resources', 'dspy.gresource.xml',
   c_name: 'dspy'
 )
 
+dspy_include_directories = [root_include_directory]
+
 subdir('introspection')
 
 build_ident_h = vcs_tag(
@@ -39,5 +41,5 @@ build_ident_h = vcs_tag(
 dspy = executable('d-spy', dspy_sources + [build_ident_h],
          dependencies: dspy_deps,
               install: true,
-  include_directories: root_include_directory,
+  include_directories: dspy_include_directories,
 )
