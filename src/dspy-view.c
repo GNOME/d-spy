@@ -383,6 +383,10 @@ create_child_model_cb (gpointer item,
 
       return G_LIST_MODEL (g_steal_pointer (&store));
     }
+  else if (DSPY_IS_TITLED_MODEL (item))
+    {
+      return g_object_ref (G_LIST_MODEL (item));
+    }
 
   return NULL;
 }
