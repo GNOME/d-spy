@@ -41,9 +41,12 @@ struct _DspyIntrospectable
 struct _DspyIntrospectableClass
 {
   GObjectClass parent_class;
+
+  char *(*dup_title) (DspyIntrospectable *self);
 };
 
 DspyIntrospectable *dspy_introspectable_get_parent (DspyIntrospectable *self);
+char               *dspy_introspectable_dup_title  (DspyIntrospectable *self);
 
 /**
  * dspy_introspectable_append_queue:

@@ -21,6 +21,8 @@
 
 #include "config.h"
 
+#include "dspy-argument.h"
+#include "dspy-private.h"
 #include "dspy-signal.h"
 
 enum {
@@ -34,6 +36,31 @@ enum {
 G_DEFINE_FINAL_TYPE (DspySignal, dspy_signal, DSPY_TYPE_INTROSPECTABLE)
 
 static GParamSpec *properties[N_PROPS];
+
+static char *
+dspy_signal_dup_title (DspyIntrospectable *introspectable)
+{
+  DspySignal *self = DSPY_SIGNAL (introspectable);
+  GString *str = g_string_new (self->name);
+
+  g_string_append (str, " (");
+
+  for (const GList *iter = self->args.head; iter; iter = iter->next)
+    {
+      DspyArgument *arg = iter->data;
+      g_autofree char *sig = _dspy_signature_humanize (arg->signature);
+
+      if (iter->prev != NULL)
+        g_string_append (str, ", ");
+      g_string_append_printf (str, "<b>%s</b>", sig);
+      if (!dspy_argument_name_is_generated (arg))
+        g_string_append_printf (str, " %s", arg->name);
+    }
+
+  g_string_append (str, ")");
+
+  return g_string_free (str, FALSE);
+}
 
 static void
 dspy_signal_dispose (GObject *object)
@@ -78,9 +105,12 @@ static void
 dspy_signal_class_init (DspySignalClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  DspyIntrospectableClass *introspectable_class = DSPY_INTROSPECTABLE_CLASS (klass);
 
   object_class->dispose = dspy_signal_dispose;
   object_class->get_property = dspy_signal_get_property;
+
+  introspectable_class->dup_title = dspy_signal_dup_title;
 
   properties[PROP_NAME] =
     g_param_spec_string ("name", NULL, NULL,

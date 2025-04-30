@@ -21,6 +21,9 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
+#include "dspy-private.h"
 #include "dspy-property.h"
 
 enum {
@@ -35,6 +38,29 @@ enum {
 G_DEFINE_FINAL_TYPE (DspyProperty, dspy_property, DSPY_TYPE_INTROSPECTABLE)
 
 static GParamSpec *properties[N_PROPS];
+
+static char *
+dspy_property_dup_title (DspyIntrospectable *introspectable)
+{
+  DspyProperty *self = DSPY_PROPERTY (introspectable);
+  GString *str = g_string_new (self->name);
+  g_autofree char *sig = _dspy_signature_humanize (self->signature);
+  const char *rw = NULL;
+
+  g_string_append_printf (str, " -> <b>%s</b>", sig);
+
+  if (self->flags == (G_DBUS_PROPERTY_INFO_FLAGS_READABLE | G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE))
+    rw = _("read/write");
+  else if (self->flags  & G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE)
+    rw = _("write-only");
+  else if (self->flags  & G_DBUS_PROPERTY_INFO_FLAGS_READABLE)
+    rw = _("read-only");
+
+  if (rw != NULL)
+    g_string_append_printf (str, " (%s)", rw);
+
+  return g_string_free (str, FALSE);
+}
 
 static void
 dspy_property_dispose (GObject *object)
@@ -79,9 +105,12 @@ static void
 dspy_property_class_init (DspyPropertyClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  DspyIntrospectableClass *introspectable_class = DSPY_INTROSPECTABLE_CLASS (klass);
 
   object_class->dispose = dspy_property_dispose;
   object_class->get_property = dspy_property_get_property;
+
+  introspectable_class->dup_title = dspy_property_dup_title;
 
   properties[PROP_NAME] =
     g_param_spec_string ("name", NULL, NULL,

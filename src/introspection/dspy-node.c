@@ -35,6 +35,12 @@ G_DEFINE_FINAL_TYPE (DspyNode, dspy_node, DSPY_TYPE_INTROSPECTABLE)
 
 static GParamSpec *properties[N_PROPS];
 
+static char *
+dspy_node_dup_title (DspyIntrospectable *introspectable)
+{
+  return g_strdup (DSPY_NODE (introspectable)->path);
+}
+
 static void
 dspy_node_dispose (GObject *object)
 {
@@ -78,9 +84,12 @@ static void
 dspy_node_class_init (DspyNodeClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  DspyIntrospectableClass *introspectable_class = DSPY_INTROSPECTABLE_CLASS (klass);
 
   object_class->dispose = dspy_node_dispose;
   object_class->get_property = dspy_node_get_property;
+
+  introspectable_class->dup_title = dspy_node_dup_title;
 
   properties[PROP_PATH] =
     g_param_spec_string ("path", NULL, NULL,

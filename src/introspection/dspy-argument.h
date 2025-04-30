@@ -36,4 +36,6 @@ struct _DspyArgument
   char               *signature;
 };
 
+gboolean dspy_argument_name_is_generated (DspyArgument *self);
+
 G_END_DECLS

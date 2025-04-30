@@ -36,6 +36,14 @@ G_DEFINE_FINAL_TYPE (DspyInterface, dspy_interface, DSPY_TYPE_INTROSPECTABLE)
 
 static GParamSpec *properties[N_PROPS];
 
+static char *
+dspy_interface_dup_title (DspyIntrospectable *introspectable)
+{
+  DspyInterface *self = DSPY_INTERFACE (introspectable);
+
+  return g_strdup (self->name);
+}
+
 static void
 dspy_interface_finalize (GObject *object)
 {
@@ -84,9 +92,12 @@ static void
 dspy_interface_class_init (DspyInterfaceClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  DspyIntrospectableClass *introspectable_class = DSPY_INTROSPECTABLE_CLASS (klass);
 
   object_class->finalize = dspy_interface_finalize;
   object_class->get_property = dspy_interface_get_property;
+
+  introspectable_class->dup_title = dspy_interface_dup_title;
 
   properties[PROP_NAME] =
     g_param_spec_string ("name", NULL, NULL,

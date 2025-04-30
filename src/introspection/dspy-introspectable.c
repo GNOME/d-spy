@@ -100,3 +100,14 @@ dspy_introspectable_init (DspyIntrospectable *self)
 {
   self->link.data = self;
 }
+
+char *
+dspy_introspectable_dup_title (DspyIntrospectable *self)
+{
+  g_return_val_if_fail (DSPY_IS_INTROSPECTABLE (self), NULL);
+
+  if (DSPY_INTROSPECTABLE_GET_CLASS (self)->dup_title)
+    return DSPY_INTROSPECTABLE_GET_CLASS (self)->dup_title (self);
+
+  return NULL;
+}

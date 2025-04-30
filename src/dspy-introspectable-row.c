@@ -154,22 +154,14 @@ dspy_introspectable_row_set_item (DspyIntrospectableRow *self,
 
   if (g_set_object (&self->item, item))
     {
-      const char *title = NULL;
+      g_autofree char *title = NULL;
 
-      if (DSPY_IS_NODE (item))
-        title = DSPY_NODE (item)->path;
-      else if (DSPY_IS_INTERFACE (item))
-        title = DSPY_INTERFACE (item)->name;
+      if (DSPY_IS_INTROSPECTABLE (item))
+        title = dspy_introspectable_dup_title (DSPY_INTROSPECTABLE (item));
       else if (DSPY_IS_TITLED_MODEL (item))
-        title = dspy_titled_model_get_title (DSPY_TITLED_MODEL (item));
-      else if (DSPY_IS_METHOD (item))
-        title = DSPY_METHOD (item)->name;
-      else if (DSPY_IS_PROPERTY (item))
-        title = DSPY_PROPERTY (item)->name;
-      else if (DSPY_IS_SIGNAL (item))
-        title = DSPY_SIGNAL (item)->name;
+        title = g_strdup (dspy_titled_model_get_title (DSPY_TITLED_MODEL (item)));
 
-      gtk_label_set_label (self->title, title);
+      gtk_label_set_markup (self->title, title);
 
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_ITEM]);
     }

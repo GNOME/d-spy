@@ -95,3 +95,31 @@ static void
 dspy_argument_init (DspyArgument *self)
 {
 }
+
+gboolean
+dspy_argument_name_is_generated (DspyArgument *self)
+{
+  const char *str;
+
+  g_return_val_if_fail (DSPY_IS_ARGUMENT (self), FALSE);
+
+  str = self->name;
+
+  if (str == NULL)
+    return TRUE;
+
+  if (g_str_has_prefix (str, "arg_"))
+    {
+      gchar *endptr = NULL;
+      gint64 val;
+
+      str += strlen ("arg_");
+      errno = 0;
+      val = g_ascii_strtoll (str, &endptr, 10);
+
+      if (val >= 0 && errno == 0 && *endptr == 0)
+        return TRUE;
+    }
+
+  return FALSE;
+}
