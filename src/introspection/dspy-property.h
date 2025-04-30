@@ -38,4 +38,6 @@ struct _DspyProperty
   GDBusPropertyInfoFlags  flags;
 };
 
+void dspy_property_query_value (DspyProperty *self);
+
 G_END_DECLS

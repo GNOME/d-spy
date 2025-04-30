@@ -180,6 +180,8 @@
                                         <property name="hexpand">true</property>
                                         <child>
                                           <object class="GtkListView" id="list_view">
+                                            <signal name="activate" handler="dspy_view_list_view_activate_cb" swapped="true"/>
+                                            <property name="single-click-activate">true</property>
                                             <property name="factory">
                                               <object class="GtkBuilderListItemFactory">
                                                 <property name="bytes"><![CDATA[

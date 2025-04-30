@@ -33,6 +33,7 @@
 #include "dspy-name-row.h"
 #include "dspy-node.h"
 #include "dspy-pattern-spec.h"
+#include "dspy-property.h"
 #include "dspy-simple-popover.h"
 #include "dspy-titled-model.h"
 #include "dspy-tree-view.h"
@@ -592,6 +593,26 @@ connect_to_bus_action (GSimpleAction *action,
   gtk_popover_popup (popover);
 }
 
+static void
+dspy_view_list_view_activate_cb (DspyView    *self,
+                                 guint        position,
+                                 GtkListView *list_view)
+{
+  GtkSelectionModel *model;
+  g_autoptr(GtkTreeListRow) row = NULL;
+  g_autoptr(GObject) item = NULL;
+
+  g_assert (DSPY_IS_VIEW (self));
+  g_assert (GTK_IS_LIST_VIEW (list_view));
+
+  model = gtk_list_view_get_model (list_view);
+  row = g_list_model_get_item (G_LIST_MODEL (model), position);
+  item = gtk_tree_list_row_get_item (row);
+
+  if (DSPY_IS_PROPERTY (item))
+    dspy_property_query_value (DSPY_PROPERTY (item));
+}
+
 static GActionEntry action_entries[] = {
   { "connect-to-bus", connect_to_bus_action },
 };
@@ -661,6 +682,7 @@ dspy_view_class_init (DspyViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, bus_navigation_page);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, bottom_revealer);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, status_page);
+  gtk_widget_class_bind_template_callback (widget_class, dspy_view_list_view_activate_cb);
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 

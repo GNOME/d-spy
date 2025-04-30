@@ -144,3 +144,11 @@ static void
 dspy_property_init (DspyProperty *self)
 {
 }
+
+void
+dspy_property_query_value (DspyProperty *self)
+{
+  g_return_if_fail (DSPY_IS_PROPERTY (self));
+
+  g_print ("TODO: Query value\n");
+}
