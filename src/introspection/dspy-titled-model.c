@@ -175,3 +175,11 @@ dspy_titled_model_new (GListModel *model,
                        "title", title,
                        NULL);
 }
+
+const char *
+dspy_titled_model_get_title (DspyTitledModel *self)
+{
+  g_return_val_if_fail (DSPY_IS_TITLED_MODEL (self), NULL);
+
+  return self->title;
+}

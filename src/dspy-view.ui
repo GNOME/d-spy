@@ -175,35 +175,75 @@
                                 </child>
                                 <child>
                                   <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
                                     <child>
-                                      <object class="GtkFrame">
+                                      <object class="GtkScrolledWindow">
+                                        <property name="hexpand">true</property>
                                         <child>
-                                          <object class="GtkScrolledWindow">
-                                            <property name="vexpand">1</property>
+                                          <object class="GtkListView" id="list_view">
+                                            <property name="factory">
+                                              <object class="GtkBuilderListItemFactory">
+                                                <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkTreeExpander" id="expander">
+        <binding name="list-row">
+          <lookup name="item">GtkListItem</lookup>
+        </binding>
+        <property name="child">
+          <object class="DspyIntrospectableRow">
+            <binding name="item">
+              <lookup name="item">expander</lookup>
+            </binding>
+          </object>
+        </property>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                                                </property>
+                                              </object>
+                                            </property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="orientation">vertical</property>
+                                        <property name="hexpand">true</property>
+                                        <child>
+                                          <object class="GtkFrame">
                                             <child>
-                                              <object class="DspyTreeView" id="introspection_tree_view">
-                                                <child internal-child="selection">
-                                                  <object class="GtkTreeSelection"/>
+                                              <object class="GtkScrolledWindow">
+                                                <property name="vexpand">1</property>
+                                                <child>
+                                                  <object class="DspyTreeView" id="introspection_tree_view">
+                                                    <child internal-child="selection">
+                                                      <object class="GtkTreeSelection"/>
+                                                    </child>
+                                                  </object>
                                                 </child>
                                               </object>
                                             </child>
                                           </object>
                                         </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkRevealer" id="bottom_revealer">
-                                    <property name="transition-type">slide-down</property>
-                                    <property name="reveal-child">false</property>
-                                    <child>
-                                      <object class="DspyMethodView" id="method_view">
-                                        <property name="margin-start">12</property>
-                                        <style>
-                                          <class name="methodview"/>
-                                        </style>
+                                        <child>
+                                          <object class="GtkRevealer" id="bottom_revealer">
+                                            <property name="transition-type">slide-down</property>
+                                            <property name="reveal-child">false</property>
+                                            <child>
+                                              <object class="DspyMethodView" id="method_view">
+                                                <property name="margin-start">12</property>
+                                                <style>
+                                                  <class name="methodview"/>
+                                                </style>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
                                       </object>
                                     </child>
                                   </object>

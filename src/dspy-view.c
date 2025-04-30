@@ -25,12 +25,16 @@
 #include <adwaita.h>
 
 #include "dspy-connection-button.h"
+#include "dspy-interface.h"
 #include "dspy-introspection.h"
+#include "dspy-introspectable-row.h"
 #include "dspy-method-view.h"
 #include "dspy-name-marquee.h"
 #include "dspy-name-row.h"
+#include "dspy-node.h"
 #include "dspy-pattern-spec.h"
 #include "dspy-simple-popover.h"
+#include "dspy-titled-model.h"
 #include "dspy-tree-view.h"
 #include "dspy-view.h"
 
@@ -64,8 +68,9 @@ typedef struct
   AdwNavigationPage       *bus_navigation_page;
   GtkRevealer             *bottom_revealer;
   AdwStatusPage           *status_page;
+  GtkListView             *list_view;
 
-  guint                  destroyed : 1;
+  guint                    destroyed : 1;
 } DspyViewPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (DspyView, dspy_view, GTK_TYPE_WIDGET)
@@ -339,17 +344,74 @@ dspy_view_introspect_cb (GObject      *object,
   gtk_tree_view_set_model (priv->introspection_tree_view, model);
 }
 
+static GListModel *
+create_child_model_cb (gpointer item,
+                       gpointer user_data)
+{
+  if (DSPY_IS_NODE (item))
+    {
+      return dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (item), &DSPY_NODE (item)->interfaces);
+    }
+  else if (DSPY_IS_INTERFACE (item))
+    {
+      DspyInterface *iface = DSPY_INTERFACE (item);
+      g_autoptr(GListStore) store = g_list_store_new (G_TYPE_LIST_MODEL);
+
+      if (iface->signals.length > 0)
+        {
+          g_autoptr(GListModel) base = dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (item), &DSPY_INTERFACE (item)->signals);
+          g_autoptr(GListModel) model = dspy_titled_model_new (base, _("Signals"));
+
+          g_list_store_append (store, model);
+        }
+
+      if (iface->properties.length > 0)
+        {
+          g_autoptr(GListModel) base = dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (item), &DSPY_INTERFACE (item)->properties);
+          g_autoptr(GListModel) model = dspy_titled_model_new (base, _("Properties"));
+
+          g_list_store_append (store, model);
+        }
+
+      if (iface->methods.length > 0)
+        {
+          g_autoptr(GListModel) base = dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (item), &DSPY_INTERFACE (item)->methods);
+          g_autoptr(GListModel) model = dspy_titled_model_new (base, _("Methods"));
+
+          g_list_store_append (store, model);
+        }
+
+      return G_LIST_MODEL (g_steal_pointer (&store));
+    }
+
+  return NULL;
+}
+
 static DexFuture *
 handle_introspection (DexFuture *completed,
                       gpointer   user_data)
 {
+  DspyView *self = user_data;
+  DspyViewPrivate *priv = dspy_view_get_instance_private (self);
   g_autoptr(DspyIntrospection) introspection = NULL;
+  g_autoptr(GtkTreeListModel) tree = NULL;
+  g_autoptr(GtkNoSelection) model = NULL;
   g_autoptr(GError) error = NULL;
 
+  g_assert (DSPY_IS_VIEW (self));
+
   if (!(introspection = dex_await_object (dex_ref (completed), &error)))
-    g_warning ("Failed to get introspection: %s", error->message);
-  else
-    g_print ("Got introspection\n");
+    {
+      g_warning ("Failed to get introspection: %s", error->message);
+      return NULL;
+    }
+
+  tree = gtk_tree_list_model_new (g_object_ref (G_LIST_MODEL (introspection)),
+                                  FALSE, FALSE,
+                                  create_child_model_cb,
+                                  NULL, NULL);
+  model = gtk_no_selection_new (g_object_ref (G_LIST_MODEL (tree)));
+  gtk_list_view_set_model (priv->list_view, GTK_SELECTION_MODEL (model));
 
   return NULL;
 }
@@ -577,6 +639,7 @@ dspy_view_class_init (DspyViewClass *klass)
   gtk_widget_class_set_css_name (widget_class, "dspyview");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-view.ui");
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, introspection_tree_view);
+  gtk_widget_class_bind_template_child_private (widget_class, DspyView, list_view);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, menu_button);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, method_view);
   gtk_widget_class_bind_template_child_private (widget_class, DspyView, name_marquee);
@@ -602,6 +665,7 @@ dspy_view_class_init (DspyViewClass *klass)
   g_type_ensure (DSPY_TYPE_METHOD_VIEW);
   g_type_ensure (DSPY_TYPE_NAME_MARQUEE);
   g_type_ensure (DSPY_TYPE_TREE_VIEW);
+  g_type_ensure (DSPY_TYPE_INTROSPECTABLE_ROW);
 }
 
 static void

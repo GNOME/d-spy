@@ -190,7 +190,7 @@ parse_method (GDBusMethodInfo *info)
       DspyArgument *child;
 
       if ((child = parse_argument (info->in_args[i])))
-        dspy_introspectable_append_queue (DSPY_INTROSPECTABLE (signal),
+        dspy_introspectable_append_queue (DSPY_INTROSPECTABLE (method),
                                           &method->in_args,
                                           DSPY_INTROSPECTABLE (child));
     }
@@ -200,7 +200,7 @@ parse_method (GDBusMethodInfo *info)
       DspyArgument *child;
 
       if ((child = parse_argument (info->out_args[i])))
-        dspy_introspectable_append_queue (DSPY_INTROSPECTABLE (signal),
+        dspy_introspectable_append_queue (DSPY_INTROSPECTABLE (method),
                                           &method->out_args,
                                           DSPY_INTROSPECTABLE (child));
     }
@@ -366,17 +366,10 @@ dspy_introspection_load_fiber (gpointer data)
 
           node = parse_node (info);
 
-          /* Fix path to be absolute based on the query we just made. */
-          if (node->path && node->path[0] == '/') { }
-          else if (node->path)
-            {
-              g_autofree char *abs_path = g_build_path ("/", state->path, node->path, NULL);
-              g_set_str (&node->path, abs_path);
-            }
-          else
-            {
-              g_set_str (&node->path, state->path);
-            }
+          {
+            g_autofree char *abs_path = g_build_path ("/", path, node->path, NULL);
+            g_set_str (&node->path, abs_path);
+          }
 
           /* If there are children nodes, we need to parse them too */
           for (const GList *iter = node->nodes.head; iter; iter = iter->next)
