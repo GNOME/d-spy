@@ -25,6 +25,7 @@
 #include <adwaita.h>
 
 #include "dspy-connection-button.h"
+#include "dspy-introspection.h"
 #include "dspy-method-view.h"
 #include "dspy-name-marquee.h"
 #include "dspy-name-row.h"
@@ -338,6 +339,21 @@ dspy_view_introspect_cb (GObject      *object,
   gtk_tree_view_set_model (priv->introspection_tree_view, model);
 }
 
+static DexFuture *
+handle_introspection (DexFuture *completed,
+                      gpointer   user_data)
+{
+  g_autoptr(DspyIntrospection) introspection = NULL;
+  g_autoptr(GError) error = NULL;
+
+  if (!(introspection = dex_await_object (dex_ref (completed), &error)))
+    g_warning ("Failed to get introspection: %s", error->message);
+  else
+    g_print ("Got introspection\n");
+
+  return NULL;
+}
+
 static void
 name_row_activated_cb (DspyView    *self,
                        DspyNameRow *row,
@@ -370,6 +386,14 @@ name_row_activated_cb (DspyView    *self,
   adw_navigation_split_view_set_show_content (priv->paned, TRUE);
 
   gtk_stack_set_visible_child (priv->stack, gtk_stack_page_get_child (priv->introspect));
+
+  dex_future_disown (dex_future_finally (dspy_introspection_new (dspy_connection_get_connection (dspy_name_get_connection (name)),
+                                                                 dspy_name_get_owner (name),
+                                                                 "/"),
+                                         handle_introspection,
+                                         g_object_ref (self),
+                                         g_object_unref));
+
 }
 
 static void
