@@ -61,6 +61,9 @@ dspy_property_dup_title (DspyIntrospectable *introspectable)
   if (rw != NULL)
     g_string_append_printf (str, " (%s)", rw);
 
+  if (self->value != NULL)
+    g_string_append_printf (str, " = %s", self->value);
+
   return g_string_free (str, FALSE);
 }
 
