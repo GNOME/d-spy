@@ -21,6 +21,8 @@
 
 #pragma once
 
+#include <libdex.h>
+
 #include "dspy-introspectable.h"
 
 G_BEGIN_DECLS
@@ -38,6 +40,8 @@ struct _DspyProperty
   GDBusPropertyInfoFlags  flags;
 };
 
-void dspy_property_query_value (DspyProperty *self);
+DexFuture *dspy_property_query_value (DspyProperty    *self,
+                                      GDBusConnection *connection,
+                                      const char      *name) G_GNUC_WARN_UNUSED_RESULT;
 
 G_END_DECLS

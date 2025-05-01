@@ -23,6 +23,8 @@
 
 #include <glib/gi18n.h>
 
+#include "dspy-interface.h"
+#include "dspy-node.h"
 #include "dspy-private.h"
 #include "dspy-property.h"
 
@@ -145,10 +147,123 @@ dspy_property_init (DspyProperty *self)
 {
 }
 
-void
-dspy_property_query_value (DspyProperty *self)
+static const char *
+dspy_property_get_interface (DspyProperty *self)
 {
-  g_return_if_fail (DSPY_IS_PROPERTY (self));
+  for (DspyIntrospectable *iter = DSPY_INTROSPECTABLE (self)->parent;
+       iter != NULL;
+       iter = iter->parent)
+    {
+      if (DSPY_IS_INTERFACE (iter))
+        return DSPY_INTERFACE (iter)->name;
+    }
 
-  g_print ("TODO: Query value\n");
+  return NULL;
+}
+
+static const char *
+dspy_property_get_object_path (DspyProperty *self)
+{
+  for (DspyIntrospectable *iter = DSPY_INTROSPECTABLE (self)->parent;
+       iter != NULL;
+       iter = iter->parent)
+    {
+      if (DSPY_IS_NODE (iter))
+        return DSPY_NODE (iter)->path;
+    }
+
+  return NULL;
+}
+
+static DexFuture *
+dspy_property_handle_value (DexFuture *completed,
+                            gpointer   user_data)
+{
+  DspyProperty *self = user_data;
+  g_autoptr(GVariant) box = NULL;
+  g_autoptr(GVariant) reply = NULL;
+  g_autoptr(GVariant) child = NULL;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (DEX_IS_FUTURE (completed));
+  g_assert (DSPY_IS_PROPERTY (self));
+
+  if (!(reply = dex_await_variant (dex_ref (completed), &error)))
+    {
+      if (g_set_str (&self->value, _("Error")))
+        g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_VALUE]);
+      return dex_ref (completed);
+    }
+
+  box = g_variant_get_child_value (reply, 0);
+  child = g_variant_get_child_value (box, 0);
+
+  g_clear_pointer (&self->value, g_free);
+
+  if (g_variant_is_of_type (child, G_VARIANT_TYPE_STRING) ||
+      g_variant_is_of_type (child, G_VARIANT_TYPE_OBJECT_PATH))
+    self->value = g_variant_dup_string (child, NULL);
+  else if (g_variant_is_of_type (child, G_VARIANT_TYPE_BYTESTRING))
+    self->value = g_utf8_make_valid (g_variant_get_bytestring (child), -1);
+  else
+    self->value = g_variant_print (child, FALSE);
+
+  if (self->value && strlen (self->value) > 64)
+    {
+      g_autofree gchar *tmp = g_steal_pointer (&self->value);
+      tmp[64] = 0;
+      self->value = g_strdup_printf ("%s…", tmp);
+    }
+
+  return dex_future_new_take_string (g_strdup (self->value));
+}
+
+/**
+ * dspy_property_query_value:
+ * @self: a [class@Dspy.Property]
+ * @connection: the connection to query with
+ * @name: the owner name to query
+ *
+ * Returns: (transfer full): a [class@Dex.Future] that resolves to
+ *   a string or rejects with error.
+ */
+DexFuture *
+dspy_property_query_value (DspyProperty    *self,
+                           GDBusConnection *connection,
+                           const char      *name)
+{
+  const char *interface;
+  const char *object_path;
+
+  dex_return_error_if_fail (DSPY_IS_PROPERTY (self));
+  dex_return_error_if_fail (G_IS_DBUS_CONNECTION (connection));
+  dex_return_error_if_fail (name != NULL);
+
+  if (!(self->flags & G_DBUS_PROPERTY_INFO_FLAGS_READABLE))
+    return dex_future_new_reject (G_IO_ERROR,
+                                  G_IO_ERROR_INVAL,
+                                  "Property is read-only");
+
+  if (!(interface = dspy_property_get_interface (self)))
+    return dex_future_new_reject (G_IO_ERROR,
+                                  G_IO_ERROR_INVAL,
+                                  "Property does not belong to an interface");
+
+  if (!(object_path = dspy_property_get_object_path (self)))
+    return dex_future_new_reject (G_IO_ERROR,
+                                  G_IO_ERROR_INVAL,
+                                  "Property does not belong to an object");
+
+  return dex_future_finally (dex_dbus_connection_call (connection,
+                                                       name,
+                                                       object_path,
+                                                       "org.freedesktop.DBus.Properties",
+                                                       "Get",
+                                                       g_variant_new ("(ss)", interface, self->name),
+                                                       G_VARIANT_TYPE ("(v)"),
+                                                       G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+                                                       -1),
+                             dspy_property_handle_value,
+                             g_object_ref (self),
+                             g_object_unref);
 }

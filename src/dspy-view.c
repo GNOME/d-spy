@@ -50,6 +50,9 @@ typedef struct
   GtkFilterListModel    *filter_model;
   GListModel            *model;
 
+  DspyConnection        *connection;
+  DspyName              *name;
+
   /* Template widgets */
   GtkTreeView             *introspection_tree_view;
   GtkListBox              *names_list_box;
@@ -113,6 +116,8 @@ radio_button_toggled_cb (DspyView             *self,
 
   connection = dspy_connection_button_get_connection (button);
   model = dspy_connection_list_names (connection);
+
+  g_set_object (&priv->connection, connection);
 
   dspy_view_set_model (self, model);
 }
@@ -413,6 +418,8 @@ name_row_activated_cb (DspyView    *self,
 
   name = dspy_name_row_get_name (row);
 
+  g_set_object (&priv->name, name);
+
   g_cancellable_cancel (priv->cancellable);
   g_clear_object (&priv->cancellable);
   priv->cancellable = g_cancellable_new ();
@@ -577,6 +584,7 @@ dspy_view_list_view_activate_cb (DspyView    *self,
                                  guint        position,
                                  GtkListView *list_view)
 {
+  DspyViewPrivate *priv = dspy_view_get_instance_private (self);
   GtkSelectionModel *model;
   g_autoptr(GtkTreeListRow) row = NULL;
   g_autoptr(GObject) item = NULL;
@@ -588,8 +596,12 @@ dspy_view_list_view_activate_cb (DspyView    *self,
   row = g_list_model_get_item (G_LIST_MODEL (model), position);
   item = gtk_tree_list_row_get_item (row);
 
-  if (DSPY_IS_PROPERTY (item))
-    dspy_property_query_value (DSPY_PROPERTY (item));
+  if (DSPY_IS_PROPERTY (item) &&
+      DSPY_IS_CONNECTION (priv->connection) &&
+      DSPY_IS_NAME (priv->name))
+    dspy_property_query_value (DSPY_PROPERTY (item),
+                               dspy_connection_get_connection (priv->connection),
+                               dspy_name_get_owner (priv->name));
 }
 
 static GActionEntry action_entries[] = {
@@ -622,6 +634,9 @@ dspy_view_dispose (GObject *object)
   g_clear_object (&priv->cancellable);
   g_clear_object (&priv->filter_model);
   g_clear_object (&priv->model);
+
+  g_clear_object (&priv->connection);
+  g_clear_object (&priv->name);
 
   gtk_widget_dispose_template (GTK_WIDGET (self), DSPY_TYPE_VIEW);
 
