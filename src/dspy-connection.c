@@ -20,6 +20,8 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "dspy-connection.h"
 #include "dspy-names-model.h"
 
@@ -44,6 +46,7 @@ enum {
   PROP_CONNECTION,
   PROP_HAS_ERROR,
   PROP_NAMES,
+  PROP_TITLE,
   N_PROPS
 };
 
@@ -150,6 +153,15 @@ dspy_connection_get_property (GObject    *object,
       g_value_take_object (value, dspy_connection_list_names (self));
       break;
 
+    case PROP_TITLE:
+      if (self->bus_type == G_BUS_TYPE_SYSTEM)
+        g_value_set_static_string (value, _("System Bus"));
+      else if (self->bus_type == G_BUS_TYPE_SESSION)
+        g_value_set_static_string (value, _("Session Bus"));
+      else
+        g_value_set_string (value, self->address);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -228,6 +240,12 @@ dspy_connection_class_init (DspyConnectionClass *klass)
   properties[PROP_NAMES] =
     g_param_spec_object ("names", NULL, NULL,
                          G_TYPE_LIST_MODEL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_TITLE] =
+    g_param_spec_string ("title", NULL, NULL,
+                         NULL,
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
