@@ -406,25 +406,6 @@ dspy_name_get_connection (DspyName *self)
   return self->connection;
 }
 
-static void
-dspy_name_introspection_cb (GObject      *object,
-                            GAsyncResult *result,
-                            gpointer      user_data)
-{
-  GAsyncInitable *initable = (GAsyncInitable *)object;
-  g_autoptr(GError) error = NULL;
-  g_autoptr(GTask) task = user_data;
-
-  g_assert (G_IS_ASYNC_INITABLE (initable));
-  g_assert (G_IS_ASYNC_RESULT (result));
-  g_assert (G_IS_TASK (task));
-
-  if (!g_async_initable_init_finish (initable, result, &error))
-    g_task_return_error (task, g_steal_pointer (&error));
-  else
-    g_task_return_pointer (task, g_object_ref (initable), g_object_unref);
-}
-
 /**
  * dspy_name_introspect:
  * @self: a [class@Dspy.Name]
