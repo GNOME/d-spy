@@ -40,6 +40,7 @@
       <object class="GtkStack">
         <child>
           <object class="GtkStackPage">
+            <property name="name">new</property>
             <property name="child">
               <object class="AdwNavigationSplitView" id="split1">
                 <property name="min-sidebar-width">300</property>
@@ -175,6 +176,7 @@
         </child>
         <child>
           <object class="GtkStackPage">
+            <property name="name">old</property>
             <property name="child">
               <object class="DspyView" id="view">
                 <property name="vexpand">true</property>
