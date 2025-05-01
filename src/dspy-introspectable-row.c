@@ -31,11 +31,12 @@
 
 struct _DspyIntrospectableRow
 {
-  GtkWidget  parent_instance;
+  GtkWidget      parent_instance;
 
-  GObject   *item;
+  GObject       *item;
+  GBindingGroup *bindings;
 
-  GtkLabel  *title;
+  GtkLabel      *title;
 };
 
 enum {
@@ -59,6 +60,7 @@ dspy_introspectable_row_dispose (GObject *object)
   while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
     gtk_widget_unparent (child);
 
+  g_clear_object (&self->bindings);
   g_clear_object (&self->item);
 
   G_OBJECT_CLASS (dspy_introspectable_row_parent_class)->dispose (object);
@@ -129,7 +131,13 @@ dspy_introspectable_row_class_init (DspyIntrospectableRowClass *klass)
 static void
 dspy_introspectable_row_init (DspyIntrospectableRow *self)
 {
+  self->bindings = g_binding_group_new ();
+
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  g_binding_group_bind (self->bindings, "title",
+                        self->title, "label",
+                        G_BINDING_SYNC_CREATE);
 }
 
 /**
@@ -154,15 +162,7 @@ dspy_introspectable_row_set_item (DspyIntrospectableRow *self,
 
   if (g_set_object (&self->item, item))
     {
-      g_autofree char *title = NULL;
-
-      if (DSPY_IS_INTROSPECTABLE (item))
-        title = dspy_introspectable_dup_title (DSPY_INTROSPECTABLE (item));
-      else if (DSPY_IS_TITLED_MODEL (item))
-        title = g_strdup (dspy_titled_model_get_title (DSPY_TITLED_MODEL (item)));
-
-      gtk_label_set_markup (self->title, title);
-
+      g_binding_group_set_source (self->bindings, item);
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_ITEM]);
     }
 }

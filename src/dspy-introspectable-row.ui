@@ -6,6 +6,7 @@
         <child>
           <object class="GtkLabel" id="title">
             <property name="xalign">0</property>
+            <property name="use-markup">true</property>
           </object>
         </child>
       </object>
