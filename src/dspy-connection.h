@@ -45,12 +45,6 @@ GDBusConnection *dspy_connection_open_finish       (DspyConnection       *self,
                                                     GAsyncResult         *result,
                                                     GError              **error);
 void             dspy_connection_close             (DspyConnection       *self);
-void             dspy_connection_list_names_async  (DspyConnection       *self,
-                                                    GCancellable         *cancellable,
-                                                    GAsyncReadyCallback   callback,
-                                                    gpointer              user_data);
-GListModel      *dspy_connection_list_names_finish (DspyConnection       *self,
-                                                    GAsyncResult         *result,
-                                                    GError              **error);
+GListModel      *dspy_connection_list_names        (DspyConnection       *self);
 
 G_END_DECLS

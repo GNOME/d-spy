@@ -95,30 +95,11 @@ dspy_view_new (void)
 }
 
 static void
-dspy_view_list_names_cb (GObject      *object,
-                         GAsyncResult *result,
-                         gpointer      user_data)
-{
-  DspyConnection *conn = (DspyConnection *)object;
-  g_autoptr(DspyView) self = user_data;
-  g_autoptr(GListModel) model = NULL;
-  g_autoptr(GError) error = NULL;
-
-  g_assert (DSPY_IS_VIEW (self));
-  g_assert (G_IS_ASYNC_RESULT (result));
-  g_assert (DSPY_IS_CONNECTION (conn));
-
-  if (!(model = dspy_connection_list_names_finish (conn, result, &error)))
-    g_warning ("Failed to list names: %s", error->message);
-
-  dspy_view_set_model (self, model);
-}
-
-static void
 radio_button_toggled_cb (DspyView             *self,
                          DspyConnectionButton *button)
 {
   DspyViewPrivate *priv = dspy_view_get_instance_private (self);
+  g_autoptr(GListModel) model = NULL;
   DspyConnection *connection;
 
   g_assert (DSPY_IS_VIEW (self));
@@ -131,10 +112,9 @@ radio_button_toggled_cb (DspyView             *self,
   adw_navigation_page_set_title (priv->bus_navigation_page, _("Bus"));
 
   connection = dspy_connection_button_get_connection (button);
-  dspy_connection_list_names_async (connection,
-                                    NULL,
-                                    dspy_view_list_names_cb,
-                                    g_object_ref (self));
+  model = dspy_connection_list_names (connection);
+
+  dspy_view_set_model (self, model);
 }
 
 static void

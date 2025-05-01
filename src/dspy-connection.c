@@ -28,6 +28,7 @@ struct _DspyConnection
   GObject          parent_instance;
   GCancellable    *cancellable;
   GDBusConnection *connection;
+  DspyNamesModel  *names;
   gchar           *address;
   gchar           *connected_address;
   GPtrArray       *errors;
@@ -42,6 +43,7 @@ enum {
   PROP_BUS_TYPE,
   PROP_CONNECTION,
   PROP_HAS_ERROR,
+  PROP_NAMES,
   N_PROPS
 };
 
@@ -95,6 +97,8 @@ dspy_connection_dispose (GObject *object)
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
 
+  g_clear_object (&self->names);
+
   if (self->connection != NULL)
     {
       if (!g_dbus_connection_is_closed (self->connection))
@@ -140,6 +144,10 @@ dspy_connection_get_property (GObject    *object,
 
     case PROP_HAS_ERROR:
       g_value_set_boolean (value, dspy_connection_get_has_error (self));
+      break;
+
+    case PROP_NAMES:
+      g_value_take_object (value, dspy_connection_list_names (self));
       break;
 
     default:
@@ -216,6 +224,12 @@ dspy_connection_class_init (DspyConnectionClass *klass)
                           "Has Error",
                           FALSE,
                           (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_NAMES] =
+    g_param_spec_object ("names", NULL, NULL,
+                         G_TYPE_LIST_MODEL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
@@ -378,61 +392,42 @@ dspy_connection_list_names_cb (GObject      *object,
                                gpointer      user_data)
 {
   GAsyncInitable *initable = (GAsyncInitable *)object;
+  g_autoptr(DspyConnection) self = user_data;
   g_autoptr(GError) error = NULL;
-  g_autoptr(GTask) task = user_data;
-  DspyConnection *self;
 
   g_assert (G_IS_ASYNC_INITABLE (initable));
   g_assert (G_IS_ASYNC_RESULT (result));
-  g_assert (G_IS_TASK (task));
-
-  self = g_task_get_source_object (task);
+  g_assert (DSPY_IS_CONNECTION (self));
 
   if (!g_async_initable_init_finish (initable, result, &error))
-    {
-      dspy_connection_add_error (self, error);
-      g_task_return_error (task, g_steal_pointer (&error));
-    }
+    dspy_connection_add_error (self, error);
   else
-    {
-      dspy_connection_clear_errors (self);
-      g_task_return_pointer (task, g_object_ref (initable), g_object_unref);
-    }
+    dspy_connection_clear_errors (self);
 }
 
-void
-dspy_connection_list_names_async (DspyConnection      *self,
-                                  GCancellable        *cancellable,
-                                  GAsyncReadyCallback  callback,
-                                  gpointer             user_data)
-{
-  g_autoptr(GTask) task = NULL;
-  g_autoptr(DspyNamesModel) model = NULL;
-
-  g_return_if_fail (DSPY_IS_CONNECTION (self));
-  g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
-
-  task = g_task_new (self, cancellable, callback, user_data);
-  g_task_set_source_tag (task, dspy_connection_list_names_async);
-
-  model = dspy_names_model_new (self);
-
-  g_async_initable_init_async (G_ASYNC_INITABLE (model),
-                               G_PRIORITY_DEFAULT,
-                               cancellable,
-                               dspy_connection_list_names_cb,
-                               g_steal_pointer (&task));
-}
-
+/**
+ * dspy_connection_list_names:
+ * @self: a [class@Dspy.Connection]
+ *
+ * Returns: (transfer full):
+ */
 GListModel *
-dspy_connection_list_names_finish (DspyConnection  *self,
-                                   GAsyncResult    *result,
-                                   GError         **error)
+dspy_connection_list_names (DspyConnection *self)
 {
   g_return_val_if_fail (DSPY_IS_CONNECTION (self), NULL);
-  g_return_val_if_fail (G_IS_TASK (result), NULL);
 
-  return g_task_propagate_pointer (G_TASK (result), error);
+  if (self->names == NULL)
+    {
+      self->names = dspy_names_model_new (self);
+
+      g_async_initable_init_async (G_ASYNC_INITABLE (self->names),
+                                   G_PRIORITY_DEFAULT,
+                                   self->cancellable,
+                                   dspy_connection_list_names_cb,
+                                   g_object_ref (self));
+    }
+
+  return g_object_ref (G_LIST_MODEL (self->names));
 }
 
 /**

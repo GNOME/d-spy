@@ -461,7 +461,7 @@ dspy_names_model_finalize (GObject *object)
   DspyNamesModel *self = (DspyNamesModel *)object;
 
   g_clear_pointer (&self->items, g_sequence_free);
-  g_clear_object (&self->connection);
+  g_clear_weak_pointer (&self->connection);
 
   G_OBJECT_CLASS (dspy_names_model_parent_class)->finalize (object);
 }
@@ -496,7 +496,7 @@ dspy_names_model_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_CONNECTION:
-      self->connection = g_value_dup_object (value);
+      g_set_weak_pointer (&self->connection, g_value_get_object (value));
       break;
 
     default:
