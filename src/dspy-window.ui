@@ -154,11 +154,23 @@
                                             <property name="single-click-activate">true</property>
                                             <property name="model">
                                               <object class="GtkSingleSelection" id="names_selection">
-                                                <binding name="model">
-                                                  <lookup name="names" type="DspyConnection">
-                                                    <lookup name="selected-item">connections_selection</lookup>
-                                                  </lookup>
-                                                </binding>
+                                                <property name="model">
+                                                  <object class="GtkSortListModel">
+                                                    <binding name="model">
+                                                      <lookup name="names" type="DspyConnection">
+                                                        <lookup name="selected-item">connections_selection</lookup>
+                                                      </lookup>
+                                                    </binding>
+                                                    <property name="sorter">
+                                                      <object class="GtkStringSorter">
+                                                        <property name="collation">filename</property>
+                                                        <property name="expression">
+                                                          <lookup name="name" type="DspyName"/>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                  </object>
+                                                </property>
                                               </object>
                                             </property>
                                             <property name="factory">
