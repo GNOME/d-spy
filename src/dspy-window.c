@@ -92,6 +92,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, view);
 
+  g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_VIEW);
 }
 
