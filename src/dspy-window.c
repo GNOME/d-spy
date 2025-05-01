@@ -20,7 +20,10 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "dspy-connection.h"
+#include "dspy-util.h"
 #include "dspy-view.h"
 #include "dspy-window.h"
 
@@ -40,6 +43,28 @@ enum {
 };
 
 static GParamSpec *properties[N_PROPS];
+
+static DexFuture *
+dspy_window_add_a11y_bus (DexFuture *completed,
+                          gpointer   user_data)
+{
+  GListStore *store = user_data;
+  g_autoptr(GError) error = NULL;
+  g_autofree char *address = NULL;
+
+  g_assert (DEX_IS_FUTURE (completed));
+  g_assert (G_IS_LIST_STORE (store));
+
+  if ((address = dex_await_string (dex_ref (completed), &error)))
+    {
+      g_autoptr(DspyConnection) connection = dspy_connection_new_for_address (address);
+
+      dspy_connection_set_title (connection, _("Accessibility Bus"));
+      g_list_store_append (store, connection);
+    }
+
+  return dex_ref (completed);
+}
 
 static void
 dspy_window_dispose (GObject *object)
@@ -109,6 +134,11 @@ dspy_window_init (DspyWindow *self)
 
   g_list_store_append (self->connections, system);
   g_list_store_append (self->connections, session);
+
+  dex_future_disown (dex_future_then (dspy_get_a11y_bus (),
+                                      dspy_window_add_a11y_bus,
+                                      g_object_ref (self->connections),
+                                      g_object_unref));
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
