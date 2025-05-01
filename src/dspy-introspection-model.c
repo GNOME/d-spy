@@ -24,6 +24,7 @@
 #include <string.h>
 
 #include "dspy-introspection-model.h"
+#include "dspy-node.h"
 #include "dspy-private.h"
 
 #if 0

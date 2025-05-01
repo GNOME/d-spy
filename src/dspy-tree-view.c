@@ -22,6 +22,7 @@
 
 #include <glib/gi18n.h>
 
+#include "dspy-node.h"
 #include "dspy-private.h"
 #include "dspy-tree-view.h"
 

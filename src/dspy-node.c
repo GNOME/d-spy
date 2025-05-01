@@ -18,9 +18,13 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
+#include "config.h"
+
 #include <errno.h>
+
 #include <glib/gi18n.h>
 
+#include "dspy-node.h"
 #include "dspy-private.h"
 
 #define LPAREN  "<span fgalpha='30000'>(</span>"
