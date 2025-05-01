@@ -190,9 +190,12 @@ dspy_property_handle_value (DexFuture *completed,
 
   if (!(reply = dex_await_variant (dex_ref (completed), &error)))
     {
+      g_warning ("Failed to fetch property value: %s", error->message);
+
       if (g_set_str (&self->value, _("Error")))
         g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_VALUE]);
       g_object_notify (G_OBJECT (self), "title");
+
       return dex_ref (completed);
     }
 
