@@ -31,8 +31,9 @@ struct _DspyConnection
   GCancellable    *cancellable;
   GDBusConnection *connection;
   DspyNamesModel  *names;
-  gchar           *address;
-  gchar           *connected_address;
+  char            *address;
+  char            *connected_address;
+  char            *title;
   GPtrArray       *errors;
   GBusType         bus_type;
 };
@@ -119,6 +120,7 @@ dspy_connection_finalize (GObject *object)
 
   g_clear_pointer (&self->address, g_free);
   g_clear_pointer (&self->connected_address, g_free);
+  g_clear_pointer (&self->title, g_free);
 
   G_OBJECT_CLASS (dspy_connection_parent_class)->finalize (object);
 }
@@ -154,12 +156,7 @@ dspy_connection_get_property (GObject    *object,
       break;
 
     case PROP_TITLE:
-      if (self->bus_type == G_BUS_TYPE_SYSTEM)
-        g_value_set_static_string (value, _("System Bus"));
-      else if (self->bus_type == G_BUS_TYPE_SESSION)
-        g_value_set_static_string (value, _("Session Bus"));
-      else
-        g_value_set_string (value, self->address);
+      g_value_set_string (value, dspy_connection_get_title (self));
       break;
 
     default:
@@ -191,6 +188,10 @@ dspy_connection_set_property (GObject      *object,
           self->bus_type = g_value_get_enum (value);
           g_clear_pointer (&self->address, g_free);
         }
+      break;
+
+    case PROP_TITLE:
+      dspy_connection_set_title (self, g_value_get_string (value));
       break;
 
     default:
@@ -246,7 +247,8 @@ dspy_connection_class_init (DspyConnectionClass *klass)
   properties[PROP_TITLE] =
     g_param_spec_string ("title", NULL, NULL,
                          NULL,
-                         (G_PARAM_READABLE |
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
                           G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
@@ -499,4 +501,34 @@ dspy_connection_clear_errors (DspyConnection *self)
       g_ptr_array_remove_range (self->errors, 0, self->errors->len);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAS_ERROR]);
     }
+}
+
+const char *
+dspy_connection_get_title (DspyConnection *self)
+{
+  g_return_val_if_fail (DSPY_IS_CONNECTION (self), NULL);
+
+  if (self->title != NULL)
+    return self->title;
+
+  if (self->bus_type == G_BUS_TYPE_SYSTEM)
+    return _("System Bus");
+
+  if (self->bus_type == G_BUS_TYPE_SESSION)
+    return _("Session Bus");
+
+  if (self->connected_address)
+    return self->connected_address;
+
+  return self->address;
+}
+
+void
+dspy_connection_set_title (DspyConnection *self,
+                           const char     *title)
+{
+  g_return_if_fail (DSPY_IS_CONNECTION (self));
+
+  if (g_set_str (&self->title, title))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TITLE]);
 }

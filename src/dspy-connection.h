@@ -30,6 +30,9 @@ G_DECLARE_FINAL_TYPE (DspyConnection, dspy_connection, DSPY, CONNECTION, GObject
 
 DspyConnection  *dspy_connection_new_for_address   (const gchar          *address);
 DspyConnection  *dspy_connection_new_for_bus       (GBusType              bus_type);
+const char      *dspy_connection_get_title         (DspyConnection       *self);
+void             dspy_connection_set_title         (DspyConnection       *self,
+                                                    const char           *title);
 void             dspy_connection_add_error         (DspyConnection       *self,
                                                     const GError         *error);
 void             dspy_connection_clear_errors      (DspyConnection       *self);
