@@ -24,6 +24,7 @@ dspy_deps = [
   libadwaita_dep,
   libgio_dep,
   libgtk_dep,
+  libdex_dep,
 ]
 
 dspy_sources += gnome.compile_resources('dspy-resources', 'dspy.gresource.xml',
