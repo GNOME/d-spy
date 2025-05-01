@@ -599,9 +599,9 @@ dspy_view_list_view_activate_cb (DspyView    *self,
   if (DSPY_IS_PROPERTY (item) &&
       DSPY_IS_CONNECTION (priv->connection) &&
       DSPY_IS_NAME (priv->name))
-    dspy_property_query_value (DSPY_PROPERTY (item),
-                               dspy_connection_get_connection (priv->connection),
-                               dspy_name_get_owner (priv->name));
+    dex_future_disown (dspy_property_query_value (DSPY_PROPERTY (item),
+                                                  dspy_connection_get_connection (priv->connection),
+                                                  dspy_name_get_owner (priv->name)));
 }
 
 static GActionEntry action_entries[] = {
