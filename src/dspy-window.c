@@ -23,6 +23,7 @@
 #include <glib/gi18n.h>
 
 #include "dspy-connection.h"
+#include "dspy-name.h"
 #include "dspy-util.h"
 #include "dspy-view.h"
 #include "dspy-window.h"
@@ -30,7 +31,11 @@
 struct _DspyWindow
 {
   AdwApplicationWindow  parent_instance;
+
+  GtkListView          *connections_list_view;
+  GtkListView          *names_list_view;
   DspyView             *view;
+
   GListStore           *connections;
 };
 
@@ -115,9 +120,12 @@ dspy_window_class_init (DspyWindowClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_list_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, view);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
+  g_type_ensure (DSPY_TYPE_NAME);
   g_type_ensure (DSPY_TYPE_VIEW);
 }
 
