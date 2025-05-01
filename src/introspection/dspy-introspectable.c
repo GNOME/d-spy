@@ -26,6 +26,7 @@
 enum {
   PROP_0,
   PROP_PARENT,
+  PROP_TITLE,
   N_PROPS
 };
 
@@ -73,6 +74,10 @@ dspy_introspectable_get_property (GObject    *object,
       g_value_set_object (value, self->parent);
       break;
 
+    case PROP_TITLE:
+      g_value_take_string (value, dspy_introspectable_dup_title (self));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -90,6 +95,12 @@ dspy_introspectable_class_init (DspyIntrospectableClass *klass)
     g_param_spec_object ("parent", NULL, NULL,
                          DSPY_TYPE_INTROSPECTABLE,
                          (G_PARAM_READABLE  |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_TITLE] =
+    g_param_spec_string ("title", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
