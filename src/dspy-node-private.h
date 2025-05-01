@@ -1,5 +1,5 @@
 /*
- * dspy-node.h
+ * dspy-node-private.h
  *
  * Copyright 2025 Christian Hergert <chergert@redhat.com>
  *
