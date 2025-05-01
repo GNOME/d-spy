@@ -288,26 +288,23 @@ dspy_names_model_init_list_names_cb (GObject      *object,
     g_task_return_boolean (task, TRUE);
 }
 
-static void
-dspy_names_model_init_open_cb (GObject      *object,
-                               GAsyncResult *result,
-                               gpointer      user_data)
+static DexFuture *
+dspy_names_model_open_cb (DexFuture *completed,
+                          gpointer   user_data)
 {
-  DspyConnection *connection = (DspyConnection *)object;
   g_autoptr(GDBusConnection) bus = NULL;
-  g_autoptr(GTask) task = user_data;
   g_autoptr(GError) error = NULL;
   DspyNamesModel *self;
   GWeakRef *wr;
+  GTask *task = user_data;
 
-  g_assert (DSPY_IS_CONNECTION (connection));
-  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (DEX_IS_FUTURE (completed));
   g_assert (G_IS_TASK (task));
 
-  if (!(bus = dspy_connection_open_finish (connection, result, &error)))
+  if (!(bus = dex_await_object (dex_ref (completed), &error)))
     {
       g_task_return_error (task, g_steal_pointer (&error));
-      return;
+      return dex_ref (completed);
     }
 
   self = g_task_get_source_object (task);
@@ -364,6 +361,8 @@ dspy_names_model_init_open_cb (GObject      *object,
                           g_task_get_cancellable (task),
                           dspy_names_model_init_list_names_cb,
                           g_object_ref (task));
+
+  return dex_ref (completed);
 }
 
 static void
@@ -391,10 +390,10 @@ dspy_names_model_init_async (GAsyncInitable      *initable,
                              G_IO_ERROR_NOT_INITIALIZED,
                              "No connection to introspect");
   else
-    dspy_connection_open_async (self->connection,
-                                cancellable,
-                                dspy_names_model_init_open_cb,
-                                g_steal_pointer (&task));
+    dex_future_disown (dex_future_finally (dspy_connection_open (self->connection),
+                                           dspy_names_model_open_cb,
+                                           g_object_ref (task),
+                                           g_object_unref));
 }
 
 static gboolean

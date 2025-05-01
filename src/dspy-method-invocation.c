@@ -272,58 +272,52 @@ dspy_method_invocation_execute_call_cb (GObject      *object,
     g_task_return_pointer (task, g_steal_pointer (&reply), (GDestroyNotify)g_variant_unref);
 }
 
-static void
-dspy_method_invocation_execute_open_cb (GObject      *object,
-                                        GAsyncResult *result,
-                                        gpointer      user_data)
+static DexFuture *
+dspy_method_invocation_execute_open_cb (DexFuture *completed,
+                                        gpointer   user_data)
 {
   DspyMethodInvocationPrivate *priv;
   DspyMethodInvocation *self;
-  DspyConnection *connection = (DspyConnection *)object;
   g_autoptr(GDBusConnection) bus = NULL;
-  g_autoptr(GTask) task = user_data;
   g_autoptr(GError) error = NULL;
-  GCancellable *cancellable;
+  GTask *task = user_data;
 
-  g_assert (DSPY_IS_CONNECTION (connection));
-  g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (G_IS_TASK (task));
+  g_assert (DEX_IS_FUTURE (completed));
 
-  if (!(bus = dspy_connection_open_finish (connection, result, &error)))
+  if (!(bus = dex_await_object (dex_ref (completed), &error)))
     {
       g_task_return_error (task, g_steal_pointer (&error));
-      return;
+      return dex_ref (completed);
     }
 
   self = g_task_get_source_object (task);
   priv = dspy_method_invocation_get_instance_private (self);
-  cancellable = g_task_get_cancellable (task);
 
   if (priv->name == NULL ||
       priv->object_path == NULL ||
       priv->interface == NULL ||
       priv->method == NULL ||
       priv->parameters == NULL)
-    {
-      g_task_return_new_error (task,
-                               G_IO_ERROR,
-                               G_IO_ERROR_NOT_INITIALIZED,
-                               "Method invocation contains uninitialized parameters");
-      return;
-    }
+    g_task_return_new_error (task,
+                             G_IO_ERROR,
+                             G_IO_ERROR_NOT_INITIALIZED,
+                             "Method invocation contains uninitialized parameters");
+  else
+    g_dbus_connection_call (bus,
+                            dspy_name_get_owner (priv->name),
+                            priv->object_path,
+                            priv->interface,
+                            priv->method,
+                            priv->parameters,
+                            NULL, /* Allow any reply type (even if invalid) */
+                            G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+                            priv->timeout_msec,
+                            NULL,
+                            dspy_method_invocation_execute_call_cb,
+                            g_object_ref (task));
 
-  g_dbus_connection_call (bus,
-                          dspy_name_get_owner (priv->name),
-                          priv->object_path,
-                          priv->interface,
-                          priv->method,
-                          priv->parameters,
-                          NULL, /* Allow any reply type (even if invalid) */
-                          G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
-                          priv->timeout_msec,
-                          cancellable,
-                          dspy_method_invocation_execute_call_cb,
-                          g_steal_pointer (&task));
+  return dex_ref (completed);
 }
 
 void
@@ -353,10 +347,10 @@ dspy_method_invocation_execute_async (DspyMethodInvocation *self,
 
   connection = dspy_name_get_connection (priv->name);
 
-  dspy_connection_open_async (connection,
-                              cancellable,
-                              dspy_method_invocation_execute_open_cb,
-                              g_steal_pointer (&task));
+  dex_future_disown (dex_future_finally (dspy_connection_open (connection),
+                                         dspy_method_invocation_execute_open_cb,
+                                         g_object_ref (task),
+                                         g_object_unref));
 }
 
 /**

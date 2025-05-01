@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <gio/gio.h>
+#include <libdex.h>
 
 G_BEGIN_DECLS
 
@@ -40,13 +40,7 @@ GDBusConnection *dspy_connection_get_connection    (DspyConnection       *self);
 const gchar     *dspy_connection_get_address       (DspyConnection       *self);
 GBusType         dspy_connection_get_bus_type      (DspyConnection       *self);
 gboolean         dspy_connection_get_has_error     (DspyConnection       *self);
-void             dspy_connection_open_async        (DspyConnection       *self,
-                                                    GCancellable         *cancellable,
-                                                    GAsyncReadyCallback   callback,
-                                                    gpointer              user_data);
-GDBusConnection *dspy_connection_open_finish       (DspyConnection       *self,
-                                                    GAsyncResult         *result,
-                                                    GError              **error);
+DexFuture       *dspy_connection_open              (DspyConnection       *self);
 void             dspy_connection_close             (DspyConnection       *self);
 GListModel      *dspy_connection_list_names        (DspyConnection       *self);
 

@@ -38,7 +38,7 @@ struct _DspyConnection
   GBusType         bus_type;
 };
 
-G_DEFINE_TYPE (DspyConnection, dspy_connection, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (DspyConnection, dspy_connection, G_TYPE_OBJECT)
 
 enum {
   PROP_0,
@@ -305,93 +305,88 @@ dspy_connection_get_bus_type (DspyConnection *self)
   return self->bus_type;
 }
 
+static DexFuture *
+dspy_connection_save_connection (DexFuture *completed,
+                                 gpointer   user_data)
+{
+  DspyConnection *self = user_data;
+  g_autoptr(GDBusConnection) connection = dex_await_object (dex_ref (completed), NULL);
+
+  g_assert (DSPY_IS_CONNECTION (self));
+  g_assert (G_IS_DBUS_CONNECTION (connection));
+
+  if (g_set_object (&self->connection, connection))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_CONNECTION]);
+
+  return dex_ref (completed);
+}
+
 static void
 dspy_connection_open_address_cb (GObject      *object,
                                  GAsyncResult *result,
                                  gpointer      user_data)
 {
   g_autoptr(GDBusConnection) bus = NULL;
-  g_autoptr(GTask) task = user_data;
+  g_autoptr(DexPromise) promise = user_data;
   g_autoptr(GError) error = NULL;
 
   g_assert (G_IS_ASYNC_RESULT (result));
-  g_assert (G_IS_TASK (task));
+  g_assert (DEX_IS_PROMISE (promise));
 
   if (!(bus = g_dbus_connection_new_for_address_finish (result, &error)))
-    g_task_return_error (task, g_steal_pointer (&error));
-  else
-    g_task_return_pointer (task, g_steal_pointer (&bus), g_object_unref);
-}
-
-void
-dspy_connection_open_async (DspyConnection      *self,
-                            GCancellable        *cancellable,
-                            GAsyncReadyCallback  callback,
-                            gpointer             user_data)
-{
-  g_autoptr(GTask) task = NULL;
-  g_autoptr(GError) error = NULL;
-
-  g_return_if_fail (DSPY_IS_CONNECTION (self));
-  g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
-
-  task = g_task_new (self, cancellable, callback, user_data);
-  g_task_set_source_tag (task, dspy_connection_open_async);
-
-  if (self->connection != NULL)
     {
-      g_task_return_pointer (task, g_object_ref (self->connection), g_object_unref);
+      dex_promise_reject (promise, g_steal_pointer (&error));
       return;
     }
+
+  g_dbus_connection_set_exit_on_close (bus, FALSE);
+  dex_promise_resolve_object (promise, g_steal_pointer (&bus));
+}
+
+/**
+ * dspy_connection_open:
+ * @self: a [class@Dspy.Connection]
+ *
+ * Returns: (transfer full): a [class@Dex.Future] that resolves to
+ *   a [class@Gio.DBusConnection] or rejects with error
+ */
+DexFuture *
+dspy_connection_open (DspyConnection *self)
+{
+  g_autoptr(GError) error = NULL;
+  DexPromise *promise;
+
+  dex_return_error_if_fail (DSPY_IS_CONNECTION (self));
+
+  if (self->connection != NULL)
+    return dex_future_new_take_object (g_object_ref (self->connection));
 
   g_clear_pointer (&self->connected_address, g_free);
 
   if (self->address != NULL)
     self->connected_address = g_strdup (self->address);
   else
-    self->connected_address = g_dbus_address_get_for_bus_sync (self->bus_type,
-                                                               cancellable,
-                                                               &error);
+    self->connected_address = g_dbus_address_get_for_bus_sync (self->bus_type, NULL, &error);
 
   if (error != NULL)
-    g_task_return_error (task, g_steal_pointer (&error));
-  else
-    g_dbus_connection_new_for_address (self->connected_address,
-                                       (G_DBUS_CONNECTION_FLAGS_MESSAGE_BUS_CONNECTION |
-                                        G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_CLIENT),
-                                       NULL,
-                                       cancellable,
-                                       dspy_connection_open_address_cb,
-                                       g_steal_pointer (&task));
-}
+    return dex_future_new_for_error (g_steal_pointer (&error));
 
-/**
- * dspy_connection_open_finish:
- *
- * Completes an asynchronous request to dspy_connection_open_async().
- *
- * Returns: (transfer full): a #GDBusConnection if successful; otherwise
- *   %NULL and @error is set.
- */
-GDBusConnection *
-dspy_connection_open_finish (DspyConnection  *self,
-                             GAsyncResult    *result,
-                             GError         **error)
-{
-  GDBusConnection *bus;
+  promise = dex_promise_new_cancellable ();
+  g_dbus_connection_new_for_address (self->connected_address,
+                                     (G_DBUS_CONNECTION_FLAGS_MESSAGE_BUS_CONNECTION |
+                                      G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_CLIENT),
+                                     NULL,
+                                     dex_promise_get_cancellable (promise),
+                                     dspy_connection_open_address_cb,
+                                     dex_ref (promise));
 
-  g_return_val_if_fail (DSPY_IS_CONNECTION (self), NULL);
-  g_return_val_if_fail (G_IS_TASK (result), NULL);
+  dex_future_disown (dex_future_then (dex_ref (DEX_FUTURE (promise)),
+                                      dspy_connection_save_connection,
+                                      g_object_ref (self),
+                                      g_object_unref));
 
-  if ((bus = g_task_propagate_pointer (G_TASK (result), error)))
-    {
-      g_dbus_connection_set_exit_on_close (bus, FALSE);
+  return DEX_FUTURE (promise);
 
-      if (g_set_object (&self->connection, bus))
-        g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CONNECTION]);
-    }
-
-  return g_steal_pointer (&bus);
 }
 
 void
