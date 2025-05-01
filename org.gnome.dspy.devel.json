@@ -29,7 +29,7 @@
             "config-opts": [
                 "-Ddocs=false",
                 "-Dexamples=false",
-                "-Dintrospection=false",
+                "-Dintrospection=disabled",
                 "-Dsysprof=false",
                 "-Dtests=false",
                 "-Dvapi=false"
