@@ -360,13 +360,13 @@ dspy_introspection_model_introspect (GTask           *task,
 }
 
 static void
-dspy_introspection_model_init_async (GAsyncInitable      *initiable,
+dspy_introspection_model_init_async (GAsyncInitable      *initable,
                                      gint                 io_priority,
                                      GCancellable        *cancellable,
                                      GAsyncReadyCallback  callback,
                                      gpointer             user_data)
 {
-  DspyIntrospectionModel *self = (DspyIntrospectionModel *)initiable;
+  DspyIntrospectionModel *self = (DspyIntrospectionModel *)initable;
   GDBusConnection *bus = NULL;
   DspyConnection *connection = NULL;
   g_autoptr(GTask) task = NULL;
@@ -410,6 +410,27 @@ async_initable_iface_init (GAsyncInitableIface *iface)
 {
   iface->init_async = dspy_introspection_model_init_async;
   iface->init_finish = dspy_introspection_model_init_finish;
+}
+
+/**
+ * dspy_introspection_model_new:
+ * @name: a [class@Dspy.Name]
+ *
+ * Returns: (transfer full): a [class@Dex.Future] that resolves
+ *   to a [class@Dspy.IntrospectionModel] or rejects with error.
+ */
+DexFuture *
+dspy_introspection_model_new (DspyName *name)
+{
+  g_autoptr(DspyIntrospectionModel) self = NULL;
+
+  dex_return_error_if_fail (DSPY_IS_NAME (name));
+
+  self = g_object_new (DSPY_TYPE_INTROSPECTION_MODEL,
+                       "name", name,
+                       NULL);
+
+  return dex_async_initable_init (G_ASYNC_INITABLE (self), 0);
 }
 
 static gboolean
@@ -806,16 +827,6 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
-
-DspyIntrospectionModel *
-_dspy_introspection_model_new (DspyName *name)
-{
-  g_return_val_if_fail (DSPY_IS_NAME (name), NULL);
-
-  return g_object_new (DSPY_TYPE_INTROSPECTION_MODEL,
-                       "name", name,
-                       NULL);
-}
 
 static void
 dspy_introspection_model_finalize (GObject *object)

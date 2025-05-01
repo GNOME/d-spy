@@ -301,28 +301,26 @@ dspy_view_set_model (DspyView   *self,
   gtk_adjustment_set_value (adj, 0.0);
 }
 
-static void
-dspy_view_introspect_cb (GObject      *object,
-                         GAsyncResult *result,
-                         gpointer      user_data)
+static DexFuture *
+dspy_view_introspect_cb (DexFuture *completed,
+                         gpointer   user_data)
 {
-  DspyName *name = (DspyName *)object;
   g_autoptr(GtkTreeModel) model = NULL;
-  g_autoptr(DspyView) self = user_data;
+  DspyView *self = user_data;
   DspyViewPrivate *priv = dspy_view_get_instance_private (self);
   g_autoptr(GError) error = NULL;
 
-  g_assert (DSPY_IS_NAME (name));
-  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (DEX_IS_FUTURE (completed));
   g_assert (DSPY_IS_VIEW (self));
 
-  if (!(model = dspy_name_introspect_finish (name, result, &error)))
-    {
-      DspyConnection *connection = dspy_name_get_connection (name);
-      dspy_connection_add_error (connection, error);
-    }
+  model = dex_await_object (dex_ref (completed), &error);
+
+  g_assert (!model || GTK_IS_TREE_MODEL (model));
+  g_assert (model != NULL || error != NULL);
 
   gtk_tree_view_set_model (priv->introspection_tree_view, model);
+
+  return dex_future_new_true ();
 }
 
 static GListModel *
@@ -425,10 +423,11 @@ name_row_activated_cb (DspyView    *self,
   adw_navigation_page_set_title (priv->bus_navigation_page, dspy_name_get_name (name));
   gtk_revealer_set_reveal_child (priv->bottom_revealer, FALSE);
 
-  dspy_name_introspect_async (name,
-                              priv->cancellable,
-                              dspy_view_introspect_cb,
-                              g_object_ref (self));
+  /* Old way, can delete soon */
+  dex_future_disown (dex_future_finally (dspy_name_introspect (name),
+                                         dspy_view_introspect_cb,
+                                         g_object_ref (self),
+                                         g_object_unref));
 
   adw_navigation_split_view_set_show_content (priv->paned, TRUE);
 

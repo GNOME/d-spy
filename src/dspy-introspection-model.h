@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <gio/gio.h>
+#include <libdex.h>
 
 #include "dspy-name.h"
 
@@ -30,6 +30,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (DspyIntrospectionModel, dspy_introspection_model, DSPY, INTROSPECTION_MODEL, GObject)
 
-DspyName *dspy_introspection_model_get_name (DspyIntrospectionModel *self);
+DexFuture *dspy_introspection_model_new      (DspyName               *name);
+DspyName  *dspy_introspection_model_get_name (DspyIntrospectionModel *self);
 
 G_END_DECLS

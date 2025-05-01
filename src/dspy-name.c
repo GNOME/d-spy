@@ -28,9 +28,9 @@ struct _DspyName
 {
   GObject         parent_instance;
   DspyConnection *connection;
-  gchar          *name;
-  gchar          *owner;
-  gchar          *search_text;
+  char           *name;
+  char           *owner;
+  char           *search_text;
   GPid            pid;
   guint           activatable : 1;
 };
@@ -179,7 +179,7 @@ dspy_name_init (DspyName *self)
 
 DspyName *
 dspy_name_new (DspyConnection *connection,
-               const gchar    *name,
+               const char     *name,
                gboolean        activatable)
 {
   return g_object_new (DSPY_TYPE_NAME,
@@ -212,7 +212,7 @@ _dspy_name_set_activatable (DspyName *self,
     }
 }
 
-const gchar *
+const char *
 dspy_name_get_name (DspyName *self)
 {
   g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
@@ -226,8 +226,8 @@ dspy_name_compare (gconstpointer a,
 {
   DspyName *item1 = DSPY_NAME ((gpointer)a);
   DspyName *item2 = DSPY_NAME ((gpointer)b);
-  const gchar *name1 = dspy_name_get_name (item1);
-  const gchar *name2 = dspy_name_get_name (item2);
+  const char *name1 = dspy_name_get_name (item1);
+  const char *name2 = dspy_name_get_name (item2);
 
   if (name1[0] != name2[0])
     {
@@ -258,7 +258,7 @@ dspy_name_get_pid (DspyName *self)
   return self->pid;
 }
 
-const gchar *
+const char *
 dspy_name_get_owner (DspyName *self)
 {
   g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
@@ -267,8 +267,8 @@ dspy_name_get_owner (DspyName *self)
 }
 
 void
-_dspy_name_set_owner (DspyName    *self,
-                      const gchar *owner)
+_dspy_name_set_owner (DspyName   *self,
+                      const char *owner)
 {
   g_return_if_fail (DSPY_IS_NAME (self));
 
@@ -351,7 +351,7 @@ dspy_name_get_owner_cb (GObject      *object,
   g_autoptr(DspyName) self = user_data;
   g_autoptr(GError) error = NULL;
   g_autoptr(GVariant) reply = NULL;
-  const gchar *owner = NULL;
+  const char *owner = NULL;
 
   g_assert (G_IS_DBUS_CONNECTION (connection));
   g_assert (G_IS_ASYNC_RESULT (result));
@@ -425,58 +425,29 @@ dspy_name_introspection_cb (GObject      *object,
     g_task_return_pointer (task, g_object_ref (initable), g_object_unref);
 }
 
-void
-dspy_name_introspect_async (DspyName            *self,
-                            GCancellable        *cancellable,
-                            GAsyncReadyCallback  callback,
-                            gpointer             user_data)
-{
-  g_autoptr(GTask) task = NULL;
-  g_autoptr(DspyIntrospectionModel) model = NULL;
-
-  g_return_if_fail (DSPY_IS_NAME (self));
-  g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
-
-  task = g_task_new (self, cancellable, callback, user_data);
-  g_task_set_source_tag (task, dspy_name_introspect_async);
-
-  model = _dspy_introspection_model_new (self);
-
-  g_async_initable_init_async (G_ASYNC_INITABLE (model),
-                               G_PRIORITY_DEFAULT,
-                               cancellable,
-                               dspy_name_introspection_cb,
-                               g_steal_pointer (&task));
-
-}
-
 /**
- * dspy_name_introspect_finish:
+ * dspy_name_introspect:
+ * @self: a [class@Dspy.Name]
  *
- * Completes a request to dspy_name_introspect_async().
- *
- * Returns: (transfer full): a #GtkTreeModel if successful; otherwise
- *   %NULL and @error is set.
+ * Returns: (transfer full): a [class@Dex.Future] that resolves
+ *   to a [iface@Gtk.TreeModel] or rejects with error.
  */
-GtkTreeModel *
-dspy_name_introspect_finish (DspyName      *self,
-                             GAsyncResult  *result,
-                             GError       **error)
+DexFuture *
+dspy_name_introspect (DspyName *self)
 {
-  g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
-  g_return_val_if_fail (G_IS_TASK (result), NULL);
+  dex_return_error_if_fail (DSPY_IS_NAME (self));
 
-  return g_task_propagate_pointer (G_TASK (result), error);
+  return dspy_introspection_model_new (self);
 }
 
-const gchar *
+const char *
 dspy_name_get_search_text (DspyName *self)
 {
   g_return_val_if_fail (DSPY_IS_NAME (self), FALSE);
 
   if (self->search_text == NULL)
     {
-      const gchar *owner = dspy_name_get_owner (self);
+      const char *owner = dspy_name_get_owner (self);
       self->search_text = g_strdup_printf ("%s %s %d", self->name, owner, self->pid);
     }
 
