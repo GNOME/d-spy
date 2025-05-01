@@ -192,6 +192,7 @@ dspy_property_handle_value (DexFuture *completed,
     {
       if (g_set_str (&self->value, _("Error")))
         g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_VALUE]);
+      g_object_notify (G_OBJECT (self), "title");
       return dex_ref (completed);
     }
 
@@ -214,6 +215,9 @@ dspy_property_handle_value (DexFuture *completed,
       tmp[64] = 0;
       self->value = g_strdup_printf ("%s…", tmp);
     }
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_VALUE]);
+  g_object_notify (G_OBJECT (self), "title");
 
   return dex_future_new_take_string (g_strdup (self->value));
 }
