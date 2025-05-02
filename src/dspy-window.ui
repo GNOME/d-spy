@@ -128,9 +128,13 @@
                                   <object class="AdwHeaderBar">
                                     <child type="title">
                                       <object class="AdwWindowTitle">
-                                        <property name="subtitle" translatable="yes">Bus Names</property>
                                         <binding name="title">
                                           <lookup name="title" type="DspyConnection">
+                                            <lookup name="connection">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <binding name="subtitle">
+                                          <lookup name="address" type="DspyConnection">
                                             <lookup name="connection">DspyWindow</lookup>
                                           </lookup>
                                         </binding>
