@@ -255,6 +255,7 @@
                                         <property name="margin-end">6</property>
                                         <property name="margin-start">6</property>
                                         <property name="margin-top">6</property>
+                                        <property name="text" bind-source="objects_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
                                       </object>
                                     </child>
                                     <child>
@@ -275,7 +276,7 @@
                                                       <object class="GtkStringFilter" id="objects_filter">
                                                         <property name="search"></property>
                                                         <property name="expression">
-                                                          <lookup name="name" type="DspyName"/>
+                                                          <lookup name="title" type="DspyIntrospectable"/>
                                                         </property>
                                                       </object>
                                                     </property>
@@ -287,7 +288,10 @@
                                                           </lookup>
                                                         </binding>
                                                         <property name="sorter">
-                                                          <object class="GtkCustomSorter" id="objects_sorter">
+                                                          <object class="GtkStringSorter" id="objects_sorter">
+                                                            <property name="expression">
+                                                              <lookup name="title" type="DspyIntrospectable"/>
+                                                            </property>
                                                           </object>
                                                         </property>
                                                       </object>
