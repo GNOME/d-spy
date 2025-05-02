@@ -83,15 +83,24 @@
 <interface>
   <template class="GtkListItem">
     <property name="child">
-      <object class="GtkLabel">
-        <property name="hexpand">true</property>
-        <property name="ellipsize">middle</property>
-        <property name="xalign">0</property>
-        <binding name="label">
-          <lookup name="title" type="DspyConnection">
-            <lookup name="item">GtkListItem</lookup>
-          </lookup>
-        </binding>
+      <object class="GtkBox">
+        <child>
+          <object class="GtkLabel">
+            <property name="hexpand">true</property>
+            <property name="ellipsize">middle</property>
+            <property name="xalign">0</property>
+            <binding name="label">
+              <lookup name="title" type="DspyConnection">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-next-symbolic</property>
+          </object>
+        </child>
       </object>
     </property>
   </template>
@@ -119,8 +128,8 @@
                                   <object class="AdwHeaderBar">
                                     <child type="title">
                                       <object class="AdwWindowTitle">
-                                        <property name="title" translatable="yes">Bus Names</property>
-                                        <binding name="subtitle">
+                                        <property name="subtitle" translatable="yes">Bus Names</property>
+                                        <binding name="title">
                                           <lookup name="title" type="DspyConnection">
                                             <lookup name="connection">DspyWindow</lookup>
                                           </lookup>
@@ -261,9 +270,13 @@
                                   <object class="AdwHeaderBar">
                                     <child type="title">
                                       <object class="AdwWindowTitle">
-                                        <property name="title" translatable="yes">Objects</property>
-                                        <binding name="subtitle">
+                                        <binding name="title">
                                           <lookup name="name" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <binding name="subtitle">
+                                          <lookup name="subtitle" type="DspyName">
                                             <lookup name="name">DspyWindow</lookup>
                                           </lookup>
                                         </binding>
