@@ -168,11 +168,11 @@ dspy_window_init (DspyWindow *self)
 
   self->connections = g_list_store_new (DSPY_TYPE_CONNECTION);
 
-  system = dspy_connection_new_for_bus (G_BUS_TYPE_SYSTEM);
   session = dspy_connection_new_for_bus (G_BUS_TYPE_SESSION);
+  system = dspy_connection_new_for_bus (G_BUS_TYPE_SYSTEM);
 
-  g_list_store_append (self->connections, system);
   g_list_store_append (self->connections, session);
+  g_list_store_append (self->connections, system);
 
   dex_future_disown (dex_future_then (dspy_get_a11y_bus (),
                                       dspy_window_add_a11y_bus,
