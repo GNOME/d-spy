@@ -128,6 +128,16 @@
                               <object class="AdwToolbarView">
                                 <child type="top">
                                   <object class="AdwHeaderBar">
+                                    <child type="title">
+                                      <object class="AdwWindowTitle">
+                                        <property name="title" translatable="yes">Bus Names</property>
+                                        <binding name="subtitle">
+                                          <lookup name="title" type="DspyConnection">
+                                            <lookup name="selected-item">connections_selection</lookup>
+                                          </lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                                 <child>
@@ -244,6 +254,16 @@
                                       <object class="AdwToolbarView">
                                         <child type="top">
                                           <object class="AdwHeaderBar">
+                                            <child type="title">
+                                              <object class="AdwWindowTitle">
+                                                <property name="title" translatable="yes">Objects</property>
+                                                <binding name="subtitle">
+                                                  <lookup name="name" type="DspyName">
+                                                    <lookup name="selected-item">names_selection</lookup>
+                                                  </lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
                                           </object>
                                         </child>
                                         <child>
