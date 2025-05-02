@@ -67,9 +67,10 @@
                                             <style>
                                               <class name="navigation-sidebar"/>
                                             </style>
+                                            <property name="single-click-activate">true</property>
                                             <signal name="activate" handler="dspy_window_connection_activate_cb" swapped="true"/>
                                             <property name="model">
-                                              <object class="GtkSingleSelection" id="connections_selection">
+                                              <object class="GtkNoSelection" id="connections_selection">
                                                 <binding name="model">
                                                   <lookup name="connections">DspyWindow</lookup>
                                                 </binding>
@@ -121,7 +122,7 @@
                                         <property name="title" translatable="yes">Bus Names</property>
                                         <binding name="subtitle">
                                           <lookup name="title" type="DspyConnection">
-                                            <lookup name="selected-item">connections_selection</lookup>
+                                            <lookup name="connection">DspyWindow</lookup>
                                           </lookup>
                                         </binding>
                                       </object>
@@ -150,9 +151,10 @@
                                             <style>
                                               <class name="navigation-sidebar"/>
                                             </style>
+                                            <property name="single-click-activate">true</property>
                                             <signal name="activate" handler="dspy_window_name_activate_cb" swapped="true"/>
                                             <property name="model">
-                                              <object class="GtkSingleSelection" id="names_selection">
+                                              <object class="GtkNoSelection" id="names_selection">
                                                 <property name="model">
                                                   <object class="GtkFilterListModel" id="names_filtered">
                                                     <property name="filter">
@@ -165,11 +167,6 @@
                                                     </property>
                                                     <property name="model">
                                                       <object class="GtkSortListModel" id="names_sorted">
-                                                        <binding name="model">
-                                                          <lookup name="names" type="DspyConnection">
-                                                            <lookup name="selected-item">connections_selection</lookup>
-                                                          </lookup>
-                                                        </binding>
                                                         <property name="sorter">
                                                           <object class="GtkCustomSorter" id="names_sorter">
                                                           </object>
@@ -241,7 +238,7 @@
                                         <property name="title" translatable="yes">Objects</property>
                                         <binding name="subtitle">
                                           <lookup name="name" type="DspyName">
-                                            <lookup name="selected-item">names_selection</lookup>
+                                            <lookup name="name">DspyWindow</lookup>
                                           </lookup>
                                         </binding>
                                       </object>
@@ -286,7 +283,7 @@
                                                       <object class="GtkSortListModel" id="objects_sorted">
                                                         <binding name="model">
                                                           <lookup name="introspection" type="DspyName">
-                                                            <lookup name="selected-item">names_selection</lookup>
+                                                            <lookup name="name">DspyWindow</lookup>
                                                           </lookup>
                                                         </binding>
                                                         <property name="sorter">
