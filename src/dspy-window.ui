@@ -155,18 +155,14 @@
                                             <property name="model">
                                               <object class="GtkSingleSelection" id="names_selection">
                                                 <property name="model">
-                                                  <object class="GtkSortListModel">
+                                                  <object class="GtkSortListModel" id="names_sorted">
                                                     <binding name="model">
                                                       <lookup name="names" type="DspyConnection">
                                                         <lookup name="selected-item">connections_selection</lookup>
                                                       </lookup>
                                                     </binding>
                                                     <property name="sorter">
-                                                      <object class="GtkStringSorter">
-                                                        <property name="collation">filename</property>
-                                                        <property name="expression">
-                                                          <lookup name="name" type="DspyName"/>
-                                                        </property>
+                                                      <object class="GtkCustomSorter" id="names_sorter">
                                                       </object>
                                                     </property>
                                                   </object>

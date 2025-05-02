@@ -34,6 +34,7 @@ struct _DspyWindow
 
   GtkListView          *connections_list_view;
   GtkListView          *names_list_view;
+  GtkCustomSorter      *names_sorter;
   DspyView             *view;
 
   GListStore           *connections;
@@ -69,6 +70,33 @@ dspy_window_add_a11y_bus (DexFuture *completed,
     }
 
   return dex_ref (completed);
+}
+
+static int
+dspy_window_sort_names (gconstpointer a,
+                        gconstpointer b,
+                        gpointer      user_data)
+{
+  DspyName *name_a = (DspyName *)a;
+  DspyName *name_b = (DspyName *)b;
+  const char *str_a = dspy_name_get_name (name_a);
+  const char *str_b = dspy_name_get_name (name_b);
+
+  if (str_a[0] == ':' && str_b[0] != ':')
+    return 1;
+
+  if (str_b[0] == ':' && str_a[0] != ':')
+    return -11;
+
+  if (str_a[0] == ':')
+    {
+      g_autofree char *collate_a = g_utf8_collate_key_for_filename (str_a, -1);
+      g_autofree char *collate_b = g_utf8_collate_key_for_filename (str_b, -1);
+
+      return strcmp (collate_a, collate_b);
+    }
+
+  return strcmp (str_a, str_b);
 }
 
 static void
@@ -122,6 +150,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorter);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, view);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
@@ -153,6 +182,10 @@ dspy_window_init (DspyWindow *self)
 #if DEVELOPMENT_BUILD
   gtk_widget_add_css_class (GTK_WIDGET (self), "devel");
 #endif
+
+  gtk_custom_sorter_set_sort_func (self->names_sorter,
+                                   dspy_window_sort_names,
+                                   NULL, NULL);
 }
 
 GtkWidget *
