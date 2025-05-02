@@ -84,6 +84,7 @@
   <template class="GtkListItem">
     <property name="child">
       <object class="GtkBox">
+        <property name="spacing">6</property>
         <child>
           <object class="GtkLabel">
             <property name="hexpand">true</property>
@@ -94,6 +95,9 @@
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
             </binding>
+            <style>
+              <class name="sidebar-label"/>
+            </style>
           </object>
         </child>
         <child>
