@@ -2,5 +2,5 @@ window listview.navigation-sidebar row {
   margin-bottom: 3px;
 }
 window listview.navigation-sidebar row > * {
-  padding: 6px 3px;
+  padding: 6px 0 6px 3px;
 }
