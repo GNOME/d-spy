@@ -24,6 +24,7 @@
 
 #include "dspy-connection.h"
 #include "dspy-name.h"
+#include "dspy-node.h"
 #include "dspy-util.h"
 #include "dspy-view.h"
 #include "dspy-window.h"
@@ -155,6 +156,7 @@ dspy_window_class_init (DspyWindowClass *klass)
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);
+  g_type_ensure (DSPY_TYPE_NODE);
   g_type_ensure (DSPY_TYPE_VIEW);
 }
 

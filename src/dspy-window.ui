@@ -89,7 +89,7 @@
     <property name="child">
       <object class="GtkLabel">
         <property name="hexpand">true</property>
-        <property name="ellipsize">end</property>
+        <property name="ellipsize">middle</property>
         <property name="xalign">0</property>
         <binding name="label">
           <lookup name="title" type="DspyConnection">
@@ -152,7 +152,6 @@
                                             <style>
                                               <class name="navigation-sidebar"/>
                                             </style>
-                                            <property name="single-click-activate">true</property>
                                             <property name="model">
                                               <object class="GtkSingleSelection" id="names_selection">
                                                 <property name="model">
@@ -191,7 +190,7 @@
     <property name="child">
       <object class="GtkLabel">
         <property name="hexpand">true</property>
-        <property name="ellipsize">end</property>
+        <property name="ellipsize">middle</property>
         <property name="xalign">0</property>
         <binding name="label">
           <lookup name="name" type="DspyName">
@@ -242,6 +241,74 @@
                                                 <property name="margin-end">6</property>
                                                 <property name="margin-start">6</property>
                                                 <property name="margin-top">6</property>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkScrolledWindow">
+                                                <property name="hscrollbar-policy">never</property>
+                                                <property name="vexpand">true</property>
+                                                <child>
+                                                  <object class="GtkListView" id="objects_list_view">
+                                                    <style>
+                                                      <class name="navigation-sidebar"/>
+                                                    </style>
+                                                    <property name="single-click-activate">true</property>
+                                                    <property name="model">
+                                                      <object class="GtkSingleSelection" id="objects_selection">
+                                                        <property name="model">
+                                                          <object class="GtkFilterListModel" id="objects_filtered">
+                                                            <property name="filter">
+                                                              <object class="GtkStringFilter" id="objects_filter">
+                                                                <property name="search"></property>
+                                                                <property name="expression">
+                                                                  <lookup name="name" type="DspyName"/>
+                                                                </property>
+                                                              </object>
+                                                            </property>
+                                                            <property name="model">
+                                                              <object class="GtkSortListModel" id="objects_sorted">
+                                                                <binding name="model">
+                                                                  <lookup name="introspection" type="DspyName">
+                                                                    <lookup name="selected-item">names_selection</lookup>
+                                                                  </lookup>
+                                                                </binding>
+                                                                <property name="sorter">
+                                                                  <object class="GtkCustomSorter" id="objects_sorter">
+                                                                  </object>
+                                                                </property>
+                                                              </object>
+                                                            </property>
+                                                          </object>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                    <property name="factory">
+                                                      <object class="GtkBuilderListItemFactory">
+                                                        <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkLabel">
+        <property name="hexpand">true</property>
+        <property name="ellipsize">middle</property>
+        <property name="xalign">0</property>
+        <property name="use-markup">true</property>
+        <binding name="label">
+          <lookup name="title" type="DspyIntrospectable">
+            <lookup name="item">GtkListItem</lookup>
+          </lookup>
+        </binding>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                  </object>
+                                                </child>
                                               </object>
                                             </child>
                                           </object>
