@@ -37,4 +37,6 @@ struct _DspyNode
   GQueue              interfaces;
 };
 
+GListModel *dspy_node_list_interfaces (DspyNode *self);
+
 G_END_DECLS

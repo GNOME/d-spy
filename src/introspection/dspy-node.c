@@ -72,7 +72,7 @@ dspy_node_get_property (GObject    *object,
       break;
 
     case PROP_INTERFACES:
-      g_value_take_object (value, dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->interfaces));
+      g_value_take_object (value, dspy_node_list_interfaces (self));
       break;
 
     default:
@@ -115,4 +115,18 @@ dspy_node_class_init (DspyNodeClass *klass)
 static void
 dspy_node_init (DspyNode *self)
 {
+}
+
+/**
+ * dspy_node_list_interfaces:
+ * @self: a [class@Dspy.Node]
+ *
+ * Returns: (transfer full):
+ */
+GListModel *
+dspy_node_list_interfaces (DspyNode *self)
+{
+  g_return_val_if_fail (DSPY_IS_NODE (self), NULL);
+
+  return dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->interfaces);
 }
