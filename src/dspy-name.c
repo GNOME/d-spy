@@ -21,6 +21,8 @@
 #include "config.h"
 
 #include "dspy-introspection-model.h"
+#include "dspy-introspection.h"
+#include "dspy-future-list-model.h"
 #include "dspy-name.h"
 #include "dspy-private.h"
 
@@ -28,6 +30,7 @@ struct _DspyName
 {
   GObject         parent_instance;
   DspyConnection *connection;
+  GListModel     *introspection;
   char           *name;
   char           *owner;
   char           *search_text;
@@ -39,6 +42,7 @@ enum {
   PROP_0,
   PROP_ACTIVATABLE,
   PROP_CONNECTION,
+  PROP_INTROSPECTION,
   PROP_NAME,
   PROP_OWNER,
   PROP_PID,
@@ -55,6 +59,7 @@ dspy_name_finalize (GObject *object)
   DspyName *self = (DspyName *)object;
 
   g_clear_object (&self->connection);
+  g_clear_object (&self->introspection);
   g_clear_pointer (&self->name, g_free);
   g_clear_pointer (&self->owner, g_free);
   g_clear_pointer (&self->search_text, g_free);
@@ -78,6 +83,10 @@ dspy_name_get_property (GObject    *object,
 
     case PROP_CONNECTION:
       g_value_set_object (value, dspy_name_get_connection (self));
+      break;
+
+    case PROP_INTROSPECTION:
+      g_value_take_object (value, dspy_name_dup_introspection (self));
       break;
 
     case PROP_NAME:
@@ -146,6 +155,12 @@ dspy_name_class_init (DspyNameClass *klass)
                          "The connection where the name can be found",
                          DSPY_TYPE_CONNECTION,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_INTROSPECTION] =
+    g_param_spec_object ("introspection", NULL, NULL,
+                         G_TYPE_LIST_MODEL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
 
   properties [PROP_NAME] =
     g_param_spec_string ("name",
@@ -433,4 +448,17 @@ dspy_name_get_search_text (DspyName *self)
     }
 
   return self->search_text;
+}
+
+GListModel *
+dspy_name_dup_introspection (DspyName *self)
+{
+  g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
+
+  if (self->introspection == NULL)
+    self->introspection = dspy_future_list_model_new (
+        dspy_introspection_new (dspy_connection_get_connection (self->connection),
+                                self->name, "/"));
+
+  return g_object_ref (self->introspection);
 }
