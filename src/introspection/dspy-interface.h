@@ -38,4 +38,6 @@ struct _DspyInterface
   GQueue              methods;
 };
 
+GListModel *dspy_interface_list_members (DspyInterface *self);
+
 G_END_DECLS

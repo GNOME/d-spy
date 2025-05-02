@@ -21,6 +21,8 @@
 
 #include "config.h"
 
+#include <gtk/gtk.h>
+
 #include "dspy-interface.h"
 
 enum {
@@ -28,6 +30,7 @@ enum {
   PROP_NAME,
   PROP_PROPERTIES,
   PROP_SIGNALS,
+  PROP_MEMBERS,
   PROP_METHODS,
   N_PROPS
 };
@@ -71,6 +74,10 @@ dspy_interface_get_property (GObject    *object,
       g_value_take_object (value, dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->properties));
       break;
 
+    case PROP_MEMBERS:
+      g_value_take_object (value, dspy_interface_list_members (self));
+      break;
+
     case PROP_METHODS:
       g_value_take_object (value, dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->methods));
       break;
@@ -111,6 +118,12 @@ dspy_interface_class_init (DspyInterfaceClass *klass)
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
+  properties[PROP_MEMBERS] =
+    g_param_spec_object ("members", NULL, NULL,
+                         G_TYPE_LIST_MODEL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
   properties[PROP_METHODS] =
     g_param_spec_object ("methods", NULL, NULL,
                          G_TYPE_LIST_MODEL,
@@ -129,4 +142,34 @@ dspy_interface_class_init (DspyInterfaceClass *klass)
 static void
 dspy_interface_init (DspyInterface *self)
 {
+}
+
+GListModel *
+dspy_interface_list_members (DspyInterface *self)
+{
+  g_autoptr(GListModel) methods = NULL;
+  g_autoptr(GListModel) props = NULL;
+  g_autoptr(GListModel) signals = NULL;
+  GListStore *store;
+
+  g_return_val_if_fail (DSPY_IS_INTERFACE (self), NULL);
+
+  store = g_list_store_new (G_TYPE_LIST_MODEL);
+
+  g_object_get (self,
+                "methods", &methods,
+                "signals", &signals,
+                "properties", &props,
+                NULL);
+
+  if (signals != NULL)
+    g_list_store_append (store, signals);
+
+  if (props != NULL)
+    g_list_store_append (store, props);
+
+  if (methods != NULL)
+    g_list_store_append (store, methods);
+
+  return G_LIST_MODEL (gtk_flatten_list_model_new (G_LIST_MODEL (store)));
 }
