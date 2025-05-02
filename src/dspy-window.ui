@@ -140,6 +140,7 @@
                                         <property name="margin-end">6</property>
                                         <property name="margin-start">6</property>
                                         <property name="margin-top">6</property>
+                                        <property name="text" bind-source="names_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
                                       </object>
                                     </child>
                                     <child>
@@ -155,14 +156,26 @@
                                             <property name="model">
                                               <object class="GtkSingleSelection" id="names_selection">
                                                 <property name="model">
-                                                  <object class="GtkSortListModel" id="names_sorted">
-                                                    <binding name="model">
-                                                      <lookup name="names" type="DspyConnection">
-                                                        <lookup name="selected-item">connections_selection</lookup>
-                                                      </lookup>
-                                                    </binding>
-                                                    <property name="sorter">
-                                                      <object class="GtkCustomSorter" id="names_sorter">
+                                                  <object class="GtkFilterListModel" id="names_filtered">
+                                                    <property name="filter">
+                                                      <object class="GtkStringFilter" id="names_filter">
+                                                        <property name="search"></property>
+                                                        <property name="expression">
+                                                          <lookup name="name" type="DspyName"/>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                    <property name="model">
+                                                      <object class="GtkSortListModel" id="names_sorted">
+                                                        <binding name="model">
+                                                          <lookup name="names" type="DspyConnection">
+                                                            <lookup name="selected-item">connections_selection</lookup>
+                                                          </lookup>
+                                                        </binding>
+                                                        <property name="sorter">
+                                                          <object class="GtkCustomSorter" id="names_sorter">
+                                                          </object>
+                                                        </property>
                                                       </object>
                                                     </property>
                                                   </object>
