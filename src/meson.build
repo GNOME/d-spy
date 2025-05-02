@@ -3,6 +3,7 @@ dspy_sources = [
   'dspy-connection.c',
   'dspy-introspectable-row.c',
   'dspy-introspection-model.c',
+  'dspy-future-list-model.c',
   'dspy-method-invocation.c',
   'dspy-method-view.c',
   'dspy-name-marquee.c',
