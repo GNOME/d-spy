@@ -36,9 +36,12 @@ struct _DspyWindow
   GListStore           *connections;
   DspyConnection       *connection;
   DspyName             *name;
+  DspyNode             *node;
 
   GtkListView          *connections_list_view;
   AdwNavigationPage    *connections_page;
+  AdwNavigationPage    *interfaces_page;
+  GtkSortListModel     *interfaces_sorted;
   GtkListView          *names_list_view;
   AdwNavigationPage    *names_page;
   GtkSortListModel     *names_sorted;
@@ -56,6 +59,7 @@ enum {
   PROP_CONNECTION,
   PROP_CONNECTIONS,
   PROP_NAME,
+  PROP_NODE,
   N_PROPS
 };
 
@@ -161,6 +165,31 @@ dspy_window_name_activate_cb (DspyWindow  *self,
 }
 
 static void
+dspy_window_node_activate_cb (DspyWindow  *self,
+                              guint        position,
+                              GtkListView *list_view)
+{
+  g_autoptr(GListModel) interfaces = NULL;
+  g_autoptr(DspyNode) node = NULL;
+  GtkSelectionModel *model;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (GTK_IS_LIST_VIEW (list_view));
+
+  model = gtk_list_view_get_model (list_view);
+  node = g_list_model_get_item (G_LIST_MODEL (model), position);
+  interfaces = dspy_node_list_interfaces (node);
+
+  gtk_sort_list_model_set_model (self->interfaces_sorted, interfaces);
+
+  if (g_set_object (&self->node, node))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NODE]);
+
+  adw_navigation_view_pop_to_page (self->navigation_view, self->objects_page);
+  adw_navigation_view_push (self->navigation_view, self->interfaces_page);
+}
+
+static void
 dspy_window_dispose (GObject *object)
 {
   DspyWindow *self = (DspyWindow *)object;
@@ -196,6 +225,10 @@ dspy_window_get_property (GObject    *object,
       g_value_set_object (value, self->name);
       break;
 
+    case PROP_NODE:
+      g_value_set_object (value, self->node);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -228,11 +261,19 @@ dspy_window_class_init (DspyWindowClass *klass)
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
+  properties[PROP_NODE] =
+    g_param_spec_object ("node", NULL, NULL,
+                         DSPY_TYPE_NODE,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorted);
@@ -243,6 +284,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, view);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_connection_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_name_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, dspy_window_node_activate_cb);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);
