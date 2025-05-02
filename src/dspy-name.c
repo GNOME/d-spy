@@ -30,7 +30,6 @@ struct _DspyName
 {
   GObject         parent_instance;
   DspyConnection *connection;
-  GListModel     *introspection;
   char           *name;
   char           *owner;
   char           *search_text;
@@ -59,7 +58,6 @@ dspy_name_finalize (GObject *object)
   DspyName *self = (DspyName *)object;
 
   g_clear_object (&self->connection);
-  g_clear_object (&self->introspection);
   g_clear_pointer (&self->name, g_free);
   g_clear_pointer (&self->owner, g_free);
   g_clear_pointer (&self->search_text, g_free);
@@ -450,15 +448,27 @@ dspy_name_get_search_text (DspyName *self)
   return self->search_text;
 }
 
+/**
+ * dspy_name_dup_introspection:
+ * @self: a [class@Dspy.Name]
+ *
+ * Gets the introspection for @self as a [iface@Gio.ListModel]
+ * and populates it asynchronously.
+ *
+ * Returns: (transfer full): a [class@Dspy.FutureListModel]
+ */
 GListModel *
 dspy_name_dup_introspection (DspyName *self)
 {
+  GDBusConnection *connection;
+
   g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
 
-  if (self->introspection == NULL)
-    self->introspection = dspy_future_list_model_new (
-        dspy_introspection_new (dspy_connection_get_connection (self->connection),
-                                self->name, "/"));
+  if (!(connection = dspy_connection_get_connection (self->connection)))
+    return NULL;
 
-  return g_object_ref (self->introspection);
+  if (self->name == NULL)
+    return NULL;
+
+  return dspy_future_list_model_new (dspy_introspection_new (connection, self->name, "/"));
 }
