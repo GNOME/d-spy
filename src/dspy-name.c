@@ -20,6 +20,8 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "dspy-introspection-model.h"
 #include "dspy-introspection.h"
 #include "dspy-future-list-model.h"
@@ -45,6 +47,8 @@ enum {
   PROP_NAME,
   PROP_OWNER,
   PROP_PID,
+  PROP_SEARCH_TEXT,
+  PROP_SUBTITLE,
   N_PROPS
 };
 
@@ -99,6 +103,14 @@ dspy_name_get_property (GObject    *object,
       g_value_set_int (value, dspy_name_get_pid (self));
       break;
 
+    case PROP_SEARCH_TEXT:
+      g_value_set_string (value, dspy_name_get_search_text (self));
+      break;
+
+    case PROP_SUBTITLE:
+      g_value_take_string (value, dspy_name_dup_subtitle (self));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -140,46 +152,48 @@ dspy_name_class_init (DspyNameClass *klass)
   object_class->get_property = dspy_name_get_property;
   object_class->set_property = dspy_name_set_property;
 
-  properties [PROP_ACTIVATABLE] =
-    g_param_spec_boolean ("activatable",
-                          "Activatable",
-                          "Activatable",
+  properties[PROP_ACTIVATABLE] =
+    g_param_spec_boolean ("activatable", NULL, NULL,
                           FALSE,
                           (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
-  properties [PROP_CONNECTION] =
-    g_param_spec_object ("connection",
-                         "Connection",
-                         "The connection where the name can be found",
+  properties[PROP_CONNECTION] =
+    g_param_spec_object ("connection", NULL, NULL,
                          DSPY_TYPE_CONNECTION,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
-  properties [PROP_INTROSPECTION] =
+  properties[PROP_INTROSPECTION] =
     g_param_spec_object ("introspection", NULL, NULL,
                          G_TYPE_LIST_MODEL,
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
-  properties [PROP_NAME] =
-    g_param_spec_string ("name",
-                         "Name",
-                         "The peer name",
+  properties[PROP_NAME] =
+    g_param_spec_string ("name", NULL, NULL,
                          NULL,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
-  properties [PROP_OWNER] =
-    g_param_spec_string ("owner",
-                         "Owner",
-                         "The owner of the D-Bus name",
+  properties[PROP_OWNER] =
+    g_param_spec_string ("owner", NULL, NULL,
                          NULL,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
-  properties [PROP_PID] =
-    g_param_spec_int ("pid",
-                      "Pid",
-                      "The pid of the peer",
+  properties[PROP_PID] =
+    g_param_spec_int ("pid", NULL, NULL,
                       -1, G_MAXINT, -1,
                       (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_SEARCH_TEXT] =
+    g_param_spec_string ("search-text", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_SUBTITLE] =
+    g_param_spec_string ("subtitle", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
@@ -291,6 +305,8 @@ _dspy_name_set_owner (DspyName   *self,
       self->owner = g_strdup (owner);
       g_clear_pointer (&self->search_text, g_free);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_OWNER]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SEARCH_TEXT]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUBTITLE]);
     }
 }
 
@@ -304,6 +320,8 @@ _dspy_name_clear_pid (DspyName *self)
       self->pid = -1;
       g_clear_pointer (&self->search_text, g_free);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_PID]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SEARCH_TEXT]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUBTITLE]);
     }
 }
 
@@ -331,6 +349,8 @@ dspy_name_get_pid_cb (GObject      *object,
     {
       self->pid = pid;
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_PID]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SEARCH_TEXT]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUBTITLE]);
     }
 }
 
@@ -471,4 +491,29 @@ dspy_name_dup_introspection (DspyName *self)
     return NULL;
 
   return dspy_future_list_model_new (dspy_introspection_new (connection, self->name, "/"));
+}
+
+char *
+dspy_name_dup_subtitle (DspyName *self)
+{
+  GString *str = NULL;
+
+  g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
+
+  str = g_string_new (NULL);
+
+  if (self->owner != NULL)
+    g_string_append (str, self->owner);
+
+  if (self->pid > -1)
+    {
+      if (str->len > 0)
+        g_string_append_c (str, ' ');
+      g_string_append_printf (str, "PID: %u", self->pid);
+    }
+
+  if (str->len == 0)
+    g_string_append (str, _("Not Running"));
+
+  return g_string_free (str, FALSE);
 }

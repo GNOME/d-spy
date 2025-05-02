@@ -161,7 +161,7 @@
                                                       <object class="GtkStringFilter" id="names_filter">
                                                         <property name="search"></property>
                                                         <property name="expression">
-                                                          <lookup name="name" type="DspyName"/>
+                                                          <lookup name="search-text" type="DspyName"/>
                                                         </property>
                                                       </object>
                                                     </property>
@@ -187,25 +187,51 @@
       <object class="GtkBox">
         <property name="spacing">6</property>
         <child>
-          <object class="GtkLabel">
-            <property name="hexpand">true</property>
-            <property name="ellipsize">middle</property>
-            <property name="xalign">0</property>
-            <binding name="label">
-              <lookup name="name" type="DspyName">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
-            <binding name="tooltip-text">
-              <lookup name="name" type="DspyName">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="hexpand">true</property>
+                <property name="ellipsize">middle</property>
+                <property name="xalign">0</property>
+                <binding name="label">
+                  <lookup name="name" type="DspyName">
+                    <lookup name="item">GtkListItem</lookup>
+                  </lookup>
+                </binding>
+                <binding name="tooltip-text">
+                  <lookup name="name" type="DspyName">
+                    <lookup name="item">GtkListItem</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="spacing">6</property>
+                <style>
+                  <class name="caption"/>
+                  <class name="dimmed"/>
+                </style>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="xalign">0</property>
+                    <property name="ellipsize">end</property>
+                    <binding name="label">
+                      <lookup name="subtitle" type="DspyName">
+                        <lookup name="item">GtkListItem</lookup>
+                      </lookup>
+                    </binding>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
         <child>
           <object class="GtkImage">
             <property name="icon-name">go-next-symbolic</property>
+            <property name="valign">center</property>
           </object>
         </child>
       </object>
