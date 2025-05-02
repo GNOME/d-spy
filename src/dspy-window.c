@@ -34,8 +34,12 @@ struct _DspyWindow
   AdwApplicationWindow  parent_instance;
 
   GtkListView          *connections_list_view;
+  AdwNavigationPage    *connections_page;
   GtkListView          *names_list_view;
+  AdwNavigationPage    *names_page;
   GtkCustomSorter      *names_sorter;
+  AdwNavigationView    *navigation_view;
+  AdwNavigationPage    *objects_page;
   DspyView             *view;
 
   GListStore           *connections;
@@ -101,6 +105,30 @@ dspy_window_sort_names (gconstpointer a,
 }
 
 static void
+dspy_window_connection_activate_cb (DspyWindow  *self,
+                                    guint        position,
+                                    GtkListView *list_view)
+{
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (GTK_IS_LIST_VIEW (list_view));
+
+  adw_navigation_view_pop_to_page (self->navigation_view, self->connections_page);
+  adw_navigation_view_push (self->navigation_view, self->names_page);
+}
+
+static void
+dspy_window_name_activate_cb (DspyWindow  *self,
+                              guint        position,
+                              GtkListView *list_view)
+{
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (GTK_IS_LIST_VIEW (list_view));
+
+  adw_navigation_view_pop_to_page (self->navigation_view, self->names_page);
+  adw_navigation_view_push (self->navigation_view, self->objects_page);
+}
+
+static void
 dspy_window_dispose (GObject *object)
 {
   DspyWindow *self = (DspyWindow *)object;
@@ -150,9 +178,15 @@ dspy_window_class_init (DspyWindowClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_list_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorter);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, navigation_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, view);
+  gtk_widget_class_bind_template_callback (widget_class, dspy_window_connection_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, dspy_window_name_activate_cb);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);
