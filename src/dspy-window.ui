@@ -529,111 +529,115 @@
           </object>
         </child>
         <child type="property">
-          <object class="AdwPreferencesPage">
+          <object class="AdwToastOverlay" id="property_toast">
             <child>
-              <object class="AdwPreferencesGroup">
+              <object class="AdwPreferencesPage">
                 <child>
-                  <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Bus</property>
-                    <binding name="subtitle">
-                      <lookup name="title" type="DspyConnection">
-                        <lookup name="connection">DspyWindow</lookup>
-                      </lookup>
-                    </binding>
-                    <style>
-                      <class name="property"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Object Path</property>
-                    <binding name="subtitle">
-                      <lookup name="path" type="DspyNode">
-                        <lookup name="node">DspyWindow</lookup>
-                      </lookup>
-                    </binding>
-                    <style>
-                      <class name="property"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Interface</property>
-                    <binding name="subtitle">
-                      <lookup name="name" type="DspyInterface">
-                        <lookup name="interface">DspyWindow</lookup>
-                      </lookup>
-                    </binding>
-                    <style>
-                      <class name="property"/>
-                    </style>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwPreferencesGroup">
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Property</property>
-                    <binding name="subtitle">
-                      <lookup name="name" type="DspyProperty">
-                        <lookup name="member">DspyWindow</lookup>
-                      </lookup>
-                    </binding>
-                    <style>
-                      <class name="property"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Type Signature</property>
-                    <binding name="subtitle">
-                      <lookup name="signature" type="DspyProperty">
-                        <lookup name="member">DspyWindow</lookup>
-                      </lookup>
-                    </binding>
-                    <style>
-                      <class name="property"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Value</property>
-                    <property name="subtitle-selectable">true</property>
-                    <property name="activatable-widget">refresh_button</property>
-                    <binding name="subtitle">
-                      <lookup name="value" type="DspyProperty">
-                        <lookup name="member">DspyWindow</lookup>
-                      </lookup>
-                    </binding>
-                    <child type="suffix">
-                      <object class="GtkButton" id="copy_property_button">
-                        <property name="action-name">property.copy</property>
-                        <property name="icon-name">edit-copy-symbolic</property>
-                        <property name="valign">center</property>
+                  <object class="AdwPreferencesGroup">
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title" translatable="yes">Bus</property>
+                        <binding name="subtitle">
+                          <lookup name="title" type="DspyConnection">
+                            <lookup name="connection">DspyWindow</lookup>
+                          </lookup>
+                        </binding>
                         <style>
-                          <class name="flat"/>
+                          <class name="property"/>
                         </style>
                       </object>
                     </child>
-                    <child type="suffix">
-                      <object class="GtkButton" id="refresh_button">
-                        <property name="action-name">property.refresh</property>
-                        <property name="icon-name">view-refresh-symbolic</property>
-                        <property name="valign">center</property>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title" translatable="yes">Object Path</property>
+                        <binding name="subtitle">
+                          <lookup name="path" type="DspyNode">
+                            <lookup name="node">DspyWindow</lookup>
+                          </lookup>
+                        </binding>
                         <style>
-                          <class name="flat"/>
+                          <class name="property"/>
                         </style>
                       </object>
                     </child>
-                    <style>
-                      <class name="property"/>
-                    </style>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title" translatable="yes">Interface</property>
+                        <binding name="subtitle">
+                          <lookup name="name" type="DspyInterface">
+                            <lookup name="interface">DspyWindow</lookup>
+                          </lookup>
+                        </binding>
+                        <style>
+                          <class name="property"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesGroup">
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title" translatable="yes">Property</property>
+                        <binding name="subtitle">
+                          <lookup name="name" type="DspyProperty">
+                            <lookup name="member">DspyWindow</lookup>
+                          </lookup>
+                        </binding>
+                        <style>
+                          <class name="property"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title" translatable="yes">Type Signature</property>
+                        <binding name="subtitle">
+                          <lookup name="signature" type="DspyProperty">
+                            <lookup name="member">DspyWindow</lookup>
+                          </lookup>
+                        </binding>
+                        <style>
+                          <class name="property"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow" id="property_value">
+                        <property name="title" translatable="yes">Value</property>
+                        <property name="subtitle-selectable">true</property>
+                        <property name="activatable-widget">refresh_button</property>
+                        <binding name="subtitle">
+                          <lookup name="value" type="DspyProperty">
+                            <lookup name="member">DspyWindow</lookup>
+                          </lookup>
+                        </binding>
+                        <child type="suffix">
+                          <object class="GtkButton" id="copy_property_button">
+                            <property name="action-name">property.copy</property>
+                            <property name="icon-name">edit-copy-symbolic</property>
+                            <property name="valign">center</property>
+                            <style>
+                              <class name="flat"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child type="suffix">
+                          <object class="GtkButton" id="refresh_button">
+                            <property name="action-name">property.refresh</property>
+                            <property name="icon-name">view-refresh-symbolic</property>
+                            <property name="valign">center</property>
+                            <style>
+                              <class name="flat"/>
+                            </style>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="property"/>
+                        </style>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>

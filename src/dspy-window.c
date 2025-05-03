@@ -65,6 +65,8 @@ struct _DspyWindow
   AdwNavigationView    *narrow_navigation_view;
   AdwNavigationView    *navigation_view;
   GtkSortListModel     *objects_sorted;
+  AdwActionRow         *property_value;
+  AdwToastOverlay      *property_toast;
 };
 
 G_DEFINE_FINAL_TYPE (DspyWindow, dspy_window, ADW_TYPE_APPLICATION_WINDOW)
@@ -81,6 +83,24 @@ enum {
 };
 
 static GParamSpec *properties[N_PROPS];
+
+static void
+dspy_window_update_property_value (DspyWindow *self)
+{
+  GDBusConnection *connection = NULL;
+
+  g_assert (DSPY_IS_WINDOW (self));
+
+  if (self->connection != NULL)
+    connection = dspy_connection_get_connection (self->connection);
+
+  if (!DSPY_IS_PROPERTY (self->member) || connection == NULL || self->name == NULL)
+    return;
+
+  dex_future_disown (dspy_property_query_value (DSPY_PROPERTY (self->member),
+                                                connection,
+                                                dspy_name_get_owner (self->name)));
+}
 
 static DexFuture *
 dspy_window_add_a11y_bus (DexFuture *completed,
@@ -248,6 +268,9 @@ dspy_window_member_activate_cb (DspyWindow  *self,
   if (g_set_object (&self->member, member))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MEMBER]);
 
+  if (DSPY_IS_PROPERTY (member))
+    dspy_window_update_property_value (self);
+
   adw_navigation_view_pop_to_page (self->navigation_view, self->members_page);
   if (DSPY_IS_PROPERTY (member))
     adw_navigation_view_push (self->navigation_view, self->property_page);
@@ -279,18 +302,27 @@ property_refresh_action (GtkWidget  *widget,
                          const char *action_name,
                          GVariant   *param)
 {
+  dspy_window_update_property_value (DSPY_WINDOW (widget));
+}
+
+static void
+property_copy_action (GtkWidget  *widget,
+                      const char *action_name,
+                      GVariant   *param)
+{
   DspyWindow *self = DSPY_WINDOW (widget);
-  GDBusConnection *connection = NULL;
+  GdkClipboard *clipboard = gtk_widget_get_clipboard (widget);
 
-  if (self->connection != NULL)
-    connection = dspy_connection_get_connection (self->connection);
+  if (DSPY_IS_PROPERTY (self->member))
+    {
+      gdk_clipboard_set_text (clipboard, DSPY_PROPERTY (self->member)->value);
 
-  if (!DSPY_IS_PROPERTY (self->member) || connection == NULL || self->name == NULL)
-    return;
-
-  dex_future_disown (dspy_property_query_value (DSPY_PROPERTY (self->member),
-                                                connection,
-                                                dspy_name_get_owner (self->name)));
+      adw_toast_overlay_add_toast (self->property_toast,
+                                   g_object_new (ADW_TYPE_TOAST,
+                                                 "title", _("Copied to Clipboard"),
+                                                 "timeout", 2,
+                                                 NULL));
+    }
 }
 
 static void
@@ -414,6 +446,8 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_toast);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_value);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_connection_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_name_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_node_activate_cb);
@@ -421,6 +455,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_member_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, get_member_header_text);
   gtk_widget_class_install_action (widget_class, "property.refresh", NULL, property_refresh_action);
+  gtk_widget_class_install_action (widget_class, "property.copy", NULL, property_copy_action);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);
