@@ -3,7 +3,6 @@
   <gresource prefix="/org/gnome/dspy">
     <file preprocess="xml-stripblanks">dspy-introspectable-row.ui</file>
     <file preprocess="xml-stripblanks">dspy-window.ui</file>
-    <file preprocess="xml-stripblanks">gtk/menus.ui</file>
     <file>style.css</file>
   </gresource>
 </gresources>
