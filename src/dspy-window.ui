@@ -585,23 +585,39 @@
                                                         </property>
                                                       </object>
                                                     </property>
-                                                    <property name="model">
-                                                      <object class="GtkSortListModel" id="members_sorted">
-                                                        <binding name="model">
-                                                          <lookup name="members" type="DspyInterface">
-                                                            <lookup name="interface">DspyWindow</lookup>
-                                                          </lookup>
-                                                        </binding>
-                                                        <property name="sorter">
-                                                          <object class="GtkStringSorter" id="members_sorter">
-                                                            <property name="expression">
-                                                              <lookup name="title" type="DspyIntrospectable"/>
-                                                            </property>
-                                                          </object>
-                                                        </property>
-                                                      </object>
-                                                    </property>
+                                                    <binding name="model">
+                                                      <lookup name="members" type="DspyInterface">
+                                                        <lookup name="interface">DspyWindow</lookup>
+                                                      </lookup>
+                                                    </binding>
                                                   </object>
+                                                </property>
+                                              </object>
+                                            </property>
+                                            <property name="header-factory">
+                                              <object class="GtkBuilderListItemFactory">
+                                                <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListHeader">
+    <property name="child">
+      <object class="GtkLabel">
+        <property name="hexpand">true</property>
+        <property name="xalign">0</property>
+        <property name="margin-start">6</property>
+        <style>
+          <class name="title"/>
+        </style>
+        <binding name="label">
+          <closure function="get_member_header_text" type="gchararray">
+            <lookup name="item">GtkListHeader</lookup>
+          </closure>
+        </binding>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
                                                 </property>
                                               </object>
                                             </property>

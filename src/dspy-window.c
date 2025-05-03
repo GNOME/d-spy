@@ -24,8 +24,11 @@
 
 #include "dspy-connection.h"
 #include "dspy-interface.h"
+#include "dspy-method.h"
 #include "dspy-name.h"
 #include "dspy-node.h"
+#include "dspy-property.h"
+#include "dspy-signal.h"
 #include "dspy-util.h"
 #include "dspy-view.h"
 #include "dspy-window.h"
@@ -45,7 +48,6 @@ struct _DspyWindow
   AdwNavigationPage    *interfaces_page;
   GtkSortListModel     *interfaces_sorted;
   AdwNavigationPage    *members_page;
-  GtkSortListModel     *members_sorted;
   GtkListView          *names_list_view;
   AdwNavigationPage    *names_page;
   GtkSortListModel     *names_sorted;
@@ -207,6 +209,23 @@ dspy_window_interface_activate_cb (DspyWindow  *self,
   adw_navigation_view_push (self->navigation_view, self->members_page);
 }
 
+static char *
+get_member_header_text (gpointer instance,
+                        gpointer item)
+{
+  if (item == NULL)
+    return NULL;
+
+  if (DSPY_IS_METHOD (item))
+    return g_strdup (_("Methods"));
+  else if (DSPY_IS_PROPERTY (item))
+    return g_strdup (_("Properties"));
+  else if (DSPY_IS_SIGNAL (item))
+    return g_strdup (_("Signals"));
+  else
+    g_return_val_if_reached (NULL);
+}
+
 static void
 dspy_window_dispose (GObject *object)
 {
@@ -303,7 +322,6 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, members_page);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, members_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorted);
@@ -316,6 +334,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_name_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_node_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_interface_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, get_member_header_text);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);
