@@ -200,6 +200,327 @@
             </child>
           </object>
         </child>
+        <child type="objects">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkSearchEntry">
+                <property name="placeholder-text" translatable="yes">Filter…</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-end">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-top">6</property>
+                <property name="text" bind-source="objects_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="hscrollbar-policy">never</property>
+                <property name="vexpand">true</property>
+                <child>
+                  <object class="GtkListView" id="objects_list_view">
+                    <style>
+                      <class name="navigation-sidebar"/>
+                    </style>
+                    <signal name="activate" handler="dspy_window_node_activate_cb" swapped="true"/>
+                    <property name="single-click-activate">true</property>
+                    <property name="model">
+                      <object class="GtkSingleSelection" id="objects_selection">
+                        <property name="model">
+                          <object class="GtkFilterListModel" id="objects_filtered">
+                            <property name="filter">
+                              <object class="GtkStringFilter" id="objects_filter">
+                                <property name="search"></property>
+                                <property name="expression">
+                                  <lookup name="title" type="DspyIntrospectable"/>
+                                </property>
+                              </object>
+                            </property>
+                            <property name="model">
+                              <object class="GtkSortListModel" id="objects_sorted">
+                                <binding name="model">
+                                  <lookup name="introspection" type="DspyName">
+                                    <lookup name="name">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                                <property name="sorter">
+                                  <object class="GtkStringSorter" id="objects_sorter">
+                                    <property name="expression">
+                                      <lookup name="title" type="DspyIntrospectable"/>
+                                    </property>
+                                  </object>
+                                </property>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="hexpand">true</property>
+            <property name="ellipsize">middle</property>
+            <property name="xalign">0</property>
+            <property name="use-markup">true</property>
+            <binding name="label">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+            <binding name="tooltip-markup">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-next-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                        </property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="interfaces">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkSearchEntry">
+                <property name="placeholder-text" translatable="yes">Filter…</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-end">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-top">6</property>
+                <property name="text" bind-source="interfaces_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="hscrollbar-policy">never</property>
+                <property name="vexpand">true</property>
+                <child>
+                  <object class="GtkListView" id="interfaces_list_view">
+                    <style>
+                      <class name="navigation-sidebar"/>
+                    </style>
+                    <property name="single-click-activate">true</property>
+                    <signal name="activate" handler="dspy_window_interface_activate_cb" swapped="true"/>
+                    <property name="model">
+                      <object class="GtkSingleSelection" id="interfaces_selection">
+                        <property name="model">
+                          <object class="GtkFilterListModel" id="interfaces_filtered">
+                            <property name="filter">
+                              <object class="GtkStringFilter" id="interfaces_filter">
+                                <property name="search"></property>
+                                <property name="expression">
+                                  <lookup name="title" type="DspyIntrospectable"/>
+                                </property>
+                              </object>
+                            </property>
+                            <property name="model">
+                              <object class="GtkSortListModel" id="interfaces_sorted">
+                                <binding name="model">
+                                  <lookup name="interfaces" type="DspyNode">
+                                    <lookup name="node">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                                <property name="sorter">
+                                  <object class="GtkStringSorter" id="interfaces_sorter">
+                                    <property name="expression">
+                                      <lookup name="title" type="DspyIntrospectable"/>
+                                    </property>
+                                  </object>
+                                </property>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="hexpand">true</property>
+            <property name="ellipsize">middle</property>
+            <property name="xalign">0</property>
+            <property name="use-markup">true</property>
+            <binding name="label">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+            <binding name="tooltip-markup">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-next-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                        </property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="members">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkSearchEntry">
+                <property name="placeholder-text" translatable="yes">Filter…</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-end">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-top">6</property>
+                <property name="text" bind-source="members_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="hscrollbar-policy">never</property>
+                <property name="vexpand">true</property>
+                <child>
+                  <object class="GtkListView" id="members_list_view">
+                    <style>
+                      <class name="navigation-sidebar"/>
+                    </style>
+                    <property name="single-click-activate">true</property>
+                    <property name="model">
+                      <object class="GtkSingleSelection" id="members_selection">
+                        <property name="model">
+                          <object class="GtkFilterListModel" id="members_filtered">
+                            <property name="filter">
+                              <object class="GtkStringFilter" id="members_filter">
+                                <property name="search"></property>
+                                <property name="expression">
+                                  <lookup name="title" type="DspyIntrospectable"/>
+                                </property>
+                              </object>
+                            </property>
+                            <binding name="model">
+                              <lookup name="members" type="DspyInterface">
+                                <lookup name="interface">DspyWindow</lookup>
+                              </lookup>
+                            </binding>
+                          </object>
+                        </property>
+                      </object>
+                    </property>
+                    <property name="header-factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListHeader">
+    <property name="child">
+      <object class="GtkLabel">
+        <property name="hexpand">true</property>
+        <property name="xalign">0</property>
+        <property name="margin-start">6</property>
+        <style>
+          <class name="title"/>
+        </style>
+        <binding name="label">
+          <closure function="get_member_header_text" type="gchararray">
+            <lookup name="item">GtkListHeader</lookup>
+          </closure>
+        </binding>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                        </property>
+                      </object>
+                    </property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="hexpand">true</property>
+            <property name="ellipsize">middle</property>
+            <property name="xalign">0</property>
+            <property name="use-markup">true</property>
+            <binding name="label">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+            <binding name="tooltip-markup">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-next-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                        </property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
         <child>
           <object class="AdwLayout">
             <property name="name">wide</property>
@@ -297,105 +618,8 @@
                                   </object>
                                 </child>
                                 <child>
-                                  <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
-                                    <child>
-                                      <object class="GtkSearchEntry">
-                                        <property name="placeholder-text" translatable="yes">Filter…</property>
-                                        <property name="margin-bottom">6</property>
-                                        <property name="margin-end">6</property>
-                                        <property name="margin-start">6</property>
-                                        <property name="margin-top">6</property>
-                                        <property name="text" bind-source="objects_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkScrolledWindow">
-                                        <property name="hscrollbar-policy">never</property>
-                                        <property name="vexpand">true</property>
-                                        <child>
-                                          <object class="GtkListView" id="objects_list_view">
-                                            <style>
-                                              <class name="navigation-sidebar"/>
-                                            </style>
-                                            <signal name="activate" handler="dspy_window_node_activate_cb" swapped="true"/>
-                                            <property name="single-click-activate">true</property>
-                                            <property name="model">
-                                              <object class="GtkSingleSelection" id="objects_selection">
-                                                <property name="model">
-                                                  <object class="GtkFilterListModel" id="objects_filtered">
-                                                    <property name="filter">
-                                                      <object class="GtkStringFilter" id="objects_filter">
-                                                        <property name="search"></property>
-                                                        <property name="expression">
-                                                          <lookup name="title" type="DspyIntrospectable"/>
-                                                        </property>
-                                                      </object>
-                                                    </property>
-                                                    <property name="model">
-                                                      <object class="GtkSortListModel" id="objects_sorted">
-                                                        <binding name="model">
-                                                          <lookup name="introspection" type="DspyName">
-                                                            <lookup name="name">DspyWindow</lookup>
-                                                          </lookup>
-                                                        </binding>
-                                                        <property name="sorter">
-                                                          <object class="GtkStringSorter" id="objects_sorter">
-                                                            <property name="expression">
-                                                              <lookup name="title" type="DspyIntrospectable"/>
-                                                            </property>
-                                                          </object>
-                                                        </property>
-                                                      </object>
-                                                    </property>
-                                                  </object>
-                                                </property>
-                                              </object>
-                                            </property>
-                                            <property name="factory">
-                                              <object class="GtkBuilderListItemFactory">
-                                                <property name="bytes"><![CDATA[
-<?xml version="1.0" encoding="UTF-8"?>
-<interface>
-  <template class="GtkListItem">
-    <property name="child">
-      <object class="GtkBox">
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="hexpand">true</property>
-            <property name="ellipsize">middle</property>
-            <property name="xalign">0</property>
-            <property name="use-markup">true</property>
-            <binding name="label">
-              <lookup name="title" type="DspyIntrospectable">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
-            <binding name="tooltip-markup">
-              <lookup name="title" type="DspyIntrospectable">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
-          </object>
-        </child>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">go-next-symbolic</property>
-          </object>
-        </child>
-      </object>
-    </property>
-  </template>
-</interface>
-]]>
-                                                </property>
-                                              </object>
-                                            </property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
+                                  <object class="AdwLayoutSlot">
+                                    <property name="id">objects</property>
                                   </object>
                                 </child>
                               </object>
@@ -426,105 +650,8 @@
                                   </object>
                                 </child>
                                 <child>
-                                  <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
-                                    <child>
-                                      <object class="GtkSearchEntry">
-                                        <property name="placeholder-text" translatable="yes">Filter…</property>
-                                        <property name="margin-bottom">6</property>
-                                        <property name="margin-end">6</property>
-                                        <property name="margin-start">6</property>
-                                        <property name="margin-top">6</property>
-                                        <property name="text" bind-source="interfaces_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkScrolledWindow">
-                                        <property name="hscrollbar-policy">never</property>
-                                        <property name="vexpand">true</property>
-                                        <child>
-                                          <object class="GtkListView" id="interfaces_list_view">
-                                            <style>
-                                              <class name="navigation-sidebar"/>
-                                            </style>
-                                            <property name="single-click-activate">true</property>
-                                            <signal name="activate" handler="dspy_window_interface_activate_cb" swapped="true"/>
-                                            <property name="model">
-                                              <object class="GtkSingleSelection" id="interfaces_selection">
-                                                <property name="model">
-                                                  <object class="GtkFilterListModel" id="interfaces_filtered">
-                                                    <property name="filter">
-                                                      <object class="GtkStringFilter" id="interfaces_filter">
-                                                        <property name="search"></property>
-                                                        <property name="expression">
-                                                          <lookup name="title" type="DspyIntrospectable"/>
-                                                        </property>
-                                                      </object>
-                                                    </property>
-                                                    <property name="model">
-                                                      <object class="GtkSortListModel" id="interfaces_sorted">
-                                                        <binding name="model">
-                                                          <lookup name="interfaces" type="DspyNode">
-                                                            <lookup name="node">DspyWindow</lookup>
-                                                          </lookup>
-                                                        </binding>
-                                                        <property name="sorter">
-                                                          <object class="GtkStringSorter" id="interfaces_sorter">
-                                                            <property name="expression">
-                                                              <lookup name="title" type="DspyIntrospectable"/>
-                                                            </property>
-                                                          </object>
-                                                        </property>
-                                                      </object>
-                                                    </property>
-                                                  </object>
-                                                </property>
-                                              </object>
-                                            </property>
-                                            <property name="factory">
-                                              <object class="GtkBuilderListItemFactory">
-                                                <property name="bytes"><![CDATA[
-<?xml version="1.0" encoding="UTF-8"?>
-<interface>
-  <template class="GtkListItem">
-    <property name="child">
-      <object class="GtkBox">
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="hexpand">true</property>
-            <property name="ellipsize">middle</property>
-            <property name="xalign">0</property>
-            <property name="use-markup">true</property>
-            <binding name="label">
-              <lookup name="title" type="DspyIntrospectable">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
-            <binding name="tooltip-markup">
-              <lookup name="title" type="DspyIntrospectable">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
-          </object>
-        </child>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">go-next-symbolic</property>
-          </object>
-        </child>
-      </object>
-    </property>
-  </template>
-</interface>
-]]>
-                                                </property>
-                                              </object>
-                                            </property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
+                                  <object class="AdwLayoutSlot">
+                                    <property name="id">interfaces</property>
                                   </object>
                                 </child>
                               </object>
@@ -555,120 +682,8 @@
                                   </object>
                                 </child>
                                 <child>
-                                  <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
-                                    <child>
-                                      <object class="GtkSearchEntry">
-                                        <property name="placeholder-text" translatable="yes">Filter…</property>
-                                        <property name="margin-bottom">6</property>
-                                        <property name="margin-end">6</property>
-                                        <property name="margin-start">6</property>
-                                        <property name="margin-top">6</property>
-                                        <property name="text" bind-source="members_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkScrolledWindow">
-                                        <property name="hscrollbar-policy">never</property>
-                                        <property name="vexpand">true</property>
-                                        <child>
-                                          <object class="GtkListView" id="members_list_view">
-                                            <style>
-                                              <class name="navigation-sidebar"/>
-                                            </style>
-                                            <property name="single-click-activate">true</property>
-                                            <property name="model">
-                                              <object class="GtkSingleSelection" id="members_selection">
-                                                <property name="model">
-                                                  <object class="GtkFilterListModel" id="members_filtered">
-                                                    <property name="filter">
-                                                      <object class="GtkStringFilter" id="members_filter">
-                                                        <property name="search"></property>
-                                                        <property name="expression">
-                                                          <lookup name="title" type="DspyIntrospectable"/>
-                                                        </property>
-                                                      </object>
-                                                    </property>
-                                                    <binding name="model">
-                                                      <lookup name="members" type="DspyInterface">
-                                                        <lookup name="interface">DspyWindow</lookup>
-                                                      </lookup>
-                                                    </binding>
-                                                  </object>
-                                                </property>
-                                              </object>
-                                            </property>
-                                            <property name="header-factory">
-                                              <object class="GtkBuilderListItemFactory">
-                                                <property name="bytes"><![CDATA[
-<?xml version="1.0" encoding="UTF-8"?>
-<interface>
-  <template class="GtkListHeader">
-    <property name="child">
-      <object class="GtkLabel">
-        <property name="hexpand">true</property>
-        <property name="xalign">0</property>
-        <property name="margin-start">6</property>
-        <style>
-          <class name="title"/>
-        </style>
-        <binding name="label">
-          <closure function="get_member_header_text" type="gchararray">
-            <lookup name="item">GtkListHeader</lookup>
-          </closure>
-        </binding>
-      </object>
-    </property>
-  </template>
-</interface>
-]]>
-                                                </property>
-                                              </object>
-                                            </property>
-                                            <property name="factory">
-                                              <object class="GtkBuilderListItemFactory">
-                                                <property name="bytes"><![CDATA[
-<?xml version="1.0" encoding="UTF-8"?>
-<interface>
-  <template class="GtkListItem">
-    <property name="child">
-      <object class="GtkBox">
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="hexpand">true</property>
-            <property name="ellipsize">middle</property>
-            <property name="xalign">0</property>
-            <property name="use-markup">true</property>
-            <binding name="label">
-              <lookup name="title" type="DspyIntrospectable">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
-            <binding name="tooltip-markup">
-              <lookup name="title" type="DspyIntrospectable">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
-          </object>
-        </child>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">go-next-symbolic</property>
-          </object>
-        </child>
-      </object>
-    </property>
-  </template>
-</interface>
-]]>
-                                                </property>
-                                              </object>
-                                            </property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
+                                  <object class="AdwLayoutSlot">
+                                    <property name="id">members</property>
                                   </object>
                                 </child>
                               </object>
