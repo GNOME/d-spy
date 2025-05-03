@@ -721,8 +721,163 @@
           <object class="AdwLayout">
             <property name="name">narrow</property>
             <property name="content">
-              <object class="AdwNavigationView">
+              <object class="AdwNavigationView" id="narrow_navigation_view">
                 <child>
+                  <object class="AdwNavigationPage" id="narrow_connections_page">
+                    <property name="title" translatable="yes">Connections</property>
+                    <property name="child">
+                      <object class="AdwToolbarView">
+                        <child type="top">
+                          <object class="AdwHeaderBar">
+                            <child type="end">
+                              <object class="GtkMenuButton">
+                                <property name="icon-name">open-menu-symbolic</property>
+                                <property name="primary">true</property>
+                              </object>
+                            </child>
+                            <child type="title">
+                              <object class="AdwWindowTitle">
+                                <property name="title" translatable="yes">D-Spy</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwLayoutSlot">
+                            <property name="id">connections</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwNavigationPage" id="narrow_names_page">
+                    <property name="title" translatable="yes">Bus Names</property>
+                    <property name="child">
+                      <object class="AdwToolbarView">
+                        <child type="top">
+                          <object class="AdwHeaderBar">
+                            <child type="title">
+                              <object class="AdwWindowTitle">
+                                <binding name="title">
+                                  <lookup name="title" type="DspyConnection">
+                                    <lookup name="connection">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                                <binding name="subtitle">
+                                  <lookup name="address" type="DspyConnection">
+                                    <lookup name="connection">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwLayoutSlot">
+                            <property name="id">names</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwNavigationPage" id="narrow_objects_page">
+                    <property name="title" translatable="yes">Objects</property>
+                    <property name="child">
+                      <object class="AdwToolbarView">
+                        <child type="top">
+                          <object class="AdwHeaderBar">
+                            <child type="title">
+                              <object class="AdwWindowTitle">
+                                <binding name="title">
+                                  <lookup name="name" type="DspyName">
+                                    <lookup name="name">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                                <binding name="subtitle">
+                                  <lookup name="subtitle" type="DspyName">
+                                    <lookup name="name">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwLayoutSlot">
+                            <property name="id">objects</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwNavigationPage" id="narrow_interfaces_page">
+                    <property name="title" translatable="yes">Interfaces</property>
+                    <property name="child">
+                      <object class="AdwToolbarView">
+                        <child type="top">
+                          <object class="AdwHeaderBar">
+                            <child type="title">
+                              <object class="AdwWindowTitle">
+                                <binding name="title">
+                                  <lookup name="path" type="DspyNode">
+                                    <lookup name="node">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                                <binding name="subtitle">
+                                  <lookup name="subtitle" type="DspyName">
+                                    <lookup name="name">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwLayoutSlot">
+                            <property name="id">interfaces</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwNavigationPage" id="narrow_members_page">
+                    <property name="title" translatable="yes">Members</property>
+                    <property name="child">
+                      <object class="AdwToolbarView">
+                        <child type="top">
+                          <object class="AdwHeaderBar">
+                            <child type="title">
+                              <object class="AdwWindowTitle">
+                                <binding name="title">
+                                  <lookup name="name" type="DspyInterface">
+                                    <lookup name="interface">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                                <binding name="subtitle">
+                                  <lookup name="path" type="DspyNode">
+                                    <lookup name="node">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwLayoutSlot">
+                            <property name="id">members</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
                 </child>
               </object>
             </property>

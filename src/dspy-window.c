@@ -42,17 +42,25 @@ struct _DspyWindow
   DspyNode             *node;
   DspyInterface        *interface;
 
-  GtkListView          *connections_list_view;
   AdwNavigationPage    *connections_page;
   AdwNavigationPage    *interfaces_page;
-  GtkSortListModel     *interfaces_sorted;
   AdwNavigationPage    *members_page;
-  GtkListView          *names_list_view;
   AdwNavigationPage    *names_page;
+  AdwNavigationPage    *objects_page;
+
+  AdwNavigationPage    *narrow_connections_page;
+  AdwNavigationPage    *narrow_interfaces_page;
+  AdwNavigationPage    *narrow_members_page;
+  AdwNavigationPage    *narrow_names_page;
+  AdwNavigationPage    *narrow_objects_page;
+
+  GtkListView          *connections_list_view;
+  GtkSortListModel     *interfaces_sorted;
+  GtkListView          *names_list_view;
   GtkSortListModel     *names_sorted;
   GtkCustomSorter      *names_sorter;
+  AdwNavigationView    *narrow_navigation_view;
   AdwNavigationView    *navigation_view;
-  AdwNavigationPage    *objects_page;
   GtkSortListModel     *objects_sorted;
 };
 
@@ -142,6 +150,9 @@ dspy_window_connection_activate_cb (DspyWindow  *self,
 
   adw_navigation_view_pop_to_page (self->navigation_view, self->connections_page);
   adw_navigation_view_push (self->navigation_view, self->names_page);
+
+  adw_navigation_view_pop_to_page (self->narrow_navigation_view, self->narrow_connections_page);
+  adw_navigation_view_push (self->narrow_navigation_view, self->narrow_names_page);
 }
 
 static void
@@ -163,6 +174,9 @@ dspy_window_name_activate_cb (DspyWindow  *self,
 
   adw_navigation_view_pop_to_page (self->navigation_view, self->names_page);
   adw_navigation_view_push (self->navigation_view, self->objects_page);
+
+  adw_navigation_view_pop_to_page (self->narrow_navigation_view, self->narrow_names_page);
+  adw_navigation_view_push (self->narrow_navigation_view, self->narrow_objects_page);
 }
 
 static void
@@ -184,6 +198,9 @@ dspy_window_node_activate_cb (DspyWindow  *self,
 
   adw_navigation_view_pop_to_page (self->navigation_view, self->objects_page);
   adw_navigation_view_push (self->navigation_view, self->interfaces_page);
+
+  adw_navigation_view_pop_to_page (self->narrow_navigation_view, self->narrow_objects_page);
+  adw_navigation_view_push (self->narrow_navigation_view, self->narrow_interfaces_page);
 }
 
 static void
@@ -205,6 +222,9 @@ dspy_window_interface_activate_cb (DspyWindow  *self,
 
   adw_navigation_view_pop_to_page (self->navigation_view, self->interfaces_page);
   adw_navigation_view_push (self->navigation_view, self->members_page);
+
+  adw_navigation_view_pop_to_page (self->narrow_navigation_view, self->narrow_interfaces_page);
+  adw_navigation_view_push (self->narrow_navigation_view, self->narrow_members_page);
 }
 
 static char *
@@ -324,6 +344,12 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorter);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_connections_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_interfaces_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_members_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_names_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_objects_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_navigation_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, navigation_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_sorted);
