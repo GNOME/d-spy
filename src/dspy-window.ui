@@ -368,7 +368,7 @@
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
             </binding>
-            <binding name="tooltip-text">
+            <binding name="tooltip-markup">
               <lookup name="title" type="DspyIntrospectable">
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
@@ -497,7 +497,7 @@
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
             </binding>
-            <binding name="tooltip-text">
+            <binding name="tooltip-markup">
               <lookup name="title" type="DspyIntrospectable">
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
@@ -625,7 +625,7 @@
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
             </binding>
-            <binding name="tooltip-text">
+            <binding name="tooltip-markup">
               <lookup name="title" type="DspyIntrospectable">
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
