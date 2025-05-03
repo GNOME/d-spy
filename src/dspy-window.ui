@@ -81,127 +81,57 @@
             </child>
           </object>
         </child>
-        <child>
-          <object class="AdwLayout">
-            <property name="name">wide</property>
-            <property name="content">
-              <object class="AdwNavigationSplitView" id="split1">
-                <property name="min-sidebar-width">300</property>
-                <property name="max-sidebar-width">400</property>
-                <property name="sidebar">
-                  <object class="AdwNavigationPage">
-                    <property name="title" translatable="yes">D-Spy</property>
-                    <property name="child">
-                      <object class="AdwNavigationView" id="navigation_view">
-                        <child>
-                          <object class="AdwNavigationPage" id="connections_page">
-                            <property name="title" translatable="yes">Connections</property>
-                            <property name="child">
-                              <object class="AdwToolbarView">
-                                <child type="top">
-                                  <object class="AdwHeaderBar">
-                                    <child type="end">
-                                      <object class="GtkMenuButton">
-                                        <property name="icon-name">open-menu-symbolic</property>
-                                        <property name="primary">true</property>
-                                      </object>
-                                    </child>
-                                    <child type="title">
-                                      <object class="AdwWindowTitle">
-                                        <property name="title" translatable="yes">D-Spy</property>
-                                      </object>
-                                    </child>
+        <child type="names">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkSearchEntry">
+                <property name="placeholder-text" translatable="yes">Filter…</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-end">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-top">6</property>
+                <property name="text" bind-source="names_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="hscrollbar-policy">never</property>
+                <property name="vexpand">true</property>
+                <child>
+                  <object class="GtkListView" id="names_list_view">
+                    <style>
+                      <class name="navigation-sidebar"/>
+                    </style>
+                    <property name="single-click-activate">true</property>
+                    <signal name="activate" handler="dspy_window_name_activate_cb" swapped="true"/>
+                    <property name="model">
+                      <object class="GtkNoSelection" id="names_selection">
+                        <property name="model">
+                          <object class="GtkFilterListModel" id="names_filtered">
+                            <property name="filter">
+                              <object class="GtkStringFilter" id="names_filter">
+                                <property name="search"></property>
+                                <property name="expression">
+                                  <lookup name="search-text" type="DspyName"/>
+                                </property>
+                              </object>
+                            </property>
+                            <property name="model">
+                              <object class="GtkSortListModel" id="names_sorted">
+                                <property name="sorter">
+                                  <object class="GtkCustomSorter" id="names_sorter">
                                   </object>
-                                </child>
-                                <child>
-                                  <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
-                                    <property name="vexpand">true</property>
-                                    <child>
-                                      <object class="AdwLayoutSlot">
-                                        <property name="id">connections</property>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
+                                </property>
                               </object>
                             </property>
                           </object>
-                        </child>
-                        <child>
-                          <object class="AdwNavigationPage" id="names_page">
-                            <property name="title" translatable="yes">Bus Names</property>
-                            <property name="child">
-                              <object class="AdwToolbarView">
-                                <child type="top">
-                                  <object class="AdwHeaderBar">
-                                    <child type="title">
-                                      <object class="AdwWindowTitle">
-                                        <binding name="title">
-                                          <lookup name="title" type="DspyConnection">
-                                            <lookup name="connection">DspyWindow</lookup>
-                                          </lookup>
-                                        </binding>
-                                        <binding name="subtitle">
-                                          <lookup name="address" type="DspyConnection">
-                                            <lookup name="connection">DspyWindow</lookup>
-                                          </lookup>
-                                        </binding>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
-                                    <child>
-                                      <object class="GtkSearchEntry">
-                                        <property name="placeholder-text" translatable="yes">Filter…</property>
-                                        <property name="margin-bottom">6</property>
-                                        <property name="margin-end">6</property>
-                                        <property name="margin-start">6</property>
-                                        <property name="margin-top">6</property>
-                                        <property name="text" bind-source="names_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkScrolledWindow">
-                                        <property name="hscrollbar-policy">never</property>
-                                        <property name="vexpand">true</property>
-                                        <child>
-                                          <object class="GtkListView" id="names_list_view">
-                                            <style>
-                                              <class name="navigation-sidebar"/>
-                                            </style>
-                                            <property name="single-click-activate">true</property>
-                                            <signal name="activate" handler="dspy_window_name_activate_cb" swapped="true"/>
-                                            <property name="model">
-                                              <object class="GtkNoSelection" id="names_selection">
-                                                <property name="model">
-                                                  <object class="GtkFilterListModel" id="names_filtered">
-                                                    <property name="filter">
-                                                      <object class="GtkStringFilter" id="names_filter">
-                                                        <property name="search"></property>
-                                                        <property name="expression">
-                                                          <lookup name="search-text" type="DspyName"/>
-                                                        </property>
-                                                      </object>
-                                                    </property>
-                                                    <property name="model">
-                                                      <object class="GtkSortListModel" id="names_sorted">
-                                                        <property name="sorter">
-                                                          <object class="GtkCustomSorter" id="names_sorter">
-                                                          </object>
-                                                        </property>
-                                                      </object>
-                                                    </property>
-                                                  </object>
-                                                </property>
-                                              </object>
-                                            </property>
-                                            <property name="factory">
-                                              <object class="GtkBuilderListItemFactory">
-                                                <property name="bytes"><![CDATA[
+                        </property>
+                      </object>
+                    </property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="GtkListItem">
@@ -261,13 +191,82 @@
   </template>
 </interface>
 ]]>
-                                                </property>
-                                              </object>
-                                            </property>
-                                          </object>
-                                        </child>
+                        </property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwLayout">
+            <property name="name">wide</property>
+            <property name="content">
+              <object class="AdwNavigationSplitView" id="split1">
+                <property name="min-sidebar-width">300</property>
+                <property name="max-sidebar-width">400</property>
+                <property name="sidebar">
+                  <object class="AdwNavigationPage">
+                    <property name="title" translatable="yes">D-Spy</property>
+                    <property name="child">
+                      <object class="AdwNavigationView" id="navigation_view">
+                        <child>
+                          <object class="AdwNavigationPage" id="connections_page">
+                            <property name="title" translatable="yes">Connections</property>
+                            <property name="child">
+                              <object class="AdwToolbarView">
+                                <child type="top">
+                                  <object class="AdwHeaderBar">
+                                    <child type="end">
+                                      <object class="GtkMenuButton">
+                                        <property name="icon-name">open-menu-symbolic</property>
+                                        <property name="primary">true</property>
                                       </object>
                                     </child>
+                                    <child type="title">
+                                      <object class="AdwWindowTitle">
+                                        <property name="title" translatable="yes">D-Spy</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwLayoutSlot">
+                                    <property name="id">connections</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwNavigationPage" id="names_page">
+                            <property name="title" translatable="yes">Bus Names</property>
+                            <property name="child">
+                              <object class="AdwToolbarView">
+                                <child type="top">
+                                  <object class="AdwHeaderBar">
+                                    <child type="title">
+                                      <object class="AdwWindowTitle">
+                                        <binding name="title">
+                                          <lookup name="title" type="DspyConnection">
+                                            <lookup name="connection">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <binding name="subtitle">
+                                          <lookup name="address" type="DspyConnection">
+                                            <lookup name="connection">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwLayoutSlot">
+                                    <property name="id">names</property>
                                   </object>
                                 </child>
                               </object>
