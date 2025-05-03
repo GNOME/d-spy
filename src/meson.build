@@ -1,11 +1,20 @@
 dspy_sources = [
+  'dspy-argument.c',
   'dspy-connection.c',
-  'dspy-introspectable-row.c',
   'dspy-future-list-model.c',
+  'dspy-interface.c',
+  'dspy-introspectable-row.c',
+  'dspy-introspectable.c',
+  'dspy-introspection.c',
   'dspy-method-invocation.c',
+  'dspy-method.c',
   'dspy-name.c',
   'dspy-names-model.c',
+  'dspy-node.c',
+  'dspy-property.c',
+  'dspy-signal.c',
   'dspy-signature.c',
+  'dspy-titled-model.c',
   'dspy-util.c',
   'dspy-window.c',
   'main.c',
@@ -23,8 +32,6 @@ dspy_sources += gnome.compile_resources('dspy-resources', 'dspy.gresource.xml',
 )
 
 dspy_include_directories = [root_include_directory]
-
-subdir('introspection')
 
 build_ident_h = vcs_tag(
      fallback: meson.project_version(),
