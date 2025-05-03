@@ -275,6 +275,25 @@ get_member_header_text (gpointer instance,
 }
 
 static void
+property_refresh_action (GtkWidget  *widget,
+                         const char *action_name,
+                         GVariant   *param)
+{
+  DspyWindow *self = DSPY_WINDOW (widget);
+  GDBusConnection *connection = NULL;
+
+  if (self->connection != NULL)
+    connection = dspy_connection_get_connection (self->connection);
+
+  if (!DSPY_IS_PROPERTY (self->member) || connection == NULL || self->name == NULL)
+    return;
+
+  dex_future_disown (dspy_property_query_value (DSPY_PROPERTY (self->member),
+                                                connection,
+                                                dspy_name_get_owner (self->name)));
+}
+
+static void
 dspy_window_dispose (GObject *object)
 {
   DspyWindow *self = (DspyWindow *)object;
@@ -401,6 +420,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_interface_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_member_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, get_member_header_text);
+  gtk_widget_class_install_action (widget_class, "property.refresh", NULL, property_refresh_action);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);

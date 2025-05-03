@@ -590,7 +590,7 @@
                 </child>
                 <child>
                   <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Signature</property>
+                    <property name="title" translatable="yes">Type Signature</property>
                     <binding name="subtitle">
                       <lookup name="signature" type="DspyProperty">
                         <lookup name="member">DspyWindow</lookup>
@@ -604,11 +604,33 @@
                 <child>
                   <object class="AdwActionRow">
                     <property name="title" translatable="yes">Value</property>
+                    <property name="subtitle-selectable">true</property>
+                    <property name="activatable-widget">refresh_button</property>
                     <binding name="subtitle">
                       <lookup name="value" type="DspyProperty">
                         <lookup name="member">DspyWindow</lookup>
                       </lookup>
                     </binding>
+                    <child type="suffix">
+                      <object class="GtkButton" id="copy_property_button">
+                        <property name="action-name">property.copy</property>
+                        <property name="icon-name">edit-copy-symbolic</property>
+                        <property name="valign">center</property>
+                        <style>
+                          <class name="flat"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child type="suffix">
+                      <object class="GtkButton" id="refresh_button">
+                        <property name="action-name">property.refresh</property>
+                        <property name="icon-name">view-refresh-symbolic</property>
+                        <property name="valign">center</property>
+                        <style>
+                          <class name="flat"/>
+                        </style>
+                      </object>
+                    </child>
                     <style>
                       <class name="property"/>
                     </style>
