@@ -2,11 +2,6 @@
 <gresources>
   <gresource prefix="/org/gnome/dspy">
     <file preprocess="xml-stripblanks">dspy-introspectable-row.ui</file>
-    <file preprocess="xml-stripblanks">dspy-method-view.ui</file>
-    <file preprocess="xml-stripblanks">dspy-name-marquee.ui</file>
-    <file preprocess="xml-stripblanks">dspy-name-row.ui</file>
-    <file preprocess="xml-stripblanks">dspy-simple-popover.ui</file>
-    <file preprocess="xml-stripblanks">dspy-view.ui</file>
     <file preprocess="xml-stripblanks">dspy-window.ui</file>
     <file preprocess="xml-stripblanks">gtk/menus.ui</file>
     <file>style.css</file>

@@ -22,7 +22,6 @@
 
 #include <glib/gi18n.h>
 
-#include "dspy-introspection-model.h"
 #include "dspy-introspection.h"
 #include "dspy-future-list-model.h"
 #include "dspy-name.h"
@@ -437,21 +436,6 @@ dspy_name_get_connection (DspyName *self)
   g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
 
   return self->connection;
-}
-
-/**
- * dspy_name_introspect:
- * @self: a [class@Dspy.Name]
- *
- * Returns: (transfer full): a [class@Dex.Future] that resolves
- *   to a [iface@Gtk.TreeModel] or rejects with error.
- */
-DexFuture *
-dspy_name_introspect (DspyName *self)
-{
-  dex_return_error_if_fail (DSPY_IS_NAME (self));
-
-  return dspy_introspection_model_new (self);
 }
 
 const char *

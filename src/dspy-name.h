@@ -42,7 +42,6 @@ const char     *dspy_name_get_owner         (DspyName             *self);
 const char     *dspy_name_get_search_text   (DspyName             *self);
 gint            dspy_name_compare           (gconstpointer         a,
                                              gconstpointer         b);
-DexFuture      *dspy_name_introspect        (DspyName             *self);
 GListModel     *dspy_name_dup_introspection (DspyName             *self);
 char           *dspy_name_dup_subtitle      (DspyName             *self);
 

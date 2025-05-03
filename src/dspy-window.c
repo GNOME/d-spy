@@ -30,7 +30,6 @@
 #include "dspy-property.h"
 #include "dspy-signal.h"
 #include "dspy-util.h"
-#include "dspy-view.h"
 #include "dspy-window.h"
 
 struct _DspyWindow
@@ -55,7 +54,6 @@ struct _DspyWindow
   AdwNavigationView    *navigation_view;
   AdwNavigationPage    *objects_page;
   GtkSortListModel     *objects_sorted;
-  DspyView             *view;
 };
 
 G_DEFINE_FINAL_TYPE (DspyWindow, dspy_window, ADW_TYPE_APPLICATION_WINDOW)
@@ -329,7 +327,6 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, navigation_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_sorted);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, view);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_connection_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_name_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_node_activate_cb);
@@ -339,7 +336,6 @@ dspy_window_class_init (DspyWindowClass *klass)
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);
   g_type_ensure (DSPY_TYPE_NODE);
-  g_type_ensure (DSPY_TYPE_VIEW);
 }
 
 static void

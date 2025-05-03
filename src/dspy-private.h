@@ -21,20 +21,18 @@
 #pragma once
 
 #include "dspy-name.h"
-#include "dspy-introspection-model.h"
 
 G_BEGIN_DECLS
 
-void                    _dspy_name_clear_pid          (DspyName                 *name);
-void                    _dspy_name_refresh_pid        (DspyName                 *name,
-                                                       GDBusConnection          *connection);
-void                    _dspy_name_refresh_owner      (DspyName                 *name,
-                                                       GDBusConnection          *connection);
-void                    _dspy_name_set_owner          (DspyName                 *self,
-                                                       const gchar              *owner);
-void                    _dspy_name_set_activatable    (DspyName                 *name,
-                                                       gboolean                  is_activatable);
-DspyIntrospectionModel *_dspy_introspection_model_new (DspyName                 *name);
-gchar                  *_dspy_signature_humanize      (const gchar              *signature);
+void  _dspy_name_clear_pid          (DspyName                 *name);
+void  _dspy_name_refresh_pid        (DspyName                 *name,
+                                     GDBusConnection          *connection);
+void  _dspy_name_refresh_owner      (DspyName                 *name,
+                                     GDBusConnection          *connection);
+void  _dspy_name_set_owner          (DspyName                 *self,
+                                     const gchar              *owner);
+void  _dspy_name_set_activatable    (DspyName                 *name,
+                                     gboolean                  is_activatable);
+char *_dspy_signature_humanize      (const gchar              *signature);
 
 G_END_DECLS
