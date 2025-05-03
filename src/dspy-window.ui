@@ -20,8 +20,14 @@
         </child>
       </object>
     </child>
+    <child>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 600sp</condition>
+        <setter object="multi_layout" property="layout-name">narrow</setter>
+      </object>
+    </child>
     <property name="content">
-      <object class="AdwMultiLayoutView">
+      <object class="AdwMultiLayoutView" id="multi_layout">
         <child type="connections">
           <object class="GtkScrolledWindow">
             <property name="hscrollbar-policy">never</property>
@@ -707,6 +713,17 @@
                     </property>
                   </object>
                 </property>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwLayout">
+            <property name="name">narrow</property>
+            <property name="content">
+              <object class="AdwNavigationView">
+                <child>
+                </child>
               </object>
             </property>
           </object>
