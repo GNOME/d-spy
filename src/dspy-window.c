@@ -41,18 +41,21 @@ struct _DspyWindow
   DspyName             *name;
   DspyNode             *node;
   DspyInterface        *interface;
+  DspyIntrospectable   *member;
 
   AdwNavigationPage    *connections_page;
   AdwNavigationPage    *interfaces_page;
   AdwNavigationPage    *members_page;
   AdwNavigationPage    *names_page;
   AdwNavigationPage    *objects_page;
+  AdwNavigationPage    *property_page;
 
   AdwNavigationPage    *narrow_connections_page;
   AdwNavigationPage    *narrow_interfaces_page;
   AdwNavigationPage    *narrow_members_page;
   AdwNavigationPage    *narrow_names_page;
   AdwNavigationPage    *narrow_objects_page;
+  AdwNavigationPage    *narrow_property_page;
 
   GtkListView          *connections_list_view;
   GtkSortListModel     *interfaces_sorted;
@@ -71,6 +74,7 @@ enum {
   PROP_CONNECTION,
   PROP_CONNECTIONS,
   PROP_INTERFACE,
+  PROP_MEMBER,
   PROP_NAME,
   PROP_NODE,
   N_PROPS
@@ -227,6 +231,32 @@ dspy_window_interface_activate_cb (DspyWindow  *self,
   adw_navigation_view_push (self->narrow_navigation_view, self->narrow_members_page);
 }
 
+static void
+dspy_window_member_activate_cb (DspyWindow  *self,
+                                guint        position,
+                                GtkListView *list_view)
+{
+  g_autoptr(DspyIntrospectable) member = NULL;
+  GtkSelectionModel *model;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (GTK_IS_LIST_VIEW (list_view));
+
+  model = gtk_list_view_get_model (list_view);
+  member = g_list_model_get_item (G_LIST_MODEL (model), position);
+
+  if (g_set_object (&self->member, member))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MEMBER]);
+
+  adw_navigation_view_pop_to_page (self->navigation_view, self->members_page);
+  if (DSPY_IS_PROPERTY (member))
+    adw_navigation_view_push (self->navigation_view, self->property_page);
+
+  adw_navigation_view_pop_to_page (self->narrow_navigation_view, self->narrow_members_page);
+  if (DSPY_IS_PROPERTY (member))
+    adw_navigation_view_push (self->narrow_navigation_view, self->narrow_property_page);
+}
+
 static char *
 get_member_header_text (gpointer instance,
                         gpointer item)
@@ -280,6 +310,10 @@ dspy_window_get_property (GObject    *object,
       g_value_set_object (value, self->interface);
       break;
 
+    case PROP_MEMBER:
+      g_value_set_object (value, self->member);
+      break;
+
     case PROP_NAME:
       g_value_set_object (value, self->name);
       break;
@@ -326,6 +360,12 @@ dspy_window_class_init (DspyWindowClass *klass)
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
+  properties[PROP_MEMBER] =
+    g_param_spec_object ("member", NULL, NULL,
+                         DSPY_TYPE_INTROSPECTABLE,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
   properties[PROP_NODE] =
     g_param_spec_object ("node", NULL, NULL,
                          DSPY_TYPE_NODE,
@@ -349,19 +389,25 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_members_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_names_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_objects_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_property_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_navigation_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, navigation_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_sorted);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_page);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_connection_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_name_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_node_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_interface_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, dspy_window_member_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, get_member_header_text);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);
   g_type_ensure (DSPY_TYPE_NODE);
+  g_type_ensure (DSPY_TYPE_PROPERTY);
+  g_type_ensure (DSPY_TYPE_METHOD);
+  g_type_ensure (DSPY_TYPE_SIGNAL);
 }
 
 static void

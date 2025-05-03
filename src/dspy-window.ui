@@ -433,6 +433,7 @@
                       <class name="navigation-sidebar"/>
                     </style>
                     <property name="single-click-activate">true</property>
+                    <signal name="activate" handler="dspy_window_member_activate_cb" swapped="true"/>
                     <property name="model">
                       <object class="GtkSingleSelection" id="members_selection">
                         <property name="model">
@@ -521,6 +522,96 @@
                         </property>
                       </object>
                     </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="property">
+          <object class="AdwPreferencesPage">
+            <child>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Bus</property>
+                    <binding name="subtitle">
+                      <lookup name="title" type="DspyConnection">
+                        <lookup name="connection">DspyWindow</lookup>
+                      </lookup>
+                    </binding>
+                    <style>
+                      <class name="property"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Object Path</property>
+                    <binding name="subtitle">
+                      <lookup name="path" type="DspyNode">
+                        <lookup name="node">DspyWindow</lookup>
+                      </lookup>
+                    </binding>
+                    <style>
+                      <class name="property"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Interface</property>
+                    <binding name="subtitle">
+                      <lookup name="name" type="DspyInterface">
+                        <lookup name="interface">DspyWindow</lookup>
+                      </lookup>
+                    </binding>
+                    <style>
+                      <class name="property"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Property</property>
+                    <binding name="subtitle">
+                      <lookup name="name" type="DspyProperty">
+                        <lookup name="member">DspyWindow</lookup>
+                      </lookup>
+                    </binding>
+                    <style>
+                      <class name="property"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Signature</property>
+                    <binding name="subtitle">
+                      <lookup name="signature" type="DspyProperty">
+                        <lookup name="member">DspyWindow</lookup>
+                      </lookup>
+                    </binding>
+                    <style>
+                      <class name="property"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Value</property>
+                    <binding name="subtitle">
+                      <lookup name="value" type="DspyProperty">
+                        <lookup name="member">DspyWindow</lookup>
+                      </lookup>
+                    </binding>
+                    <style>
+                      <class name="property"/>
+                    </style>
                   </object>
                 </child>
               </object>
@@ -690,6 +781,38 @@
                                 <child>
                                   <object class="AdwLayoutSlot">
                                     <property name="id">members</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwNavigationPage" id="property_page">
+                            <property name="title" translatable="yes">Property</property>
+                            <property name="child">
+                              <object class="AdwToolbarView">
+                                <child type="top">
+                                  <object class="AdwHeaderBar">
+                                    <child type="title">
+                                      <object class="AdwWindowTitle">
+                                        <binding name="title">
+                                          <lookup name="name" type="DspyProperty">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <binding name="subtitle">
+                                          <lookup name="path" type="DspyNode">
+                                            <lookup name="node">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwLayoutSlot">
+                                    <property name="id">property</property>
                                   </object>
                                 </child>
                               </object>
@@ -873,6 +996,38 @@
                         <child>
                           <object class="AdwLayoutSlot">
                             <property name="id">members</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwNavigationPage" id="narrow_property_page">
+                    <property name="title" translatable="yes">Property</property>
+                    <property name="child">
+                      <object class="AdwToolbarView">
+                        <child type="top">
+                          <object class="AdwHeaderBar">
+                            <child type="title">
+                              <object class="AdwWindowTitle">
+                                <binding name="title">
+                                  <lookup name="name" type="DspyProperty">
+                                    <lookup name="member">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                                <binding name="subtitle">
+                                  <lookup name="path" type="DspyNode">
+                                    <lookup name="node">DspyWindow</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwLayoutSlot">
+                            <property name="id">property</property>
                           </object>
                         </child>
                       </object>
