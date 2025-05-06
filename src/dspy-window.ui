@@ -328,7 +328,7 @@
                                             <signal name="activate" handler="dspy_window_node_activate_cb" swapped="true"/>
                                             <property name="single-click-activate">true</property>
                                             <property name="model">
-                                              <object class="GtkSingleSelection" id="objects_selection">
+                                              <object class="GtkNoSelection" id="objects_selection">
                                                 <property name="model">
                                                   <object class="GtkFilterListModel" id="objects_filtered">
                                                     <property name="filter">
@@ -466,7 +466,7 @@
                                             <property name="single-click-activate">true</property>
                                             <signal name="activate" handler="dspy_window_interface_activate_cb" swapped="true"/>
                                             <property name="model">
-                                              <object class="GtkSingleSelection" id="interfaces_selection">
+                                              <object class="GtkNoSelection" id="interfaces_selection">
                                                 <property name="model">
                                                   <object class="GtkFilterListModel" id="interfaces_filtered">
                                                     <property name="filter">
@@ -595,7 +595,7 @@
                                             <property name="single-click-activate">true</property>
                                             <signal name="activate" handler="dspy_window_member_activate_cb" swapped="true"/>
                                             <property name="model">
-                                              <object class="GtkSingleSelection" id="members_selection">
+                                              <object class="GtkNoSelection" id="members_selection">
                                                 <property name="model">
                                                   <object class="GtkFilterListModel" id="members_filtered">
                                                     <property name="filter">
