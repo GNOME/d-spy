@@ -746,7 +746,36 @@
                                     </child>
                                     <child>
                                       <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Bus Name</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Owner</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="subtitle" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
                                         <property name="title" translatable="yes">Object Path</property>
+                                        <property name="subtitle-selectable">true</property>
                                         <binding name="subtitle">
                                           <lookup name="path" type="DspyNode">
                                             <lookup name="node">DspyWindow</lookup>
@@ -760,6 +789,7 @@
                                     <child>
                                       <object class="AdwActionRow">
                                         <property name="title" translatable="yes">Interface</property>
+                                        <property name="subtitle-selectable">true</property>
                                         <binding name="subtitle">
                                           <lookup name="name" type="DspyInterface">
                                             <lookup name="interface">DspyWindow</lookup>
@@ -777,6 +807,7 @@
                                     <child>
                                       <object class="AdwActionRow">
                                         <property name="title" translatable="yes">Property</property>
+                                        <property name="subtitle-selectable">true</property>
                                         <binding name="subtitle">
                                           <lookup name="name" type="DspyProperty">
                                             <lookup name="member">DspyWindow</lookup>
@@ -790,6 +821,7 @@
                                     <child>
                                       <object class="AdwActionRow">
                                         <property name="title" translatable="yes">Type Signature</property>
+                                        <property name="subtitle-selectable">true</property>
                                         <binding name="subtitle">
                                           <lookup name="signature" type="DspyProperty">
                                             <lookup name="member">DspyWindow</lookup>
