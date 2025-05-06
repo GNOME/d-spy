@@ -1,0 +1,271 @@
+# Slovak translation for d-spy.
+# Copyright (C) 2025 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# Peter Mráz <etkinator@gmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy gnome-48\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2025-04-29 17:17+0000\n"
+"PO-Revision-Date: 2025-05-07 00:18+0200\n"
+"Last-Translator: Peter Mráz <etkinator@gmail.com>\n"
+"Language-Team: Slovak <sk@li.org>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"X-Generator: Poedit 3.5\n"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.appdata.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
+#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
+msgid "D-Spy"
+msgstr "D-špión"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analyzuje spojenia so zbernicou D-BUS"
+
+#: data/org.gnome.dspy.appdata.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-špión je jednoduchý nástroj na preskúmanie spojení so zbernicou D-Bus."
+
+#: data/org.gnome.dspy.appdata.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "Rozhranie programu D-špión"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "Discover and explore D-Bus services"
+msgstr "Objavuje a skúma služby zbernice D-Bus"
+
+#: data/org.gnome.dspy.desktop.in.in:8
+msgid "dspy;dbus;"
+msgstr "dšpión;dšpion;dspion;"
+
+#: data/org.gnome.dspy.desktop.in.in:18
+msgid "New Window"
+msgstr "Nové okno"
+
+#. translators: %s is replaced with the address of the D-Bus bus
+#: src/dspy-connection-button.c:76
+#, c-format
+msgid "Connected to “%s”"
+msgstr "Pripojené k „%s“"
+
+#: src/dspy-connection-button.c:221
+msgid "S_ystem"
+msgstr "_Systém"
+
+#: src/dspy-connection-button.c:223
+msgid "_Session"
+msgstr "_Relácia"
+
+#: src/dspy-connection-button.c:225
+msgid "_Other"
+msgstr "_Iné"
+
+#: src/dspy-method-view.c:190
+msgid "Execute"
+msgstr "Vykonať"
+
+#: src/dspy-method-view.c:272
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
+msgid "Object Path"
+msgstr "Cesta objektu"
+
+#: src/dspy-method-view.ui:36
+msgid "Interface"
+msgstr "Rozhranie"
+
+#: src/dspy-method-view.ui:61
+msgid "Method"
+msgstr "Metóda"
+
+#: src/dspy-method-view.ui:86
+msgid "Parameters"
+msgstr "Parametre"
+
+#: src/dspy-method-view.ui:126
+msgid "_Execute"
+msgstr "_Vykonať"
+
+#: src/dspy-method-view.ui:141
+msgid "Result"
+msgstr "Výsledok"
+
+#: src/dspy-method-view.ui:182
+msgid "_Copy"
+msgstr "_Kopírovať"
+
+#: src/dspy-method-view.ui:194
+msgid "Elapsed Time"
+msgstr "Uplynulý čas"
+
+#: src/dspy-name-marquee.ui:12
+msgid "Bus Address"
+msgstr "Adresa zbernice"
+
+#: src/dspy-name-marquee.ui:36
+msgid "Name"
+msgstr "Názov"
+
+#: src/dspy-name-marquee.ui:60
+msgid "Owner"
+msgstr "Vlastník"
+
+#: src/dspy-name-marquee.ui:84
+msgid "Process ID"
+msgstr "Identifikátor procesu"
+
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
+msgid "Activatable"
+msgstr "Aktivovateľné"
+
+#: src/dspy-name-row.c:78
+msgid "Yes"
+msgstr "Áno"
+
+#: src/dspy-name-row.c:80
+msgid "No"
+msgstr "Nie"
+
+#: src/dspy-name-row.c:85
+#, c-format
+msgid "%s: %u"
+msgstr "%s: %u"
+
+#: src/dspy-name-row.c:85
+msgid "PID"
+msgstr "Idetinfikátor procesu"
+
+#: src/dspy-node.c:468
+msgid "read/write"
+msgstr "čítanie/zápis"
+
+#: src/dspy-node.c:470
+msgid "write-only"
+msgstr "iba zápis"
+
+#: src/dspy-node.c:472
+msgid "read-only"
+msgstr "iba čítanie"
+
+#: src/dspy-node.c:587
+msgid "Interfaces"
+msgstr "Rozhrania"
+
+#: src/dspy-node.c:590
+msgid "Methods"
+msgstr "Metódy"
+
+#: src/dspy-node.c:596
+msgid "Properties"
+msgstr "Vlastnosti"
+
+#: src/dspy-node.c:612
+msgid "Signals"
+msgstr "Signály"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: src/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr "Pole typu [%s]"
+
+#: src/dspy-view.c:124
+msgid "Bus"
+msgstr "Zbernica"
+
+#: src/dspy-view.c:166
+msgid "Access Denied by Peer"
+msgstr "Prístup odmietnutý partnerom"
+
+#: src/dspy-view.c:168
+msgid "Authentication Failed"
+msgstr "Zlyhala autentifikácia"
+
+#: src/dspy-view.c:170
+msgid "Operation Timed Out"
+msgstr "Časový limit operácie vypršal"
+
+#: src/dspy-view.c:172
+msgid "Lost Connection to Bus"
+msgstr "Spojenie so zbernicou sa prerušilo"
+
+#: src/dspy-view.c:174
+msgid "D-Bus Connection Failed"
+msgstr "Zlyhalo pripojenie k zbernici D-Bus"
+
+#: src/dspy-view.c:178
+msgid "_Close"
+msgstr "_Zavrieť"
+
+#: src/dspy-view.c:477
+msgid "Connect"
+msgstr "Pripojiť"
+
+#: src/dspy-view.c:478
+msgid "Provide the address of the message bus"
+msgstr "Zadajte adresu zbernice správ"
+
+#: src/dspy-view.c:480
+msgid "Connect to Other Bus"
+msgstr "Pripojenie k inej zbernici"
+
+#: src/dspy-view.ui:31
+msgid "Main Menu"
+msgstr "Hlavná ponuka"
+
+#: src/dspy-view.ui:66
+msgid "Search Bus Names"
+msgstr "Hľadajte názvy zberníc"
+
+#: src/dspy-view.ui:80
+msgid "Bus Names"
+msgstr "Názvy zberníc"
+
+#: src/dspy-view.ui:143
+msgid "Select a D-Bus Name"
+msgstr "Zvoľte názov zbernice D-Bus"
+
+#: src/dspy-view.ui:144
+msgid "Select a bus name to introspect the peer"
+msgstr "Vyberte názov zbernice partnera, ktorú chcete skúmať"
+
+#: src/dspy-view.ui:159
+msgid "Refresh"
+msgstr "Obnovenie"
+
+#: src/dspy-view.ui:235
+msgid "_New Window"
+msgstr "_Nové okno"
+
+#: src/dspy-view.ui:241
+msgid "_About D-Spy"
+msgstr "_O programe D-špión"
+
+#: src/gtk/menus.ui:5
+msgid "Connect to Other Bus…"
+msgstr "Pripojiť k inej zbernici…"
+
+#: src/main.c:150
+msgid "Open a new window"
+msgstr "Otvorí nové okno"
+
+#: src/main.c:151
+msgid "Print version information and exit"
+msgstr "Vypíše informácie o verzii a skončí"
