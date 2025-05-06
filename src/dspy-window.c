@@ -49,6 +49,7 @@ struct _DspyWindow
   AdwNavigationPage    *connections_page;
   AdwNavigationPage    *names_page;
 
+  GtkStack             *content_stack;
   GtkStack             *details_stack;
 
   AdwNavigationPage    *interfaces_page;
@@ -170,6 +171,9 @@ dspy_window_connection_activate_cb (DspyWindow  *self,
 
   adw_navigation_view_pop_to_page (self->sidebar_view, self->connections_page);
   adw_navigation_view_push (self->sidebar_view, self->names_page);
+
+  gtk_stack_set_visible_child_name (self->content_stack, "empty");
+  gtk_stack_set_visible_child_name (self->details_stack, "empty");
 }
 
 static void
@@ -191,6 +195,8 @@ dspy_window_name_activate_cb (DspyWindow  *self,
 
   adw_navigation_view_pop_to_page (self->sidebar_view, self->names_page);
   adw_navigation_view_push (self->sidebar_view, self->objects_page);
+
+  gtk_stack_set_visible_child_name (self->content_stack, "content");
 }
 
 static void
@@ -410,6 +416,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, content_stack);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, content_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, details_stack);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_page);
