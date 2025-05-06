@@ -711,9 +711,17 @@
                       <object class="GtkStackPage">
                         <property name="name">empty</property>
                         <property name="child">
-                          <object class="AdwStatusPage">
-                            <property name="title" translatable="yes">Explore Interfaces</property>
-                            <property name="icon-name">org.gnome.dspy-symbolic</property>
+                          <object class="AdwToolbarView">
+                            <child type="top">
+                              <object class="AdwHeaderBar">
+                              </object>
+                            </child>
+                            <property name="content">
+                              <object class="AdwStatusPage">
+                                <property name="title" translatable="yes">Explore Interfaces</property>
+                                <property name="icon-name">org.gnome.dspy-symbolic</property>
+                              </object>
+                            </property>
                           </object>
                         </property>
                       </object>
