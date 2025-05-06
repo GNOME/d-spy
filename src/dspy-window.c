@@ -43,27 +43,23 @@ struct _DspyWindow
   DspyInterface        *interface;
   DspyIntrospectable   *member;
 
+  AdwNavigationView    *sidebar_view;
+  AdwNavigationView    *content_view;
+
   AdwNavigationPage    *connections_page;
+  AdwNavigationPage    *names_page;
+
+  GtkStack             *details_stack;
+
   AdwNavigationPage    *interfaces_page;
   AdwNavigationPage    *members_page;
-  AdwNavigationPage    *names_page;
   AdwNavigationPage    *objects_page;
-  AdwNavigationPage    *property_page;
-
-  AdwNavigationPage    *narrow_connections_page;
-  AdwNavigationPage    *narrow_interfaces_page;
-  AdwNavigationPage    *narrow_members_page;
-  AdwNavigationPage    *narrow_names_page;
-  AdwNavigationPage    *narrow_objects_page;
-  AdwNavigationPage    *narrow_property_page;
 
   GtkListView          *connections_list_view;
   GtkSortListModel     *interfaces_sorted;
   GtkListView          *names_list_view;
   GtkSortListModel     *names_sorted;
   GtkCustomSorter      *names_sorter;
-  AdwNavigationView    *narrow_navigation_view;
-  AdwNavigationView    *navigation_view;
   GtkSortListModel     *objects_sorted;
   AdwActionRow         *property_value;
   AdwToastOverlay      *property_toast;
@@ -172,11 +168,8 @@ dspy_window_connection_activate_cb (DspyWindow  *self,
   if (g_set_object (&self->connection, connection))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_CONNECTION]);
 
-  adw_navigation_view_pop_to_page (self->navigation_view, self->connections_page);
-  adw_navigation_view_push (self->navigation_view, self->names_page);
-
-  adw_navigation_view_pop_to_page (self->narrow_navigation_view, self->narrow_connections_page);
-  adw_navigation_view_push (self->narrow_navigation_view, self->narrow_names_page);
+  adw_navigation_view_pop_to_page (self->sidebar_view, self->connections_page);
+  adw_navigation_view_push (self->sidebar_view, self->names_page);
 }
 
 static void
@@ -196,11 +189,8 @@ dspy_window_name_activate_cb (DspyWindow  *self,
   if (g_set_object (&self->name, name))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NAME]);
 
-  adw_navigation_view_pop_to_page (self->navigation_view, self->names_page);
-  adw_navigation_view_push (self->navigation_view, self->objects_page);
-
-  adw_navigation_view_pop_to_page (self->narrow_navigation_view, self->narrow_names_page);
-  adw_navigation_view_push (self->narrow_navigation_view, self->narrow_objects_page);
+  adw_navigation_view_pop_to_page (self->sidebar_view, self->names_page);
+  adw_navigation_view_push (self->sidebar_view, self->objects_page);
 }
 
 static void
@@ -220,11 +210,7 @@ dspy_window_node_activate_cb (DspyWindow  *self,
   if (g_set_object (&self->node, node))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NODE]);
 
-  adw_navigation_view_pop_to_page (self->navigation_view, self->objects_page);
-  adw_navigation_view_push (self->navigation_view, self->interfaces_page);
-
-  adw_navigation_view_pop_to_page (self->narrow_navigation_view, self->narrow_objects_page);
-  adw_navigation_view_push (self->narrow_navigation_view, self->narrow_interfaces_page);
+  adw_navigation_view_pop_to_page (self->content_view, self->interfaces_page);
 }
 
 static void
@@ -244,11 +230,8 @@ dspy_window_interface_activate_cb (DspyWindow  *self,
   if (g_set_object (&self->interface, interface))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_INTERFACE]);
 
-  adw_navigation_view_pop_to_page (self->navigation_view, self->interfaces_page);
-  adw_navigation_view_push (self->navigation_view, self->members_page);
-
-  adw_navigation_view_pop_to_page (self->narrow_navigation_view, self->narrow_interfaces_page);
-  adw_navigation_view_push (self->narrow_navigation_view, self->narrow_members_page);
+  adw_navigation_view_pop_to_page (self->content_view, self->interfaces_page);
+  adw_navigation_view_push (self->content_view, self->members_page);
 }
 
 static void
@@ -269,15 +252,14 @@ dspy_window_member_activate_cb (DspyWindow  *self,
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MEMBER]);
 
   if (DSPY_IS_PROPERTY (member))
-    dspy_window_update_property_value (self);
-
-  adw_navigation_view_pop_to_page (self->navigation_view, self->members_page);
-  if (DSPY_IS_PROPERTY (member))
-    adw_navigation_view_push (self->navigation_view, self->property_page);
-
-  adw_navigation_view_pop_to_page (self->narrow_navigation_view, self->narrow_members_page);
-  if (DSPY_IS_PROPERTY (member))
-    adw_navigation_view_push (self->narrow_navigation_view, self->narrow_property_page);
+    {
+      dspy_window_update_property_value (self);
+      gtk_stack_set_visible_child_name (self->details_stack, "property");
+    }
+  else
+    {
+      gtk_stack_set_visible_child_name (self->details_stack, "empty");
+    }
 }
 
 static char *
@@ -428,6 +410,8 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, content_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, details_stack);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, members_page);
@@ -435,19 +419,11 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorter);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_connections_page);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_interfaces_page);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_members_page);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_names_page);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_objects_page);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_property_page);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_navigation_view);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, navigation_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_sorted);
-  gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_toast);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_value);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, sidebar_view);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_connection_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_name_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_node_activate_cb);
