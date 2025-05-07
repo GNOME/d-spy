@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-17 22:28+0000\n"
-"PO-Revision-Date: 2025-03-07 23:33+0300\n"
+"POT-Creation-Date: 2025-04-29 17:17+0000\n"
+"PO-Revision-Date: 2025-05-07 05:16+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <Belarusian>\n"
 "Language: be\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
@@ -25,7 +25,7 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -49,6 +49,10 @@ msgstr "Даследаванне і агляд сэрвісаў D-Bus"
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
+#: data/org.gnome.dspy.desktop.in.in:18
+msgid "New Window"
+msgstr "Новае акно"
+
 #. translators: %s is replaced with the address of the D-Bus bus
 #: src/dspy-connection-button.c:76
 #, c-format
@@ -67,11 +71,11 @@ msgstr "_Сеанс"
 msgid "_Other"
 msgstr "_Іншае"
 
-#: src/dspy-method-view.c:191
+#: src/dspy-method-view.c:190
 msgid "Execute"
 msgstr "Запусціць"
 
-#: src/dspy-method-view.c:273
+#: src/dspy-method-view.c:272
 msgid "Cancel"
 msgstr "Скасаваць"
 
@@ -183,43 +187,43 @@ msgstr "Сігналы"
 msgid "Array of [%s]"
 msgstr "Масіў [%s]"
 
-#: src/dspy-view.c:125
+#: src/dspy-view.c:124
 msgid "Bus"
 msgstr "Шына"
 
-#: src/dspy-view.c:167
+#: src/dspy-view.c:166
 msgid "Access Denied by Peer"
 msgstr "Доступ забаронены вузлом"
 
-#: src/dspy-view.c:169
+#: src/dspy-view.c:168
 msgid "Authentication Failed"
 msgstr "Не ўдалося выканаць аўтэнтыфікацыю"
 
-#: src/dspy-view.c:171
+#: src/dspy-view.c:170
 msgid "Operation Timed Out"
 msgstr "Скончыўся тэрмін чакання аперацыі"
 
-#: src/dspy-view.c:173
+#: src/dspy-view.c:172
 msgid "Lost Connection to Bus"
 msgstr "Апошняе злучэнне з шынай"
 
-#: src/dspy-view.c:175
+#: src/dspy-view.c:174
 msgid "D-Bus Connection Failed"
 msgstr "Збой злучэння з шынай"
 
-#: src/dspy-view.c:179
+#: src/dspy-view.c:178
 msgid "_Close"
 msgstr "_Закрыць"
 
-#: src/dspy-view.c:474
+#: src/dspy-view.c:477
 msgid "Connect"
 msgstr "Злучыцца"
 
-#: src/dspy-view.c:475
+#: src/dspy-view.c:478
 msgid "Provide the address of the message bus"
 msgstr "Пазначыць адрас шыны паведамленняў"
 
-#: src/dspy-view.c:477
+#: src/dspy-view.c:480
 msgid "Connect to Other Bus"
 msgstr "Злучыцца з іншай шынай"
 
@@ -243,18 +247,26 @@ msgstr "Выберыце назву шыны D-Bus"
 msgid "Select a bus name to introspect the peer"
 msgstr "Выберыце назву шыны, каб даследаваць вузел"
 
-#: src/dspy-view.ui:160
+#: src/dspy-view.ui:159
 msgid "Refresh"
 msgstr "Абнавіць"
 
-#: src/dspy-view.ui:230
+#: src/dspy-view.ui:235
 msgid "_New Window"
 msgstr "_Новае акно"
 
-#: src/dspy-view.ui:236
+#: src/dspy-view.ui:241
 msgid "_About D-Spy"
 msgstr "_Аб праграме D-Spy"
 
 #: src/gtk/menus.ui:5
 msgid "Connect to Other Bus…"
 msgstr "Злучыцца з іншай шынай…"
+
+#: src/main.c:150
+msgid "Open a new window"
+msgstr "Адкрыць новае акно"
+
+#: src/main.c:151
+msgid "Print version information and exit"
+msgstr "Вывесці звесткі пра версію і выйсці"
