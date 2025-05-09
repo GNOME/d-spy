@@ -27,6 +27,7 @@
 #include "dspy-interface.h"
 #include "dspy-method.h"
 #include "dspy-method-argument.h"
+#include "dspy-method-invocation.h"
 #include "dspy-name.h"
 #include "dspy-node.h"
 #include "dspy-property.h"
@@ -454,15 +455,55 @@ add_connection_action (GtkWidget  *widget,
 }
 
 static void
+dspy_window_method_invoke_cb (GObject      *object,
+                              GAsyncResult *result,
+                              gpointer      user_data)
+{
+  DspyMethodInvocation *invocation = (DspyMethodInvocation *)object;
+  g_autoptr(DspyWindow) self = user_data;
+  g_autoptr(GVariant) reply = NULL;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (DSPY_IS_METHOD_INVOCATION (invocation));
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (G_IS_ASYNC_RESULT (result));
+
+  if (!(reply = dspy_method_invocation_execute_finish (invocation, result, &error)))
+    g_warning ("%s", error->message);
+  else
+    g_message ("Got reply: %s", g_variant_print (reply, TRUE));
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "call-method", TRUE);
+}
+
+static void
 call_method_action (GtkWidget  *widget,
                     const char *action_name,
                     GVariant   *unused)
 {
   DspyWindow *self = DSPY_WINDOW (widget);
+  g_autoptr(DspyMethodInvocation) invocation = NULL;
+  g_autoptr(GVariantBuilder) builder = NULL;
+  g_autoptr(GVariant) params = NULL;
+  g_autofree char *in_signature = NULL;
+  g_autofree char *out_signature = NULL;
   GtkListBoxRow *row;
+  DspyMethod *method;
   guint i = 0;
 
   g_assert (DSPY_IS_WINDOW (self));
+
+  if (!DSPY_IS_METHOD (self->member) ||
+      !DSPY_IS_NAME (self->name) ||
+      !DSPY_IS_INTERFACE (self->interface) ||
+      !DSPY_IS_NODE (self->node))
+    return;
+
+  in_signature = dspy_method_dup_in_signature (DSPY_METHOD (self->member));
+  out_signature = dspy_method_dup_out_signature (DSPY_METHOD (self->member));
+
+  builder = g_variant_builder_new (G_VARIANT_TYPE (in_signature));
+  method = DSPY_METHOD (self->member);
 
   while ((row = gtk_list_box_get_row_at_index (self->in_arguments, i++)))
     {
@@ -478,7 +519,28 @@ call_method_action (GtkWidget  *widget,
           gtk_widget_grab_focus (GTK_WIDGET (row));
           return;
         }
+
+      g_variant_builder_add_value (builder, param);
     }
+
+  params = g_variant_take_ref (g_variant_builder_end (builder));
+
+  invocation = dspy_method_invocation_new ();
+  dspy_method_invocation_set_name (invocation, self->name);
+  dspy_method_invocation_set_method (invocation, method->name);
+  dspy_method_invocation_set_object_path (invocation, self->node->path);
+  dspy_method_invocation_set_interface (invocation, self->interface->name);
+  dspy_method_invocation_set_timeout (invocation, G_MAXINT-1);
+  dspy_method_invocation_set_signature (invocation, in_signature);
+  dspy_method_invocation_set_reply_signature (invocation, out_signature);
+  dspy_method_invocation_set_parameters (invocation, params);
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "call-method", FALSE);
+
+  dspy_method_invocation_execute_async (invocation,
+                                        NULL,
+                                        dspy_window_method_invoke_cb,
+                                        g_object_ref (self));
 }
 
 static void
