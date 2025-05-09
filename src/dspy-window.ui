@@ -56,12 +56,17 @@
                               <object class="AdwToolbarView">
                                 <child type="top">
                                   <object class="AdwHeaderBar">
-                                    <binding name="show-end-title-buttons">
-                                      <lookup name="collapsed">overlay_split_view</lookup>
-                                    </binding>
                                     <child type="title">
                                       <object class="AdwWindowTitle">
                                         <property name="title" translatable="yes">D-Spy</property>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkWindowControls">
+                                        <property name="side">end</property>
+                                        <binding name="visible">
+                                          <lookup name="collapsed">overlay_split_view</lookup>
+                                        </binding>
                                       </object>
                                     </child>
                                     <child type="end">
@@ -154,6 +159,14 @@
                                           <lookup name="address" type="DspyConnection">
                                             <lookup name="connection">DspyWindow</lookup>
                                           </lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkWindowControls">
+                                        <property name="side">end</property>
+                                        <binding name="visible">
+                                          <lookup name="collapsed">overlay_split_view</lookup>
                                         </binding>
                                       </object>
                                     </child>
@@ -307,6 +320,14 @@
                                           <lookup name="subtitle" type="DspyName">
                                             <lookup name="name">DspyWindow</lookup>
                                           </lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkWindowControls">
+                                        <property name="side">end</property>
+                                        <binding name="visible">
+                                          <lookup name="collapsed">overlay_split_view</lookup>
                                         </binding>
                                       </object>
                                     </child>
@@ -484,6 +505,24 @@
                                                 </binding>
                                               </object>
                                             </child>
+                                            <child type="end">
+                                              <object class="GtkWindowControls">
+                                                <property name="side">end</property>
+                                                <binding name="visible">
+                                                  <lookup name="collapsed">overlay_split_view</lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
+                                            <child type="end">
+                                              <object class="GtkMenuButton">
+                                                <property name="menu-model">primary_menu</property>
+                                                <property name="icon-name">open-menu-symbolic</property>
+                                                <property name="primary">true</property>
+                                                <binding name="visible">
+                                                  <lookup name="collapsed">split_view</lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
                                           </object>
                                         </child>
                                         <property name="content">
@@ -610,6 +649,24 @@
                                                   <lookup name="path" type="DspyNode">
                                                     <lookup name="node">DspyWindow</lookup>
                                                   </lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
+                                            <child type="end">
+                                              <object class="GtkWindowControls">
+                                                <property name="side">end</property>
+                                                <binding name="visible">
+                                                  <lookup name="collapsed">overlay_split_view</lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
+                                            <child type="end">
+                                              <object class="GtkMenuButton">
+                                                <property name="menu-model">primary_menu</property>
+                                                <property name="icon-name">open-menu-symbolic</property>
+                                                <property name="primary">true</property>
+                                                <binding name="visible">
+                                                  <lookup name="collapsed">split_view</lookup>
                                                 </binding>
                                               </object>
                                             </child>
