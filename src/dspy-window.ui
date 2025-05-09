@@ -466,6 +466,24 @@
                                       <object class="AdwWindowTitle">
                                       </object>
                                     </child>
+                                    <child type="end">
+                                      <object class="GtkWindowControls">
+                                        <property name="side">end</property>
+                                        <binding name="visible">
+                                          <lookup name="collapsed">overlay_split_view</lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkMenuButton">
+                                        <property name="menu-model">primary_menu</property>
+                                        <property name="icon-name">open-menu-symbolic</property>
+                                        <property name="primary">true</property>
+                                        <binding name="visible">
+                                          <lookup name="collapsed">split_view</lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                                 <property name="content">
