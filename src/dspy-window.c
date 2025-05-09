@@ -356,9 +356,12 @@ dspy_window_dispose (GObject *object)
 
   gtk_widget_dispose_template (GTK_WIDGET (self), DSPY_TYPE_WINDOW);
 
-  g_clear_object (&self->name);
-  g_clear_object (&self->connection);
   g_clear_object (&self->connections);
+  g_clear_object (&self->connection);
+  g_clear_object (&self->name);
+  g_clear_object (&self->node);
+  g_clear_object (&self->interface);
+  g_clear_object (&self->member);
 
   G_OBJECT_CLASS (dspy_window_parent_class)->dispose (object);
 }
