@@ -30,6 +30,7 @@
       <object class="AdwBreakpoint">
         <condition>max-width: 700sp</condition>
         <setter object="split_view" property="collapsed">true</setter>
+        <setter object="overlay_split_view" property="sidebar-width-fraction">.5</setter>
       </object>
     </child>
     <child>
