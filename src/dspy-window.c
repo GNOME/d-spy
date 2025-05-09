@@ -454,6 +454,34 @@ add_connection_action (GtkWidget  *widget,
 }
 
 static void
+call_method_action (GtkWidget  *widget,
+                    const char *action_name,
+                    GVariant   *unused)
+{
+  DspyWindow *self = DSPY_WINDOW (widget);
+  GtkListBoxRow *row;
+  guint i = 0;
+
+  g_assert (DSPY_IS_WINDOW (self));
+
+  while ((row = gtk_list_box_get_row_at_index (self->in_arguments, i++)))
+    {
+      DspyMethodArgument *arg = g_object_get_data (G_OBJECT (row), "METHOD_ARGUMENT");
+      g_autoptr(GVariant) param = NULL;
+
+      g_assert (DSPY_IS_METHOD_ARGUMENT (arg));
+
+      if (!(param = dspy_method_argument_dup_value (arg)) ||
+          dspy_method_argument_has_error (arg))
+        {
+          gtk_widget_add_css_class (GTK_WIDGET (row), "error");
+          gtk_widget_grab_focus (GTK_WIDGET (row));
+          return;
+        }
+    }
+}
+
+static void
 dspy_window_narrow_apply_cb (DspyWindow    *self,
                              AdwBreakpoint *breakpoint)
 {
@@ -621,6 +649,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_install_action (widget_class, "focus-members", NULL, focus_members_action);
   gtk_widget_class_install_action (widget_class, "new-connection", NULL, new_connection_action);
   gtk_widget_class_install_action (widget_class, "add-connection", NULL, add_connection_action);
+  gtk_widget_class_install_action (widget_class, "call-method", NULL, call_method_action);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);

@@ -1417,6 +1417,7 @@
                                     <child>
                                       <object class="GtkButton">
                                         <property name="label" translatable="yes">Call Method</property>
+                                        <property name="action-name">call-method</property>
                                         <property name="halign">center</property>
                                         <style>
                                           <class name="pill"/>
