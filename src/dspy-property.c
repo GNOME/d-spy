@@ -42,6 +42,14 @@ G_DEFINE_FINAL_TYPE (DspyProperty, dspy_property, DSPY_TYPE_INTROSPECTABLE)
 static GParamSpec *properties[N_PROPS];
 
 static char *
+dspy_property_dup_short_title (DspyIntrospectable *introspectable)
+{
+  DspyProperty *self = DSPY_PROPERTY (introspectable);
+
+  return g_strdup (self->name);
+}
+
+static char *
 dspy_property_dup_title (DspyIntrospectable *introspectable)
 {
   DspyProperty *self = DSPY_PROPERTY (introspectable);
@@ -116,6 +124,7 @@ dspy_property_class_init (DspyPropertyClass *klass)
   object_class->get_property = dspy_property_get_property;
 
   introspectable_class->dup_title = dspy_property_dup_title;
+  introspectable_class->dup_short_title = dspy_property_dup_short_title;
 
   properties[PROP_NAME] =
     g_param_spec_string ("name", NULL, NULL,

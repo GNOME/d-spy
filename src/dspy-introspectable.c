@@ -26,6 +26,7 @@
 enum {
   PROP_0,
   PROP_PARENT,
+  PROP_SHORT_TITLE,
   PROP_TITLE,
   N_PROPS
 };
@@ -74,6 +75,10 @@ dspy_introspectable_get_property (GObject    *object,
       g_value_set_object (value, self->parent);
       break;
 
+    case PROP_SHORT_TITLE:
+      g_value_take_string (value, dspy_introspectable_dup_short_title (self));
+      break;
+
     case PROP_TITLE:
       g_value_take_string (value, dspy_introspectable_dup_title (self));
       break;
@@ -103,6 +108,12 @@ dspy_introspectable_class_init (DspyIntrospectableClass *klass)
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
+  properties[PROP_SHORT_TITLE] =
+    g_param_spec_string ("short-title", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -121,4 +132,15 @@ dspy_introspectable_dup_title (DspyIntrospectable *self)
     return DSPY_INTROSPECTABLE_GET_CLASS (self)->dup_title (self);
 
   return NULL;
+}
+
+char *
+dspy_introspectable_dup_short_title (DspyIntrospectable *self)
+{
+  g_return_val_if_fail (DSPY_IS_INTROSPECTABLE (self), NULL);
+
+  if (DSPY_INTROSPECTABLE_GET_CLASS (self)->dup_short_title)
+    return DSPY_INTROSPECTABLE_GET_CLASS (self)->dup_short_title (self);
+
+  return dspy_introspectable_dup_title (self);
 }
