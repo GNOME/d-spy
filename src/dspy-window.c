@@ -203,6 +203,7 @@ dspy_window_name_activate_cb (DspyWindow  *self,
   adw_navigation_view_push (self->sidebar_view, self->objects_page);
 
   gtk_stack_set_visible_child_name (self->content_stack, "empty");
+  gtk_stack_set_visible_child_name (self->details_stack, "empty");
 }
 
 static void
