@@ -22,9 +22,11 @@
 
 #include <glib/gi18n.h>
 
+#include "dspy-argument.h"
 #include "dspy-connection.h"
 #include "dspy-interface.h"
 #include "dspy-method.h"
+#include "dspy-method-argument.h"
 #include "dspy-name.h"
 #include "dspy-node.h"
 #include "dspy-property.h"
@@ -51,6 +53,7 @@ struct _DspyWindow
   AdwDialog              *connection_dialog;
   GtkStack               *content_stack;
   GtkStack               *details_stack;
+  GtkListBox             *in_arguments;
   AdwNavigationPage      *interfaces_page;
   AdwNavigationPage      *members_page;
   AdwNavigationPage      *objects_page;
@@ -260,6 +263,72 @@ dspy_window_interface_activate_cb (DspyWindow  *self,
 }
 
 static void
+update_error_css (DspyMethodArgument *arg,
+                  GParamSpec         *pspec,
+                  GtkWidget          *row)
+{
+  if (dspy_method_argument_has_error (arg))
+    gtk_widget_add_css_class (row, "error");
+  else
+    gtk_widget_remove_css_class (row, "error");
+}
+
+static GtkWidget *
+create_argument_row (gpointer item,
+                     gpointer user_data)
+{
+  DspyArgument *arg = item;
+  g_autoptr(DspyMethodArgument) method_arg = NULL;
+  AdwEntryRow *row;
+  GtkWidget *label;
+
+  method_arg = dspy_method_argument_new (arg->signature, arg->name, NULL);
+
+  label = gtk_label_new (arg->signature);
+  row = g_object_new (ADW_TYPE_ENTRY_ROW,
+                      "title", arg->name,
+                      NULL);
+  adw_entry_row_add_suffix (row, label);
+
+  g_object_bind_property (row, "text",
+                          method_arg, "value-text",
+                          G_BINDING_SYNC_CREATE);
+
+  g_signal_connect_object (method_arg,
+                           "notify::has-error",
+                           G_CALLBACK (update_error_css),
+                           row,
+                           0);
+
+  g_object_set_data_full (G_OBJECT (row),
+                          "METHOD_ARGUMENT",
+                          g_object_ref (method_arg),
+                          g_object_unref);
+
+  return GTK_WIDGET (row);
+}
+
+static void
+dspy_window_update_method (DspyWindow *self,
+                           DspyMethod *method)
+{
+  g_autoptr(GListModel) model = NULL;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (!method || DSPY_IS_METHOD (method));
+
+  if (method == NULL)
+    return;
+
+  model = dspy_method_dup_in_arguments (method);
+
+  gtk_list_box_bind_model (self->in_arguments,
+                           model,
+                           create_argument_row,
+                           NULL, NULL);
+}
+
+static void
 dspy_window_member_activate_cb (DspyWindow  *self,
                                 guint        position,
                                 GtkListView *list_view)
@@ -278,6 +347,8 @@ dspy_window_member_activate_cb (DspyWindow  *self,
 
   if (DSPY_IS_PROPERTY (member))
     dspy_window_update_property_value (self);
+  else if (DSPY_IS_METHOD (member))
+    dspy_window_update_method (self, DSPY_METHOD (member));
 
   if (DSPY_IS_PROPERTY (member))
     gtk_stack_set_visible_child_name (self->details_stack, "property");
@@ -520,6 +591,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, content_stack);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, content_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, details_stack);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, in_arguments);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, members_page);

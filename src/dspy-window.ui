@@ -1403,12 +1403,8 @@
                                 <child>
                                   <object class="AdwPreferencesGroup">
                                     <property name="title" translatable="yes">Parameters</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="AdwPreferencesGroup">
                                     <child>
-                                      <object class="GtkListBox">
+                                      <object class="GtkListBox" id="in_arguments">
                                         <style>
                                           <class name="boxed-list"/>
                                         </style>
