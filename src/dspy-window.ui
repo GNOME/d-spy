@@ -447,8 +447,8 @@
                                 <property name="content">
                                   <object class="AdwStatusPage">
                                     <property name="icon-name">list-symbolic</property>
-                                    <property name="title" translatable="yes">Select a Bus Name</property>
-                                    <property name="description" translatable="yes">Select a name on the bus to explore available objects.</property>
+                                    <property name="title" translatable="yes">Explore Objects</property>
+                                    <property name="description" translatable="yes">Select a bus to explore objects</property>
                                   </object>
                                 </property>
                               </object>
@@ -765,7 +765,8 @@
                             <property name="content">
                               <object class="AdwStatusPage">
                                 <property name="title" translatable="yes">Explore Interfaces</property>
-                                <property name="icon-name">org.gnome.dspy-symbolic</property>
+                                <property name="description" translatable="yes">Select an object to explore members</property>
+                                <property name="icon-name">code-symbolic</property>
                               </object>
                             </property>
                           </object>
