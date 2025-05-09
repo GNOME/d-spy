@@ -35,7 +35,7 @@
     </child>
     <property name="content">
       <object class="AdwOverlaySplitView" id="overlay_split_view">
-        <property name="sidebar-width-fraction">.5</property>
+        <property name="sidebar-width-fraction">.66</property>
         <property name="max-sidebar-width">800</property>
         <property name="sidebar">
           <object class="AdwNavigationPage">
