@@ -27,7 +27,8 @@
       </object>
     </child>
     <child>
-      <object class="AdwBreakpoint">
+      <object class="AdwBreakpoint" id="narrow_breakpoint">
+        <signal name="apply" handler="dspy_window_narrow_apply_cb" swapped="true"/>
         <condition>max-width: 500sp</condition>
         <setter object="overlay_split_view" property="collapsed">true</setter>
         <setter object="split_view" property="collapsed">true</setter>

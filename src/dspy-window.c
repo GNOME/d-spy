@@ -45,17 +45,14 @@ struct _DspyWindow
 
   AdwNavigationView      *sidebar_view;
   AdwNavigationView      *content_view;
-
   AdwNavigationPage      *connections_page;
   AdwNavigationPage      *names_page;
-
   GtkStack               *content_stack;
   GtkStack               *details_stack;
-
   AdwNavigationPage      *interfaces_page;
   AdwNavigationPage      *members_page;
   AdwNavigationPage      *objects_page;
-
+  AdwBreakpoint          *narrow_breakpoint;
   AdwOverlaySplitView    *overlay_split_view;
   AdwNavigationSplitView *split_view;
   GtkListView            *connections_list_view;
@@ -350,6 +347,20 @@ focus_members_action (GtkWidget  *widget,
 }
 
 static void
+dspy_window_narrow_apply_cb (DspyWindow    *self,
+                             AdwBreakpoint *breakpoint)
+{
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (ADW_IS_BREAKPOINT (breakpoint));
+
+  if (self->node == NULL)
+    {
+      adw_overlay_split_view_set_show_sidebar (self->overlay_split_view, TRUE);
+      adw_navigation_split_view_set_show_content (self->split_view, FALSE);
+    }
+}
+
+static void
 dspy_window_dispose (GObject *object)
 {
   DspyWindow *self = (DspyWindow *)object;
@@ -465,6 +476,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorter);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_breakpoint);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, overlay_split_view);
@@ -474,6 +486,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, split_view);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_connection_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_name_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, dspy_window_narrow_apply_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_node_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_interface_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_member_activate_cb);
