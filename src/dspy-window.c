@@ -43,10 +43,12 @@ struct _DspyWindow
   DspyInterface          *interface;
   DspyIntrospectable     *member;
 
+  AdwEntryRow            *new_connection_entry;
   AdwNavigationView      *sidebar_view;
   AdwNavigationView      *content_view;
   AdwNavigationPage      *connections_page;
   AdwNavigationPage      *names_page;
+  AdwDialog              *connection_dialog;
   GtkStack               *content_stack;
   GtkStack               *details_stack;
   AdwNavigationPage      *interfaces_page;
@@ -347,6 +349,38 @@ focus_members_action (GtkWidget  *widget,
 }
 
 static void
+new_connection_action (GtkWidget  *widget,
+                       const char *action_name,
+                       GVariant   *param)
+{
+  DspyWindow *self = DSPY_WINDOW (widget);
+
+  g_assert (DSPY_IS_WINDOW (self));
+
+  adw_dialog_present (self->connection_dialog, widget);
+}
+
+static void
+add_connection_action (GtkWidget  *widget,
+                       const char *action_name,
+                       GVariant   *param)
+{
+  DspyWindow *self = DSPY_WINDOW (widget);
+  g_autoptr(DspyConnection) connection = NULL;
+  const char *text;
+
+  g_assert (DSPY_IS_WINDOW (self));
+
+  text = gtk_editable_get_text (GTK_EDITABLE (self->new_connection_entry));
+  connection = dspy_connection_new_for_address (text);
+
+  if (connection != NULL)
+    g_list_store_append (self->connections, connection);
+
+  adw_dialog_close (self->connection_dialog);
+}
+
+static void
 dspy_window_narrow_apply_cb (DspyWindow    *self,
                              AdwBreakpoint *breakpoint)
 {
@@ -358,6 +392,20 @@ dspy_window_narrow_apply_cb (DspyWindow    *self,
       adw_overlay_split_view_set_show_sidebar (self->overlay_split_view, TRUE);
       adw_navigation_split_view_set_show_content (self->split_view, FALSE);
     }
+}
+
+static void
+new_connection_entry_changed_cb (DspyWindow  *self,
+                                 AdwEntryRow *entry)
+{
+  const char *text;
+
+  g_assert (DSPY_IS_WINDOW (self));
+  g_assert (ADW_IS_ENTRY_ROW (entry));
+
+  text = gtk_editable_get_text (GTK_EDITABLE (entry));
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "add-connection", text[0] != 0);
 }
 
 static void
@@ -464,6 +512,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, connection_dialog);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, content_stack);
@@ -477,6 +526,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorter);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, narrow_breakpoint);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, new_connection_entry);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, overlay_split_view);
@@ -491,9 +541,12 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_interface_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_member_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, get_member_header_text);
+  gtk_widget_class_bind_template_callback (widget_class, new_connection_entry_changed_cb);
   gtk_widget_class_install_action (widget_class, "property.refresh", NULL, property_refresh_action);
   gtk_widget_class_install_action (widget_class, "property.copy", NULL, property_copy_action);
   gtk_widget_class_install_action (widget_class, "focus-members", NULL, focus_members_action);
+  gtk_widget_class_install_action (widget_class, "new-connection", NULL, new_connection_action);
+  gtk_widget_class_install_action (widget_class, "add-connection", NULL, add_connection_action);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);
@@ -531,6 +584,8 @@ dspy_window_init (DspyWindow *self)
   gtk_custom_sorter_set_sort_func (self->names_sorter,
                                    dspy_window_sort_names,
                                    NULL, NULL);
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "add-connection", FALSE);
 }
 
 GtkWidget *

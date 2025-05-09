@@ -18,6 +18,12 @@
             <property name="action">action(window.close)</property>
           </object>
         </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Control&gt;b</property>
+            <property name="action">action(new-connection)</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
@@ -1071,11 +1077,65 @@
       </object>
     </property>
   </template>
+  <object class="AdwDialog" id="connection_dialog">
+    <property name="content-width">400</property>
+    <property name="child">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <child type="title">
+              <object class="AdwWindowTitle">
+                <property name="title" translatable="yes">New Connection</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesPage">
+            <child>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="AdwEntryRow" id="new_connection_entry">
+                    <property name="title" translatable="yes">Bus Address</property>
+                    <property name="input-hints">no-emoji</property>
+                    <signal name="changed" handler="new_connection_entry_changed_cb" swapped="true"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">Connect</property>
+                    <property name="halign">center</property>
+                    <property name="width-request">150</property>
+                    <property name="action-name">add-connection</property>
+                    <style>
+                      <class name="pill"/>
+                      <class name="large-button"/>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+  </object>
   <menu id="primary_menu">
     <section>
       <item>
         <attribute name="label" translatable="yes">_New Window</attribute>
         <attribute name="action">app.new-window</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Connect to Other _Bus</attribute>
+        <attribute name="action">new-connection</attribute>
       </item>
     </section>
     <section>
