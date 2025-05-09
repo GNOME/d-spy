@@ -193,10 +193,16 @@ dspy_window_name_activate_cb (DspyWindow  *self,
   if (g_set_object (&self->name, name))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NAME]);
 
+  if (g_set_object (&self->member, NULL))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MEMBER]);
+
+  if (g_set_object (&self->interface, NULL))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_INTERFACE]);
+
   adw_navigation_view_pop_to_page (self->sidebar_view, self->names_page);
   adw_navigation_view_push (self->sidebar_view, self->objects_page);
 
-  gtk_stack_set_visible_child_name (self->content_stack, "content");
+  gtk_stack_set_visible_child_name (self->content_stack, "empty");
 }
 
 static void
@@ -216,7 +222,16 @@ dspy_window_node_activate_cb (DspyWindow  *self,
   if (g_set_object (&self->node, node))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NODE]);
 
+  if (g_set_object (&self->interface, NULL))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_INTERFACE]);
+
+  if (g_set_object (&self->interface, NULL))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MEMBER]);
+
   adw_navigation_view_pop_to_page (self->content_view, self->interfaces_page);
+
+  gtk_stack_set_visible_child_name (self->content_stack, "content");
+  gtk_stack_set_visible_child_name (self->details_stack, "empty");
 }
 
 static void

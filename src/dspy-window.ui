@@ -20,15 +20,28 @@
         </child>
       </object>
     </child>
+    <child>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 500sp</condition>
+        <setter object="overlay_split_view" property="collapsed">true</setter>
+        <setter object="split_view" property="collapsed">true</setter>
+      </object>
+    </child>
+    <child>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 700sp</condition>
+        <setter object="split_view" property="collapsed">true</setter>
+      </object>
+    </child>
     <property name="content">
-      <object class="AdwOverlaySplitView">
+      <object class="AdwOverlaySplitView" id="overlay_split_view">
         <property name="sidebar-width-fraction">.5</property>
         <property name="max-sidebar-width">800</property>
         <property name="sidebar">
           <object class="AdwNavigationPage">
             <property name="title" translatable="yes">D-Spy</property>
             <property name="child">
-              <object class="AdwNavigationSplitView">
+              <object class="AdwNavigationSplitView" id="split_view">
                 <property name="sidebar-width-fraction">.5</property>
                 <property name="max-sidebar-width">400</property>
                 <property name="sidebar">
@@ -434,6 +447,8 @@
                                 <property name="content">
                                   <object class="AdwStatusPage">
                                     <property name="icon-name">list-symbolic</property>
+                                    <property name="title" translatable="yes">Select a Bus Name</property>
+                                    <property name="description" translatable="yes">Select a name on the bus to explore available objects.</property>
                                   </object>
                                 </property>
                               </object>
@@ -764,6 +779,15 @@
                           <object class="AdwToolbarView">
                             <child type="top">
                               <object class="AdwHeaderBar">
+                                <child type="title">
+                                  <object class="AdwWindowTitle">
+                                    <binding name="title">
+                                      <lookup name="short-title" type="DspyIntrospectable">
+                                        <lookup name="member">DspyWindow</lookup>
+                                      </lookup>
+                                    </binding>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                             <property name="content">
