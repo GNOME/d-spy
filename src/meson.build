@@ -6,6 +6,7 @@ dspy_sources = [
   'dspy-introspectable-row.c',
   'dspy-introspectable.c',
   'dspy-introspection.c',
+  'dspy-method-argument.c',
   'dspy-method-invocation.c',
   'dspy-method.c',
   'dspy-name.c',
