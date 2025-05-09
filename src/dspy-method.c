@@ -29,13 +29,53 @@ enum {
   PROP_0,
   PROP_NAME,
   PROP_IN_ARGS,
+  PROP_IN_SIGNATURE,
   PROP_OUT_ARGS,
+  PROP_OUT_SIGNATURE,
   N_PROPS
 };
 
 G_DEFINE_FINAL_TYPE (DspyMethod, dspy_method, DSPY_TYPE_INTROSPECTABLE)
 
 static GParamSpec *properties[N_PROPS];
+
+static char *
+dspy_method_dup_in_signature (DspyMethod *self)
+{
+  GString *str = g_string_new ("(");
+
+  for (const GList *iter = self->in_args.head; iter; iter = iter->next)
+    {
+      DspyArgument *arg = iter->data;
+      g_string_append (str, arg->signature);
+    }
+
+  g_string_append (str, ")");
+
+  return g_string_free (str, FALSE);
+}
+
+static char *
+dspy_method_dup_out_signature (DspyMethod *self)
+{
+  GString *str = g_string_new ("(");
+
+  for (const GList *iter = self->out_args.head; iter; iter = iter->next)
+    {
+      DspyArgument *arg = iter->data;
+      g_string_append (str, arg->signature);
+    }
+
+  g_string_append (str, ")");
+
+  return g_string_free (str, FALSE);
+}
+
+static char *
+dspy_method_dup_short_title (DspyIntrospectable *introspectable)
+{
+  return g_strdup (DSPY_METHOD (introspectable)->name);
+}
 
 static char *
 dspy_method_dup_title (DspyIntrospectable *introspectable)
@@ -106,8 +146,16 @@ dspy_method_get_property (GObject    *object,
       g_value_take_object (value, dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->in_args));
       break;
 
+    case PROP_IN_SIGNATURE:
+      g_value_take_string (value, dspy_method_dup_in_signature (self));
+      break;
+
     case PROP_OUT_ARGS:
       g_value_take_object (value, dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->out_args));
+      break;
+
+    case PROP_OUT_SIGNATURE:
+      g_value_take_string (value, dspy_method_dup_out_signature (self));
       break;
 
     default:
@@ -125,6 +173,7 @@ dspy_method_class_init (DspyMethodClass *klass)
   object_class->get_property = dspy_method_get_property;
 
   introspectable_class->dup_title = dspy_method_dup_title;
+  introspectable_class->dup_short_title = dspy_method_dup_short_title;
 
   properties[PROP_NAME] =
     g_param_spec_string ("name", NULL, NULL,
@@ -138,9 +187,21 @@ dspy_method_class_init (DspyMethodClass *klass)
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
+  properties[PROP_IN_SIGNATURE] =
+    g_param_spec_string ("in-signature", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
   properties[PROP_OUT_ARGS] =
     g_param_spec_object ("out-args", NULL, NULL,
                          G_TYPE_LIST_MODEL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_OUT_SIGNATURE] =
+    g_param_spec_string ("out-signature", NULL, NULL,
+                         NULL,
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 

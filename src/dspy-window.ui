@@ -1241,6 +1241,171 @@
                         </property>
                       </object>
                     </child>
+                    <child>
+                      <object class="GtkStackPage">
+                        <property name="name">method</property>
+                        <property name="child">
+                          <object class="AdwToolbarView">
+                            <child type="top">
+                              <object class="AdwHeaderBar">
+                                <child type="start">
+                                  <object class="GtkButton">
+                                    <property name="icon-name">go-previous-symbolic</property>
+                                    <property name="action-name">focus-members</property>
+                                    <property name="tooltip-text" translatable="yes">Members</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child type="title">
+                                  <object class="AdwWindowTitle">
+                                    <binding name="title">
+                                      <lookup name="short-title" type="DspyIntrospectable">
+                                        <lookup name="member">DspyWindow</lookup>
+                                      </lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child type="end">
+                                  <object class="GtkMenuButton">
+                                    <property name="menu-model">primary_menu</property>
+                                    <property name="icon-name">open-menu-symbolic</property>
+                                    <property name="primary">true</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <property name="content">
+                              <object class="AdwPreferencesPage">
+                                <child>
+                                  <object class="AdwPreferencesGroup">
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Bus</property>
+                                        <binding name="subtitle">
+                                          <lookup name="title" type="DspyConnection">
+                                            <lookup name="connection">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Bus Name</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Owner</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="subtitle" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Object Path</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="path" type="DspyNode">
+                                            <lookup name="node">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Interface</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyInterface">
+                                            <lookup name="interface">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwPreferencesGroup">
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Method</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyMethod">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Parameters</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="in-signature" type="DspyMethod">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Return Type</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="out-signature" type="DspyMethod">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>

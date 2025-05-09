@@ -277,18 +277,16 @@ dspy_window_member_activate_cb (DspyWindow  *self,
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MEMBER]);
 
   if (DSPY_IS_PROPERTY (member))
-    {
-      dspy_window_update_property_value (self);
-      gtk_stack_set_visible_child_name (self->details_stack, "property");
-    }
+    dspy_window_update_property_value (self);
+
+  if (DSPY_IS_PROPERTY (member))
+    gtk_stack_set_visible_child_name (self->details_stack, "property");
   else if (DSPY_IS_SIGNAL (member))
-    {
-      gtk_stack_set_visible_child_name (self->details_stack, "signal");
-    }
+    gtk_stack_set_visible_child_name (self->details_stack, "signal");
+  else if (DSPY_IS_METHOD (member))
+    gtk_stack_set_visible_child_name (self->details_stack, "method");
   else
-    {
-      gtk_stack_set_visible_child_name (self->details_stack, "empty");
-    }
+    gtk_stack_set_visible_child_name (self->details_stack, "empty");
 
   if (adw_overlay_split_view_get_collapsed (self->overlay_split_view))
     adw_overlay_split_view_set_show_sidebar (self->overlay_split_view, FALSE);
