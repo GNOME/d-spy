@@ -37,4 +37,16 @@ struct _DspyMethod
   GQueue              out_args;
 };
 
+static inline GListModel *
+dspy_method_dup_in_arguments (DspyMethod *self)
+{
+  return dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->in_args);
+}
+
+static inline GListModel *
+dspy_method_dup_out_arguments (DspyMethod *self)
+{
+  return dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->out_args);
+}
+
 G_END_DECLS
