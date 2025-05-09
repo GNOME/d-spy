@@ -281,6 +281,10 @@ dspy_window_member_activate_cb (DspyWindow  *self,
       dspy_window_update_property_value (self);
       gtk_stack_set_visible_child_name (self->details_stack, "property");
     }
+  else if (DSPY_IS_SIGNAL (member))
+    {
+      gtk_stack_set_visible_child_name (self->details_stack, "signal");
+    }
   else
     {
       gtk_stack_set_visible_child_name (self->details_stack, "empty");

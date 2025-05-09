@@ -28,14 +28,22 @@
 enum {
   PROP_0,
   PROP_ARGS,
+  PROP_ARGS_SIGNATURE,
   PROP_NAME,
   PROP_SIGNATURE,
+  PROP_ARGS_HELP,
   N_PROPS
 };
 
 G_DEFINE_FINAL_TYPE (DspySignal, dspy_signal, DSPY_TYPE_INTROSPECTABLE)
 
 static GParamSpec *properties[N_PROPS];
+
+static char *
+dspy_signal_dup_short_title (DspyIntrospectable *introspectable)
+{
+  return g_strdup (DSPY_SIGNAL (introspectable)->name);
+}
 
 static char *
 dspy_signal_dup_title (DspyIntrospectable *introspectable)
@@ -52,6 +60,46 @@ dspy_signal_dup_title (DspyIntrospectable *introspectable)
 
       if (iter->prev != NULL)
         g_string_append (str, ", ");
+      g_string_append_printf (str, "<b>%s</b>", sig);
+      if (!dspy_argument_name_is_generated (arg))
+        g_string_append_printf (str, " %s", arg->name);
+    }
+
+  g_string_append (str, ")");
+
+  return g_string_free (str, FALSE);
+}
+
+static char *
+dspy_signal_dup_args_signature (DspySignal *self)
+{
+  GString *str = g_string_new ("(");
+
+  for (const GList *iter = self->args.head; iter; iter = iter->next)
+    {
+      DspyArgument *arg = iter->data;
+      g_string_append (str, arg->signature);
+    }
+
+  g_string_append (str, ")");
+
+  return g_string_free (str, FALSE);
+}
+
+static char *
+dspy_signal_dup_args_help (DspySignal *self)
+{
+  GString *str = g_string_new (NULL);
+
+  g_string_append (str, "(");
+
+  for (const GList *iter = self->args.head; iter; iter = iter->next)
+    {
+      DspyArgument *arg = iter->data;
+      g_autofree char *sig = _dspy_signature_humanize (arg->signature);
+
+      if (iter->prev != NULL)
+        g_string_append (str, ",\n ");
       g_string_append_printf (str, "<b>%s</b>", sig);
       if (!dspy_argument_name_is_generated (arg))
         g_string_append_printf (str, " %s", arg->name);
@@ -89,11 +137,22 @@ dspy_signal_get_property (GObject    *object,
       break;
 
     case PROP_SIGNATURE:
-      g_value_set_string (value, self->signature);
+      if (self->signature == NULL || self->signature[0] == 0)
+        g_value_set_static_string (value, "()");
+      else
+        g_value_set_string (value, self->signature);
+      break;
+
+    case PROP_ARGS_HELP:
+      g_value_take_string (value, dspy_signal_dup_args_help (self));
       break;
 
     case PROP_ARGS:
       g_value_take_object (value, dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->args));
+      break;
+
+    case PROP_ARGS_SIGNATURE:
+      g_value_take_string (value, dspy_signal_dup_args_signature (self));
       break;
 
     default:
@@ -111,6 +170,7 @@ dspy_signal_class_init (DspySignalClass *klass)
   object_class->get_property = dspy_signal_get_property;
 
   introspectable_class->dup_title = dspy_signal_dup_title;
+  introspectable_class->dup_short_title = dspy_signal_dup_short_title;
 
   properties[PROP_NAME] =
     g_param_spec_string ("name", NULL, NULL,
@@ -118,8 +178,20 @@ dspy_signal_class_init (DspySignalClass *klass)
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
+  properties[PROP_ARGS_SIGNATURE] =
+    g_param_spec_string ("args-signature", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
   properties[PROP_SIGNATURE] =
     g_param_spec_string ("signature", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_ARGS_HELP] =
+    g_param_spec_string ("args-help", NULL, NULL,
                          NULL,
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
