@@ -22,14 +22,14 @@
     </child>
     <child>
       <object class="AdwBreakpoint">
-        <condition>max-width: 500sp</condition>
-        <setter object="overlay_split_view" property="collapsed">true</setter>
+        <condition>max-width: 700sp</condition>
         <setter object="split_view" property="collapsed">true</setter>
       </object>
     </child>
     <child>
       <object class="AdwBreakpoint">
-        <condition>max-width: 700sp</condition>
+        <condition>max-width: 500sp</condition>
+        <setter object="overlay_split_view" property="collapsed">true</setter>
         <setter object="split_view" property="collapsed">true</setter>
       </object>
     </child>
@@ -56,6 +56,9 @@
                               <object class="AdwToolbarView">
                                 <child type="top">
                                   <object class="AdwHeaderBar">
+                                    <binding name="show-end-title-buttons">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
                                     <child type="title">
                                       <object class="AdwWindowTitle">
                                         <property name="title" translatable="yes">D-Spy</property>
@@ -760,8 +763,28 @@
                           <object class="AdwToolbarView">
                             <child type="top">
                               <object class="AdwHeaderBar">
+                                <child type="start">
+                                  <object class="GtkButton">
+                                    <property name="icon-name">go-previous-symbolic</property>
+                                    <property name="action-name">focus-members</property>
+                                    <property name="tooltip-text" translatable="yes">Members</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
                                 <child type="title">
                                   <object class="AdwWindowTitle">
+                                  </object>
+                                </child>
+                                <child type="end">
+                                  <object class="GtkMenuButton">
+                                    <property name="menu-model">primary_menu</property>
+                                    <property name="icon-name">open-menu-symbolic</property>
+                                    <property name="primary">true</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
                                   </object>
                                 </child>
                               </object>
@@ -784,12 +807,32 @@
                           <object class="AdwToolbarView">
                             <child type="top">
                               <object class="AdwHeaderBar">
+                                <child type="start">
+                                  <object class="GtkButton">
+                                    <property name="icon-name">go-previous-symbolic</property>
+                                    <property name="action-name">focus-members</property>
+                                    <property name="tooltip-text" translatable="yes">Members</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
                                 <child type="title">
                                   <object class="AdwWindowTitle">
                                     <binding name="title">
                                       <lookup name="short-title" type="DspyIntrospectable">
                                         <lookup name="member">DspyWindow</lookup>
                                       </lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child type="end">
+                                  <object class="GtkMenuButton">
+                                    <property name="menu-model">primary_menu</property>
+                                    <property name="icon-name">open-menu-symbolic</property>
+                                    <property name="primary">true</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
                                     </binding>
                                   </object>
                                 </child>

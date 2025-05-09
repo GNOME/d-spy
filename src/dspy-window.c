@@ -34,36 +34,38 @@
 
 struct _DspyWindow
 {
-  AdwApplicationWindow  parent_instance;
+  AdwApplicationWindow    parent_instance;
 
-  GListStore           *connections;
-  DspyConnection       *connection;
-  DspyName             *name;
-  DspyNode             *node;
-  DspyInterface        *interface;
-  DspyIntrospectable   *member;
+  GListStore             *connections;
+  DspyConnection         *connection;
+  DspyName               *name;
+  DspyNode               *node;
+  DspyInterface          *interface;
+  DspyIntrospectable     *member;
 
-  AdwNavigationView    *sidebar_view;
-  AdwNavigationView    *content_view;
+  AdwNavigationView      *sidebar_view;
+  AdwNavigationView      *content_view;
 
-  AdwNavigationPage    *connections_page;
-  AdwNavigationPage    *names_page;
+  AdwNavigationPage      *connections_page;
+  AdwNavigationPage      *names_page;
 
-  GtkStack             *content_stack;
-  GtkStack             *details_stack;
+  GtkStack               *content_stack;
+  GtkStack               *details_stack;
 
-  AdwNavigationPage    *interfaces_page;
-  AdwNavigationPage    *members_page;
-  AdwNavigationPage    *objects_page;
+  AdwNavigationPage      *interfaces_page;
+  AdwNavigationPage      *members_page;
+  AdwNavigationPage      *objects_page;
 
-  GtkListView          *connections_list_view;
-  GtkSortListModel     *interfaces_sorted;
-  GtkListView          *names_list_view;
-  GtkSortListModel     *names_sorted;
-  GtkCustomSorter      *names_sorter;
-  GtkSortListModel     *objects_sorted;
-  AdwActionRow         *property_value;
-  AdwToastOverlay      *property_toast;
+  AdwOverlaySplitView    *overlay_split_view;
+  AdwNavigationSplitView *split_view;
+  GtkListView            *connections_list_view;
+  GtkSortListModel       *interfaces_sorted;
+  GtkListView            *names_list_view;
+  GtkSortListModel       *names_sorted;
+  GtkCustomSorter        *names_sorter;
+  GtkSortListModel       *objects_sorted;
+  AdwActionRow           *property_value;
+  AdwToastOverlay        *property_toast;
 };
 
 G_DEFINE_FINAL_TYPE (DspyWindow, dspy_window, ADW_TYPE_APPLICATION_WINDOW)
@@ -233,6 +235,8 @@ dspy_window_node_activate_cb (DspyWindow  *self,
 
   gtk_stack_set_visible_child_name (self->content_stack, "content");
   gtk_stack_set_visible_child_name (self->details_stack, "empty");
+
+  adw_navigation_split_view_set_show_content (self->split_view, TRUE);
 }
 
 static void
@@ -282,6 +286,9 @@ dspy_window_member_activate_cb (DspyWindow  *self,
     {
       gtk_stack_set_visible_child_name (self->details_stack, "empty");
     }
+
+  if (adw_overlay_split_view_get_collapsed (self->overlay_split_view))
+    adw_overlay_split_view_set_show_sidebar (self->overlay_split_view, FALSE);
 }
 
 static char *
@@ -327,6 +334,19 @@ property_copy_action (GtkWidget  *widget,
                                                  "timeout", 2,
                                                  NULL));
     }
+}
+
+static void
+focus_members_action (GtkWidget  *widget,
+                      const char *action_name,
+                      GVariant   *param)
+{
+  DspyWindow *self = DSPY_WINDOW (widget);
+
+  g_assert (DSPY_IS_WINDOW (self));
+
+  adw_overlay_split_view_set_show_sidebar (self->overlay_split_view, TRUE);
+  adw_navigation_split_view_set_show_content (self->split_view, TRUE);
 }
 
 static void
@@ -444,9 +464,11 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorter);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_sorted);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, overlay_split_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_toast);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_value);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, sidebar_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, split_view);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_connection_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_name_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_node_activate_cb);
@@ -455,6 +477,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, get_member_header_text);
   gtk_widget_class_install_action (widget_class, "property.refresh", NULL, property_refresh_action);
   gtk_widget_class_install_action (widget_class, "property.copy", NULL, property_copy_action);
+  gtk_widget_class_install_action (widget_class, "focus-members", NULL, focus_members_action);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);
