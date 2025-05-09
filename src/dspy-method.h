@@ -49,4 +49,7 @@ dspy_method_dup_out_arguments (DspyMethod *self)
   return dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->out_args);
 }
 
+char *dspy_method_dup_in_signature  (DspyMethod *self);
+char *dspy_method_dup_out_signature (DspyMethod *self);
+
 G_END_DECLS

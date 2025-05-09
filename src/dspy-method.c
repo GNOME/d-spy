@@ -39,7 +39,7 @@ G_DEFINE_FINAL_TYPE (DspyMethod, dspy_method, DSPY_TYPE_INTROSPECTABLE)
 
 static GParamSpec *properties[N_PROPS];
 
-static char *
+char *
 dspy_method_dup_in_signature (DspyMethod *self)
 {
   GString *str = g_string_new ("(");
@@ -55,7 +55,7 @@ dspy_method_dup_in_signature (DspyMethod *self)
   return g_string_free (str, FALSE);
 }
 
-static char *
+char *
 dspy_method_dup_out_signature (DspyMethod *self)
 {
   GString *str = g_string_new ("(");
