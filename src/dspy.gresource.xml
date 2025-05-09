@@ -6,5 +6,6 @@
     <file>style.css</file>
     <file preprocess="xml-stripblanks">icons/scalable/actions/code-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/scalable/actions/list-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/warning-outline-symbolic.svg</file>
   </gresource>
 </gresources>
