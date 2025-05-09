@@ -760,6 +760,10 @@
                           <object class="AdwToolbarView">
                             <child type="top">
                               <object class="AdwHeaderBar">
+                                <child type="title">
+                                  <object class="AdwWindowTitle">
+                                  </object>
+                                </child>
                               </object>
                             </child>
                             <property name="content">
