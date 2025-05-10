@@ -360,6 +360,10 @@ dspy_window_member_activate_cb (DspyWindow  *self,
   if (g_set_object (&self->member, member))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MEMBER]);
 
+  self->last_call_at = 0;
+  self->min_duration = 0;
+  self->max_duration = 0;
+
   gtk_text_buffer_set_text (self->result_buffer, "", 0);
   gtk_widget_set_visible (GTK_WIDGET (self->result_group), FALSE);
 
