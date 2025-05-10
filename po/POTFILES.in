@@ -1,17 +1,12 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
 data/org.gnome.dspy.appdata.xml.in.in
 data/org.gnome.dspy.desktop.in.in
 data/org.gnome.dspy.gschema.xml
-src/dspy-connection-button.c
-src/dspy-method-view.c
-src/dspy-method-view.ui
-src/dspy-name-marquee.ui
-src/dspy-name-row.c
-src/dspy-node.c
+src/dspy-connection.c
+src/dspy-name.c
+src/dspy-property.c
 src/dspy-signature.c
-src/dspy-tree-view.c
-src/dspy-view.c
-src/dspy-view.ui
 src/dspy-window.c
 src/dspy-window.ui
-src/gtk/menus.ui
 src/main.c
