@@ -75,6 +75,10 @@ struct _DspyWindow
   GtkSortListModel       *objects_sorted;
   AdwActionRow           *property_value;
   AdwToastOverlay        *property_toast;
+  GtkTextBuffer          *result_buffer;
+  AdwPreferencesGroup    *result_group;
+  GtkTextView            *result_view;
+  GtkWidget              *result_frame;
 
   gint64                  last_call_at;
   gint64                  min_duration;
@@ -356,6 +360,9 @@ dspy_window_member_activate_cb (DspyWindow  *self,
   if (g_set_object (&self->member, member))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MEMBER]);
 
+  gtk_text_buffer_set_text (self->result_buffer, "", 0);
+  gtk_widget_set_visible (GTK_WIDGET (self->result_group), FALSE);
+
   if (DSPY_IS_PROPERTY (member))
     dspy_window_update_property_value (self);
   else if (DSPY_IS_METHOD (member))
@@ -481,13 +488,23 @@ dspy_window_method_invoke_cb (GObject      *object,
   g_assert (G_IS_ASYNC_RESULT (result));
 
   if (!(reply = dspy_method_invocation_execute_finish (invocation, result, &error)))
-    g_warning ("%s", error->message);
+    {
+      g_warning ("%s", error->message);
+
+      gtk_text_buffer_set_text (self->result_buffer, error->message, -1);
+      gtk_widget_set_visible (GTK_WIDGET (self->result_group), TRUE);
+      gtk_widget_add_css_class (GTK_WIDGET (self->result_frame), "error");
+    }
   else
     {
+      g_autofree char *res_string = NULL;
       gint64 now = g_get_monotonic_time ();
       gint64 duration = now - self->last_call_at;
 
-      g_message ("Got reply: %s", g_variant_print (reply, TRUE));
+      res_string = g_variant_print (reply, TRUE);
+      gtk_text_buffer_set_text (self->result_buffer, res_string, -1);
+      gtk_widget_set_visible (GTK_WIDGET (self->result_group), TRUE);
+      gtk_widget_remove_css_class (GTK_WIDGET (self->result_frame), "error");
 
       if (self->min_duration == 0 || duration < self->min_duration)
         {
@@ -522,6 +539,8 @@ dspy_window_method_invoke_cb (GObject      *object,
   g_clear_object (&self->cancellable);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "call-method", TRUE);
   gtk_stack_set_visible_child_name (self->call_button_stack, "call");
+
+  gtk_widget_grab_focus (GTK_WIDGET (self->result_view));
 }
 
 static void
@@ -766,6 +785,10 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, overlay_split_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_toast);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_value);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, result_buffer);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, result_frame);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, result_group);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, result_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, sidebar_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, split_view);
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_connection_activate_cb);
