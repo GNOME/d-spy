@@ -1415,15 +1415,41 @@
                                 <child>
                                   <object class="AdwPreferencesGroup">
                                     <child>
-                                      <object class="GtkButton">
-                                        <property name="label" translatable="yes">Call Method</property>
-                                        <property name="action-name">call-method</property>
+                                      <object class="GtkStack" id="call_button_stack">
                                         <property name="halign">center</property>
-                                        <style>
-                                          <class name="pill"/>
-                                          <class name="large-button"/>
-                                          <class name="suggested-action"/>
-                                        </style>
+                                        <property name="hhomogeneous">true</property>
+                                        <child>
+                                          <object class="GtkStackPage">
+                                            <property name="name">call</property>
+                                            <property name="child">
+                                              <object class="GtkButton">
+                                                <property name="label" translatable="yes">Call Method</property>
+                                                <property name="action-name">call-method</property>
+                                                <style>
+                                                  <class name="pill"/>
+                                                  <class name="large-button"/>
+                                                  <class name="suggested-action"/>
+                                                </style>
+                                              </object>
+                                            </property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkStackPage">
+                                            <property name="name">cancel</property>
+                                            <property name="child">
+                                              <object class="GtkButton">
+                                                <property name="label" translatable="yes">Cancel</property>
+                                                <property name="action-name">cancel-call</property>
+                                                <style>
+                                                  <class name="pill"/>
+                                                  <class name="large-button"/>
+                                                  <class name="destructive-action"/>
+                                                </style>
+                                              </object>
+                                            </property>
+                                          </object>
+                                        </child>
                                       </object>
                                     </child>
                                   </object>

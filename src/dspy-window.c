@@ -45,7 +45,9 @@ struct _DspyWindow
   DspyNode               *node;
   DspyInterface          *interface;
   DspyIntrospectable     *member;
+  GCancellable           *cancellable;
 
+  GtkStack               *call_button_stack;
   AdwEntryRow            *new_connection_entry;
   AdwNavigationView      *sidebar_view;
   AdwNavigationView      *content_view;
@@ -473,7 +475,17 @@ dspy_window_method_invoke_cb (GObject      *object,
   else
     g_message ("Got reply: %s", g_variant_print (reply, TRUE));
 
+  g_clear_object (&self->cancellable);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "call-method", TRUE);
+  gtk_stack_set_visible_child_name (self->call_button_stack, "call");
+}
+
+static void
+cancel_call_action (GtkWidget  *widget,
+                    const char *action_name,
+                    GVariant   *unused)
+{
+  g_cancellable_cancel (DSPY_WINDOW (widget)->cancellable);
 }
 
 static void
@@ -537,8 +549,14 @@ call_method_action (GtkWidget  *widget,
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "call-method", FALSE);
 
+  g_cancellable_cancel (self->cancellable);
+  g_clear_object (&self->cancellable);
+  self->cancellable = g_cancellable_new ();
+
+  gtk_stack_set_visible_child_name (self->call_button_stack, "cancel");
+
   dspy_method_invocation_execute_async (invocation,
-                                        NULL,
+                                        self->cancellable,
                                         dspy_window_method_invoke_cb,
                                         g_object_ref (self));
 }
@@ -578,6 +596,7 @@ dspy_window_dispose (GObject *object)
 
   gtk_widget_dispose_template (GTK_WIDGET (self), DSPY_TYPE_WINDOW);
 
+  g_clear_object (&self->cancellable);
   g_clear_object (&self->connections);
   g_clear_object (&self->connection);
   g_clear_object (&self->name);
@@ -675,6 +694,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/dspy/dspy-window.ui");
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, call_button_stack);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connection_dialog);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, connections_page);
@@ -712,6 +732,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_install_action (widget_class, "new-connection", NULL, new_connection_action);
   gtk_widget_class_install_action (widget_class, "add-connection", NULL, add_connection_action);
   gtk_widget_class_install_action (widget_class, "call-method", NULL, call_method_action);
+  gtk_widget_class_install_action (widget_class, "cancel-call", NULL, cancel_call_action);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);
