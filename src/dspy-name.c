@@ -493,7 +493,8 @@ dspy_name_dup_subtitle (DspyName *self)
     {
       if (str->len > 0)
         g_string_append_c (str, ' ');
-      g_string_append_printf (str, "PID: %u", self->pid);
+      /* translators: PID refers to "process identifier" */
+      g_string_append_printf (str, _("PID: %u"), self->pid);
     }
 
   if (str->len == 0)
