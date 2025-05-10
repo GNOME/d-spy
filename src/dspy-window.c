@@ -47,6 +47,9 @@ struct _DspyWindow
   DspyIntrospectable     *member;
   GCancellable           *cancellable;
 
+  AdwActionRow           *dur_row;
+  AdwActionRow           *min_row;
+  AdwActionRow           *max_row;
   GtkStack               *call_button_stack;
   AdwEntryRow            *new_connection_entry;
   AdwNavigationView      *sidebar_view;
@@ -71,6 +74,10 @@ struct _DspyWindow
   GtkSortListModel       *objects_sorted;
   AdwActionRow           *property_value;
   AdwToastOverlay        *property_toast;
+
+  gint64                  last_call_at;
+  gint64                  min_duration;
+  gint64                  max_duration;
 };
 
 G_DEFINE_FINAL_TYPE (DspyWindow, dspy_window, ADW_TYPE_APPLICATION_WINDOW)
@@ -473,7 +480,39 @@ dspy_window_method_invoke_cb (GObject      *object,
   if (!(reply = dspy_method_invocation_execute_finish (invocation, result, &error)))
     g_warning ("%s", error->message);
   else
-    g_message ("Got reply: %s", g_variant_print (reply, TRUE));
+    {
+      gint64 now = g_get_monotonic_time ();
+      gint64 duration = now - self->last_call_at;
+
+      g_message ("Got reply: %s", g_variant_print (reply, TRUE));
+
+      if (self->min_duration == 0 || duration < self->min_duration)
+        {
+          double v = (double)duration / (double)G_USEC_PER_SEC;
+          g_autofree char *str = g_strdup_printf ("%0.4lf %s", v, _("msec"));
+
+          self->min_duration = duration;
+
+          adw_action_row_set_subtitle (self->min_row, str);
+        }
+
+      if (duration > self->max_duration)
+        {
+          double v = (double)duration / (double)G_USEC_PER_SEC;
+          g_autofree char *str = g_strdup_printf ("%0.4lf %s", v, _("msec"));
+
+          self->max_duration = duration;
+
+          adw_action_row_set_subtitle (self->max_row, str);
+        }
+
+        {
+          double v = (double)duration / (double)G_USEC_PER_SEC;
+          g_autofree char *str = g_strdup_printf ("%0.4lf %s", v, _("msec"));
+
+          adw_action_row_set_subtitle (self->dur_row, str);
+        }
+    }
 
   g_clear_object (&self->cancellable);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "call-method", TRUE);
@@ -554,6 +593,8 @@ call_method_action (GtkWidget  *widget,
   self->cancellable = g_cancellable_new ();
 
   gtk_stack_set_visible_child_name (self->call_button_stack, "cancel");
+
+  self->last_call_at = g_get_monotonic_time ();
 
   dspy_method_invocation_execute_async (invocation,
                                         self->cancellable,
@@ -705,6 +746,9 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, interfaces_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, members_page);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, max_row);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, min_row);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, dur_row);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorted);
