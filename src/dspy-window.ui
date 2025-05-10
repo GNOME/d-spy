@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
   <template class="DspyWindow" parent="AdwApplicationWindow">
-    <property name="default_width">600</property>
-    <property name="default_height">300</property>
+    <property name="default-width">600</property>
+    <property name="default-height">300</property>
     <property name="title" translatable="yes">D-Spy</property>
     <child>
       <object class="GtkShortcutController">
@@ -20,12 +18,1579 @@
             <property name="action">action(window.close)</property>
           </object>
         </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Control&gt;b</property>
+            <property name="action">action(new-connection)</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
-      <object class="DspyView" id="view">
-        <property name="vexpand">true</property>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 700sp</condition>
+        <setter object="split_view" property="collapsed">true</setter>
+        <setter object="overlay_split_view" property="sidebar-width-fraction">.5</setter>
       </object>
     </child>
+    <child>
+      <object class="AdwBreakpoint" id="narrow_breakpoint">
+        <signal name="apply" handler="dspy_window_narrow_apply_cb" swapped="true"/>
+        <condition>max-width: 500sp</condition>
+        <setter object="overlay_split_view" property="collapsed">true</setter>
+        <setter object="split_view" property="collapsed">true</setter>
+      </object>
+    </child>
+    <property name="content">
+      <object class="AdwOverlaySplitView" id="overlay_split_view">
+        <property name="sidebar-width-fraction">.66</property>
+        <property name="max-sidebar-width">800</property>
+        <property name="sidebar">
+          <object class="AdwNavigationPage">
+            <property name="title" translatable="yes">D-Spy</property>
+            <property name="child">
+              <object class="AdwNavigationSplitView" id="split_view">
+                <property name="sidebar-width-fraction">.5</property>
+                <property name="max-sidebar-width">400</property>
+                <property name="sidebar">
+                  <object class="AdwNavigationPage">
+                    <property name="title"></property>
+                    <property name="child">
+                      <object class="AdwNavigationView" id="sidebar_view">
+                        <child>
+                          <object class="AdwNavigationPage" id="connections_page">
+                            <property name="title" translatable="yes">Connections</property>
+                            <property name="child">
+                              <object class="AdwToolbarView">
+                                <child type="top">
+                                  <object class="AdwHeaderBar">
+                                    <child type="title">
+                                      <object class="AdwWindowTitle">
+                                        <property name="title" translatable="yes">D-Spy</property>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkWindowControls">
+                                        <property name="side">end</property>
+                                        <binding name="visible">
+                                          <lookup name="collapsed">overlay_split_view</lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkMenuButton">
+                                        <property name="menu-model">primary_menu</property>
+                                        <property name="icon-name">open-menu-symbolic</property>
+                                        <property name="primary">true</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <property name="content">
+                                  <object class="GtkScrolledWindow">
+                                    <property name="hscrollbar-policy">never</property>
+                                    <property name="vexpand">true</property>
+                                    <child>
+                                      <object class="GtkListView" id="connections_list_view">
+                                        <style>
+                                          <class name="navigation-sidebar"/>
+                                        </style>
+                                        <property name="single-click-activate">true</property>
+                                        <signal name="activate" handler="dspy_window_connection_activate_cb" swapped="true"/>
+                                        <property name="model">
+                                          <object class="GtkNoSelection" id="connections_selection">
+                                            <binding name="model">
+                                              <lookup name="connections">DspyWindow</lookup>
+                                            </binding>
+                                          </object>
+                                        </property>
+                                        <property name="factory">
+                                          <object class="GtkBuilderListItemFactory">
+                                            <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="ellipsize">middle</property>
+            <property name="xalign">0</property>
+            <binding name="label">
+              <lookup name="title" type="DspyConnection">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+            <style>
+              <class name="sidebar-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">warning-outline-symbolic</property>
+            <binding name="visible">
+              <lookup name="has-error" type="DspyConnection">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-next-symbolic</property>
+            <property name="halign">end</property>
+            <property name="hexpand">true</property>
+          </object>
+        </child>
+      </object>
+    </property>
   </template>
+</interface>
+]]>
+                                            </property>
+                                          </object>
+                                        </property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </property>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwNavigationPage" id="names_page">
+                            <property name="title" translatable="yes">Bus Names</property>
+                            <property name="child">
+                              <object class="AdwToolbarView">
+                                <child type="top">
+                                  <object class="AdwHeaderBar">
+                                    <child type="title">
+                                      <object class="AdwWindowTitle">
+                                        <binding name="title">
+                                          <lookup name="title" type="DspyConnection">
+                                            <lookup name="connection">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <binding name="subtitle">
+                                          <lookup name="address" type="DspyConnection">
+                                            <lookup name="connection">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkWindowControls">
+                                        <property name="side">end</property>
+                                        <binding name="visible">
+                                          <lookup name="collapsed">overlay_split_view</lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkMenuButton">
+                                        <property name="menu-model">primary_menu</property>
+                                        <property name="icon-name">open-menu-symbolic</property>
+                                        <property name="primary">true</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <property name="content">
+                                  <object class="GtkBox">
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkSearchEntry">
+                                        <property name="placeholder-text" translatable="yes">Filter…</property>
+                                        <property name="margin-bottom">6</property>
+                                        <property name="margin-end">6</property>
+                                        <property name="margin-start">6</property>
+                                        <property name="margin-top">6</property>
+                                        <property name="text" bind-source="names_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkScrolledWindow">
+                                        <property name="hscrollbar-policy">never</property>
+                                        <property name="vexpand">true</property>
+                                        <child>
+                                          <object class="GtkListView" id="names_list_view">
+                                            <style>
+                                              <class name="navigation-sidebar"/>
+                                            </style>
+                                            <property name="single-click-activate">true</property>
+                                            <signal name="activate" handler="dspy_window_name_activate_cb" swapped="true"/>
+                                            <property name="model">
+                                              <object class="GtkNoSelection" id="names_selection">
+                                                <property name="model">
+                                                  <object class="GtkFilterListModel" id="names_filtered">
+                                                    <property name="filter">
+                                                      <object class="GtkStringFilter" id="names_filter">
+                                                        <property name="search"></property>
+                                                        <property name="expression">
+                                                          <lookup name="search-text" type="DspyName"/>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                    <property name="model">
+                                                      <object class="GtkSortListModel" id="names_sorted">
+                                                        <property name="sorter">
+                                                          <object class="GtkCustomSorter" id="names_sorter">
+                                                          </object>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                  </object>
+                                                </property>
+                                              </object>
+                                            </property>
+                                            <property name="factory">
+                                              <object class="GtkBuilderListItemFactory">
+                                                <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="hexpand">true</property>
+                <property name="ellipsize">middle</property>
+                <property name="xalign">0</property>
+                <binding name="label">
+                  <lookup name="name" type="DspyName">
+                    <lookup name="item">GtkListItem</lookup>
+                  </lookup>
+                </binding>
+                <binding name="tooltip-text">
+                  <lookup name="name" type="DspyName">
+                    <lookup name="item">GtkListItem</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="spacing">6</property>
+                <style>
+                  <class name="caption"/>
+                  <class name="dimmed"/>
+                </style>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="xalign">0</property>
+                    <property name="ellipsize">end</property>
+                    <binding name="label">
+                      <lookup name="subtitle" type="DspyName">
+                        <lookup name="item">GtkListItem</lookup>
+                      </lookup>
+                    </binding>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-next-symbolic</property>
+            <property name="valign">center</property>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                                                </property>
+                                              </object>
+                                            </property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </property>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwNavigationPage" id="objects_page">
+                            <property name="title" translatable="yes">Objects</property>
+                            <property name="child">
+                              <object class="AdwToolbarView">
+                                <child type="top">
+                                  <object class="AdwHeaderBar">
+                                    <child type="title">
+                                      <object class="AdwWindowTitle">
+                                        <binding name="title">
+                                          <lookup name="name" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <binding name="subtitle">
+                                          <lookup name="subtitle" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkWindowControls">
+                                        <property name="side">end</property>
+                                        <binding name="visible">
+                                          <lookup name="collapsed">overlay_split_view</lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkMenuButton">
+                                        <property name="menu-model">primary_menu</property>
+                                        <property name="icon-name">open-menu-symbolic</property>
+                                        <property name="primary">true</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <property name="content">
+                                  <object class="GtkBox">
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkSearchEntry">
+                                        <property name="placeholder-text" translatable="yes">Filter…</property>
+                                        <property name="margin-bottom">6</property>
+                                        <property name="margin-end">6</property>
+                                        <property name="margin-start">6</property>
+                                        <property name="margin-top">6</property>
+                                        <property name="text" bind-source="objects_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkScrolledWindow">
+                                        <property name="hscrollbar-policy">never</property>
+                                        <property name="vexpand">true</property>
+                                        <child>
+                                          <object class="GtkListView" id="objects_list_view">
+                                            <style>
+                                              <class name="navigation-sidebar"/>
+                                            </style>
+                                            <signal name="activate" handler="dspy_window_node_activate_cb" swapped="true"/>
+                                            <property name="single-click-activate">true</property>
+                                            <property name="model">
+                                              <object class="GtkNoSelection" id="objects_selection">
+                                                <property name="model">
+                                                  <object class="GtkFilterListModel" id="objects_filtered">
+                                                    <property name="filter">
+                                                      <object class="GtkStringFilter" id="objects_filter">
+                                                        <property name="search"></property>
+                                                        <property name="expression">
+                                                          <lookup name="title" type="DspyIntrospectable"/>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                    <property name="model">
+                                                      <object class="GtkSortListModel" id="objects_sorted">
+                                                        <binding name="model">
+                                                          <lookup name="introspection" type="DspyName">
+                                                            <lookup name="name">DspyWindow</lookup>
+                                                          </lookup>
+                                                        </binding>
+                                                        <property name="sorter">
+                                                          <object class="GtkStringSorter" id="objects_sorter">
+                                                            <property name="expression">
+                                                              <lookup name="title" type="DspyIntrospectable"/>
+                                                            </property>
+                                                          </object>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                  </object>
+                                                </property>
+                                              </object>
+                                            </property>
+                                            <property name="factory">
+                                              <object class="GtkBuilderListItemFactory">
+                                                <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="hexpand">true</property>
+            <property name="ellipsize">middle</property>
+            <property name="xalign">0</property>
+            <property name="use-markup">true</property>
+            <binding name="label">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+            <binding name="tooltip-markup">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-next-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                                                </property>
+                                              </object>
+                                            </property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </property>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </property>
+                <property name="content">
+                  <object class="AdwNavigationPage">
+                    <property name="title" translatable="yes">Interfaces</property>
+                    <property name="child">
+                      <object class="GtkStack" id="content_stack">
+                        <child>
+                          <object class="GtkStackPage">
+                            <property name="name">empty</property>
+                            <property name="child">
+                              <object class="AdwToolbarView">
+                                <child type="top">
+                                  <object class="AdwHeaderBar">
+                                    <child type="title">
+                                      <object class="AdwWindowTitle">
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkWindowControls">
+                                        <property name="side">end</property>
+                                        <binding name="visible">
+                                          <lookup name="collapsed">overlay_split_view</lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                    <child type="end">
+                                      <object class="GtkMenuButton">
+                                        <property name="menu-model">primary_menu</property>
+                                        <property name="icon-name">open-menu-symbolic</property>
+                                        <property name="primary">true</property>
+                                        <binding name="visible">
+                                          <lookup name="collapsed">split_view</lookup>
+                                        </binding>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <property name="content">
+                                  <object class="AdwStatusPage">
+                                    <property name="icon-name">list-symbolic</property>
+                                    <property name="title" translatable="yes">Explore Objects</property>
+                                    <property name="description" translatable="yes">Select a bus to explore objects</property>
+                                  </object>
+                                </property>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkStackPage">
+                            <property name="name">content</property>
+                            <property name="child">
+                              <object class="AdwNavigationView" id="content_view">
+                                <child>
+                                  <object class="AdwNavigationPage" id="interfaces_page">
+                                    <property name="title" translatable="yes">Interfaces</property>
+                                    <property name="child">
+                                      <object class="AdwToolbarView">
+                                        <child type="top">
+                                          <object class="AdwHeaderBar">
+                                            <child type="title">
+                                              <object class="AdwWindowTitle">
+                                                <binding name="title">
+                                                  <lookup name="path" type="DspyNode">
+                                                    <lookup name="node">DspyWindow</lookup>
+                                                  </lookup>
+                                                </binding>
+                                                <binding name="subtitle">
+                                                  <lookup name="name" type="DspyName">
+                                                    <lookup name="name">DspyWindow</lookup>
+                                                  </lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
+                                            <child type="end">
+                                              <object class="GtkWindowControls">
+                                                <property name="side">end</property>
+                                                <binding name="visible">
+                                                  <lookup name="collapsed">overlay_split_view</lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
+                                            <child type="end">
+                                              <object class="GtkMenuButton">
+                                                <property name="menu-model">primary_menu</property>
+                                                <property name="icon-name">open-menu-symbolic</property>
+                                                <property name="primary">true</property>
+                                                <binding name="visible">
+                                                  <lookup name="collapsed">split_view</lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <property name="content">
+                                          <object class="GtkBox">
+                                            <property name="orientation">vertical</property>
+                                            <child>
+                                              <object class="GtkSearchEntry">
+                                                <property name="placeholder-text" translatable="yes">Filter…</property>
+                                                <property name="margin-bottom">6</property>
+                                                <property name="margin-end">6</property>
+                                                <property name="margin-start">6</property>
+                                                <property name="margin-top">6</property>
+                                                <property name="text" bind-source="interfaces_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkScrolledWindow">
+                                                <property name="hscrollbar-policy">never</property>
+                                                <property name="vexpand">true</property>
+                                                <child>
+                                                  <object class="GtkListView" id="interfaces_list_view">
+                                                    <style>
+                                                      <class name="navigation-sidebar"/>
+                                                    </style>
+                                                    <property name="single-click-activate">true</property>
+                                                    <signal name="activate" handler="dspy_window_interface_activate_cb" swapped="true"/>
+                                                    <property name="model">
+                                                      <object class="GtkNoSelection" id="interfaces_selection">
+                                                        <property name="model">
+                                                          <object class="GtkFilterListModel" id="interfaces_filtered">
+                                                            <property name="filter">
+                                                              <object class="GtkStringFilter" id="interfaces_filter">
+                                                                <property name="search"></property>
+                                                                <property name="expression">
+                                                                  <lookup name="title" type="DspyIntrospectable"/>
+                                                                </property>
+                                                              </object>
+                                                            </property>
+                                                            <property name="model">
+                                                              <object class="GtkSortListModel" id="interfaces_sorted">
+                                                                <binding name="model">
+                                                                  <lookup name="interfaces" type="DspyNode">
+                                                                    <lookup name="node">DspyWindow</lookup>
+                                                                  </lookup>
+                                                                </binding>
+                                                                <property name="sorter">
+                                                                  <object class="GtkStringSorter" id="interfaces_sorter">
+                                                                    <property name="expression">
+                                                                      <lookup name="title" type="DspyIntrospectable"/>
+                                                                    </property>
+                                                                  </object>
+                                                                </property>
+                                                              </object>
+                                                            </property>
+                                                          </object>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                    <property name="factory">
+                                                      <object class="GtkBuilderListItemFactory">
+                                                        <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="hexpand">true</property>
+            <property name="ellipsize">middle</property>
+            <property name="xalign">0</property>
+            <property name="use-markup">true</property>
+            <binding name="label">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+            <binding name="tooltip-markup">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-next-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </property>
+                                      </object>
+                                    </property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwNavigationPage" id="members_page">
+                                    <property name="title" translatable="yes">Members</property>
+                                    <property name="child">
+                                      <object class="AdwToolbarView">
+                                        <child type="top">
+                                          <object class="AdwHeaderBar">
+                                            <child type="title">
+                                              <object class="AdwWindowTitle">
+                                                <binding name="title">
+                                                  <lookup name="name" type="DspyInterface">
+                                                    <lookup name="interface">DspyWindow</lookup>
+                                                  </lookup>
+                                                </binding>
+                                                <binding name="subtitle">
+                                                  <lookup name="path" type="DspyNode">
+                                                    <lookup name="node">DspyWindow</lookup>
+                                                  </lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
+                                            <child type="end">
+                                              <object class="GtkWindowControls">
+                                                <property name="side">end</property>
+                                                <binding name="visible">
+                                                  <lookup name="collapsed">overlay_split_view</lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
+                                            <child type="end">
+                                              <object class="GtkMenuButton">
+                                                <property name="menu-model">primary_menu</property>
+                                                <property name="icon-name">open-menu-symbolic</property>
+                                                <property name="primary">true</property>
+                                                <binding name="visible">
+                                                  <lookup name="collapsed">split_view</lookup>
+                                                </binding>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <property name="content">
+                                          <object class="GtkBox">
+                                            <property name="orientation">vertical</property>
+                                            <child>
+                                              <object class="GtkSearchEntry">
+                                                <property name="placeholder-text" translatable="yes">Filter…</property>
+                                                <property name="margin-bottom">6</property>
+                                                <property name="margin-end">6</property>
+                                                <property name="margin-start">6</property>
+                                                <property name="margin-top">6</property>
+                                                <property name="text" bind-source="members_filter" bind-property="search" bind-flags="sync-create|bidirectional"/>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkScrolledWindow">
+                                                <property name="hscrollbar-policy">never</property>
+                                                <property name="vexpand">true</property>
+                                                <child>
+                                                  <object class="GtkListView" id="members_list_view">
+                                                    <style>
+                                                      <class name="navigation-sidebar"/>
+                                                    </style>
+                                                    <property name="single-click-activate">true</property>
+                                                    <signal name="activate" handler="dspy_window_member_activate_cb" swapped="true"/>
+                                                    <property name="model">
+                                                      <object class="GtkNoSelection" id="members_selection">
+                                                        <property name="model">
+                                                          <object class="GtkFilterListModel" id="members_filtered">
+                                                            <property name="filter">
+                                                              <object class="GtkStringFilter" id="members_filter">
+                                                                <property name="search"></property>
+                                                                <property name="expression">
+                                                                  <lookup name="title" type="DspyIntrospectable"/>
+                                                                </property>
+                                                              </object>
+                                                            </property>
+                                                            <binding name="model">
+                                                              <lookup name="members" type="DspyInterface">
+                                                                <lookup name="interface">DspyWindow</lookup>
+                                                              </lookup>
+                                                            </binding>
+                                                          </object>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                    <property name="header-factory">
+                                                      <object class="GtkBuilderListItemFactory">
+                                                        <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListHeader">
+    <property name="child">
+      <object class="GtkLabel">
+        <property name="hexpand">true</property>
+        <property name="xalign">0</property>
+        <property name="margin-start">15</property>
+        <style>
+          <class name="title"/>
+        </style>
+        <binding name="label">
+          <closure function="get_member_header_text" type="gchararray">
+            <lookup name="item">GtkListHeader</lookup>
+          </closure>
+        </binding>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                    <property name="factory">
+                                                      <object class="GtkBuilderListItemFactory">
+                                                        <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="hexpand">true</property>
+            <property name="ellipsize">middle</property>
+            <property name="xalign">0</property>
+            <property name="use-markup">true</property>
+            <binding name="label">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+            <binding name="tooltip-markup">
+              <lookup name="title" type="DspyIntrospectable">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-next-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                                                        </property>
+                                                      </object>
+                                                    </property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </property>
+                                      </object>
+                                    </property>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </property>
+              </object>
+            </property>
+          </object>
+        </property>
+        <property name="content">
+          <object class="AdwNavigationPage">
+            <property name="title" translatable="yes">Details</property>
+            <property name="child">
+              <object class="AdwToastOverlay" id="property_toast">
+                <child>
+                  <object class="GtkStack" id="details_stack">
+                    <child>
+                      <object class="GtkStackPage">
+                        <property name="name">empty</property>
+                        <property name="child">
+                          <object class="AdwToolbarView">
+                            <child type="top">
+                              <object class="AdwHeaderBar">
+                                <child type="start">
+                                  <object class="GtkButton">
+                                    <property name="icon-name">go-previous-symbolic</property>
+                                    <property name="action-name">focus-members</property>
+                                    <property name="tooltip-text" translatable="yes">Members</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child type="title">
+                                  <object class="AdwWindowTitle">
+                                  </object>
+                                </child>
+                                <child type="end">
+                                  <object class="GtkMenuButton">
+                                    <property name="menu-model">primary_menu</property>
+                                    <property name="icon-name">open-menu-symbolic</property>
+                                    <property name="primary">true</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <property name="content">
+                              <object class="AdwStatusPage">
+                                <property name="title" translatable="yes">Explore Interfaces</property>
+                                <property name="description" translatable="yes">Select an object to explore members</property>
+                                <property name="icon-name">code-symbolic</property>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkStackPage">
+                        <property name="name">property</property>
+                        <property name="child">
+                          <object class="AdwToolbarView">
+                            <child type="top">
+                              <object class="AdwHeaderBar">
+                                <child type="start">
+                                  <object class="GtkButton">
+                                    <property name="icon-name">go-previous-symbolic</property>
+                                    <property name="action-name">focus-members</property>
+                                    <property name="tooltip-text" translatable="yes">Members</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child type="title">
+                                  <object class="AdwWindowTitle">
+                                    <binding name="title">
+                                      <lookup name="short-title" type="DspyIntrospectable">
+                                        <lookup name="member">DspyWindow</lookup>
+                                      </lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child type="end">
+                                  <object class="GtkMenuButton">
+                                    <property name="menu-model">primary_menu</property>
+                                    <property name="icon-name">open-menu-symbolic</property>
+                                    <property name="primary">true</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <property name="content">
+                              <object class="AdwPreferencesPage">
+                                <child>
+                                  <object class="AdwPreferencesGroup">
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Bus</property>
+                                        <binding name="subtitle">
+                                          <lookup name="title" type="DspyConnection">
+                                            <lookup name="connection">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Bus Name</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Owner</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="subtitle" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Object Path</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="path" type="DspyNode">
+                                            <lookup name="node">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Interface</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyInterface">
+                                            <lookup name="interface">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwPreferencesGroup">
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Property</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyProperty">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Type Signature</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="signature" type="DspyProperty">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow" id="property_value">
+                                        <property name="title" translatable="yes">Value</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <property name="activatable-widget">refresh_button</property>
+                                        <binding name="subtitle">
+                                          <lookup name="value" type="DspyProperty">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <child type="suffix">
+                                          <object class="GtkButton" id="copy_property_button">
+                                            <property name="action-name">property.copy</property>
+                                            <property name="icon-name">edit-copy-symbolic</property>
+                                            <property name="valign">center</property>
+                                            <style>
+                                              <class name="flat"/>
+                                            </style>
+                                          </object>
+                                        </child>
+                                        <child type="suffix">
+                                          <object class="GtkButton" id="refresh_button">
+                                            <property name="action-name">property.refresh</property>
+                                            <property name="icon-name">view-refresh-symbolic</property>
+                                            <property name="valign">center</property>
+                                            <style>
+                                              <class name="flat"/>
+                                            </style>
+                                          </object>
+                                        </child>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkStackPage">
+                        <property name="name">signal</property>
+                        <property name="child">
+                          <object class="AdwToolbarView">
+                            <child type="top">
+                              <object class="AdwHeaderBar">
+                                <child type="start">
+                                  <object class="GtkButton">
+                                    <property name="icon-name">go-previous-symbolic</property>
+                                    <property name="action-name">focus-members</property>
+                                    <property name="tooltip-text" translatable="yes">Members</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child type="title">
+                                  <object class="AdwWindowTitle">
+                                    <binding name="title">
+                                      <lookup name="short-title" type="DspyIntrospectable">
+                                        <lookup name="member">DspyWindow</lookup>
+                                      </lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child type="end">
+                                  <object class="GtkMenuButton">
+                                    <property name="menu-model">primary_menu</property>
+                                    <property name="icon-name">open-menu-symbolic</property>
+                                    <property name="primary">true</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <property name="content">
+                              <object class="AdwPreferencesPage">
+                                <child>
+                                  <object class="AdwPreferencesGroup">
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Bus</property>
+                                        <binding name="subtitle">
+                                          <lookup name="title" type="DspyConnection">
+                                            <lookup name="connection">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Bus Name</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Owner</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="subtitle" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Object Path</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="path" type="DspyNode">
+                                            <lookup name="node">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Interface</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyInterface">
+                                            <lookup name="interface">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwPreferencesGroup">
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Signal</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspySignal">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Signature</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="args-help" type="DspySignal">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <child type="suffix">
+                                          <object class="GtkLabel">
+                                            <property name="selectable">true</property>
+                                            <binding name="label">
+                                              <lookup name="args-signature" type="DspySignal">
+                                                <lookup name="member">DspyWindow</lookup>
+                                              </lookup>
+                                            </binding>
+                                          </object>
+                                        </child>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkStackPage">
+                        <property name="name">method</property>
+                        <property name="child">
+                          <object class="AdwToolbarView">
+                            <child type="top">
+                              <object class="AdwHeaderBar">
+                                <child type="start">
+                                  <object class="GtkButton">
+                                    <property name="icon-name">go-previous-symbolic</property>
+                                    <property name="action-name">focus-members</property>
+                                    <property name="tooltip-text" translatable="yes">Members</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child type="title">
+                                  <object class="AdwWindowTitle">
+                                    <binding name="title">
+                                      <lookup name="short-title" type="DspyIntrospectable">
+                                        <lookup name="member">DspyWindow</lookup>
+                                      </lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                                <child type="end">
+                                  <object class="GtkMenuButton">
+                                    <property name="menu-model">primary_menu</property>
+                                    <property name="icon-name">open-menu-symbolic</property>
+                                    <property name="primary">true</property>
+                                    <binding name="visible">
+                                      <lookup name="collapsed">overlay_split_view</lookup>
+                                    </binding>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <property name="content">
+                              <object class="AdwPreferencesPage">
+                                <child>
+                                  <object class="AdwPreferencesGroup">
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Bus</property>
+                                        <binding name="subtitle">
+                                          <lookup name="title" type="DspyConnection">
+                                            <lookup name="connection">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Bus Name</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Owner</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="subtitle" type="DspyName">
+                                            <lookup name="name">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Object Path</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="path" type="DspyNode">
+                                            <lookup name="node">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Interface</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyInterface">
+                                            <lookup name="interface">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwPreferencesGroup">
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Method</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="name" type="DspyMethod">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Parameters</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="in-signature" type="DspyMethod">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Return Type</property>
+                                        <property name="subtitle-selectable">true</property>
+                                        <binding name="subtitle">
+                                          <lookup name="out-signature" type="DspyMethod">
+                                            <lookup name="member">DspyWindow</lookup>
+                                          </lookup>
+                                        </binding>
+                                        <style>
+                                          <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwPreferencesGroup">
+                                    <property name="title" translatable="yes">Parameters</property>
+                                    <child>
+                                      <object class="GtkListBox" id="in_arguments">
+                                        <style>
+                                          <class name="boxed-list"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwPreferencesGroup">
+                                    <child>
+                                      <object class="GtkStack" id="call_button_stack">
+                                        <property name="halign">center</property>
+                                        <property name="hhomogeneous">true</property>
+                                        <child>
+                                          <object class="GtkStackPage">
+                                            <property name="name">call</property>
+                                            <property name="child">
+                                              <object class="GtkButton">
+                                                <property name="label" translatable="yes">Call Method</property>
+                                                <property name="action-name">call-method</property>
+                                                <style>
+                                                  <class name="pill"/>
+                                                  <class name="large-button"/>
+                                                  <class name="suggested-action"/>
+                                                </style>
+                                              </object>
+                                            </property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkStackPage">
+                                            <property name="name">cancel</property>
+                                            <property name="child">
+                                              <object class="GtkButton">
+                                                <property name="label" translatable="yes">Cancel</property>
+                                                <property name="action-name">cancel-call</property>
+                                                <style>
+                                                  <class name="pill"/>
+                                                  <class name="large-button"/>
+                                                  <class name="destructive-action"/>
+                                                </style>
+                                              </object>
+                                            </property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwPreferencesGroup" id="result_group">
+                                    <property name="title" translatable="yes">Result</property>
+                                    <child>
+                                      <object class="GtkScrolledWindow" id="result_frame">
+                                        <style>
+                                          <class name="card"/>
+                                        </style>
+                                        <property name="max-content-height">600</property>
+                                        <property name="propagate-natural-height">true</property>
+                                        <child>
+                                          <object class="GtkTextView" id="result_view">
+                                            <property name="editable">false</property>
+                                            <property name="top-margin">6</property>
+                                            <property name="bottom-margin">6</property>
+                                            <property name="left-margin">6</property>
+                                            <property name="right-margin">6</property>
+                                            <property name="monospace">true</property>
+                                            <property name="wrap-mode">char</property>
+                                            <property name="buffer">
+                                              <object class="GtkTextBuffer" id="result_buffer">
+                                              </object>
+                                            </property>
+                                            <style>
+                                              <class name="card"/>
+                                            </style>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwPreferencesGroup" id="duration_group">
+                                    <property name="title" translatable="yes">Statistics</property>
+                                    <property name="visible">false</property>
+                                    <child>
+                                      <object class="AdwActionRow" id="dur_row">
+                                        <property name="title" translatable="yes">Duration</property>
+                                        <property name="subtitle-selectable">true</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow" id="min_row">
+                                        <property name="title" translatable="yes">Minimum Duration</property>
+                                        <property name="subtitle-selectable">true</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwActionRow" id="max_row">
+                                        <property name="title" translatable="yes">Maximum Duration</property>
+                                        <property name="subtitle-selectable">true</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </property>
+      </object>
+    </property>
+  </template>
+  <object class="AdwDialog" id="connection_dialog">
+    <property name="content-width">400</property>
+    <property name="child">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <child type="title">
+              <object class="AdwWindowTitle">
+                <property name="title" translatable="yes">New Connection</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesPage">
+            <child>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="AdwEntryRow" id="new_connection_entry">
+                    <property name="title" translatable="yes">Bus Address</property>
+                    <property name="input-hints">no-emoji</property>
+                    <signal name="changed" handler="new_connection_entry_changed_cb" swapped="true"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">Connect</property>
+                    <property name="halign">center</property>
+                    <property name="width-request">150</property>
+                    <property name="action-name">add-connection</property>
+                    <style>
+                      <class name="pill"/>
+                      <class name="large-button"/>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+  </object>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_New Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Connect to Other _Bus</attribute>
+        <attribute name="action">new-connection</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_About D-Spy</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

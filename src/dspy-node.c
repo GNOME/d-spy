@@ -1,657 +1,132 @@
-/* dspy-node.c
- *
- * Copyright 2019 Christian Hergert <chergert@redhat.com>
- *
- * This file is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation; either version 3 of the
- * License, or (at your option) any later version.
- *
- * This file is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * SPDX-License-Identifier: LGPL-3.0-or-later
- */
-
-#include <errno.h>
-#include <glib/gi18n.h>
-
-#include "dspy-private.h"
-
-#define LPAREN  "<span fgalpha='30000'>(</span>"
-#define RPAREN  "<span fgalpha='30000'>)</span>"
-#define ARROW   "<span fgalpha='20000'>↦</span>"
-#define BOLD(s) "<span weight='bold'>" s "</span>"
-#define DIM(s)  "<span fgalpha='40000'>" s "</span>"
-
 /*
- * This file contains an alternate GDBusNodeInfo hierarchy that we can use
- * for a couple benefits over GDBusNodeInfo.
+ * dspy-node.c
  *
- * First, it provides parent pointers so that we can navigate the structure
- * like a tree. This is very useful when used as a GtkTreeModel.
+ * Copyright 2025 Christian Hergert <chergert@redhat.com>
  *
- * Second, we can use a GStringChunk and reduce a lot of duplicate strings.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-static gpointer
-dspy_node_new (DspyNodeKind  kind,
-               DspyNode     *parent)
+#include "config.h"
+
+#include "dspy-node.h"
+
+enum {
+  PROP_0,
+  PROP_INTERFACES,
+  PROP_NODES,
+  PROP_PATH,
+  N_PROPS
+};
+
+G_DEFINE_FINAL_TYPE (DspyNode, dspy_node, DSPY_TYPE_INTROSPECTABLE)
+
+static GParamSpec *properties[N_PROPS];
+
+static char *
+dspy_node_dup_title (DspyIntrospectable *introspectable)
 {
-  DspyNode *node;
-
-  g_assert (kind > 0);
-  g_assert (kind < DSPY_NODE_KIND_LAST);
-
-  node = g_slice_new0 (DspyNode);
-  node->any.kind = kind;
-  node->any.parent = parent;
-  node->any.link.data = node;
-
-  g_assert (DSPY_IS_NODE (node));
-
-  return g_steal_pointer (&node);
+  return g_strdup (DSPY_NODE (introspectable)->path);
 }
 
 static void
-push_tail (GQueue   *queue,
-           gpointer  node)
+dspy_node_dispose (GObject *object)
 {
-  DspyNodeAny *any = node;
+  DspyNode *self = (DspyNode *)object;
 
-  g_assert (DSPY_IS_NODE (any));
+  dspy_introspectable_clear_queue (DSPY_INTROSPECTABLE (self), &self->nodes);
+  dspy_introspectable_clear_queue (DSPY_INTROSPECTABLE (self), &self->interfaces);
+  g_clear_pointer (&self->path, g_free);
 
-  g_queue_push_tail_link (queue, &any->link);
+  G_OBJECT_CLASS (dspy_node_parent_class)->dispose (object);
 }
 
 static void
-clear_full (GQueue *queue)
+dspy_node_get_property (GObject    *object,
+                        guint       prop_id,
+                        GValue     *value,
+                        GParamSpec *pspec)
 {
-  g_queue_foreach (queue, (GFunc) _dspy_node_free, NULL);
-  queue->length = 0;
-  queue->head = NULL;
-  queue->tail = NULL;
-}
+  DspyNode *self = DSPY_NODE (object);
 
-static DspyArgInfo *
-_dspy_arg_info_new (DspyNode     *parent,
-                    GDBusArgInfo *info,
-                    GStringChunk *chunks)
-{
-  DspyArgInfo *ret;
-
-  g_assert (!parent || DSPY_IS_NODE (parent));
-  g_assert (info != NULL);
-  g_assert (chunks != NULL);
-
-  ret = dspy_node_new (DSPY_NODE_KIND_ARG, parent);
-  ret->name = g_string_chunk_insert_const (chunks, info->name);
-  ret->signature = g_string_chunk_insert_const (chunks, info->signature);
-
-  return ret;
-}
-
-static DspyMethodInfo *
-_dspy_method_info_new (DspyNode        *parent,
-                       GDBusMethodInfo *info,
-                       GStringChunk    *chunks)
-{
-  DspyMethodInfo *ret;
-
-  g_assert (!parent || DSPY_IS_NODE (parent));
-  g_assert (info != NULL);
-  g_assert (chunks != NULL);
-
-  ret = dspy_node_new (DSPY_NODE_KIND_METHOD, parent);
-  ret->name = g_string_chunk_insert_const (chunks, info->name);
-
-  for (guint i = 0; info->in_args[i] != NULL; i++)
-    push_tail (&ret->in_args,
-               _dspy_arg_info_new ((DspyNode *)ret, info->in_args[i], chunks));
-
-  for (guint i = 0; info->out_args[i] != NULL; i++)
-    push_tail (&ret->out_args,
-               _dspy_arg_info_new ((DspyNode *)ret, info->out_args[i], chunks));
-
-  return ret;
-}
-
-static DspySignalInfo *
-_dspy_signal_info_new (DspyNode        *parent,
-                       GDBusSignalInfo *info,
-                       GStringChunk    *chunks)
-{
-  DspySignalInfo *ret;
-
-  g_assert (!parent || DSPY_IS_NODE (parent));
-  g_assert (info != NULL);
-  g_assert (chunks != NULL);
-
-  ret = dspy_node_new (DSPY_NODE_KIND_SIGNAL, parent);
-  ret->name = g_string_chunk_insert_const (chunks, info->name);
-
-  for (guint i = 0; info->args[i] != NULL; i++)
-    push_tail (&ret->args,
-               _dspy_arg_info_new ((DspyNode *)ret, info->args[i], chunks));
-
-  return ret;
-}
-
-static DspyPropertyInfo *
-_dspy_property_info_new (DspyNode          *parent,
-                         GDBusPropertyInfo *info,
-                         GStringChunk      *chunks)
-{
-  DspyPropertyInfo *ret;
-
-  g_assert (!parent || DSPY_IS_NODE (parent));
-  g_assert (info != NULL);
-  g_assert (chunks != NULL);
-
-  ret = dspy_node_new (DSPY_NODE_KIND_PROPERTY, parent);
-  ret->name = g_string_chunk_insert_const (chunks, info->name);
-  ret->signature = g_string_chunk_insert_const (chunks, info->signature);
-  ret->flags = info->flags;
-
-  return ret;
-}
-
-static int
-compare_property_info (gconstpointer a,
-                       gconstpointer b,
-                       gpointer      user_data)
-{
-  const DspyPropertyInfo *prop_a = a;
-  const DspyPropertyInfo *prop_b = b;
-
-  g_assert (prop_a->kind == DSPY_NODE_KIND_PROPERTY);
-  g_assert (prop_b->kind == DSPY_NODE_KIND_PROPERTY);
-
-  return g_strcmp0 (prop_a->name, prop_b->name);
-}
-
-static int
-compare_method_info (gconstpointer a,
-                     gconstpointer b,
-                     gpointer      user_data)
-{
-  const DspyMethodInfo *method_a = a;
-  const DspyMethodInfo *method_b = b;
-
-  g_assert (method_a->kind == DSPY_NODE_KIND_METHOD);
-  g_assert (method_b->kind == DSPY_NODE_KIND_METHOD);
-
-  return g_strcmp0 (method_a->name, method_b->name);
-}
-
-static int
-compare_signal_info (gconstpointer a,
-                     gconstpointer b,
-                     gpointer      user_data)
-{
-  const DspySignalInfo *signal_a = a;
-  const DspySignalInfo *signal_b = b;
-
-  g_assert (signal_a->kind == DSPY_NODE_KIND_SIGNAL);
-  g_assert (signal_b->kind == DSPY_NODE_KIND_SIGNAL);
-
-  return g_strcmp0 (signal_a->name, signal_b->name);
-}
-
-static DspyInterfaceInfo *
-_dspy_interface_info_new (DspyNode           *parent,
-                          GDBusInterfaceInfo *info,
-                          GStringChunk       *chunks)
-{
-  DspyInterfaceInfo *ret;
-
-  g_assert (!parent || DSPY_IS_NODE (parent));
-  g_assert (info != NULL);
-  g_assert (chunks != NULL);
-
-  ret = dspy_node_new (DSPY_NODE_KIND_INTERFACE, parent);
-  ret->name = g_string_chunk_insert_const (chunks, info->name);
-  ret->properties = dspy_node_new (DSPY_NODE_KIND_PROPERTIES, (DspyNode *)ret);
-  ret->signals = dspy_node_new (DSPY_NODE_KIND_SIGNALS, (DspyNode *)ret);
-  ret->methods = dspy_node_new (DSPY_NODE_KIND_METHODS, (DspyNode *)ret);
-
-  for (guint i = 0; info->signals[i] != NULL; i++)
-    push_tail (&ret->signals->signals,
-               _dspy_signal_info_new ((DspyNode *)ret->signals, info->signals[i], chunks));
-  g_queue_sort (&ret->signals->signals, compare_signal_info, NULL);
-
-  for (guint i = 0; info->methods[i] != NULL; i++)
-    push_tail (&ret->methods->methods,
-               _dspy_method_info_new ((DspyNode *)ret->methods, info->methods[i], chunks));
-  g_queue_sort (&ret->methods->methods, compare_method_info, NULL);
-
-  for (guint i = 0; info->properties[i] != NULL; i++)
-    push_tail (&ret->properties->properties,
-               _dspy_property_info_new ((DspyNode *)ret->properties,
-                                        info->properties[i],
-                                        chunks));
-  g_queue_sort (&ret->properties->properties, compare_property_info, NULL);
-
-  return ret;
-}
-
-static int
-compare_node_by_path (gconstpointer a,
-                      gconstpointer b,
-                      gpointer      user_data)
-{
-  const DspyNodeInfo *info_a = a;
-  const DspyNodeInfo *info_b = b;
-
-  g_assert (info_a->kind == DSPY_NODE_KIND_NODE);
-  g_assert (info_b->kind == DSPY_NODE_KIND_NODE);
-
-  return strcmp (info_a->path, info_b->path);
-}
-
-static DspyNodeInfo *
-_dspy_node_info_new (DspyNode      *parent,
-                     GDBusNodeInfo *info,
-                     GStringChunk  *chunks)
-{
-  DspyNodeInfo *ret;
-
-  g_assert (!parent || DSPY_IS_NODE (parent));
-  g_assert (info != NULL);
-  g_assert (chunks != NULL);
-
-  ret = dspy_node_new (DSPY_NODE_KIND_NODE, parent);
-  ret->interfaces = dspy_node_new (DSPY_NODE_KIND_INTERFACES, (DspyNode *)ret);
-  ret->path = info->path ? g_string_chunk_insert_const (chunks, info->path) : NULL;
-
-  for (guint i = 0; info->nodes[i] != NULL; i++)
-    push_tail (&ret->nodes,
-               _dspy_node_info_new ((DspyNode *)ret, info->nodes[i], chunks));
-
-  g_queue_sort (&ret->nodes, compare_node_by_path, NULL);
-
-  if (info->interfaces[0])
+  switch (prop_id)
     {
-      for (guint i = 0; info->interfaces[i] != NULL; i++)
-        push_tail (&ret->interfaces->interfaces,
-                   _dspy_interface_info_new ((DspyNode *)ret->interfaces,
-                                             info->interfaces[i],
-                                             chunks));
-    }
-
-  return ret;
-}
-
-DspyNodeInfo *
-_dspy_node_parse (const gchar   *xml,
-                  GStringChunk  *chunks,
-                  GError       **error)
-{
-  g_autoptr(GDBusNodeInfo) info = NULL;
-
-  g_assert (xml != NULL);
-  g_assert (chunks != NULL);
-
-  if ((info = g_dbus_node_info_new_for_xml (xml, error)))
-    return _dspy_node_info_new (NULL, info, chunks);
-
-  return NULL;
-}
-
-void
-_dspy_node_free (gpointer data)
-{
-  DspyNode *node = data;
-
-  g_assert (!node || DSPY_IS_NODE (node));
-
-  if (node == NULL)
-    return;
-
-  node->any.parent = NULL;
-
-  switch (node->any.kind)
-    {
-    case DSPY_NODE_KIND_ARG:
+    case PROP_PATH:
+      g_value_set_string (value, self->path);
       break;
 
-    case DSPY_NODE_KIND_NODE:
-      _dspy_node_free ((DspyNode *)node->node.interfaces);
-      clear_full (&node->node.nodes);
+    case PROP_NODES:
+      g_value_take_object (value, dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->nodes));
       break;
 
-    case DSPY_NODE_KIND_INTERFACE:
-      _dspy_node_free ((DspyNode *)node->interface.properties);
-      _dspy_node_free ((DspyNode *)node->interface.signals);
-      _dspy_node_free ((DspyNode *)node->interface.methods);
+    case PROP_INTERFACES:
+      g_value_take_object (value, dspy_node_list_interfaces (self));
       break;
 
-    case DSPY_NODE_KIND_INTERFACES:
-      clear_full (&node->interfaces.interfaces);
-      break;
-
-    case DSPY_NODE_KIND_METHODS:
-      clear_full (&node->methods.methods);
-      break;
-
-    case DSPY_NODE_KIND_METHOD:
-      clear_full (&node->method.in_args);
-      clear_full (&node->method.out_args);
-      break;
-
-    case DSPY_NODE_KIND_PROPERTIES:
-      clear_full (&node->properties.properties);
-      break;
-
-    case DSPY_NODE_KIND_PROPERTY:
-      g_clear_pointer (&node->property.value, g_free);
-      break;
-
-    case DSPY_NODE_KIND_SIGNALS:
-      clear_full (&node->signals.signals);
-      break;
-
-    case DSPY_NODE_KIND_SIGNAL:
-      clear_full (&node->signal.args);
-      break;
-
-    case DSPY_NODE_KIND_LAST:
     default:
-      g_assert_not_reached ();
-    }
-
-  node->any.kind = 0;
-  node->any.parent = NULL;
-  node->any.link.prev = NULL;
-  node->any.link.next = NULL;
-  node->any.link.data = NULL;
-
-  g_slice_free (DspyNode, node);
-}
-
-gint
-_dspy_node_info_compare (const DspyNodeInfo  *a,
-                         const DspyNodeInfo  *b)
-{
-  return g_strcmp0 (a->path, b->path);
-}
-
-gint
-_dspy_interface_info_compare (const DspyInterfaceInfo *a,
-                              const DspyInterfaceInfo *b)
-{
-  return g_strcmp0 (a->name, b->name);
-}
-
-DspyNodeInfo *
-_dspy_node_new_root (void)
-{
-  return dspy_node_new (DSPY_NODE_KIND_NODE, NULL);
-}
-
-void
-_dspy_node_walk (DspyNode *node,
-                 GFunc     func,
-                 gpointer  user_data)
-{
-  g_assert (DSPY_IS_NODE (node));
-  g_assert (func != NULL);
-
-  func (node, user_data);
-
-  switch (node->any.kind)
-    {
-    case DSPY_NODE_KIND_ARG:
-      break;
-
-    case DSPY_NODE_KIND_NODE:
-      if (node->node.interfaces != NULL)
-        _dspy_node_walk ((DspyNode *)node->node.interfaces, func, user_data);
-      for (const GList *iter = node->node.nodes.head; iter; iter = iter->next)
-        _dspy_node_walk (iter->data, func, user_data);
-      break;
-
-    case DSPY_NODE_KIND_INTERFACE:
-      _dspy_node_walk ((DspyNode *)node->interface.properties, func, user_data);
-      _dspy_node_walk ((DspyNode *)node->interface.signals, func, user_data);
-      _dspy_node_walk ((DspyNode *)node->interface.methods, func, user_data);
-      break;
-
-    case DSPY_NODE_KIND_INTERFACES:
-      for (const GList *iter = node->interfaces.interfaces.head; iter; iter = iter->next)
-        _dspy_node_walk (iter->data, func, user_data);
-      break;
-
-    case DSPY_NODE_KIND_METHODS:
-      for (const GList *iter = node->methods.methods.head; iter; iter = iter->next)
-        _dspy_node_walk (iter->data, func, user_data);
-      break;
-
-    case DSPY_NODE_KIND_METHOD:
-    case DSPY_NODE_KIND_PROPERTY:
-    case DSPY_NODE_KIND_SIGNAL:
-      break;
-
-    case DSPY_NODE_KIND_PROPERTIES:
-      for (const GList *iter = node->properties.properties.head; iter; iter = iter->next)
-        _dspy_node_walk (iter->data, func, user_data);
-      break;
-
-    case DSPY_NODE_KIND_SIGNALS:
-      for (const GList *iter = node->signals.signals.head; iter; iter = iter->next)
-        _dspy_node_walk (iter->data, func, user_data);
-      break;
-
-    case DSPY_NODE_KIND_LAST:
-    default:
-      g_assert_not_reached ();
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
 }
 
-static gchar *
-_dspy_property_info_to_string (DspyPropertyInfo *info)
+static void
+dspy_node_class_init (DspyNodeClass *klass)
 {
-  g_autofree gchar *sig = NULL;
-  const gchar *rw;
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  DspyIntrospectableClass *introspectable_class = DSPY_INTROSPECTABLE_CLASS (klass);
 
-  g_assert (DSPY_IS_NODE (info));
-  g_assert (info->kind == DSPY_NODE_KIND_PROPERTY);
+  object_class->dispose = dspy_node_dispose;
+  object_class->get_property = dspy_node_get_property;
 
-  sig = _dspy_signature_humanize (info->signature);
+  introspectable_class->dup_title = dspy_node_dup_title;
 
-  if (info->flags == (G_DBUS_PROPERTY_INFO_FLAGS_READABLE | G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE))
-    rw = _("read/write");
-  else if (info->flags  & G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE)
-    rw = _("write-only");
-  else if (info->flags  & G_DBUS_PROPERTY_INFO_FLAGS_READABLE)
-    rw = _("read-only");
-  else
-    rw = "";
+  properties[PROP_PATH] =
+    g_param_spec_string ("path", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
 
-  return g_strdup_printf ("%s "ARROW" "BOLD(DIM("%s"))" "LPAREN DIM("%s") RPAREN,
-                          info->name, sig, rw);
+  properties[PROP_INTERFACES] =
+    g_param_spec_object ("interfaces", NULL, NULL,
+                         G_TYPE_LIST_MODEL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_NODES] =
+    g_param_spec_object ("nodes", NULL, NULL,
+                         G_TYPE_LIST_MODEL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
-static gboolean
-arg_name_is_generated (const gchar *str)
+static void
+dspy_node_init (DspyNode *self)
 {
-  if (str == NULL)
-    return TRUE;
-
-  if (g_str_has_prefix (str, "arg_"))
-    {
-      gchar *endptr = NULL;
-      gint64 val;
-
-      str += strlen ("arg_");
-      errno = 0;
-      val = g_ascii_strtoll (str, &endptr, 10);
-
-      if (val >= 0 && errno == 0 && *endptr == 0)
-        return TRUE;
-    }
-
-  return FALSE;
 }
 
-static gchar *
-_dspy_method_info_to_string (DspyMethodInfo *info)
+/**
+ * dspy_node_list_interfaces:
+ * @self: a [class@Dspy.Node]
+ *
+ * Returns: (transfer full):
+ */
+GListModel *
+dspy_node_list_interfaces (DspyNode *self)
 {
-  GString *str;
+  g_return_val_if_fail (DSPY_IS_NODE (self), NULL);
 
-  g_assert (DSPY_IS_NODE (info));
-  g_assert (info->kind == DSPY_NODE_KIND_METHOD);
-
-  str = g_string_new (info->name);
-  g_string_append (str, " "LPAREN);
-
-  for (const GList *iter = info->in_args.head; iter; iter = iter->next)
-    {
-      DspyArgInfo *arg = iter->data;
-      g_autofree gchar *sig = _dspy_signature_humanize (arg->signature);
-
-      if (iter->prev != NULL)
-        g_string_append (str, ", ");
-      g_string_append_printf (str, BOLD(DIM("%s")), sig);
-      if (!arg_name_is_generated (arg->name))
-        g_string_append_printf (str, DIM(" %s"), arg->name);
-    }
-
-  g_string_append (str, RPAREN" "ARROW" "LPAREN);
-
-  for (const GList *iter = info->out_args.head; iter; iter = iter->next)
-    {
-      DspyArgInfo *arg = iter->data;
-      g_autofree gchar *sig = _dspy_signature_humanize (arg->signature);
-
-      if (iter->prev != NULL)
-        g_string_append (str, ", ");
-      g_string_append_printf (str, BOLD(DIM("%s")), sig);
-      if (!arg_name_is_generated (arg->name))
-        g_string_append_printf (str, DIM(" %s"), arg->name);
-    }
-
-  g_string_append (str, RPAREN);
-
-  return g_string_free (str, FALSE);
-}
-
-static gchar *
-_dspy_signal_info_to_string (DspySignalInfo *info)
-{
-  GString *str;
-
-  g_assert (DSPY_IS_NODE (info));
-  g_assert (info->kind == DSPY_NODE_KIND_SIGNAL);
-
-  str = g_string_new (info->name);
-  g_string_append (str, " "LPAREN);
-
-  for (const GList *iter = info->args.head; iter; iter = iter->next)
-    {
-      DspyArgInfo *arg = iter->data;
-      g_autofree gchar *sig = _dspy_signature_humanize (arg->signature);
-
-      if (iter->prev != NULL)
-        g_string_append (str, ", ");
-      g_string_append_printf (str, BOLD(DIM("%s")), sig);
-      if (!arg_name_is_generated (arg->name))
-        g_string_append_printf (str, DIM(" %s"), arg->name);
-    }
-
-  g_string_append (str, RPAREN);
-
-  return g_string_free (str, FALSE);
-}
-
-gchar *
-_dspy_node_get_text (DspyNode *node)
-{
-  switch (node->any.kind)
-    {
-    case DSPY_NODE_KIND_ARG:
-      return g_strdup (node->arg.name);
-
-    case DSPY_NODE_KIND_NODE:
-      return g_strdup (node->node.path);
-
-    case DSPY_NODE_KIND_INTERFACE:
-      return g_strdup (node->interface.name);
-
-    case DSPY_NODE_KIND_INTERFACES:
-      return g_strdup (_("Interfaces"));
-
-    case DSPY_NODE_KIND_METHODS:
-      return g_strdup (_("Methods"));
-
-    case DSPY_NODE_KIND_METHOD:
-      return _dspy_method_info_to_string (&node->method);
-
-    case DSPY_NODE_KIND_PROPERTIES:
-      return g_strdup (_("Properties"));
-
-    case DSPY_NODE_KIND_PROPERTY:
-        {
-          g_autofree gchar *str = _dspy_property_info_to_string (&node->property);
-
-          if (node->property.value != NULL)
-            {
-              g_autofree gchar *escaped = g_markup_escape_text (node->property.value, -1);
-              return g_strdup_printf ("%s = %s", str, escaped);
-            }
-
-          return g_steal_pointer (&str);
-        }
-
-    case DSPY_NODE_KIND_SIGNALS:
-      return g_strdup (_("Signals"));
-
-    case DSPY_NODE_KIND_SIGNAL:
-      return _dspy_signal_info_to_string (&node->signal);
-
-    case DSPY_NODE_KIND_LAST:
-    default:
-      g_return_val_if_reached (NULL);
-    }
-}
-
-gboolean
-_dspy_node_is_group (DspyNode *node)
-{
-  g_assert (node != NULL);
-  g_assert (DSPY_IS_NODE (node));
-
-  return node->any.kind == DSPY_NODE_KIND_INTERFACES ||
-         node->any.kind == DSPY_NODE_KIND_PROPERTIES ||
-         node->any.kind == DSPY_NODE_KIND_SIGNALS ||
-         node->any.kind == DSPY_NODE_KIND_METHODS;
-}
-
-const gchar *
-_dspy_node_get_object_path (DspyNode *node)
-{
-  if (node == NULL)
-    return NULL;
-
-  if (node->any.kind == DSPY_NODE_KIND_NODE)
-    return node->node.path;
-
-  return _dspy_node_get_object_path (node->any.parent);
-}
-
-const gchar *
-_dspy_node_get_interface (DspyNode *node)
-{
-  if (node == NULL)
-    return NULL;
-
-  if (node->any.kind == DSPY_NODE_KIND_INTERFACE)
-    return node->interface.name;
-
-  return _dspy_node_get_interface (node->any.parent);
+  return dspy_introspectable_queue_to_list (DSPY_INTROSPECTABLE (self), &self->interfaces);
 }

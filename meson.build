@@ -35,12 +35,14 @@ config_h.set_quoted('APP_ID', app_id)
 config_h.set_quoted('PACKAGE_WEBSITE', 'https://gitlab.gnome.org/GNOME/d-spy')
 config_h.set10('DEVELOPMENT_BUILD', get_option('development'))
 
-glib_req_version = '2.76'
-gtk_req_version = '4.12'
-adwaita_req_version = '1.5'
+glib_req_version = '2.82'
+gtk_req_version = '4.16'
+dex_req_version = '0.11'
+adwaita_req_version = '1.7'
 
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
+dex_req = '>= @0@'.format(dex_req_version)
 adwaita_req = '>= @0@'.format(adwaita_req_version)
 
 # Specify minimum library versions
@@ -51,6 +53,7 @@ gtk_minor = gtk_req_version.split('.')[1].to_int()
 
 libgio_dep = dependency('gio-2.0', version: glib_req)
 libgtk_dep = dependency('gtk4', version: gtk_req)
+libdex_dep = dependency('libdex-1', version: dex_req)
 libadwaita_dep = dependency('libadwaita-1', version: adwaita_req)
 
 # Compiler flags and warnings

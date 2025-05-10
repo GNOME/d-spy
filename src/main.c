@@ -18,10 +18,13 @@
 
 #include "config.h"
 
-#include <adwaita.h>
 #include <glib/gi18n.h>
 
+#include <adwaita.h>
+#include <libdex.h>
+
 #include "build-ident.h"
+#include "dspy-util.h"
 #include "dspy-window.h"
 
 static const gchar *authors[] = {
@@ -162,6 +165,11 @@ main (int   argc,
   bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
+
+  dex_init ();
+
+  /* Discover a11y bus early so it is ready when we are */
+  dex_future_disown (dspy_get_a11y_bus ());
 
   app = g_object_new (ADW_TYPE_APPLICATION,
                       "application-id", APP_ID,

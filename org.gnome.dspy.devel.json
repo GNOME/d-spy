@@ -24,6 +24,25 @@
     ],
     "modules": [
         {
+            "name": "libdex",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Ddocs=false",
+                "-Dexamples=false",
+                "-Dintrospection=disabled",
+                "-Dsysprof=false",
+                "-Dtests=false",
+                "-Dvapi=false"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libdex.git",
+                    "branch" : "main"
+                }
+            ]
+        },
+        {
             "name": "d-spy",
             "builddir": true,
             "buildsystem": "meson",

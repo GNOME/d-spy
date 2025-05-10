@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <gio/gio.h>
+#include <libdex.h>
 #include <gtk/gtk.h>
 
 #include "dspy-connection.h"
@@ -32,22 +32,17 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (DspyName, dspy_name, DSPY, NAME, GObject)
 
 DspyName       *dspy_name_new               (DspyConnection       *connection,
-                                             const gchar          *name,
+                                             const char           *name,
                                              gboolean              activatable);
 DspyConnection *dspy_name_get_connection    (DspyName             *self);
 gboolean        dspy_name_get_activatable   (DspyName             *self);
 GPid            dspy_name_get_pid           (DspyName             *self);
-const gchar    *dspy_name_get_name          (DspyName             *self);
-const gchar    *dspy_name_get_owner         (DspyName             *self);
-const gchar    *dspy_name_get_search_text   (DspyName             *self);
+const char     *dspy_name_get_name          (DspyName             *self);
+const char     *dspy_name_get_owner         (DspyName             *self);
+const char     *dspy_name_get_search_text   (DspyName             *self);
 gint            dspy_name_compare           (gconstpointer         a,
                                              gconstpointer         b);
-void            dspy_name_introspect_async  (DspyName             *self,
-                                             GCancellable         *cancellable,
-                                             GAsyncReadyCallback   callback,
-                                             gpointer              user_data);
-GtkTreeModel   *dspy_name_introspect_finish (DspyName             *self,
-                                             GAsyncResult         *result,
-                                             GError              **error);
+GListModel     *dspy_name_dup_introspection (DspyName             *self);
+char           *dspy_name_dup_subtitle      (DspyName             *self);
 
 G_END_DECLS

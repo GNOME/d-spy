@@ -20,7 +20,10 @@
 
 #include "config.h"
 
-#include "dspy-introspection-model.h"
+#include <glib/gi18n.h>
+
+#include "dspy-introspection.h"
+#include "dspy-future-list-model.h"
 #include "dspy-name.h"
 #include "dspy-private.h"
 
@@ -28,9 +31,9 @@ struct _DspyName
 {
   GObject         parent_instance;
   DspyConnection *connection;
-  gchar          *name;
-  gchar          *owner;
-  gchar          *search_text;
+  char           *name;
+  char           *owner;
+  char           *search_text;
   GPid            pid;
   guint           activatable : 1;
 };
@@ -39,9 +42,12 @@ enum {
   PROP_0,
   PROP_ACTIVATABLE,
   PROP_CONNECTION,
+  PROP_INTROSPECTION,
   PROP_NAME,
   PROP_OWNER,
   PROP_PID,
+  PROP_SEARCH_TEXT,
+  PROP_SUBTITLE,
   N_PROPS
 };
 
@@ -80,6 +86,10 @@ dspy_name_get_property (GObject    *object,
       g_value_set_object (value, dspy_name_get_connection (self));
       break;
 
+    case PROP_INTROSPECTION:
+      g_value_take_object (value, dspy_name_dup_introspection (self));
+      break;
+
     case PROP_NAME:
       g_value_set_string (value, dspy_name_get_name (self));
       break;
@@ -90,6 +100,14 @@ dspy_name_get_property (GObject    *object,
 
     case PROP_PID:
       g_value_set_int (value, dspy_name_get_pid (self));
+      break;
+
+    case PROP_SEARCH_TEXT:
+      g_value_set_string (value, dspy_name_get_search_text (self));
+      break;
+
+    case PROP_SUBTITLE:
+      g_value_take_string (value, dspy_name_dup_subtitle (self));
       break;
 
     default:
@@ -133,40 +151,48 @@ dspy_name_class_init (DspyNameClass *klass)
   object_class->get_property = dspy_name_get_property;
   object_class->set_property = dspy_name_set_property;
 
-  properties [PROP_ACTIVATABLE] =
-    g_param_spec_boolean ("activatable",
-                          "Activatable",
-                          "Activatable",
+  properties[PROP_ACTIVATABLE] =
+    g_param_spec_boolean ("activatable", NULL, NULL,
                           FALSE,
                           (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
-  properties [PROP_CONNECTION] =
-    g_param_spec_object ("connection",
-                         "Connection",
-                         "The connection where the name can be found",
+  properties[PROP_CONNECTION] =
+    g_param_spec_object ("connection", NULL, NULL,
                          DSPY_TYPE_CONNECTION,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
-  properties [PROP_NAME] =
-    g_param_spec_string ("name",
-                         "Name",
-                         "The peer name",
+  properties[PROP_INTROSPECTION] =
+    g_param_spec_object ("introspection", NULL, NULL,
+                         G_TYPE_LIST_MODEL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_NAME] =
+    g_param_spec_string ("name", NULL, NULL,
                          NULL,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
-  properties [PROP_OWNER] =
-    g_param_spec_string ("owner",
-                         "Owner",
-                         "The owner of the D-Bus name",
+  properties[PROP_OWNER] =
+    g_param_spec_string ("owner", NULL, NULL,
                          NULL,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
-  properties [PROP_PID] =
-    g_param_spec_int ("pid",
-                      "Pid",
-                      "The pid of the peer",
+  properties[PROP_PID] =
+    g_param_spec_int ("pid", NULL, NULL,
                       -1, G_MAXINT, -1,
                       (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_SEARCH_TEXT] =
+    g_param_spec_string ("search-text", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_SUBTITLE] =
+    g_param_spec_string ("subtitle", NULL, NULL,
+                         NULL,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
@@ -179,7 +205,7 @@ dspy_name_init (DspyName *self)
 
 DspyName *
 dspy_name_new (DspyConnection *connection,
-               const gchar    *name,
+               const char     *name,
                gboolean        activatable)
 {
   return g_object_new (DSPY_TYPE_NAME,
@@ -212,7 +238,7 @@ _dspy_name_set_activatable (DspyName *self,
     }
 }
 
-const gchar *
+const char *
 dspy_name_get_name (DspyName *self)
 {
   g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
@@ -226,8 +252,8 @@ dspy_name_compare (gconstpointer a,
 {
   DspyName *item1 = DSPY_NAME ((gpointer)a);
   DspyName *item2 = DSPY_NAME ((gpointer)b);
-  const gchar *name1 = dspy_name_get_name (item1);
-  const gchar *name2 = dspy_name_get_name (item2);
+  const char *name1 = dspy_name_get_name (item1);
+  const char *name2 = dspy_name_get_name (item2);
 
   if (name1[0] != name2[0])
     {
@@ -258,7 +284,7 @@ dspy_name_get_pid (DspyName *self)
   return self->pid;
 }
 
-const gchar *
+const char *
 dspy_name_get_owner (DspyName *self)
 {
   g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
@@ -267,8 +293,8 @@ dspy_name_get_owner (DspyName *self)
 }
 
 void
-_dspy_name_set_owner (DspyName    *self,
-                      const gchar *owner)
+_dspy_name_set_owner (DspyName   *self,
+                      const char *owner)
 {
   g_return_if_fail (DSPY_IS_NAME (self));
 
@@ -278,6 +304,8 @@ _dspy_name_set_owner (DspyName    *self,
       self->owner = g_strdup (owner);
       g_clear_pointer (&self->search_text, g_free);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_OWNER]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SEARCH_TEXT]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUBTITLE]);
     }
 }
 
@@ -291,6 +319,8 @@ _dspy_name_clear_pid (DspyName *self)
       self->pid = -1;
       g_clear_pointer (&self->search_text, g_free);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_PID]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SEARCH_TEXT]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUBTITLE]);
     }
 }
 
@@ -318,6 +348,8 @@ dspy_name_get_pid_cb (GObject      *object,
     {
       self->pid = pid;
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_PID]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SEARCH_TEXT]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUBTITLE]);
     }
 }
 
@@ -351,7 +383,7 @@ dspy_name_get_owner_cb (GObject      *object,
   g_autoptr(DspyName) self = user_data;
   g_autoptr(GError) error = NULL;
   g_autoptr(GVariant) reply = NULL;
-  const gchar *owner = NULL;
+  const char *owner = NULL;
 
   g_assert (G_IS_DBUS_CONNECTION (connection));
   g_assert (G_IS_ASYNC_RESULT (result));
@@ -406,79 +438,66 @@ dspy_name_get_connection (DspyName *self)
   return self->connection;
 }
 
-static void
-dspy_name_introspection_cb (GObject      *object,
-                            GAsyncResult *result,
-                            gpointer      user_data)
-{
-  GAsyncInitable *initable = (GAsyncInitable *)object;
-  g_autoptr(GError) error = NULL;
-  g_autoptr(GTask) task = user_data;
-
-  g_assert (G_IS_ASYNC_INITABLE (initable));
-  g_assert (G_IS_ASYNC_RESULT (result));
-  g_assert (G_IS_TASK (task));
-
-  if (!g_async_initable_init_finish (initable, result, &error))
-    g_task_return_error (task, g_steal_pointer (&error));
-  else
-    g_task_return_pointer (task, g_object_ref (initable), g_object_unref);
-}
-
-void
-dspy_name_introspect_async (DspyName            *self,
-                            GCancellable        *cancellable,
-                            GAsyncReadyCallback  callback,
-                            gpointer             user_data)
-{
-  g_autoptr(GTask) task = NULL;
-  g_autoptr(DspyIntrospectionModel) model = NULL;
-
-  g_return_if_fail (DSPY_IS_NAME (self));
-  g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
-
-  task = g_task_new (self, cancellable, callback, user_data);
-  g_task_set_source_tag (task, dspy_name_introspect_async);
-
-  model = _dspy_introspection_model_new (self);
-
-  g_async_initable_init_async (G_ASYNC_INITABLE (model),
-                               G_PRIORITY_DEFAULT,
-                               cancellable,
-                               dspy_name_introspection_cb,
-                               g_steal_pointer (&task));
-
-}
-
-/**
- * dspy_name_introspect_finish:
- *
- * Completes a request to dspy_name_introspect_async().
- *
- * Returns: (transfer full): a #GtkTreeModel if successful; otherwise
- *   %NULL and @error is set.
- */
-GtkTreeModel *
-dspy_name_introspect_finish (DspyName      *self,
-                             GAsyncResult  *result,
-                             GError       **error)
-{
-  g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
-  g_return_val_if_fail (G_IS_TASK (result), NULL);
-
-  return g_task_propagate_pointer (G_TASK (result), error);
-}
-
-const gchar *
+const char *
 dspy_name_get_search_text (DspyName *self)
 {
   g_return_val_if_fail (DSPY_IS_NAME (self), FALSE);
 
   if (self->search_text == NULL)
     {
-      const gchar *owner = dspy_name_get_owner (self);
+      const char *owner = dspy_name_get_owner (self);
       self->search_text = g_strdup_printf ("%s %s %d", self->name, owner, self->pid);
     }
 
   return self->search_text;
+}
+
+/**
+ * dspy_name_dup_introspection:
+ * @self: a [class@Dspy.Name]
+ *
+ * Gets the introspection for @self as a [iface@Gio.ListModel]
+ * and populates it asynchronously.
+ *
+ * Returns: (transfer full): a [class@Dspy.FutureListModel]
+ */
+GListModel *
+dspy_name_dup_introspection (DspyName *self)
+{
+  GDBusConnection *connection;
+
+  g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
+
+  if (!(connection = dspy_connection_get_connection (self->connection)))
+    return NULL;
+
+  if (self->name == NULL)
+    return NULL;
+
+  return dspy_future_list_model_new (dspy_introspection_new (connection, self->name, "/"));
+}
+
+char *
+dspy_name_dup_subtitle (DspyName *self)
+{
+  GString *str = NULL;
+
+  g_return_val_if_fail (DSPY_IS_NAME (self), NULL);
+
+  str = g_string_new (NULL);
+
+  if (self->owner != NULL)
+    g_string_append (str, self->owner);
+
+  if (self->pid > -1)
+    {
+      if (str->len > 0)
+        g_string_append_c (str, ' ');
+      g_string_append_printf (str, "PID: %u", self->pid);
+    }
+
+  if (str->len == 0)
+    g_string_append (str, _("Not Running"));
+
+  return g_string_free (str, FALSE);
 }

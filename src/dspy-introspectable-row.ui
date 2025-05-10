@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="DspyIntrospectableRow" parent="GtkWidget">
+    <child>
+      <object class="GtkBox">
+        <child>
+          <object class="GtkLabel" id="title">
+            <property name="xalign">0</property>
+            <property name="use-markup">true</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
