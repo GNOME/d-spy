@@ -50,6 +50,7 @@ struct _DspyWindow
   AdwActionRow           *dur_row;
   AdwActionRow           *min_row;
   AdwActionRow           *max_row;
+  AdwPreferencesGroup    *duration_group;
   GtkStack               *call_button_stack;
   AdwEntryRow            *new_connection_entry;
   AdwNavigationView      *sidebar_view;
@@ -369,6 +370,8 @@ dspy_window_member_activate_cb (DspyWindow  *self,
   else
     gtk_stack_set_visible_child_name (self->details_stack, "empty");
 
+  gtk_widget_set_visible (GTK_WIDGET (self->duration_group), FALSE);
+
   if (adw_overlay_split_view_get_collapsed (self->overlay_split_view))
     adw_overlay_split_view_set_show_sidebar (self->overlay_split_view, FALSE);
 }
@@ -512,6 +515,8 @@ dspy_window_method_invoke_cb (GObject      *object,
 
           adw_action_row_set_subtitle (self->dur_row, str);
         }
+
+      gtk_widget_set_visible (GTK_WIDGET (self->duration_group), TRUE);
     }
 
   g_clear_object (&self->cancellable);
@@ -749,6 +754,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, max_row);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, min_row);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, dur_row);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, duration_group);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorted);
