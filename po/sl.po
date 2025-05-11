@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-04-08 20:19+0000\n"
-"PO-Revision-Date: 2025-04-09 16:19+0200\n"
+"POT-Creation-Date: 2025-05-10 17:42+0000\n"
+"PO-Revision-Date: 2025-05-11 10:17+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -29,7 +29,8 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
+#: src/dspy-window.ui:6 src/dspy-window.ui:50 src/dspy-window.ui:69
+#: src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -53,137 +54,43 @@ msgstr "Odkrivanje in raziskovanje storitev vodila D-Bus"
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;vodila;vodilo;"
 
-#: data/org.gnome.dspy.desktop.in.in:17
+#: data/org.gnome.dspy.desktop.in.in:18
 msgid "New Window"
 msgstr "Novo okno"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Sistemsko vodilo"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Vodilo seje"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "Povezano z »%s«"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "_System"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "Ne teče"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "_Seja"
-
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_Drugo"
-
-#: src/dspy-method-view.c:191
-msgid "Execute"
-msgstr "Izvedi"
-
-#: src/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "Prekliči"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Pot predmeta"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Vmesnik"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Način"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Parametri"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "_Izvedi"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "Rezultat"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "_Kopiraj"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "Pretečen čas"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Naslov vodila"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "Ime"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "Lastnik"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "ID Opravila"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Zagonljivo"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Da"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "Ne"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "branje/pisanje"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "le za pisanje"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "le za branje"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Vmesniki"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "Načini"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "Lastnosti"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "Signali"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Napaka"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -191,86 +98,185 @@ msgstr "Signali"
 msgid "Array of [%s]"
 msgstr "Podatkovno polje [%s]"
 
-#: src/dspy-view.c:125
-msgid "Bus"
-msgstr "Vodilo"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "Vodilo dostopnosti"
 
-#: src/dspy-view.c:167
-msgid "Access Denied by Peer"
-msgstr "Dostop onemogoča soležno opravilo"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "Načini"
 
-#: src/dspy-view.c:169
-msgid "Authentication Failed"
-msgstr "Overitev je spodletela"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "Lastnosti"
 
-#: src/dspy-view.c:171
-msgid "Operation Timed Out"
-msgstr "Opravilo je časovno poteklo"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "Signali"
 
-#: src/dspy-view.c:173
-msgid "Lost Connection to Bus"
-msgstr "Povezava z vodilom je izgubljena"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "Kopirano na odložišče"
 
-#: src/dspy-view.c:175
-msgid "D-Bus Connection Failed"
-msgstr "Povezava z vodilom D-Bus je spodletela"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "ms"
 
-#: src/dspy-view.c:179
-msgid "_Close"
-msgstr "_Zapri"
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "Povezave"
 
-#: src/dspy-view.c:474
-msgid "Connect"
-msgstr "Poveži"
-
-#: src/dspy-view.c:475
-msgid "Provide the address of the message bus"
-msgstr "Vpis naslova sporočilnega vodila"
-
-#: src/dspy-view.c:477
-msgid "Connect to Other Bus"
-msgstr "Poveži z drugim vodilom"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "Glavni meni"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "Preišči imena vodil"
-
-#: src/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "Imena Vodil"
 
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "Izbor imena vodila D-Bus"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "Filtriraj …"
 
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "Izbor imena vodila za preverjanje soležnih opravil"
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "Predmeti"
 
-#: src/dspy-view.ui:159
-msgid "Refresh"
-msgstr "Osveži"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Vmesniki"
 
-#: src/dspy-view.ui:235
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "Raziščite predmete"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "Izberite vodilo za raziskovanje predmetov"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "Člani"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "Raziščite vmesnike"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "Izberite predmet za raziskovanje članov"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "Vodilo"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "Ime vodila"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "Lastnik"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "Pot predmeta"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "Vmesnik"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "Lastnosti"
+
+#: src/dspy-window.ui:1028
+#, fuzzy
+msgid "Type Signature"
+msgstr "Vrsta podpisa / Vnesite podpis"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Vrednost"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "Signal"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "Podpis"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "Način"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "Parametri"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "Vrnjena vrsta"
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "Metoda klicanja"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "Rezultat"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "Statistika"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "Trajanje"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "Najkrajše trajanje"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "Najdaljše trajanje"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "Nova povezava"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "Naslov vodila"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "Poveži"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "_Novo okno"
 
-#: src/dspy-view.ui:241
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "Poveži z _drugim vodilom"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "_O programu"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "Poveži z drugim vodilom …"
-
-#: src/main.c:150
+#: src/main.c:153
 msgid "Open a new window"
 msgstr "Odprite novo okno."
 
-#: src/main.c:151
+#: src/main.c:154
 msgid "Print version information and exit"
 msgstr "Izpiši podatke o različici in končaj"
