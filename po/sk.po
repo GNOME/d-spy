@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy gnome-48\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-04-29 17:17+0000\n"
-"PO-Revision-Date: 2025-05-07 00:18+0200\n"
+"POT-Creation-Date: 2025-05-10 17:42+0000\n"
+"PO-Revision-Date: 2025-05-13 22:39+0200\n"
 "Last-Translator: Peter Mráz <etkinator@gmail.com>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "Language: sk\n"
@@ -24,7 +24,8 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
+#: src/dspy-window.ui:6 src/dspy-window.ui:50 src/dspy-window.ui:69
+#: src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-špión"
 
@@ -52,133 +53,39 @@ msgstr "dšpión;dšpion;dspion;"
 msgid "New Window"
 msgstr "Nové okno"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Zbernica _systému"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Zbernica _relácie"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "Pripojené k „%s“"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "_Systém"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "Nebeží"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "_Relácia"
-
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_Iné"
-
-#: src/dspy-method-view.c:190
-msgid "Execute"
-msgstr "Vykonať"
-
-#: src/dspy-method-view.c:272
-msgid "Cancel"
-msgstr "Zrušiť"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Cesta objektu"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Rozhranie"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Metóda"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Parametre"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "_Vykonať"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "Výsledok"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "_Kopírovať"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "Uplynulý čas"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Adresa zbernice"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "Názov"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "Vlastník"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "Identifikátor procesu"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Aktivovateľné"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Áno"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "Nie"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "Idetinfikátor procesu"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "čítanie/zápis"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "iba zápis"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "iba čítanie"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Rozhrania"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "Metódy"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "Vlastnosti"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "Signály"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Chyba"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -186,86 +93,265 @@ msgstr "Signály"
 msgid "Array of [%s]"
 msgstr "Pole typu [%s]"
 
-#: src/dspy-view.c:124
-msgid "Bus"
-msgstr "Zbernica"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "Zbernica Sprístupnenie"
 
-#: src/dspy-view.c:166
-msgid "Access Denied by Peer"
-msgstr "Prístup odmietnutý partnerom"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "Metódy"
 
-#: src/dspy-view.c:168
-msgid "Authentication Failed"
-msgstr "Zlyhala autentifikácia"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "Vlastnosti"
 
-#: src/dspy-view.c:170
-msgid "Operation Timed Out"
-msgstr "Časový limit operácie vypršal"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "Signály"
 
-#: src/dspy-view.c:172
-msgid "Lost Connection to Bus"
-msgstr "Spojenie so zbernicou sa prerušilo"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "Skopírované do schránky"
 
-#: src/dspy-view.c:174
-msgid "D-Bus Connection Failed"
-msgstr "Zlyhalo pripojenie k zbernici D-Bus"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "ms"
 
-#: src/dspy-view.c:178
-msgid "_Close"
-msgstr "_Zavrieť"
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "Pripojenia"
 
-#: src/dspy-view.c:477
-msgid "Connect"
-msgstr "Pripojiť"
-
-#: src/dspy-view.c:478
-msgid "Provide the address of the message bus"
-msgstr "Zadajte adresu zbernice správ"
-
-#: src/dspy-view.c:480
-msgid "Connect to Other Bus"
-msgstr "Pripojenie k inej zbernici"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "Hlavná ponuka"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "Hľadajte názvy zberníc"
-
-#: src/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "Názvy zberníc"
 
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "Zvoľte názov zbernice D-Bus"
+# placeholder text vo vyhladávacom okne
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "Filtrujte…"
 
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "Vyberte názov zbernice partnera, ktorú chcete skúmať"
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "Objekty"
 
-#: src/dspy-view.ui:159
-msgid "Refresh"
-msgstr "Obnovenie"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Rozhrania"
 
-#: src/dspy-view.ui:235
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "Preskúmanie objektov"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "Zvoľte zbernicu na preskúmanie objektov"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "Súčasti"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "Preskúmanie rozhraní"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "Zvoľte objekt na preskúmanie súčastí"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "Zbernica"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "Názov zbernice"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "Vlastník"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "Cesta objektu"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "Rozhranie"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "Vlastnosť"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "Typ podpisu"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Hodnota"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "Signál"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "Podpis"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "Metóda"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "Parametre"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "Návratový typ"
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "Metóda volania"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "Výsledok"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "Štatistiky"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "Trvanie"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "Minimálne trvanie"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "Maximálne trvanie"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "Nové pripojenie"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "Adresa zbernice"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "Pripojiť"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: src/dspy-view.ui:241
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "Pripojenie k inej _zbernici"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "_O programe D-špión"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "Pripojiť k inej zbernici…"
-
-#: src/main.c:150
+#: src/main.c:153
 msgid "Open a new window"
 msgstr "Otvorí nové okno"
 
-#: src/main.c:151
+#: src/main.c:154
 msgid "Print version information and exit"
 msgstr "Vypíše informácie o verzii a skončí"
+
+#, c-format
+#~ msgid "Connected to “%s”"
+#~ msgstr "Pripojené k „%s“"
+
+#~ msgid "_Other"
+#~ msgstr "_Iné"
+
+#~ msgid "Execute"
+#~ msgstr "Vykonať"
+
+#~ msgid "_Execute"
+#~ msgstr "_Vykonať"
+
+#~ msgid "_Copy"
+#~ msgstr "_Kopírovať"
+
+#~ msgid "Elapsed Time"
+#~ msgstr "Uplynulý čas"
+
+#~ msgid "Name"
+#~ msgstr "Názov"
+
+#~ msgid "Process ID"
+#~ msgstr "Identifikátor procesu"
+
+#, c-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Activatable"
+#~ msgstr "Aktivovateľné"
+
+#~ msgid "Yes"
+#~ msgstr "Áno"
+
+#~ msgid "No"
+#~ msgstr "Nie"
+
+#~ msgid "PID"
+#~ msgstr "Idetinfikátor procesu"
+
+#~ msgid "Access Denied by Peer"
+#~ msgstr "Prístup odmietnutý partnerom"
+
+#~ msgid "Authentication Failed"
+#~ msgstr "Zlyhala autentifikácia"
+
+#~ msgid "Operation Timed Out"
+#~ msgstr "Časový limit operácie vypršal"
+
+#~ msgid "Lost Connection to Bus"
+#~ msgstr "Spojenie so zbernicou sa prerušilo"
+
+#~ msgid "D-Bus Connection Failed"
+#~ msgstr "Zlyhalo pripojenie k zbernici D-Bus"
+
+#~ msgid "_Close"
+#~ msgstr "_Zavrieť"
+
+#~ msgid "Provide the address of the message bus"
+#~ msgstr "Zadajte adresu zbernice správ"
+
+#~ msgid "Main Menu"
+#~ msgstr "Hlavná ponuka"
+
+#~ msgid "Search Bus Names"
+#~ msgstr "Hľadajte názvy zberníc"
+
+#~ msgid "Select a D-Bus Name"
+#~ msgstr "Zvoľte názov zbernice D-Bus"
+
+#~ msgid "Select a bus name to introspect the peer"
+#~ msgstr "Vyberte názov zbernice partnera, ktorú chcete skúmať"
+
+#~ msgid "Refresh"
+#~ msgstr "Obnovenie"
+
+#~ msgid "Connect to Other Bus…"
+#~ msgstr "Pripojiť k inej zbernici…"
