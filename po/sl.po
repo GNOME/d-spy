@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-05-10 17:42+0000\n"
-"PO-Revision-Date: 2025-05-11 10:17+0200\n"
+"POT-Creation-Date: 2025-05-11 08:18+0000\n"
+"PO-Revision-Date: 2025-05-14 19:43+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -193,9 +193,8 @@ msgid "Property"
 msgstr "Lastnosti"
 
 #: src/dspy-window.ui:1028
-#, fuzzy
 msgid "Type Signature"
-msgstr "Vrsta podpisa / Vnesite podpis"
+msgstr "Vrsta podpisa"
 
 #: src/dspy-window.ui:1042
 msgid "Value"
