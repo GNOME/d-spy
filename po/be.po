@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-04-29 17:17+0000\n"
-"PO-Revision-Date: 2025-05-07 05:16+0300\n"
+"POT-Creation-Date: 2025-05-10 17:42+0000\n"
+"PO-Revision-Date: 2025-05-31 03:10+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <Belarusian>\n"
 "Language: be\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.5\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
@@ -25,7 +25,8 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
+#: src/dspy-window.ui:6 src/dspy-window.ui:50 src/dspy-window.ui:69
+#: src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -53,133 +54,40 @@ msgstr "dspy;dbus;"
 msgid "New Window"
 msgstr "Новае акно"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Сістэмная шына"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Шына сеанса"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "Злучаны з %s"
+#| msgid "%s: %u"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "С_істэма"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "Не запушчана"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "_Сеанс"
-
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_Іншае"
-
-#: src/dspy-method-view.c:190
-msgid "Execute"
-msgstr "Запусціць"
-
-#: src/dspy-method-view.c:272
-msgid "Cancel"
-msgstr "Скасаваць"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Шлях да аб'екта"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Інтэрфейс"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Метад"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Параметры"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "_Запусціць"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "Вынік"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "_Капіяваць"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "Прайшло часу"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Адрас шыны"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "Назва"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "Уладальнік"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "ID працэсу"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Можна задзейнічаць"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Так"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "Не"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "чытанне/запіс"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "толькі запіс"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "толькі чытанне"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Інтэрфейсы"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "Метады"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "Уласцівасці"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "Сігналы"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Памылка"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -187,86 +95,265 @@ msgstr "Сігналы"
 msgid "Array of [%s]"
 msgstr "Масіў [%s]"
 
-#: src/dspy-view.c:124
-msgid "Bus"
-msgstr "Шына"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr ""
 
-#: src/dspy-view.c:166
-msgid "Access Denied by Peer"
-msgstr "Доступ забаронены вузлом"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "Метады"
 
-#: src/dspy-view.c:168
-msgid "Authentication Failed"
-msgstr "Не ўдалося выканаць аўтэнтыфікацыю"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "Уласцівасці"
 
-#: src/dspy-view.c:170
-msgid "Operation Timed Out"
-msgstr "Скончыўся тэрмін чакання аперацыі"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "Сігналы"
 
-#: src/dspy-view.c:172
-msgid "Lost Connection to Bus"
-msgstr "Апошняе злучэнне з шынай"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "Скапіявана ў буфер абмену"
 
-#: src/dspy-view.c:174
-msgid "D-Bus Connection Failed"
-msgstr "Збой злучэння з шынай"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "мс"
 
-#: src/dspy-view.c:178
-msgid "_Close"
-msgstr "_Закрыць"
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "Злучэнні"
 
-#: src/dspy-view.c:477
-msgid "Connect"
-msgstr "Злучыцца"
-
-#: src/dspy-view.c:478
-msgid "Provide the address of the message bus"
-msgstr "Пазначыць адрас шыны паведамленняў"
-
-#: src/dspy-view.c:480
-msgid "Connect to Other Bus"
-msgstr "Злучыцца з іншай шынай"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "Галоўнае меню"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "Пошук назвы шыны"
-
-#: src/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "Назвы шын"
 
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "Выберыце назву шыны D-Bus"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "Фільтр…"
 
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "Выберыце назву шыны, каб даследаваць вузел"
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "Аб’екты"
 
-#: src/dspy-view.ui:159
-msgid "Refresh"
-msgstr "Абнавіць"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Інтэрфейсы"
 
-#: src/dspy-view.ui:235
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr ""
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr ""
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr ""
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Падрабязнасці"
+
+#: src/dspy-window.ui:888
+#| msgid "Interfaces"
+msgid "Explore Interfaces"
+msgstr ""
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr ""
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "Шына"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "Назва шыны"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "Уладальнік"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "Шлях да аб'екта"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "Інтэрфейс"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "Уласцівасць"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr ""
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Значэнне"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "Сігнал"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "Подпіс"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "Метад"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "Параметры"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr ""
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "Метад выкліку"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "Скасаваць"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "Вынік"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "Статыстыка"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "Працягласць"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "Мінімальная працягласць"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "Максімальная працягласць"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "Новае злучэнне"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "Адрас шыны"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "Злучыцца"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "_Новае акно"
 
-#: src/dspy-view.ui:241
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "Злучыцца з іншай _шынай"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "_Аб праграме D-Spy"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "Злучыцца з іншай шынай…"
-
-#: src/main.c:150
+#: src/main.c:153
 msgid "Open a new window"
 msgstr "Адкрыць новае акно"
 
-#: src/main.c:151
+#: src/main.c:154
 msgid "Print version information and exit"
 msgstr "Вывесці звесткі пра версію і выйсці"
+
+#, c-format
+#~ msgid "Connected to “%s”"
+#~ msgstr "Злучаны з %s"
+
+#~ msgid "_Other"
+#~ msgstr "_Іншае"
+
+#~ msgid "Execute"
+#~ msgstr "Запусціць"
+
+#~ msgid "_Execute"
+#~ msgstr "_Запусціць"
+
+#~ msgid "_Copy"
+#~ msgstr "_Капіяваць"
+
+#~ msgid "Elapsed Time"
+#~ msgstr "Прайшло часу"
+
+#~ msgid "Name"
+#~ msgstr "Назва"
+
+#~ msgid "Process ID"
+#~ msgstr "ID працэсу"
+
+#, c-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Activatable"
+#~ msgstr "Можна задзейнічаць"
+
+#~ msgid "Yes"
+#~ msgstr "Так"
+
+#~ msgid "No"
+#~ msgstr "Не"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Access Denied by Peer"
+#~ msgstr "Доступ забаронены вузлом"
+
+#~ msgid "Authentication Failed"
+#~ msgstr "Не ўдалося выканаць аўтэнтыфікацыю"
+
+#~ msgid "Operation Timed Out"
+#~ msgstr "Скончыўся тэрмін чакання аперацыі"
+
+#~ msgid "Lost Connection to Bus"
+#~ msgstr "Апошняе злучэнне з шынай"
+
+#~ msgid "D-Bus Connection Failed"
+#~ msgstr "Збой злучэння з шынай"
+
+#~ msgid "_Close"
+#~ msgstr "_Закрыць"
+
+#~ msgid "Provide the address of the message bus"
+#~ msgstr "Пазначыць адрас шыны паведамленняў"
+
+#~ msgid "Main Menu"
+#~ msgstr "Галоўнае меню"
+
+#~ msgid "Search Bus Names"
+#~ msgstr "Пошук назвы шыны"
+
+#~ msgid "Select a D-Bus Name"
+#~ msgstr "Выберыце назву шыны D-Bus"
+
+#~ msgid "Select a bus name to introspect the peer"
+#~ msgstr "Выберыце назву шыны, каб даследаваць вузел"
+
+#~ msgid "Refresh"
+#~ msgstr "Абнавіць"
+
+#~ msgid "Connect to Other Bus…"
+#~ msgstr "Злучыцца з іншай шынай…"
