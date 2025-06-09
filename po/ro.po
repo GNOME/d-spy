@@ -2,23 +2,23 @@
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
 # Florentina Musat <florentina.musat.28@gmail.com>, 2023.
+# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2024-07-29 23:28+0000\n"
-"PO-Revision-Date: 2024-08-04 13:00+0300\n"
-"Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
-"gmail [dot] com>\n"
+"POT-Creation-Date: 2025-06-09 07:18+0000\n"
+"PO-Revision-Date: 2025-06-09 17:22+0200\n"
+"Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2);;\n"
-"X-Generator: Poedit 3.4.4\n"
+"20)) ? 1 : 2);\n"
+"X-Generator: Gtranslator 48.0\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
@@ -26,7 +26,8 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: lib/dspy-view.ui:24 src/main.c:85
+#: src/dspy-window.ui:6 src/dspy-window.ui:50 src/dspy-window.ui:69
+#: src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -50,211 +51,228 @@ msgstr "Descoperă și explorează servicii D-Bus"
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: lib/dspy-connection-button.c:76
+#: data/org.gnome.dspy.desktop.in.in:18
+msgid "New Window"
+msgstr "Fereastră nouă"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Magistrală de sistem"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Magistrală de sesiune"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "Conectat la „%s”"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: lib/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "S_istem"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "Nu e în execuție"
 
-#: lib/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "_Sesiune"
-
-#: lib/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_Altele"
-
-#: lib/dspy-method-view.c:191
-msgid "Execute"
-msgstr "Execută"
-
-#: lib/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "Anulează"
-
-#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Cale obiect"
-
-#: lib/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Interfață"
-
-#: lib/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Metodă"
-
-#: lib/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Parametri"
-
-#: lib/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "_Execută"
-
-#: lib/dspy-method-view.ui:141
-msgid "Result"
-msgstr "Rezultat"
-
-#: lib/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "_Copiază"
-
-#: lib/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "Timpul scurs"
-
-#: lib/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Adresă de magistrală"
-
-#: lib/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "Nume"
-
-#: lib/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "Deținător"
-
-#: lib/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "ID proces"
-
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Se poate activa"
-
-#: lib/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Da"
-
-#: lib/dspy-name-row.c:80
-msgid "No"
-msgstr "Nu"
-
-#: lib/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: lib/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: lib/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "citire/scriere"
 
-#: lib/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "doar scriere"
 
-#: lib/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "doar citire"
 
-#: lib/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Interfețe"
-
-#: lib/dspy-node.c:590
-msgid "Methods"
-msgstr "Metode"
-
-#: lib/dspy-node.c:596
-msgid "Properties"
-msgstr "Proprietăți"
-
-#: lib/dspy-node.c:612
-msgid "Signals"
-msgstr "Semnale"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Eroare"
 
 #. translators: %s is replaced with the simple D-Bus type string
-#: lib/dspy-signature.c:77
+#: src/dspy-signature.c:77
 #, c-format
 msgid "Array of [%s]"
 msgstr "Vector de [%s]"
 
-#: lib/dspy-view.c:125
-msgid "Bus"
-msgstr "Magistrală"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "Magistrală de accesibilitate"
 
-#: lib/dspy-view.c:164
-msgid "Access Denied by Peer"
-msgstr "Acces interzis de partener"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "Metode"
 
-#: lib/dspy-view.c:166
-msgid "Authentication Failed"
-msgstr "Autentificarea a eșuat"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "Proprietăți"
 
-#: lib/dspy-view.c:168
-msgid "Operation Timed Out"
-msgstr "Operația a expirat"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "Semnale"
 
-#: lib/dspy-view.c:170
-msgid "Lost Connection to Bus"
-msgstr "S-a pierdut conexiunea la magistrală"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "Copiat"
 
-#: lib/dspy-view.c:172
-msgid "D-Bus Connection Failed"
-msgstr "Conexiunea D-Bus a eșuat"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "msec"
 
-#: lib/dspy-view.c:474
-msgid "Connect"
-msgstr "Conectare"
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "Conexiuni"
 
-#: lib/dspy-view.c:475
-msgid "Provide the address of the message bus"
-msgstr "Furnizează adresa magistralei de mesaj"
-
-#: lib/dspy-view.c:477
-msgid "Connect to Other Bus"
-msgstr "Conectare la altă magistrală"
-
-#: lib/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "Meniu principal"
-
-#: lib/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "Caută numele de magistrale"
-
-#: lib/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "Nume de magistrale"
 
-#: lib/dspy-view.ui:144
-msgid "Select a D-Bus Name"
-msgstr "Selectați un nume de D-Bus"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "Filtrează…"
 
-#: lib/dspy-view.ui:145
-msgid "Select a bus name to introspect the peer"
-msgstr "Selectați un nume de magistrală pentru a introspecta partenerul"
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "Obiecte"
 
-#: lib/dspy-view.ui:161
-msgid "Refresh"
-msgstr "Reîmprospătează"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Interfețe"
 
-#: lib/dspy-view.ui:231
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "Explorează obiecte"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "Alege o magistrală pentru a explora obiecte"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "Membri"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Detalii"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "Explorează interfețe"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "Alege un obiect pentru a explora membrii"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "Magistrală"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "Nume de magistrale"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "Proprietar"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "Cale obiect"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "Interfață"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "Proprietate"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "Tip de semnătură"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Valoare"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "Semnal"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "Semnătura"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "Metodă"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "Parametri"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "Tip de restituire"
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "Cheamă metoda"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "Anulează"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "Rezultat"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "Statistici"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "Durata"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "Durata minimă"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "Durata maximă"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "Conexiune nouă"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "Adresă de magistrală"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "Conectare"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "Fereastră _nouă"
 
-#: lib/dspy-view.ui:237
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "Conectează la altă _magistrală"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "_Despre D-Spy"
 
-#: lib/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "Conectare la altă magistrală…"
+#: src/main.c:153
+msgid "Open a new window"
+msgstr "Deschide o fereastră nouă"
 
-#~ msgid "A D-Bus explorer for GNOME"
-#~ msgstr "Un explorator D-Bus pentru GNOME"
+#: src/main.c:154
+msgid "Print version information and exit"
+msgstr "Afișează informații despre versiune și închide"
