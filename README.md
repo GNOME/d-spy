@@ -32,3 +32,19 @@ flatpak run org.gnome.Builder -p ./d-spy/
 ```
 
 Then click Run.
+
+## Feature Requests and Design Changes
+
+D-spy uses its GitLab issue tracker primarily for engineering defects. For new features or significant design changes:
+
+1.  **Initiate Discussion:** Start by discussing your idea or proposal through the [GNOME Design Whiteboards project](https://gitlab.gnome.org/Teams/Design/whiteboards/).
+2.  **Develop a Specification:** For larger features, a detailed specification is required. This should cover:
+    *   How the feature should work and not work.
+    *   Interaction with existing features.
+    *   Any necessary migration strategies.
+    *   UI mock-ups (if applicable).
+    *   Testing strategy.
+    *   Potential risks and security considerations.
+    *   Ideally, an indication of who might implement it.
+
+Once a design is well-defined, an issue can be filed on the D-spy tracker referencing the design discussion/specification.
