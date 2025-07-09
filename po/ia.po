@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-10 19:25+0000\n"
-"PO-Revision-Date: 2025-02-11 11:18-0300\n"
+"POT-Creation-Date: 2025-05-10 17:42+0000\n"
+"PO-Revision-Date: 2025-07-09 14:26-0400\n"
 "Last-Translator: Emilio Sepúlveda <emism.translations@gmail.com>\n"
 "Language-Team: Interlingua <softinterlingua@gmail.com>\n"
 "Language: ia\n"
@@ -22,7 +22,8 @@ msgstr ""
 "X-DL-Branch: main\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
-"X-Generator: Gtranslator 47.1\n"
+"X-Generator: Gtranslator 48.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.appdata.xml.in.in:7
@@ -30,7 +31,8 @@ msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
 #: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: src/dspy-window.ui:6 src/dspy-window.ui:50 src/dspy-window.ui:69
+#: src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-Spy"
 
@@ -54,133 +56,43 @@ msgstr "Discoperi e explora le servicios D-Bus"
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#: data/org.gnome.dspy.desktop.in.in:18
+msgid "New Window"
+msgstr "Nove fenestra"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Bus de systema"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Bus de session"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "Connectite a “%s”"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "S_ystema"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "Non in execution"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "_Session"
-
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_Altere"
-
-#: src/dspy-method-view.c:191
-msgid "Execute"
-msgstr "Executar"
-
-#: src/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "Cancellar"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Percurso de objecto"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Interfacie"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Methodo"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Parametros"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "_Executar"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "Resultato"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "_Copiar"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "Tempore passate"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Adresse de bus"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "Nomine"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "Proprietario"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "ID de processo"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Activabile"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Si"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "No"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "lectura/scriptura"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "sol lectura"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "sol scriptura"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Interfacies"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "Methodos"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "Proprietates"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "Signales"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Error"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -188,74 +100,261 @@ msgstr "Signales"
 msgid "Array of [%s]"
 msgstr "Matrice de [%s]"
 
-#: src/dspy-view.c:125
-msgid "Bus"
-msgstr "Bus"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "Bus de accesibilitate"
 
-#: src/dspy-view.c:164
-msgid "Access Denied by Peer"
-msgstr "Acceso denegate per le par"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "Methodos"
 
-#: src/dspy-view.c:166
-msgid "Authentication Failed"
-msgstr "Falleva le authentication"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "Proprietates"
 
-#: src/dspy-view.c:168
-msgid "Operation Timed Out"
-msgstr "Le operation habeva un limite de tempore"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "Signales"
 
-#: src/dspy-view.c:170
-msgid "Lost Connection to Bus"
-msgstr "Connexion perdite al bus"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "Copiate al area de transferentia"
 
-#: src/dspy-view.c:172
-msgid "D-Bus Connection Failed"
-msgstr "Falleva le connexion D-Bus"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "msec"
 
-#: src/dspy-view.c:474
-msgid "Connect"
-msgstr "Connecter"
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "Connecxiones"
 
-#: src/dspy-view.c:475
-msgid "Provide the address of the message bus"
-msgstr "Forni le adresse del bus de message"
-
-#: src/dspy-view.c:477
-msgid "Connect to Other Bus"
-msgstr "Connecter a altere bus"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "Menu principal"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "Cercar nomines de bus"
-
-#: src/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "Nomines de bus"
 
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "Selectiona un nomine de D-Bus"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "Filtrar…"
 
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "Selectiona un nomine de bus pro introspicer le par"
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "Objectos"
 
-#: src/dspy-view.ui:160
-msgid "Refresh"
-msgstr "Actualisar"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Interfacies"
 
-#: src/dspy-view.ui:230
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "Explorar objectos"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "Selige a bus pro explorar objectos"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "Membros"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Detalios"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "Explorar interfacies"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "Selige un objecto pro explorar le membros"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "Bus"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "Nomine de bus"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "Proprietario"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "Percurso de objecto"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "Interfacie"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "Proprietate"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr ""
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Valor"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "Signal"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "Signturaa"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "Methodo"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "Parametros"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr ""
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "Methodo de appello"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "Cancellar"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "Resultato"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "Statisticas"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "Duration"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "Duration minime"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "Duration maxime"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "Nove connexion"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "Adresse de bus"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "Connecter"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "_Nove fenestra"
 
-#: src/dspy-view.ui:236
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "Connecter a altere _bus"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "_A proposito de D-Spy"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "Connecter a altere bus…"
+#: src/main.c:153
+msgid "Open a new window"
+msgstr "Aperir un nove fenestra"
+
+#: src/main.c:154
+msgid "Print version information and exit"
+msgstr "Imprime le information de version e exi"
+
+#, c-format
+#~ msgid "Connected to “%s”"
+#~ msgstr "Connectite a “%s”"
+
+#~ msgid "_Other"
+#~ msgstr "_Altere"
+
+#~ msgid "Execute"
+#~ msgstr "Executar"
+
+#~ msgid "_Execute"
+#~ msgstr "_Executar"
+
+#~ msgid "_Copy"
+#~ msgstr "_Copiar"
+
+#~ msgid "Elapsed Time"
+#~ msgstr "Tempore passate"
+
+#~ msgid "Name"
+#~ msgstr "Nomine"
+
+#~ msgid "Process ID"
+#~ msgstr "ID de processo"
+
+#, c-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Activatable"
+#~ msgstr "Activabile"
+
+#~ msgid "Yes"
+#~ msgstr "Si"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Access Denied by Peer"
+#~ msgstr "Acceso denegate per le par"
+
+#~ msgid "Authentication Failed"
+#~ msgstr "Falleva le authentication"
+
+#~ msgid "Operation Timed Out"
+#~ msgstr "Le operation habeva un limite de tempore"
+
+#~ msgid "Lost Connection to Bus"
+#~ msgstr "Connexion perdite al bus"
+
+#~ msgid "D-Bus Connection Failed"
+#~ msgstr "Falleva le connexion D-Bus"
+
+#~ msgid "Provide the address of the message bus"
+#~ msgstr "Forni le adresse del bus de message"
+
+#~ msgid "Main Menu"
+#~ msgstr "Menu principal"
+
+#~ msgid "Search Bus Names"
+#~ msgstr "Cercar nomines de bus"
+
+#~ msgid "Select a D-Bus Name"
+#~ msgstr "Selectiona un nomine de D-Bus"
+
+#~ msgid "Select a bus name to introspect the peer"
+#~ msgstr "Selectiona un nomine de bus pro introspicer le par"
+
+#~ msgid "Refresh"
+#~ msgstr "Actualisar"
+
+#~ msgid "Connect to Other Bus…"
+#~ msgstr "Connecter a altere bus…"
