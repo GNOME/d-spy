@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-04-08 20:19+0000\n"
-"PO-Revision-Date: 2025-04-09 12:50+0300\n"
+"POT-Creation-Date: 2025-08-02 21:25+0000\n"
+"PO-Revision-Date: 2025-08-05 17:10+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -19,33 +19,17 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 3.6\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert"
-msgstr "Christian Hergert"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:16
-msgid "Analyze D-Bus connections"
-msgstr "Анализ соединений D-Bus"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:18
-msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "D-Spy – простой инструмент для изучения соединений D-Bus."
-
-#: data/org.gnome.dspy.appdata.xml.in.in:29
-msgid "D-Spy Interface"
-msgstr "Интерфейс D-Spy"
-
-#: data/org.gnome.dspy.desktop.in.in:7
+#: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
 msgstr "Навигация и изучение служб D-Bus"
 
-#: data/org.gnome.dspy.desktop.in.in:8
+#: data/org.gnome.dspy.desktop.in.in:7
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
@@ -53,133 +37,56 @@ msgstr "dspy;dbus;"
 msgid "New Window"
 msgstr "Новое окно"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Анализ соединений D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy – простой инструмент для изучения соединений D-Bus."
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "Интерфейс D-Spy"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Системная шина"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Сеансовая шина "
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "Соединено с «%s»"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "С_истема"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "Не запущено"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "С_еанс"
-
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_Другое"
-
-#: src/dspy-method-view.c:191
-msgid "Execute"
-msgstr "Выполнить"
-
-#: src/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "Отменить"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Путь к объекту"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Интерфейс"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Метод"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Параметры"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "_Выполнить"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "Результат"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "_Копировать"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "Прошедшее время"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Адрес шины"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "Название"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "Владелец"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "ID процесса"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Активируемый"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Да"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "Нет"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "чтение/запись"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "только запись"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "только чтение"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Интерфейсы"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "Методы"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "Свойства"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "Сигналы"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Ошибка"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -187,89 +94,267 @@ msgstr "Сигналы"
 msgid "Array of [%s]"
 msgstr "Массив [%s]"
 
-#: src/dspy-view.c:125
-msgid "Bus"
-msgstr "Шина"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "Шина спец. возможности"
 
-#: src/dspy-view.c:167
-msgid "Access Denied by Peer"
-msgstr "Доступ запрёщен узлом"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "Методы"
 
-#: src/dspy-view.c:169
-msgid "Authentication Failed"
-msgstr "Ошибка аутентификации"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "Свойства"
 
-#: src/dspy-view.c:171
-msgid "Operation Timed Out"
-msgstr "Время ожидания операции истекло"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "Сигналы"
 
-#: src/dspy-view.c:173
-msgid "Lost Connection to Bus"
-msgstr "Разорвано соединение с шиной"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "Скопировано в буфер обмена"
 
-#: src/dspy-view.c:175
-msgid "D-Bus Connection Failed"
-msgstr "Ошибка соединения D-Bus"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "мс"
 
-#: src/dspy-view.c:179
-msgid "_Close"
-msgstr "_Закрыть"
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "Соединения"
 
-#: src/dspy-view.c:474
-msgid "Connect"
-msgstr "Соединение"
-
-#: src/dspy-view.c:475
-msgid "Provide the address of the message bus"
-msgstr "Предоставить адрес шины сообщений"
-
-#: src/dspy-view.c:477
-msgid "Connect to Other Bus"
-msgstr "Соединиться с другой шиной"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "Главное меню"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "Искать в названиях шин"
-
-#: src/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "Название шин"
 
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "Выберите название D-Bus"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "Фильтровать…"
 
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "Выберите название шины для интроспекции узла"
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "Объекты"
 
-#: src/dspy-view.ui:159
-msgid "Refresh"
-msgstr "Обновить"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Интерфейсы"
 
-#: src/dspy-view.ui:235
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "Обзор объектов"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "Выберите шину для обзора объектов"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "Элементы"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Подробности"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "Обзор интерфейсов"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "Выберите объект для обзора элементов"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "Шина"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "Название шины"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "Владелец"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "Путь к объекту"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "Интерфейс"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "Свойство"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "Тип подписи"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Значение"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "Сигнал"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "Подпись"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "Метод"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "Параметры"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "Возвращаемый тип"
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "Метод вызова"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "Отменить"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "Результат"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "Статистика"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "Длительность"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "Минимальная длительность"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "Максимальная длительность"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "Новое соединение"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "Адрес шины"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "Соединиться"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "_Новое окно"
 
-#: src/dspy-view.ui:241
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "Соединиться с другой _шиной"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "_О приложении"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "Соединиться с другой шиной…"
-
-#: src/main.c:150
+#: src/main.c:153
 msgid "Open a new window"
 msgstr "Открыть новое окно"
 
-#: src/main.c:151
+#: src/main.c:154
 msgid "Print version information and exit"
 msgstr "Показать информацию о версии и выйти"
+
+#, c-format
+#~ msgid "Connected to “%s”"
+#~ msgstr "Соединено с «%s»"
+
+#~ msgid "_Other"
+#~ msgstr "_Другое"
+
+#~ msgid "Execute"
+#~ msgstr "Выполнить"
+
+#~ msgid "_Execute"
+#~ msgstr "_Выполнить"
+
+#~ msgid "_Copy"
+#~ msgstr "_Копировать"
+
+#~ msgid "Elapsed Time"
+#~ msgstr "Прошедшее время"
+
+#~ msgid "Name"
+#~ msgstr "Название"
+
+#~ msgid "Process ID"
+#~ msgstr "ID процесса"
+
+#, c-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Activatable"
+#~ msgstr "Активируемый"
+
+#~ msgid "Yes"
+#~ msgstr "Да"
+
+#~ msgid "No"
+#~ msgstr "Нет"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Access Denied by Peer"
+#~ msgstr "Доступ запрёщен узлом"
+
+#~ msgid "Authentication Failed"
+#~ msgstr "Ошибка аутентификации"
+
+#~ msgid "Operation Timed Out"
+#~ msgstr "Время ожидания операции истекло"
+
+#~ msgid "Lost Connection to Bus"
+#~ msgstr "Разорвано соединение с шиной"
+
+#~ msgid "D-Bus Connection Failed"
+#~ msgstr "Ошибка соединения D-Bus"
+
+#~ msgid "_Close"
+#~ msgstr "_Закрыть"
+
+#~ msgid "Provide the address of the message bus"
+#~ msgstr "Предоставить адрес шины сообщений"
+
+#~ msgid "Main Menu"
+#~ msgstr "Главное меню"
+
+#~ msgid "Search Bus Names"
+#~ msgstr "Искать в названиях шин"
+
+#~ msgid "Select a D-Bus Name"
+#~ msgstr "Выберите название D-Bus"
+
+#~ msgid "Select a bus name to introspect the peer"
+#~ msgstr "Выберите название шины для интроспекции узла"
+
+#~ msgid "Refresh"
+#~ msgstr "Обновить"
+
+#~ msgid "Connect to Other Bus…"
+#~ msgstr "Соединиться с другой шиной…"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "Навигатор D-Bus для GNOME"
