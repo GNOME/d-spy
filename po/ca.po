@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
 "POT-Creation-Date: 2025-03-10 11:31+0000\n"
-"PO-Revision-Date: 2025-03-10 17:16+0100\n"
+"PO-Revision-Date: 2025-08-21 17:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -37,7 +37,7 @@ msgstr "D-Spy és una eina senzilla per explorar les connexions D-Bus."
 
 #: data/org.gnome.dspy.appdata.xml.in.in:29
 msgid "D-Spy Interface"
-msgstr "Intefície D-Spy"
+msgstr "Interfície D-Spy"
 
 #: data/org.gnome.dspy.desktop.in.in:7
 msgid "Discover and explore D-Bus services"
@@ -103,11 +103,11 @@ msgstr "_Copia"
 
 #: src/dspy-method-view.ui:194
 msgid "Elapsed Time"
-msgstr "Elapse de temps"
+msgstr "Temps transcorregut"
 
 #: src/dspy-name-marquee.ui:12
 msgid "Bus Address"
-msgstr "Adreça de Bus"
+msgstr "Adreça del bus"
 
 #: src/dspy-name-marquee.ui:36
 msgid "Name"
@@ -187,11 +187,11 @@ msgstr "Bus"
 
 #: src/dspy-view.c:167
 msgid "Access Denied by Peer"
-msgstr "Accés denegat per un punt (peer)"
+msgstr "Accés denegat per un «peer»"
 
 #: src/dspy-view.c:169
 msgid "Authentication Failed"
-msgstr "Autentificació a fallat"
+msgstr "L'autentificació ha fallat"
 
 #: src/dspy-view.c:171
 msgid "Operation Timed Out"
