@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-04-08 20:19+0000\n"
-"PO-Revision-Date: 2025-04-08 22:22+0200\n"
+"POT-Creation-Date: 2025-09-04 09:50+0000\n"
+"PO-Revision-Date: 2025-09-04 15:24+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -16,35 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert"
-msgstr "Christian Hergert"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:16
-msgid "Analyze D-Bus connections"
-msgstr "Analyzujte připojení D-Bus"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:18
-msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "D-Spy je jednoduchý nástroj pro zkoumání připojení D-Bus."
-
-#: data/org.gnome.dspy.appdata.xml.in.in:29
-msgid "D-Spy Interface"
-msgstr "Rozhraní D-Spy"
-
-#: data/org.gnome.dspy.desktop.in.in:7
+#: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
 msgstr "Objevujte a prozkoumávejte služby D-Bus"
 
-#: data/org.gnome.dspy.desktop.in.in:8
+#: data/org.gnome.dspy.desktop.in.in:7
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
@@ -52,133 +36,57 @@ msgstr "dspy;dbus;"
 msgid "New Window"
 msgstr "Nové okno"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analyzujte připojení D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy je jednoduchý nástroj pro zkoumání připojení D-Bus."
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "Rozhraní D-Spy"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Systémová sběrnice"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Sběrnice sezení"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "Připojeno k „%s“"
+#| msgid "%s: %u"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "S_ystém"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "Neběží"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "_Sezení"
-
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_Ostatní"
-
-#: src/dspy-method-view.c:191
-msgid "Execute"
-msgstr "Spustit"
-
-#: src/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "Zrušit"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Cesta k objektu"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Rozhraní"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Metoda"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Parametry"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "Spus_tit"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "Výsledek"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "Z_kopírovat"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "Uplynulý čas"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Adresa sběrnice"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "Název"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "Vlastník"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "ID procesu"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Aktivovatelné"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Ano"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "Ne"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "čtení/zápis"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "pouze zápis"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "pouze čtení"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Rozhraní"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "Metody"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "Vlastnosti"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "Signály"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Chyba"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -186,89 +94,267 @@ msgstr "Signály"
 msgid "Array of [%s]"
 msgstr "Pole [%s]"
 
-#: src/dspy-view.c:125
-msgid "Bus"
-msgstr "Sběrnice"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "Sběrnice zpřístupnění"
 
-#: src/dspy-view.c:167
-msgid "Access Denied by Peer"
-msgstr "Přístup byl zamítnut protějškem"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "Metody"
 
-#: src/dspy-view.c:169
-msgid "Authentication Failed"
-msgstr "Ověření selhalo"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "Vlastnosti"
 
-#: src/dspy-view.c:171
-msgid "Operation Timed Out"
-msgstr "Vypršel časový limit operace"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "Signály"
 
-#: src/dspy-view.c:173
-msgid "Lost Connection to Bus"
-msgstr "Spojení se sběrnicí bylo ztraceno"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "Zkopírováno do schránky"
 
-#: src/dspy-view.c:175
-msgid "D-Bus Connection Failed"
-msgstr "Připojení D-Bus selhalo"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "ms"
 
-#: src/dspy-view.c:179
-msgid "_Close"
-msgstr "Za_vřít"
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "Připojení"
 
-#: src/dspy-view.c:474
-msgid "Connect"
-msgstr "Připojit"
-
-#: src/dspy-view.c:475
-msgid "Provide the address of the message bus"
-msgstr "Zadejte adresu sběrnice zpráv"
-
-#: src/dspy-view.c:477
-msgid "Connect to Other Bus"
-msgstr "Připojit k jiné sběrnici"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "Hlavní nabídka"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "Hledat názvy sběrnic"
-
-#: src/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "Názvy sběrnic"
 
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "Vyberte název D-Bus"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "filtrovat…"
 
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "Vyberte název sběrnice pro introspekci protějšku"
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "Objekty"
 
-#: src/dspy-view.ui:159
-msgid "Refresh"
-msgstr "Aktualizovat"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Rozhraní"
 
-#: src/dspy-view.ui:235
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "Prozkoumat objekty"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "Vyberte sběrnici k prozkoumání objektů"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "Členové"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "Prozkoumat rozhraní"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "Vyberte objekt k prozkoumání členů"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "Sběrnice"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "Název sběrnice"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "Vlastník"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "Cesta k objektu"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "Rozhraní"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "Vlastnost"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "Podpis typu"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Hodnota"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "Signál"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "Podpis"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "Metoda"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "Parametry"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "Návratový typ"
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "Metoda volání"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "Výsledek"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "Statistika"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "Trvání"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "Minimální doba trvání"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "Maximální doba trvání"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "Nové připojení"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "Adresa sběrnice"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "Připojit"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: src/dspy-view.ui:241
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "Připojit k jiné s_běrnici"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "O _aplikaci D-Spy"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "Připojit k jiné sběrnici…"
-
-#: src/main.c:150
+#: src/main.c:153
 msgid "Open a new window"
 msgstr "Otevřít nové okno"
 
-#: src/main.c:151
+#: src/main.c:154
 msgid "Print version information and exit"
 msgstr "Vypsat informace o verzi a skončit"
+
+#, c-format
+#~ msgid "Connected to “%s”"
+#~ msgstr "Připojeno k „%s“"
+
+#~ msgid "_Other"
+#~ msgstr "_Ostatní"
+
+#~ msgid "Execute"
+#~ msgstr "Spustit"
+
+#~ msgid "_Execute"
+#~ msgstr "Spus_tit"
+
+#~ msgid "_Copy"
+#~ msgstr "Z_kopírovat"
+
+#~ msgid "Elapsed Time"
+#~ msgstr "Uplynulý čas"
+
+#~ msgid "Name"
+#~ msgstr "Název"
+
+#~ msgid "Process ID"
+#~ msgstr "ID procesu"
+
+#, c-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Activatable"
+#~ msgstr "Aktivovatelné"
+
+#~ msgid "Yes"
+#~ msgstr "Ano"
+
+#~ msgid "No"
+#~ msgstr "Ne"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Access Denied by Peer"
+#~ msgstr "Přístup byl zamítnut protějškem"
+
+#~ msgid "Authentication Failed"
+#~ msgstr "Ověření selhalo"
+
+#~ msgid "Operation Timed Out"
+#~ msgstr "Vypršel časový limit operace"
+
+#~ msgid "Lost Connection to Bus"
+#~ msgstr "Spojení se sběrnicí bylo ztraceno"
+
+#~ msgid "D-Bus Connection Failed"
+#~ msgstr "Připojení D-Bus selhalo"
+
+#~ msgid "_Close"
+#~ msgstr "Za_vřít"
+
+#~ msgid "Provide the address of the message bus"
+#~ msgstr "Zadejte adresu sběrnice zpráv"
+
+#~ msgid "Main Menu"
+#~ msgstr "Hlavní nabídka"
+
+#~ msgid "Search Bus Names"
+#~ msgstr "Hledat názvy sběrnic"
+
+#~ msgid "Select a D-Bus Name"
+#~ msgstr "Vyberte název D-Bus"
+
+#~ msgid "Select a bus name to introspect the peer"
+#~ msgstr "Vyberte název sběrnice pro introspekci protějšku"
+
+#~ msgid "Refresh"
+#~ msgstr "Aktualizovat"
+
+#~ msgid "Connect to Other Bus…"
+#~ msgstr "Připojit k jiné sběrnici…"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "Prohlížeč D-Bus pro GNOME"
