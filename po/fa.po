@@ -7,173 +7,84 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-17 22:28+0000\n"
-"PO-Revision-Date: 2025-02-24 19:57+0330\n"
+"POT-Creation-Date: 2025-09-04 19:32+0000\n"
+"PO-Revision-Date: 2025-09-05 16:29+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert"
-msgstr "کریستین هرگرت"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "دی-اسپای"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:16
-msgid "Analyze D-Bus connections"
-msgstr "تحلیل اتّصال‌های D-Bus"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:18
-msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "دی-اسپای ابزاری ساده برای مرور اتّصال‌های D-Bus است."
-
-#: data/org.gnome.dspy.appdata.xml.in.in:29
-msgid "D-Spy Interface"
-msgstr "میانای دی-اسپای"
-
-#: data/org.gnome.dspy.desktop.in.in:7
+#: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
 msgstr "کشف و مرور خدمات D-Bus"
 
-#: data/org.gnome.dspy.desktop.in.in:8
+#: data/org.gnome.dspy.desktop.in.in:7
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;دی‌باس;دی-اسپای;"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "پنجرهٔ جدید"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "کریستین هرگرت"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "تحلیل اتّصال‌های D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "دی-اسپای ابزاری ساده برای مرور اتّصال‌های D-Bus است."
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "میانای دی-اسپای"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "گذرگاه سامانه"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "گذرگاه نشست"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "وصل شده به %s"
+msgid "PID: %u"
+msgstr "شناسه %Iu"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "_سامانه"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "اجرا نشده"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "_نشست"
-
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_دیگر"
-
-#: src/dspy-method-view.c:191
-msgid "Execute"
-msgstr "اجرا"
-
-#: src/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "لغو"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "مسیر شی"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "واسط"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "رشو"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "عوامل"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "_اجرا"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "نتیجه"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "_رونوشت"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "زمان رفته"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "نشانی گذرگاه"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "نام"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "مالک"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "شناسهٔ فرایند"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "قابل فعّال سازی"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "بله"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "خیر"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %Iu"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "شناسهٔ فرایند"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "خواندن و نوشتن"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "فقط نوشتن"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "فقط خواندن"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "میاناها"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "روش‌ها"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "ترجیحات"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "علامت‌ها"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "خطا"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -181,81 +92,267 @@ msgstr "علامت‌ها"
 msgid "Array of [%s]"
 msgstr "آرایهٔ [%s]"
 
-#: src/dspy-view.c:125
-msgid "Bus"
-msgstr "گذرگاه"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "گذرگاه دسترسی‌پذیری"
 
-#: src/dspy-view.c:167
-msgid "Access Denied by Peer"
-msgstr "دسترسی به دست نظیر رد شد"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "روش‌ها"
 
-#: src/dspy-view.c:169
-msgid "Authentication Failed"
-msgstr "تصدیق شکست خورد"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "ترجیحات"
 
-#: src/dspy-view.c:171
-msgid "Operation Timed Out"
-msgstr "زمان عملیات به سر رسید"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "علامت‌ها"
 
-#: src/dspy-view.c:173
-msgid "Lost Connection to Bus"
-msgstr "قطع اتّصال به گذرگاه"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "در تخته‌گیره رونوشت شد"
 
-#: src/dspy-view.c:175
-msgid "D-Bus Connection Failed"
-msgstr "اتّصال D-Bus شکست خورد"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "م‌ث"
 
-#: src/dspy-view.c:179
-msgid "_Close"
-msgstr "_بستن"
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "دوردست‌ها"
 
-#: src/dspy-view.c:474
-msgid "Connect"
-msgstr "اتّصال"
-
-#: src/dspy-view.c:475
-msgid "Provide the address of the message bus"
-msgstr "فراهم کردن نشانی گذرگاه پیام"
-
-#: src/dspy-view.c:477
-msgid "Connect to Other Bus"
-msgstr "وصل شدن به دیگر گذرگاه‌ها"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "فهرست اصلی"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "جست‌وجوی نام گذرگاه‌ها"
-
-#: src/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "نام گذرگاه‌ها"
 
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "گزینش نام D-Bus"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "پالایش…"
 
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "گزینش نام گذرگاه برای بررسی نظیر"
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "اشیا"
 
-#: src/dspy-view.ui:160
-msgid "Refresh"
-msgstr "نوسازی"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "میاناها"
 
-#: src/dspy-view.ui:230
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "کشف اشیا"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "گزینش گذرگاهی برای کشف اشیا"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "اعضا"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "جزییات"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "میاناهای کشف"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "گزینش شی‌ای برای کشف اعضا"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "گذرگاه"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "نام گذرگاه"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "مالک"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "مسیر شی"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "واسط"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "مشخصه"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "امضای گونه"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "مقدار"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "علامت"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "امضا"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "رشو"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "عوامل"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "گونهٔ بازگشت"
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "روش فراخوانی"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "لغو"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "نتیجه"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "آمارها"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "مدّت"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "کمینهء مدّت"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "بیشینهٔ مدّت"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "اتّصال جدید"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "نشانی گذرگاه"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "اتّصال"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "_پنجرهٔ جدید"
 
-#: src/dspy-view.ui:236
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "وصل شدن به دیگر گذرگاه‌ها"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "_درباره دی-اسپای"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "وصل شدن به دیگر گذرگاه‌ها…"
+#: src/main.c:153
+msgid "Open a new window"
+msgstr "گشودن پنجرهٔ جدید"
+
+#: src/main.c:154
+msgid "Print version information and exit"
+msgstr "چاپ اطّلاعات نگارش و خروج"
+
+#, c-format
+#~ msgid "Connected to “%s”"
+#~ msgstr "وصل شده به %s"
+
+#~ msgid "_Other"
+#~ msgstr "_دیگر"
+
+#~ msgid "Execute"
+#~ msgstr "اجرا"
+
+#~ msgid "_Execute"
+#~ msgstr "_اجرا"
+
+#~ msgid "_Copy"
+#~ msgstr "_رونوشت"
+
+#~ msgid "Elapsed Time"
+#~ msgstr "زمان رفته"
+
+#~ msgid "Name"
+#~ msgstr "نام"
+
+#~ msgid "Process ID"
+#~ msgstr "شناسهٔ فرایند"
+
+#, c-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Activatable"
+#~ msgstr "قابل فعّال سازی"
+
+#~ msgid "Yes"
+#~ msgstr "بله"
+
+#~ msgid "No"
+#~ msgstr "خیر"
+
+#~ msgid "PID"
+#~ msgstr "شناسهٔ فرایند"
+
+#~ msgid "Access Denied by Peer"
+#~ msgstr "دسترسی به دست نظیر رد شد"
+
+#~ msgid "Authentication Failed"
+#~ msgstr "تصدیق شکست خورد"
+
+#~ msgid "Operation Timed Out"
+#~ msgstr "زمان عملیات به سر رسید"
+
+#~ msgid "Lost Connection to Bus"
+#~ msgstr "قطع اتّصال به گذرگاه"
+
+#~ msgid "D-Bus Connection Failed"
+#~ msgstr "اتّصال D-Bus شکست خورد"
+
+#~ msgid "_Close"
+#~ msgstr "_بستن"
+
+#~ msgid "Provide the address of the message bus"
+#~ msgstr "فراهم کردن نشانی گذرگاه پیام"
+
+#~ msgid "Main Menu"
+#~ msgstr "فهرست اصلی"
+
+#~ msgid "Search Bus Names"
+#~ msgstr "جست‌وجوی نام گذرگاه‌ها"
+
+#~ msgid "Select a D-Bus Name"
+#~ msgstr "گزینش نام D-Bus"
+
+#~ msgid "Select a bus name to introspect the peer"
+#~ msgstr "گزینش نام گذرگاه برای بررسی نظیر"
+
+#~ msgid "Refresh"
+#~ msgstr "نوسازی"
+
+#~ msgid "Connect to Other Bus…"
+#~ msgstr "وصل شدن به دیگر گذرگاه‌ها…"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "مرورگر D-Bus برای گنوم"
