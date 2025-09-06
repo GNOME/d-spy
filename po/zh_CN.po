@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-04-08 20:19+0000\n"
-"PO-Revision-Date: 2025-04-09 18:08+0800\n"
+"POT-Creation-Date: 2025-09-05 13:01+0000\n"
+"PO-Revision-Date: 2025-09-06 08:38+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -20,33 +20,17 @@ msgstr ""
 "X-Generator: Gtranslator 48.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert"
-msgstr "Christian Hergert"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/dspy-window.ui:8 src/main.c:88 src/main.c:125
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:16
-msgid "Analyze D-Bus connections"
-msgstr "分析 D-Bus 连接"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:18
-msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "D-Spy 是浏览 D-Bus 连接的简单工具。"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:29
-msgid "D-Spy Interface"
-msgstr "D-Spy 接口"
-
-#: data/org.gnome.dspy.desktop.in.in:7
+#: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
 msgstr "发现和浏览 D-Bus 服务"
 
-#: data/org.gnome.dspy.desktop.in.in:8
+#: data/org.gnome.dspy.desktop.in.in:7
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;连接;接口;总线;"
 
@@ -54,133 +38,56 @@ msgstr "dspy;dbus;连接;接口;总线;"
 msgid "New Window"
 msgstr "新建窗口"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "分析 D-Bus 连接"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy 是浏览 D-Bus 连接的简单工具。"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "D-Spy 接口"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "系统总线"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "会话总线"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "已连接到“%s”"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "系统(_Y)"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "未运行"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "会话(_S)"
-
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "其它(_O)"
-
-#: src/dspy-method-view.c:191
-msgid "Execute"
-msgstr "执行"
-
-#: src/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "取消"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "对象路径"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "接口"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "方法"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "参数"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "执行(_E)"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "结果"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "复制(_C)"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "已用时间"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "总线地址"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "名称"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "所有者"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "进程 ID"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s：%s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "可激活"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "是"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "否"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s：%u"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "读/写"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "只能写入"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "只能读取"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "接口"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "方法"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "属性"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "信号"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "错误"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -188,89 +95,267 @@ msgstr "信号"
 msgid "Array of [%s]"
 msgstr "[%s] 数组"
 
-#: src/dspy-view.c:125
-msgid "Bus"
-msgstr "总线"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "无障碍总线"
 
-#: src/dspy-view.c:167
-msgid "Access Denied by Peer"
-msgstr "访问被对方拒绝"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "方法"
 
-#: src/dspy-view.c:169
-msgid "Authentication Failed"
-msgstr "认证失败"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "属性"
 
-#: src/dspy-view.c:171
-msgid "Operation Timed Out"
-msgstr "操作超时"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "信号"
 
-#: src/dspy-view.c:173
-msgid "Lost Connection to Bus"
-msgstr "已断开与总线的连接"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "已复制到剪贴板"
 
-#: src/dspy-view.c:175
-msgid "D-Bus Connection Failed"
-msgstr "D-Bus 连接失败"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "毫秒"
 
-#: src/dspy-view.c:179
-msgid "_Close"
-msgstr "关闭(_C)"
-
-#: src/dspy-view.c:474
-msgid "Connect"
+#: src/dspy-window.ui:62
+msgid "Connections"
 msgstr "连接"
 
-#: src/dspy-view.c:475
-msgid "Provide the address of the message bus"
-msgstr "提供消息总线的地址"
-
-#: src/dspy-view.c:477
-msgid "Connect to Other Bus"
-msgstr "连接到其他总线"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "主菜单"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "搜索总线名称"
-
-#: src/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "总线名称"
 
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "选择 D-Bus 名称"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "筛选器…"
 
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "选择总线名称以检视对等点"
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "对象"
 
-#: src/dspy-view.ui:159
-msgid "Refresh"
-msgstr "刷新"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "接口"
 
-#: src/dspy-view.ui:235
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "探索对象"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "选择总线以探索对象"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "成员"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "详情"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "探索接口"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "选择对象以探索成员"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "总线"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "总线名称"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "所有者"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "对象路径"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "接口"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "属性"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "类型签名"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "值"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "信号"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "签名"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "方法"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "参数"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "返回类型"
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "调用方法"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "取消"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "结果"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "统计"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "时长"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "最小时长"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "最大时长"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "新建连接"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "总线地址"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "连接"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "新建窗口(_N)"
 
-#: src/dspy-view.ui:241
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "连接到其它总线(_B)"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "关于 D-Spy(_A)"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "连接到其它总线…"
-
-#: src/main.c:150
+#: src/main.c:153
 msgid "Open a new window"
 msgstr "打开新窗口"
 
-#: src/main.c:151
+#: src/main.c:154
 msgid "Print version information and exit"
 msgstr "显示版本信息并退出"
+
+#, c-format
+#~ msgid "Connected to “%s”"
+#~ msgstr "已连接到“%s”"
+
+#~ msgid "_Other"
+#~ msgstr "其它(_O)"
+
+#~ msgid "Execute"
+#~ msgstr "执行"
+
+#~ msgid "_Execute"
+#~ msgstr "执行(_E)"
+
+#~ msgid "_Copy"
+#~ msgstr "复制(_C)"
+
+#~ msgid "Elapsed Time"
+#~ msgstr "已用时间"
+
+#~ msgid "Name"
+#~ msgstr "名称"
+
+#~ msgid "Process ID"
+#~ msgstr "进程 ID"
+
+#, c-format
+#~ msgid "%s: %s"
+#~ msgstr "%s：%s"
+
+#~ msgid "Activatable"
+#~ msgstr "可激活"
+
+#~ msgid "Yes"
+#~ msgstr "是"
+
+#~ msgid "No"
+#~ msgstr "否"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Access Denied by Peer"
+#~ msgstr "访问被对方拒绝"
+
+#~ msgid "Authentication Failed"
+#~ msgstr "认证失败"
+
+#~ msgid "Operation Timed Out"
+#~ msgstr "操作超时"
+
+#~ msgid "Lost Connection to Bus"
+#~ msgstr "已断开与总线的连接"
+
+#~ msgid "D-Bus Connection Failed"
+#~ msgstr "D-Bus 连接失败"
+
+#~ msgid "_Close"
+#~ msgstr "关闭(_C)"
+
+#~ msgid "Provide the address of the message bus"
+#~ msgstr "提供消息总线的地址"
+
+#~ msgid "Main Menu"
+#~ msgstr "主菜单"
+
+#~ msgid "Search Bus Names"
+#~ msgstr "搜索总线名称"
+
+#~ msgid "Select a D-Bus Name"
+#~ msgstr "选择 D-Bus 名称"
+
+#~ msgid "Select a bus name to introspect the peer"
+#~ msgstr "选择总线名称以检视对等点"
+
+#~ msgid "Refresh"
+#~ msgstr "刷新"
+
+#~ msgid "Connect to Other Bus…"
+#~ msgstr "连接到其它总线…"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "GNOME 的 D-Bus 浏览器"
