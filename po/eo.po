@@ -1,234 +1,340 @@
 # Esperanto translation for d-spy.
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2023.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2023-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/-/issues\n"
-"POT-Creation-Date: 2023-09-21 16:00+0000\n"
-"PO-Revision-Date: 2023-09-27 22:51+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2025-09-06 14:52+0000\n"
+"PO-Revision-Date: 2025-09-07 18:09+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian HERGERT kaj aliaj."
-
-#: data/org.gnome.dspy.appdata.xml.in.in:8 data/org.gnome.dspy.desktop.in.in:6
-#: src/main.c:86 src/main.c:88
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-Spiono"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:10
-msgid "A D-Bus explorer for GNOME"
-msgstr "D-Bus-esplorilo por GNOME"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:12
-msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "D-Spiono estas simpla ilo por esplori D-Bus-konektojn."
-
-#: data/org.gnome.dspy.appdata.xml.in.in:21
-msgid "D-Spy Interface"
-msgstr "D-Spiono-interfaco"
-
-#: data/org.gnome.dspy.desktop.in.in:7
+#: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
 msgstr "Malkovri kaj esplori D-Bus-servojn"
 
-#: data/org.gnome.dspy.desktop.in.in:8
-msgid "dbus;"
-msgstr "dbus;"
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: lib/dspy-connection-button.c:76
-#, c-format
-msgid "Connected to “%s”"
-msgstr "Konektita al “%s”"
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "Nova fenestro"
 
-#: lib/dspy-connection-button.c:221
-msgid "System"
-msgstr "Sistemo"
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian HERGERT"
 
-#: lib/dspy-connection-button.c:223
-msgid "Session"
-msgstr "Seanco"
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analizi D-Bus-konektojn"
 
-#: lib/dspy-connection-button.c:225
-msgid "Other"
-msgstr "Alia"
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spiono estas simpla ilo por esplori D-Bus-konektojn."
 
-#: lib/dspy-method-view.c:191 lib/dspy-method-view.ui:126
-msgid "Execute"
-msgstr "Lanĉi"
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "D-Spiono-interfaco"
 
-#: lib/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "Nuligi"
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Sistembuso"
 
-#: lib/dspy-method-view.ui:11 lib/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Objekta vojo"
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Seanca buso"
 
-#: lib/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Interfaco"
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: lib/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Metodo"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "Ne rulas"
 
-#: lib/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Parametroj"
-
-#: lib/dspy-method-view.ui:140
-msgid "Result"
-msgstr "Rezulto"
-
-#: lib/dspy-method-view.ui:181
-msgid "Copy"
-msgstr "Kopii"
-
-#: lib/dspy-method-view.ui:192
-msgid "Elapsed Time"
-msgstr "Pasinta tempo"
-
-#: lib/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Bus-adreso"
-
-#: lib/dspy-name-marquee.ui:35
-msgid "Name"
-msgstr "Nomo"
-
-#: lib/dspy-name-marquee.ui:58
-msgid "Owner"
-msgstr "Posedanto"
-
-#: lib/dspy-name-marquee.ui:81
-msgid "Process ID"
-msgstr "Proces-identigilo"
-
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: lib/dspy-name-row.c:78 lib/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Aktivebla"
-
-#: lib/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Jes"
-
-#: lib/dspy-name-row.c:80
-msgid "No"
-msgstr "Ne"
-
-#: lib/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: lib/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: lib/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "legebla/skribebla"
 
-#: lib/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "nur skribebla"
 
-#: lib/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "nur legebla"
 
-#: lib/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Interfacoj"
-
-#: lib/dspy-node.c:590
-msgid "Methods"
-msgstr "Metodoj"
-
-#: lib/dspy-node.c:596
-msgid "Properties"
-msgstr "Atributoj"
-
-#: lib/dspy-node.c:612
-msgid "Signals"
-msgstr "Signaloj"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Eraro"
 
 #. translators: %s is replaced with the simple D-Bus type string
-#: lib/dspy-signature.c:77
+#: src/dspy-signature.c:77
 #, c-format
 msgid "Array of [%s]"
 msgstr "Tabelo de [%s]"
 
-#: lib/dspy-view.c:162
-msgid "Access Denied by Peer"
-msgstr "Aliro rifuzita de alia flanko"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "Alirebleca buso"
 
-#: lib/dspy-view.c:164
-msgid "Authentication Failed"
-msgstr "Aŭtentikado malsukcesis"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "Metodoj"
 
-#: lib/dspy-view.c:166
-msgid "Operation Timed Out"
-msgstr "Operacio limtempis"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "Atributoj"
 
-#: lib/dspy-view.c:168
-msgid "Lost Connection to Bus"
-msgstr "Perdis konekton al la buso"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "Signaloj"
 
-#: lib/dspy-view.c:170
-msgid "D-Bus Connection Failed"
-msgstr "D-Bus-konekto malsukcesis"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "Kopiita al tondujo"
 
-#: lib/dspy-view.c:469
-msgid "Connect"
-msgstr "Konekti"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "ms"
 
-#: lib/dspy-view.c:470
-msgid "Provide the address of the message bus"
-msgstr "Donu la adreson de la mesaĝo-buso"
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "Konektoj"
 
-#: lib/dspy-view.c:472 lib/gtk/menus.ui:5
-msgid "Connect to Other Bus"
-msgstr "Konekti al alia buso"
-
-#: lib/dspy-view.ui:40
-msgid "Search Bus Names"
-msgstr "Serĉi busnomojn"
-
-#: lib/dspy-view.ui:54
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "Busnomoj"
 
-#: lib/dspy-view.ui:111
-msgid "Select a D-Bus Name"
-msgstr "Elekti D-Bus-nomon"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "Filtri…"
 
-#: lib/dspy-view.ui:112
-msgid "Select a bus name to introspect the peer."
-msgstr "Elekti busnomon por introspekti la alian flankon."
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "Objektoj"
 
-#: src/dspy-window.ui:33
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Interfacoj"
+
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "Esplori objektojn"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "Elektu buson por esplori objektojn"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "Membroj"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Detaloj"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "Esplori interfacojn"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "Elektu objekton por esplori membrojn"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "Buso"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "Busnomo"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "Posedanto"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "Objekta vojo"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "Interfaco"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "Atributo"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "Tipo-signaturo"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Valoro"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "Signalo"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "Signaturo"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "Metodo"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "Parametroj"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "Revena tipo"
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "Voki metodon"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "Nuligi"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "Rezulto"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "Statistikoj"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "Daŭro"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "Minimuma daŭro"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "Maksimuma daŭro"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "Nova konekto"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "Bus-adreso"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "Konekti"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "_Nova Fenestro"
 
-#: src/dspy-window.ui:39
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "Konekti al alia _buso"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "Pri D-Spiono"
+
+#: src/main.c:153
+msgid "Open a new window"
+msgstr "Malfermi novan fenestron"
+
+#: src/main.c:154
+msgid "Print version information and exit"
+msgstr "Montri informon pri versio kaj eliri"
+
+#~ msgid "A D-Bus explorer for GNOME"
+#~ msgstr "D-Bus-esplorilo por GNOME"
+
+#, c-format
+#~ msgid "Connected to “%s”"
+#~ msgstr "Konektita al “%s”"
+
+#~ msgid "Other"
+#~ msgstr "Alia"
+
+#~ msgid "Execute"
+#~ msgstr "Lanĉi"
+
+#~ msgid "Copy"
+#~ msgstr "Kopii"
+
+#~ msgid "Elapsed Time"
+#~ msgstr "Pasinta tempo"
+
+#~ msgid "Name"
+#~ msgstr "Nomo"
+
+#~ msgid "Process ID"
+#~ msgstr "Proces-identigilo"
+
+#, c-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Activatable"
+#~ msgstr "Aktivebla"
+
+#~ msgid "Yes"
+#~ msgstr "Jes"
+
+#~ msgid "No"
+#~ msgstr "Ne"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Access Denied by Peer"
+#~ msgstr "Aliro rifuzita de alia flanko"
+
+#~ msgid "Authentication Failed"
+#~ msgstr "Aŭtentikado malsukcesis"
+
+#~ msgid "Operation Timed Out"
+#~ msgstr "Operacio limtempis"
+
+#~ msgid "Lost Connection to Bus"
+#~ msgstr "Perdis konekton al la buso"
+
+#~ msgid "Provide the address of the message bus"
+#~ msgstr "Donu la adreson de la mesaĝo-buso"
+
+#~ msgid "Search Bus Names"
+#~ msgstr "Serĉi busnomojn"
+
+#~ msgid "Select a D-Bus Name"
+#~ msgstr "Elekti D-Bus-nomon"
+
+#~ msgid "Select a bus name to introspect the peer."
+#~ msgstr "Elekti busnomon por introspekti la alian flankon."
