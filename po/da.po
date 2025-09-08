@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-17 22:28+0000\n"
-"PO-Revision-Date: 2025-03-08 14:15+0100\n"
+"POT-Creation-Date: 2025-08-30 23:59+0000\n"
+"PO-Revision-Date: 2025-09-01 20:13+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -17,166 +17,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert"
-msgstr "Christian Hergert"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:16
-msgid "Analyze D-Bus connections"
-msgstr "Analysér D-Bus-forbindelser"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:18
-msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "D-Spy er et simpelt redskab til at udforske D-Bus-forbindelser."
-
-#: data/org.gnome.dspy.appdata.xml.in.in:29
-msgid "D-Spy Interface"
-msgstr "D-Spy-grænseflade"
-
-#: data/org.gnome.dspy.desktop.in.in:7
+#: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
 msgstr "Find og udforsk D-Bus-tjenester"
 
-#: data/org.gnome.dspy.desktop.in.in:8
+#: data/org.gnome.dspy.desktop.in.in:7
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "Nyt vindue"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analysér D-Bus-forbindelser"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy er et simpelt redskab til at udforske D-Bus-forbindelser."
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "D-Spy-grænseflade"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Systembus"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Sessionsbus"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "Tilsluttet “%s”"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "S_ystem"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "Kører ikke"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "_Session"
-
-# Iflg. koden er det typen af bus, som kan være system, session eller andet.
-#
-# Jeg synes, andet/anden begge virker.
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_Anden"
-
-#: src/dspy-method-view.c:191
-msgid "Execute"
-msgstr "Kør"
-
-#: src/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "Annullér"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Objektsti"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Grænseflade"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Metode"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Parametre"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "_Kør"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "Resultat"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "_Kopiér"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "Forløbet tid"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Busadresse"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "Navn"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "Ejer"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "Proces-id"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Aktivérbar"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Ja"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "Nej"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "læs/skriv"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "kun skrivbar"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "skrivebeskyttet"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Grænseflader"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "Metoder"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "Egenskaber"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "Signaler"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Fejl"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -184,81 +92,271 @@ msgstr "Signaler"
 msgid "Array of [%s]"
 msgstr "Array af [%s]"
 
-#: src/dspy-view.c:125
-msgid "Bus"
-msgstr "Bus"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "Tilgængelighedsbus"
 
-#: src/dspy-view.c:167
-msgid "Access Denied by Peer"
-msgstr "Adgang nægtet af modpart"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "Metoder"
 
-#: src/dspy-view.c:169
-msgid "Authentication Failed"
-msgstr "Godkendelse mislykkedes"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "Egenskaber"
 
-#: src/dspy-view.c:171
-msgid "Operation Timed Out"
-msgstr "Operationen udløb"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "Signaler"
 
-#: src/dspy-view.c:173
-msgid "Lost Connection to Bus"
-msgstr "Forbindelse til bus mistet"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "Kopieret til udklipsholder"
 
-#: src/dspy-view.c:175
-msgid "D-Bus Connection Failed"
-msgstr "D-Bus-forbindelse mislykkedes"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "msek"
 
-#: src/dspy-view.c:179
-msgid "_Close"
-msgstr "_Luk"
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "Forbindelser"
 
-#: src/dspy-view.c:474
-msgid "Connect"
-msgstr "Forbind"
-
-#: src/dspy-view.c:475
-msgid "Provide the address of the message bus"
-msgstr "Angiv meddelelsesbussens adresse"
-
-#: src/dspy-view.c:477
-msgid "Connect to Other Bus"
-msgstr "Forbind til en anden bus"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "Hovedmenu"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "Søg efter busnavne"
-
-#: src/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "Busnavne"
 
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "Vælg et D-Bus-navn"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "Filter …"
 
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "Vælg et busnavn for at analysere modparten"
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "Objekter"
 
-#: src/dspy-view.ui:160
-msgid "Refresh"
-msgstr "Genopfrisk"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Grænseflader"
 
-#: src/dspy-view.ui:230
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "Udforsk objekter"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "Vælg en bus for at udforske objekter"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "Elementer"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Detaljer"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "Udforsk grænseflader"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "Vælg et objekt for at udforske elementer"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "Bus"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "Busnavn"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "Ejer"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "Objektsti"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "Grænseflade"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "Egenskab"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "Typesignatur"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Værdi"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "Signal"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "Signatur"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "Metode"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "Parametre"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "Returtype"
+
+# Kunne være Opkaldsmetode, men de andre strenge med "signatur" osv. peger på, at det handler om et funktions-/metodekald
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "Kald metode"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "Annullér"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "Resultat"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "Statistik"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "Varighed"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "Minimal varighed"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "Maksimal varighed"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "Ny forbindelse"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "Busadresse"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "Forbind"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "_Nyt vindue"
 
-#: src/dspy-view.ui:236
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "Forbind til en anden _bus"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "_Om D-Spy"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "Forbind til en anden bus …"
+#: src/main.c:153
+msgid "Open a new window"
+msgstr "Åbn et nyt vindue"
+
+#: src/main.c:154
+msgid "Print version information and exit"
+msgstr "Udskriv versionsoplysninger og afslut"
+
+#, c-format
+#~ msgid "Connected to “%s”"
+#~ msgstr "Tilsluttet “%s”"
+
+# Iflg. koden er det typen af bus, som kan være system, session eller andet.
+#
+# Jeg synes, andet/anden begge virker.
+#~ msgid "_Other"
+#~ msgstr "_Anden"
+
+#~ msgid "Execute"
+#~ msgstr "Kør"
+
+#~ msgid "_Execute"
+#~ msgstr "_Kør"
+
+#~ msgid "_Copy"
+#~ msgstr "_Kopiér"
+
+#~ msgid "Elapsed Time"
+#~ msgstr "Forløbet tid"
+
+#~ msgid "Name"
+#~ msgstr "Navn"
+
+#~ msgid "Process ID"
+#~ msgstr "Proces-id"
+
+#, c-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Activatable"
+#~ msgstr "Aktivérbar"
+
+#~ msgid "Yes"
+#~ msgstr "Ja"
+
+#~ msgid "No"
+#~ msgstr "Nej"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Access Denied by Peer"
+#~ msgstr "Adgang nægtet af modpart"
+
+#~ msgid "Authentication Failed"
+#~ msgstr "Godkendelse mislykkedes"
+
+#~ msgid "Operation Timed Out"
+#~ msgstr "Operationen udløb"
+
+#~ msgid "Lost Connection to Bus"
+#~ msgstr "Forbindelse til bus mistet"
+
+#~ msgid "D-Bus Connection Failed"
+#~ msgstr "D-Bus-forbindelse mislykkedes"
+
+#~ msgid "_Close"
+#~ msgstr "_Luk"
+
+#~ msgid "Provide the address of the message bus"
+#~ msgstr "Angiv meddelelsesbussens adresse"
+
+#~ msgid "Main Menu"
+#~ msgstr "Hovedmenu"
+
+#~ msgid "Search Bus Names"
+#~ msgstr "Søg efter busnavne"
+
+#~ msgid "Select a D-Bus Name"
+#~ msgstr "Vælg et D-Bus-navn"
+
+#~ msgid "Select a bus name to introspect the peer"
+#~ msgstr "Vælg et busnavn for at analysere modparten"
+
+#~ msgid "Refresh"
+#~ msgstr "Genopfrisk"
+
+#~ msgid "Connect to Other Bus…"
+#~ msgstr "Forbind til en anden bus …"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "Et D-Bus-udforskningsprogram til GNOME"
