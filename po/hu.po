@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-02-17 22:28+0000\n"
-"PO-Revision-Date: 2025-02-28 17:44+0100\n"
+"POT-Creation-Date: 2025-09-08 22:57+0000\n"
+"PO-Revision-Date: 2025-09-09 07:15+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -16,165 +16,80 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 24.12.3\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert"
-msgstr "Christian Hergert"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-kém"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:16
-msgid "Analyze D-Bus connections"
-msgstr "D-busz kapcsolatok elemzése"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:18
-msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "A D-kém egy egyszerű eszköz a D-busz kapcsolatainak felderítéséhez."
-
-#: data/org.gnome.dspy.appdata.xml.in.in:29
-msgid "D-Spy Interface"
-msgstr "D-kém interfész"
-
-#: data/org.gnome.dspy.desktop.in.in:7
+#: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
 msgstr "D-busz szolgáltatások felfedezése és vizsgálata"
 
-#: data/org.gnome.dspy.desktop.in.in:8
+#: data/org.gnome.dspy.desktop.in.in:7
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#: data/org.gnome.dspy.desktop.in.in:17
+#| msgid "_New Window"
+msgid "New Window"
+msgstr "Új ablak"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "D-busz kapcsolatok elemzése"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "A D-kém egy egyszerű eszköz a D-busz kapcsolatainak felderítéséhez."
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "D-kém interfész"
+
+#: src/dspy-connection.c:510
+#| msgid "S_ystem"
+msgid "System Bus"
+msgstr "Rendszerbusz"
+
+#: src/dspy-connection.c:513
+#| msgid "_Session"
+msgid "Session Bus"
+msgstr "Munkamenetbusz"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "Kapcsolódva ehhez: „%s”"
+#| msgid "%s: %u"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "_Rendszer"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "Nem fut"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "_Munkamenet"
-
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_Egyéb"
-
-#: src/dspy-method-view.c:191
-msgid "Execute"
-msgstr "Végrehajtás"
-
-#: src/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "Mégse"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Objektumútvonal"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Interfész"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Metódus"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Paraméterek"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "_Végrehajtás"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "Eredmény"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "_Másolás"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "Eltelt idő"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Buszcím"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "Név"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "Tulajdonos"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "Folyamatazonosító"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Aktiválható"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Igen"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "Nem"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "olvasás/írás"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "csak írás"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "csak olvasás"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Interfészek"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "Metódusok"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "Tulajdonságok"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "Szignálok"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Hiba"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -182,79 +97,194 @@ msgstr "Szignálok"
 msgid "Array of [%s]"
 msgstr "[%s] tömb"
 
-#: src/dspy-view.c:125
-msgid "Bus"
-msgstr "Busz"
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "Akadálymentesítési busz"
 
-#: src/dspy-view.c:167
-msgid "Access Denied by Peer"
-msgstr "A partner megtagadta a hozzáférést"
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "Metódusok"
 
-#: src/dspy-view.c:169
-msgid "Authentication Failed"
-msgstr "Hitelesítés sikertelen"
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "Tulajdonságok"
 
-#: src/dspy-view.c:171
-msgid "Operation Timed Out"
-msgstr "A művelet túllépte az időkorlátot"
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "Szignálok"
 
-#: src/dspy-view.c:173
-msgid "Lost Connection to Bus"
-msgstr "A buszkapcsolat elveszett"
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "Vágólapra másolva"
 
-#: src/dspy-view.c:175
-msgid "D-Bus Connection Failed"
-msgstr "A D-busz kapcsolat sikertelen"
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "ezredmásodperc"
 
-#: src/dspy-view.c:179
-msgid "_Close"
-msgstr "_Bezárás"
+#: src/dspy-window.ui:62
+#| msgid "Connect"
+msgid "Connections"
+msgstr "Kapcsolatok"
 
-#: src/dspy-view.c:474
-msgid "Connect"
-msgstr "Kapcsolódás"
-
-#: src/dspy-view.c:475
-msgid "Provide the address of the message bus"
-msgstr "Adja meg az üzenetbusz címét"
-
-#: src/dspy-view.c:477
-msgid "Connect to Other Bus"
-msgstr "Kapcsolódás másik buszhoz"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "Főmenü"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "Busznevek keresése"
-
-#: src/dspy-view.ui:80
+#: src/dspy-window.ui:165
 msgid "Bus Names"
 msgstr "Busznevek"
 
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "Válasszon D-busz nevet"
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "Szűrő…"
 
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "Válasszon egy busznevet a partner elemzéséhez"
+#: src/dspy-window.ui:326
+#| msgid "Object Path"
+msgid "Objects"
+msgstr "Objektumok"
 
-#: src/dspy-view.ui:160
-msgid "Refresh"
-msgstr "Frissítés"
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Interfészek"
 
-#: src/dspy-view.ui:230
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "Objektumok felfedezése"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "Busz kiválasztása objektumok felfedezéséhez"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "Tagok"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Részletek"
+
+#: src/dspy-window.ui:888
+#| msgid "Interfaces"
+msgid "Explore Interfaces"
+msgstr "Interfészek felfedezése"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "Objektum kiválasztása tagok felfedezéséhez"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "Busz"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+#| msgid "Bus Names"
+msgid "Bus Name"
+msgstr "Busz neve"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "Tulajdonos"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "Objektumútvonal"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "Interfész"
+
+#: src/dspy-window.ui:1014
+#| msgid "Properties"
+msgid "Property"
+msgstr "Tulajdonság"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "Típus aláírása"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Érték"
+
+#: src/dspy-window.ui:1200
+#| msgid "Signals"
+msgid "Signal"
+msgstr "Szignál"
+
+#: src/dspy-window.ui:1214
+#| msgid "Signals"
+msgid "Signature"
+msgstr "Aláírás"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "Metódus"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "Paraméterek"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "Visszatérés típusa"
+
+#: src/dspy-window.ui:1426
+#| msgid "Method"
+msgid "Call Method"
+msgstr "Hívás módszere"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "Mégse"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "Eredmény"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "Statisztikák"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "Időtartam"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "Legkisebb időtartam"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "Legnagyobb időtartam"
+
+#: src/dspy-window.ui:1536
+#| msgid "Connect"
+msgid "New Connection"
+msgstr "Új kapcsolat"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "Buszcím"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "Kapcsolódás"
+
+#: src/dspy-window.ui:1579
 msgid "_New Window"
 msgstr "Új _ablak"
 
-#: src/dspy-view.ui:236
+#: src/dspy-window.ui:1585
+#| msgid "Connect to Other Bus"
+msgid "Connect to Other _Bus"
+msgstr "Kapcsolódás másik _buszhoz"
+
+#: src/dspy-window.ui:1591
 msgid "_About D-Spy"
 msgstr "A D-kém _névjegye"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "Kapcsolódás másik buszhoz…"
+#: src/main.c:153
+msgid "Open a new window"
+msgstr "Új ablak megnyitása"
 
+#: src/main.c:154
+msgid "Print version information and exit"
+msgstr "Verzióinformációk kiírása és kilépés"
