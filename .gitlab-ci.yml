@@ -2,10 +2,6 @@ include:
   - project: "gnome/citemplates"
     file: "flatpak/flatpak_ci_initiative.yml"
 
-stages:
-  - "test"
-  - "deploy"
-
 .flatpak_vars:
   variables:
     MANIFEST_PATH: "org.gnome.dspy.devel.json"
