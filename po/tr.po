@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-08-27 16:27+0000\n"
+"POT-Creation-Date: 2025-09-15 13:14+0000\n"
 "PO-Revision-Date: 2025-08-28 14:53+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
@@ -277,83 +277,3 @@ msgstr "Yeni pencere aç"
 #: src/main.c:154
 msgid "Print version information and exit"
 msgstr "Sürüm bilgisini yazdır ve çık"
-
-#, c-format
-#~ msgid "Connected to “%s”"
-#~ msgstr "“%s”e bağlandı"
-
-#~ msgid "_Other"
-#~ msgstr "_Diğer"
-
-#~ msgid "Execute"
-#~ msgstr "Çalıştır"
-
-#~ msgid "_Execute"
-#~ msgstr "_Çalıştır"
-
-#~ msgid "_Copy"
-#~ msgstr "K_opyala"
-
-#~ msgid "Elapsed Time"
-#~ msgstr "Geçen Süre"
-
-#~ msgid "Name"
-#~ msgstr "Ad"
-
-#~ msgid "Process ID"
-#~ msgstr "Süreç Kimliği"
-
-#, c-format
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "Activatable"
-#~ msgstr "Etkinleştirilebilir"
-
-#~ msgid "Yes"
-#~ msgstr "Evet"
-
-#~ msgid "No"
-#~ msgstr "Hayır"
-
-#~ msgid "PID"
-#~ msgstr "PID"
-
-#~ msgid "Access Denied by Peer"
-#~ msgstr "Erişim Eşçe Reddedildi"
-
-#~ msgid "Authentication Failed"
-#~ msgstr "Kimlik Doğrulanamadı"
-
-#~ msgid "Operation Timed Out"
-#~ msgstr "İşlem Zaman Aşımına Uğradı"
-
-#~ msgid "Lost Connection to Bus"
-#~ msgstr "Veri Yolu Bağlantısı Kesildi"
-
-#~ msgid "D-Bus Connection Failed"
-#~ msgstr "D-Bus Bağlantısı Başarısız"
-
-#~ msgid "_Close"
-#~ msgstr "_Kapat"
-
-#~ msgid "Provide the address of the message bus"
-#~ msgstr "İleti veri yolunun adresini gir"
-
-#~ msgid "Main Menu"
-#~ msgstr "Ana Menü"
-
-#~ msgid "Search Bus Names"
-#~ msgstr "Veri Yolu Adlarını Ara"
-
-#~ msgid "Select a D-Bus Name"
-#~ msgstr "D-Bus Adı Seç"
-
-#~ msgid "Select a bus name to introspect the peer"
-#~ msgstr "Eşi incelemek için veri yolu adı seç"
-
-#~ msgid "Refresh"
-#~ msgstr "Yenile"
-
-#~ msgid "Connect to Other Bus…"
-#~ msgstr "Diğer Veri Yoluna Bağlan…"
