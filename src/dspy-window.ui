@@ -1043,9 +1043,11 @@
                                         <property name="subtitle-selectable">true</property>
                                         <property name="activatable-widget">refresh_button</property>
                                         <binding name="subtitle">
-                                          <lookup name="value" type="DspyProperty">
-                                            <lookup name="member">DspyWindow</lookup>
-                                          </lookup>
+                                          <closure function="shorten_string" type="gchararray">
+                                            <lookup name="value" type="DspyProperty">
+                                              <lookup name="member">DspyWindow</lookup>
+                                            </lookup>
+                                          </closure>
                                         </binding>
                                         <child type="suffix">
                                           <object class="GtkButton" id="copy_property_button">

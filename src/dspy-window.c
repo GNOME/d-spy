@@ -658,6 +658,23 @@ new_connection_entry_changed_cb (DspyWindow  *self,
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "add-connection", text[0] != 0);
 }
 
+static char *
+shorten_string (gpointer    instance,
+                const char *str)
+{
+  g_autofree char *shorter = NULL;
+
+  if (str == NULL)
+    return NULL;
+
+  if (g_utf8_strlen (str, -1) <= 100)
+    return g_strdup (str);
+
+  shorter = g_utf8_substring (str, 0, 100);
+
+  return g_strdup_printf ("%s…", shorter);
+}
+
 static void
 dspy_window_dispose (GObject *object)
 {
@@ -803,6 +820,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, dspy_window_member_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, get_member_header_text);
   gtk_widget_class_bind_template_callback (widget_class, new_connection_entry_changed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, shorten_string);
   gtk_widget_class_install_action (widget_class, "property.refresh", NULL, property_refresh_action);
   gtk_widget_class_install_action (widget_class, "property.copy", NULL, property_copy_action);
   gtk_widget_class_install_action (widget_class, "focus-members", NULL, focus_members_action);
