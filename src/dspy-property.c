@@ -224,13 +224,6 @@ dspy_property_handle_value (DexFuture *completed,
   else
     self->value = g_variant_print (child, FALSE);
 
-  if (self->value && strlen (self->value) > 64)
-    {
-      g_autofree gchar *tmp = g_steal_pointer (&self->value);
-      tmp[64] = 0;
-      self->value = g_strdup_printf ("%s…", tmp);
-    }
-
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_VALUE]);
   g_object_notify (G_OBJECT (self), "title");
 
