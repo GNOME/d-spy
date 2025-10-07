@@ -1403,8 +1403,9 @@
                                   </object>
                                 </child>
                                 <child>
-                                  <object class="AdwPreferencesGroup">
+                                  <object class="AdwPreferencesGroup" id="parameters_group">
                                     <property name="title" translatable="yes">Parameters</property>
+                                    <property name="visible">false</property>
                                     <child>
                                       <object class="GtkListBox" id="in_arguments">
                                         <style>
