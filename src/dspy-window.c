@@ -51,6 +51,7 @@ struct _DspyWindow
   AdwActionRow           *min_row;
   AdwActionRow           *max_row;
   AdwPreferencesGroup    *duration_group;
+  AdwPreferencesGroup    *parameters_group;
   GtkStack               *call_button_stack;
   AdwEntryRow            *new_connection_entry;
   AdwNavigationView      *sidebar_view;
@@ -218,6 +219,8 @@ dspy_window_name_activate_cb (DspyWindow  *self,
   if (g_set_object (&self->interface, NULL))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_INTERFACE]);
 
+  gtk_widget_set_visible (GTK_WIDGET (self->parameters_group), FALSE);
+
   adw_navigation_view_pop_to_page (self->sidebar_view, self->names_page);
   adw_navigation_view_push (self->sidebar_view, self->objects_page);
 
@@ -328,6 +331,7 @@ dspy_window_update_method (DspyWindow *self,
                            DspyMethod *method)
 {
   g_autoptr(GListModel) model = NULL;
+  guint n_items = 0;
 
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (!method || DSPY_IS_METHOD (method));
@@ -336,11 +340,14 @@ dspy_window_update_method (DspyWindow *self,
     return;
 
   model = dspy_method_dup_in_arguments (method);
+  n_items = g_list_model_get_n_items (model);
 
   gtk_list_box_bind_model (self->in_arguments,
                            model,
                            create_argument_row,
                            NULL, NULL);
+
+  gtk_widget_set_visible (GTK_WIDGET (self->parameters_group), n_items > 0);
 }
 
 static void
@@ -366,6 +373,7 @@ dspy_window_member_activate_cb (DspyWindow  *self,
 
   gtk_text_buffer_set_text (self->result_buffer, "", 0);
   gtk_widget_set_visible (GTK_WIDGET (self->result_group), FALSE);
+  gtk_widget_set_visible (GTK_WIDGET (self->parameters_group), FALSE);
 
   if (DSPY_IS_PROPERTY (member))
     dspy_window_update_property_value (self);
@@ -812,6 +820,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, min_row);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, dur_row);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, duration_group);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, parameters_group);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_list_view);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, names_sorted);
