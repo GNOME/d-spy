@@ -733,6 +733,23 @@ dspy_window_get_property (GObject    *object,
 }
 
 static void
+refresh_objects_action (GtkWidget  *widget,
+                        const char *action_name,
+                        GVariant   *param)
+{
+  DspyWindow *self = DSPY_WINDOW (widget);
+  g_autoptr(GListModel) new_introspection = NULL;
+
+  g_assert (DSPY_IS_WINDOW (self));
+
+  if (self->name == NULL)
+    return;
+
+  new_introspection = dspy_name_dup_introspection (self->name);
+  gtk_sort_list_model_set_model (self->objects_sorted, new_introspection);
+}
+
+static void
 dspy_window_class_init (DspyWindowClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -828,6 +845,7 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_install_action (widget_class, "add-connection", NULL, add_connection_action);
   gtk_widget_class_install_action (widget_class, "call-method", NULL, call_method_action);
   gtk_widget_class_install_action (widget_class, "cancel-call", NULL, cancel_call_action);
+  gtk_widget_class_install_action (widget_class, "refresh-objects", NULL, refresh_objects_action);
 
   g_type_ensure (DSPY_TYPE_CONNECTION);
   g_type_ensure (DSPY_TYPE_NAME);

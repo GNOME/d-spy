@@ -342,6 +342,13 @@
                                         </binding>
                                       </object>
                                     </child>
+                                    <child type="start">
+                                      <object class="GtkButton">
+                                        <property name="icon-name">view-refresh-symbolic</property>
+                                        <property name="action-name">refresh-objects</property>
+                                        <property name="tooltip-text" translatable="yes">Refresh Objects</property>
+                                      </object>
+                                    </child>
                                     <child type="end">
                                       <object class="GtkWindowControls">
                                         <property name="side">end</property>
