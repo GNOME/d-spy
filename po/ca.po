@@ -7,173 +7,84 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-03-10 11:31+0000\n"
-"PO-Revision-Date: 2025-08-21 17:16+0100\n"
+"POT-Creation-Date: 2025-10-19 18:33+0000\n"
+"PO-Revision-Date: 2025-10-20 11:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.6\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.dspy.appdata.xml.in.in:7
-msgid "Christian Hergert"
-msgstr "Christian Hergert"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:14 data/org.gnome.dspy.desktop.in.in:6
-#: src/dspy-view.ui:24 src/main.c:87
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
 msgid "D-Spy"
 msgstr "D-Spy"
 
-#: data/org.gnome.dspy.appdata.xml.in.in:16
-msgid "Analyze D-Bus connections"
-msgstr "Analitza les connexions del D-Bus"
-
-#: data/org.gnome.dspy.appdata.xml.in.in:18
-msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "D-Spy és una eina senzilla per explorar les connexions D-Bus."
-
-#: data/org.gnome.dspy.appdata.xml.in.in:29
-msgid "D-Spy Interface"
-msgstr "Interfície D-Spy"
-
-#: data/org.gnome.dspy.desktop.in.in:7
+#: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
 msgstr "Descobreix i explora els serveis de D-Bus"
 
-#: data/org.gnome.dspy.desktop.in.in:8
+#: data/org.gnome.dspy.desktop.in.in:7
 msgid "dspy;dbus;"
 msgstr "dspy;dbus;"
 
-#. translators: %s is replaced with the address of the D-Bus bus
-#: src/dspy-connection-button.c:76
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "Finestra nova"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "Analitza les connexions del D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy és una eina senzilla per explorar les connexions D-Bus."
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "Interfície D-Spy"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Bus de sistema"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Bus de sessió"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
 #, c-format
-msgid "Connected to “%s”"
-msgstr "Connectat a %s"
+msgid "PID: %u"
+msgstr "PID: %u"
 
-#: src/dspy-connection-button.c:221
-msgid "S_ystem"
-msgstr "S_istema"
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "No s'està executant"
 
-#: src/dspy-connection-button.c:223
-msgid "_Session"
-msgstr "_Sessió"
-
-#: src/dspy-connection-button.c:225
-msgid "_Other"
-msgstr "_Altres"
-
-#: src/dspy-method-view.c:191
-msgid "Execute"
-msgstr "Executa"
-
-#: src/dspy-method-view.c:273
-msgid "Cancel"
-msgstr "Cancel·la"
-
-#: src/dspy-method-view.ui:11 src/dspy-tree-view.c:343
-msgid "Object Path"
-msgstr "Camí d'objecte"
-
-#: src/dspy-method-view.ui:36
-msgid "Interface"
-msgstr "Interfície"
-
-#: src/dspy-method-view.ui:61
-msgid "Method"
-msgstr "Mètode"
-
-#: src/dspy-method-view.ui:86
-msgid "Parameters"
-msgstr "Paràmetres"
-
-#: src/dspy-method-view.ui:126
-msgid "_Execute"
-msgstr "_Executa"
-
-#: src/dspy-method-view.ui:141
-msgid "Result"
-msgstr "Resultat"
-
-#: src/dspy-method-view.ui:182
-msgid "_Copy"
-msgstr "_Copia"
-
-#: src/dspy-method-view.ui:194
-msgid "Elapsed Time"
-msgstr "Temps transcorregut"
-
-#: src/dspy-name-marquee.ui:12
-msgid "Bus Address"
-msgstr "Adreça del bus"
-
-#: src/dspy-name-marquee.ui:36
-msgid "Name"
-msgstr "Nom"
-
-#: src/dspy-name-marquee.ui:60
-msgid "Owner"
-msgstr "Propietari"
-
-#: src/dspy-name-marquee.ui:84
-msgid "Process ID"
-msgstr "ID del procés"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: src/dspy-name-row.c:78 src/dspy-name-row.c:80
-msgid "Activatable"
-msgstr "Activable"
-
-#: src/dspy-name-row.c:78
-msgid "Yes"
-msgstr "Sí"
-
-#: src/dspy-name-row.c:80
-msgid "No"
-msgstr "No"
-
-#: src/dspy-name-row.c:85
-#, c-format
-msgid "%s: %u"
-msgstr "%s: %u"
-
-#: src/dspy-name-row.c:85
-msgid "PID"
-msgstr "PID"
-
-#: src/dspy-node.c:468
+#: src/dspy-property.c:63
 msgid "read/write"
 msgstr "llegir/escriure"
 
-#: src/dspy-node.c:470
+#: src/dspy-property.c:65
 msgid "write-only"
 msgstr "només-escriure"
 
-#: src/dspy-node.c:472
+#: src/dspy-property.c:67
 msgid "read-only"
 msgstr "només-llegir"
 
-#: src/dspy-node.c:587
-msgid "Interfaces"
-msgstr "Interfícies"
-
-#: src/dspy-node.c:590
-msgid "Methods"
-msgstr "Mètodes"
-
-#: src/dspy-node.c:596
-msgid "Properties"
-msgstr "Propietats"
-
-#: src/dspy-node.c:612
-msgid "Signals"
-msgstr "Senyals"
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "Error"
 
 #. translators: %s is replaced with the simple D-Bus type string
 #: src/dspy-signature.c:77
@@ -181,81 +92,267 @@ msgstr "Senyals"
 msgid "Array of [%s]"
 msgstr "Matriu de [%s]"
 
-#: src/dspy-view.c:125
+#: src/dspy-window.c:137
+msgid "Accessibility Bus"
+msgstr "Bus d'accessibilitat"
+
+#: src/dspy-window.c:406
+msgid "Methods"
+msgstr "Mètodes"
+
+#: src/dspy-window.c:408
+msgid "Properties"
+msgstr "Propietats"
+
+#: src/dspy-window.c:410
+msgid "Signals"
+msgstr "Senyals"
+
+#: src/dspy-window.c:437
+msgid "Copied to Clipboard"
+msgstr "S'ha copiat al porta-retalls"
+
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
+msgid "msec"
+msgstr "mseg"
+
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "Connexions"
+
+#: src/dspy-window.ui:165
+msgid "Bus Names"
+msgstr "Noms del bus"
+
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "Filtra…"
+
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "Objectes"
+
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "Interfícies"
+
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "Explora objectes"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "Seleccioneu un bus per explorar els objectes"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
+msgid "Members"
+msgstr "Membres"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "Detalls"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "Explora interfícies"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "Seleccioneu un objecte per explorar els membres"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
 msgid "Bus"
 msgstr "Bus"
 
-#: src/dspy-view.c:167
-msgid "Access Denied by Peer"
-msgstr "Accés denegat per un «peer»"
+#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
+msgid "Bus Name"
+msgstr "Nom del bus"
 
-#: src/dspy-view.c:169
-msgid "Authentication Failed"
-msgstr "L'autentificació ha fallat"
+#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
+msgid "Owner"
+msgstr "Propietari"
 
-#: src/dspy-view.c:171
-msgid "Operation Timed Out"
-msgstr "Operació fora de temps"
+#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
+msgid "Object Path"
+msgstr "Camí d'objecte"
 
-#: src/dspy-view.c:173
-msgid "Lost Connection to Bus"
-msgstr "Connexió al bus perduda"
+#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
+msgid "Interface"
+msgstr "Interfície"
 
-#: src/dspy-view.c:175
-msgid "D-Bus Connection Failed"
-msgstr "La connexió al D-Bus ha fallat"
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "Propietat"
 
-#: src/dspy-view.c:179
-msgid "_Close"
-msgstr "Tan_ca"
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "Tipus de signatura"
 
-#: src/dspy-view.c:474
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "Valor"
+
+#: src/dspy-window.ui:1202
+msgid "Signal"
+msgstr "Senyal"
+
+#: src/dspy-window.ui:1216
+msgid "Signature"
+msgstr "Signatura"
+
+#: src/dspy-window.ui:1363
+msgid "Method"
+msgstr "Mètode"
+
+#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
+msgid "Parameters"
+msgstr "Paràmetres"
+
+#: src/dspy-window.ui:1391
+msgid "Return Type"
+msgstr "Tipus de retorn"
+
+#: src/dspy-window.ui:1429
+msgid "Call Method"
+msgstr "Mètode de crida"
+
+#: src/dspy-window.ui:1445
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: src/dspy-window.ui:1462
+msgid "Result"
+msgstr "Resultat"
+
+#: src/dspy-window.ui:1494
+msgid "Statistics"
+msgstr "Estadístiques"
+
+#: src/dspy-window.ui:1498
+msgid "Duration"
+msgstr "Durada"
+
+#: src/dspy-window.ui:1504
+msgid "Minimum Duration"
+msgstr "Durada mínima"
+
+#: src/dspy-window.ui:1510
+msgid "Maximum Duration"
+msgstr "Durada màxima"
+
+#: src/dspy-window.ui:1539
+msgid "New Connection"
+msgstr "Nova connexió"
+
+#: src/dspy-window.ui:1550
+msgid "Bus Address"
+msgstr "Adreça del bus"
+
+#: src/dspy-window.ui:1561
 msgid "Connect"
 msgstr "Connecta"
 
-#: src/dspy-view.c:475
-msgid "Provide the address of the message bus"
-msgstr "Proporcioneu l'adreça del bus de missatges"
-
-#: src/dspy-view.c:477
-msgid "Connect to Other Bus"
-msgstr "Connecteu-vos a un altre bus"
-
-#: src/dspy-view.ui:31
-msgid "Main Menu"
-msgstr "Menú principal"
-
-#: src/dspy-view.ui:66
-msgid "Search Bus Names"
-msgstr "Cerca noms de Bus"
-
-#: src/dspy-view.ui:80
-msgid "Bus Names"
-msgstr "Noms de Bus"
-
-#: src/dspy-view.ui:143
-msgid "Select a D-Bus Name"
-msgstr "Selecciona un nom de D-Bus"
-
-#: src/dspy-view.ui:144
-msgid "Select a bus name to introspect the peer"
-msgstr "Seleccioneu un nom de bus per a introspeccionar el «peer»"
-
-#: src/dspy-view.ui:160
-msgid "Refresh"
-msgstr "Actualitza"
-
-#: src/dspy-view.ui:230
+#: src/dspy-window.ui:1582
 msgid "_New Window"
 msgstr "_Finestra nova"
 
-#: src/dspy-view.ui:236
+#: src/dspy-window.ui:1588
+msgid "Connect to Other _Bus"
+msgstr "Connecteu-vos a un altre _bus"
+
+#: src/dspy-window.ui:1594
 msgid "_About D-Spy"
 msgstr "_Quant al D-Spy"
 
-#: src/gtk/menus.ui:5
-msgid "Connect to Other Bus…"
-msgstr "Connecteu-vos a un altre bus…"
+#: src/main.c:153
+msgid "Open a new window"
+msgstr "Obre una nova finestra"
+
+#: src/main.c:154
+msgid "Print version information and exit"
+msgstr "Mostra la informació de la versió i surt"
+
+#, c-format
+#~ msgid "Connected to “%s”"
+#~ msgstr "Connectat a %s"
+
+#~ msgid "_Other"
+#~ msgstr "_Altres"
+
+#~ msgid "Execute"
+#~ msgstr "Executa"
+
+#~ msgid "_Execute"
+#~ msgstr "_Executa"
+
+#~ msgid "_Copy"
+#~ msgstr "_Copia"
+
+#~ msgid "Elapsed Time"
+#~ msgstr "Temps transcorregut"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Process ID"
+#~ msgstr "ID del procés"
+
+#, c-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Activatable"
+#~ msgstr "Activable"
+
+#~ msgid "Yes"
+#~ msgstr "Sí"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Access Denied by Peer"
+#~ msgstr "Accés denegat per un «peer»"
+
+#~ msgid "Authentication Failed"
+#~ msgstr "L'autentificació ha fallat"
+
+#~ msgid "Operation Timed Out"
+#~ msgstr "Operació fora de temps"
+
+#~ msgid "Lost Connection to Bus"
+#~ msgstr "Connexió al bus perduda"
+
+#~ msgid "D-Bus Connection Failed"
+#~ msgstr "La connexió al D-Bus ha fallat"
+
+#~ msgid "_Close"
+#~ msgstr "Tan_ca"
+
+#~ msgid "Provide the address of the message bus"
+#~ msgstr "Proporcioneu l'adreça del bus de missatges"
+
+#~ msgid "Main Menu"
+#~ msgstr "Menú principal"
+
+#~ msgid "Search Bus Names"
+#~ msgstr "Cerca noms de Bus"
+
+#~ msgid "Select a D-Bus Name"
+#~ msgstr "Selecciona un nom de D-Bus"
+
+#~ msgid "Select a bus name to introspect the peer"
+#~ msgstr "Seleccioneu un nom de bus per a introspeccionar el «peer»"
+
+#~ msgid "Refresh"
+#~ msgstr "Actualitza"
+
+#~ msgid "Connect to Other Bus…"
+#~ msgstr "Connecteu-vos a un altre bus…"
 
 #~ msgid "A D-Bus explorer for GNOME"
 #~ msgstr "Un explorador D-Bus per a GNOME"
