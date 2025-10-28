@@ -1,4 +1,10 @@
-# D-Spy 49.0
+# D-Spy 49.2
+
+ * Hide parameters group when there are no parameters
+ * Don't truncate property values when copying
+ * Translation updates
+
+# D-Spy 49.1
 
  * Fixes for CI
 
