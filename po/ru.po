@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-08-02 21:25+0000\n"
-"PO-Revision-Date: 2025-08-05 17:10+0300\n"
-"Last-Translator: Artur So <arturios2005@mail.ru>\n"
+"POT-Creation-Date: 2025-10-24 21:58+0000\n"
+"PO-Revision-Date: 2025-11-01 14:35+0300\n"
+"Last-Translator: Данил Гашигуллин <gashigullin44@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -94,27 +94,27 @@ msgstr "Ошибка"
 msgid "Array of [%s]"
 msgstr "Массив [%s]"
 
-#: src/dspy-window.c:136
+#: src/dspy-window.c:137
 msgid "Accessibility Bus"
 msgstr "Шина спец. возможности"
 
-#: src/dspy-window.c:398
+#: src/dspy-window.c:406
 msgid "Methods"
 msgstr "Методы"
 
-#: src/dspy-window.c:400
+#: src/dspy-window.c:408
 msgid "Properties"
 msgstr "Свойства"
 
-#: src/dspy-window.c:402
+#: src/dspy-window.c:410
 msgid "Signals"
 msgstr "Сигналы"
 
-#: src/dspy-window.c:429
+#: src/dspy-window.c:437
 msgid "Copied to Clipboard"
 msgstr "Скопировано в буфер обмена"
 
-#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
 msgid "msec"
 msgstr "мс"
 
@@ -126,8 +126,8 @@ msgstr "Соединения"
 msgid "Bus Names"
 msgstr "Название шин"
 
-#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
-#: src/dspy-window.ui:717
+#: src/dspy-window.ui:206 src/dspy-window.ui:374 src/dspy-window.ui:577
+#: src/dspy-window.ui:724
 msgid "Filter…"
 msgstr "Фильтровать…"
 
@@ -135,136 +135,140 @@ msgstr "Фильтровать…"
 msgid "Objects"
 msgstr "Объекты"
 
-#: src/dspy-window.ui:474 src/dspy-window.ui:526
+#: src/dspy-window.ui:349
+msgid "Refresh Objects"
+msgstr "Обновить объекты"
+
+#: src/dspy-window.ui:481 src/dspy-window.ui:533
 msgid "Interfaces"
 msgstr "Интерфейсы"
 
-#: src/dspy-window.ui:511
+#: src/dspy-window.ui:518
 msgid "Explore Objects"
 msgstr "Обзор объектов"
 
-#: src/dspy-window.ui:512
+#: src/dspy-window.ui:519
 msgid "Select a bus to explore objects"
 msgstr "Выберите шину для обзора объектов"
 
-#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+#: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
+#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
 msgid "Members"
 msgstr "Элементы"
 
-#: src/dspy-window.ui:848
+#: src/dspy-window.ui:855
 msgid "Details"
 msgstr "Подробности"
 
-#: src/dspy-window.ui:888
+#: src/dspy-window.ui:895
 msgid "Explore Interfaces"
 msgstr "Обзор интерфейсов"
 
-#: src/dspy-window.ui:889
+#: src/dspy-window.ui:896
 msgid "Select an object to explore members"
 msgstr "Выберите объект для обзора элементов"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
 msgid "Bus"
 msgstr "Шина"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
 msgid "Bus Name"
 msgstr "Название шины"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
 msgid "Owner"
 msgstr "Владелец"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
 msgid "Object Path"
 msgstr "Путь к объекту"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: src/dspy-window.ui:1014
+#: src/dspy-window.ui:1021
 msgid "Property"
 msgstr "Свойство"
 
-#: src/dspy-window.ui:1028
+#: src/dspy-window.ui:1035
 msgid "Type Signature"
 msgstr "Тип подписи"
 
-#: src/dspy-window.ui:1042
+#: src/dspy-window.ui:1049
 msgid "Value"
 msgstr "Значение"
 
-#: src/dspy-window.ui:1200
+#: src/dspy-window.ui:1209
 msgid "Signal"
 msgstr "Сигнал"
 
-#: src/dspy-window.ui:1214
+#: src/dspy-window.ui:1223
 msgid "Signature"
 msgstr "Подпись"
 
-#: src/dspy-window.ui:1361
+#: src/dspy-window.ui:1370
 msgid "Method"
 msgstr "Метод"
 
-#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
 msgid "Parameters"
 msgstr "Параметры"
 
-#: src/dspy-window.ui:1389
+#: src/dspy-window.ui:1398
 msgid "Return Type"
 msgstr "Возвращаемый тип"
 
-#: src/dspy-window.ui:1426
+#: src/dspy-window.ui:1436
 msgid "Call Method"
 msgstr "Метод вызова"
 
-#: src/dspy-window.ui:1442
+#: src/dspy-window.ui:1452
 msgid "Cancel"
 msgstr "Отменить"
 
-#: src/dspy-window.ui:1459
+#: src/dspy-window.ui:1469
 msgid "Result"
 msgstr "Результат"
 
-#: src/dspy-window.ui:1491
+#: src/dspy-window.ui:1501
 msgid "Statistics"
 msgstr "Статистика"
 
-#: src/dspy-window.ui:1495
+#: src/dspy-window.ui:1505
 msgid "Duration"
 msgstr "Длительность"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1511
 msgid "Minimum Duration"
 msgstr "Минимальная длительность"
 
-#: src/dspy-window.ui:1507
+#: src/dspy-window.ui:1517
 msgid "Maximum Duration"
 msgstr "Максимальная длительность"
 
-#: src/dspy-window.ui:1536
+#: src/dspy-window.ui:1546
 msgid "New Connection"
 msgstr "Новое соединение"
 
-#: src/dspy-window.ui:1547
+#: src/dspy-window.ui:1557
 msgid "Bus Address"
 msgstr "Адрес шины"
 
-#: src/dspy-window.ui:1558
+#: src/dspy-window.ui:1568
 msgid "Connect"
 msgstr "Соединиться"
 
-#: src/dspy-window.ui:1579
+#: src/dspy-window.ui:1589
 msgid "_New Window"
 msgstr "_Новое окно"
 
-#: src/dspy-window.ui:1585
+#: src/dspy-window.ui:1595
 msgid "Connect to Other _Bus"
 msgstr "Соединиться с другой _шиной"
 
-#: src/dspy-window.ui:1591
+#: src/dspy-window.ui:1601
 msgid "_About D-Spy"
 msgstr "_О приложении"
 
