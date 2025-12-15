@@ -1,0 +1,276 @@
+# Chinese (Taiwan) translation for d-spy.
+# Copyright (C) 2025 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# SPDX-FileCopyrightText: 2025 Skyter Lin <linskyter@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy gnome-49\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2025-10-28 23:32+0000\n"
+"PO-Revision-Date: 2025-11-06 16:14+0800\n"
+"Last-Translator: Skyter Lin <linskyter@gmail.com>\n"
+"Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 25.11.70\n"
+
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
+msgid "D-Spy"
+msgstr "D-Spy"
+
+#: data/org.gnome.dspy.desktop.in.in:6
+msgid "Discover and explore D-Bus services"
+msgstr "探索與檢視 D-Bus 服務"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
+
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "開新視窗"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "分析 D-Bus 連線"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy 是用來探索 D-Bus 連線的簡易工具。"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "D-Spy 介面"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "系統匯流排"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "工作階段匯流排"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
+#, c-format
+msgid "PID: %u"
+msgstr "PID：%u"
+
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "未執行"
+
+#: src/dspy-property.c:63
+msgid "read/write"
+msgstr "讀取/寫入"
+
+#: src/dspy-property.c:65
+msgid "write-only"
+msgstr "僅寫入"
+
+#: src/dspy-property.c:67
+msgid "read-only"
+msgstr "唯讀"
+
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "錯誤"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: src/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr "[%s]的陣列"
+
+#: src/dspy-window.c:137
+msgid "Accessibility Bus"
+msgstr "無障礙匯流排"
+
+#: src/dspy-window.c:406
+msgid "Methods"
+msgstr "方法"
+
+#: src/dspy-window.c:408
+msgid "Properties"
+msgstr "屬性"
+
+#: src/dspy-window.c:410
+msgid "Signals"
+msgstr "訊號"
+
+#: src/dspy-window.c:437
+msgid "Copied to Clipboard"
+msgstr "已複製到剪貼簿"
+
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
+msgid "msec"
+msgstr "毫秒"
+
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "連線"
+
+#: src/dspy-window.ui:165
+msgid "Bus Names"
+msgstr "匯流排名稱"
+
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "篩選…"
+
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "物件"
+
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "介面"
+
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "探索物件"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "選取匯流排以探索物件"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
+msgid "Members"
+msgstr "成員"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "詳細資料"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "探索介面"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "選取物件以探索成員"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
+msgid "Bus"
+msgstr "匯流排"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
+msgid "Bus Name"
+msgstr "匯流排名稱"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
+msgid "Owner"
+msgstr "擁有者"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
+msgid "Object Path"
+msgstr "物件路徑"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
+msgid "Interface"
+msgstr "介面"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "屬性"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "類型簽章"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "值"
+
+#: src/dspy-window.ui:1202
+msgid "Signal"
+msgstr "訊號"
+
+#: src/dspy-window.ui:1216
+msgid "Signature"
+msgstr "簽章"
+
+#: src/dspy-window.ui:1363
+msgid "Method"
+msgstr "方法"
+
+#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
+msgid "Parameters"
+msgstr "參數"
+
+#: src/dspy-window.ui:1391
+msgid "Return Type"
+msgstr "回傳類型"
+
+#: src/dspy-window.ui:1429
+msgid "Call Method"
+msgstr "呼叫方法"
+
+#: src/dspy-window.ui:1445
+msgid "Cancel"
+msgstr "取消"
+
+#: src/dspy-window.ui:1462
+msgid "Result"
+msgstr "結果"
+
+#: src/dspy-window.ui:1494
+msgid "Statistics"
+msgstr "統計"
+
+#: src/dspy-window.ui:1498
+msgid "Duration"
+msgstr "持續時間"
+
+#: src/dspy-window.ui:1504
+msgid "Minimum Duration"
+msgstr "最短持續時間"
+
+#: src/dspy-window.ui:1510
+msgid "Maximum Duration"
+msgstr "最長持續時間"
+
+#: src/dspy-window.ui:1539
+msgid "New Connection"
+msgstr "新增連線"
+
+#: src/dspy-window.ui:1550
+msgid "Bus Address"
+msgstr "匯流排位址"
+
+#: src/dspy-window.ui:1561
+msgid "Connect"
+msgstr "連線"
+
+#: src/dspy-window.ui:1582
+msgid "_New Window"
+msgstr "開新視窗(_N)"
+
+#: src/dspy-window.ui:1588
+msgid "Connect to Other _Bus"
+msgstr "連線到其他匯流排(_B)"
+
+#: src/dspy-window.ui:1594
+msgid "_About D-Spy"
+msgstr "關於 D-Spy(_A)"
+
+#: src/main.c:153
+msgid "Open a new window"
+msgstr "開啟新視窗"
+
+#: src/main.c:154
+msgid "Print version information and exit"
+msgstr "列印版本資訊並離開"
