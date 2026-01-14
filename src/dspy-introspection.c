@@ -366,10 +366,11 @@ dspy_introspection_load_fiber (gpointer data)
 
           node = parse_node (info);
 
-          {
-            g_autofree char *abs_path = g_build_path ("/", path, node->path, NULL);
-            g_set_str (&node->path, abs_path);
-          }
+          if (node->path == NULL || node->path[0] != '/')
+            {
+              g_autofree char *abs_path = g_build_path ("/", path, node->path, NULL);
+              g_set_str (&node->path, abs_path);
+            }
 
           /* If there are children nodes, we need to parse them too */
           for (const GList *iter = node->nodes.head; iter; iter = iter->next)
