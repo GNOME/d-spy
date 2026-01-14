@@ -1,5 +1,5 @@
 project('d-spy', 'c',
-        version: '50.alpha',
+        version: '50.beta',
   meson_version: '>= 1.0',
 )
 
