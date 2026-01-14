@@ -1,3 +1,10 @@
+# D-Spy 50.alpha
+
+ * Add button to refresh object list
+ * Hide parameters group when there are no parameters
+ * Fix potential duplicate path joining in introspection
+ * Translation updates
+
 # D-Spy 49.0
 
  * Fixes for CI
