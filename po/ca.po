@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-10-19 18:33+0000\n"
-"PO-Revision-Date: 2025-10-20 11:27+0200\n"
+"POT-Creation-Date: 2026-01-14 23:36+0000\n"
+"PO-Revision-Date: 2026-01-29 19:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -25,7 +25,7 @@ msgstr "D-Spy"
 
 #: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
-msgstr "Descobreix i explora els serveis de D-Bus"
+msgstr "Descobriu i exploreu els serveis de D-Bus"
 
 #: data/org.gnome.dspy.desktop.in.in:7
 msgid "dspy;dbus;"
@@ -124,8 +124,8 @@ msgstr "Connexions"
 msgid "Bus Names"
 msgstr "Noms del bus"
 
-#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
-#: src/dspy-window.ui:717
+#: src/dspy-window.ui:206 src/dspy-window.ui:374 src/dspy-window.ui:577
+#: src/dspy-window.ui:724
 msgid "Filter…"
 msgstr "Filtra…"
 
@@ -133,136 +133,140 @@ msgstr "Filtra…"
 msgid "Objects"
 msgstr "Objectes"
 
-#: src/dspy-window.ui:474 src/dspy-window.ui:526
+#: src/dspy-window.ui:349
+msgid "Refresh Objects"
+msgstr "Actualitza els objectes"
+
+#: src/dspy-window.ui:481 src/dspy-window.ui:533
 msgid "Interfaces"
 msgstr "Interfícies"
 
-#: src/dspy-window.ui:511
+#: src/dspy-window.ui:518
 msgid "Explore Objects"
 msgstr "Explora objectes"
 
-#: src/dspy-window.ui:512
+#: src/dspy-window.ui:519
 msgid "Select a bus to explore objects"
 msgstr "Seleccioneu un bus per explorar els objectes"
 
-#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
+#: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
+#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
 msgid "Members"
 msgstr "Membres"
 
-#: src/dspy-window.ui:848
+#: src/dspy-window.ui:855
 msgid "Details"
 msgstr "Detalls"
 
-#: src/dspy-window.ui:888
+#: src/dspy-window.ui:895
 msgid "Explore Interfaces"
 msgstr "Explora interfícies"
 
-#: src/dspy-window.ui:889
+#: src/dspy-window.ui:896
 msgid "Select an object to explore members"
 msgstr "Seleccioneu un objecte per explorar els membres"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
+#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
 msgid "Bus"
 msgstr "Bus"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
+#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
 msgid "Bus Name"
 msgstr "Nom del bus"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
+#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
 msgid "Owner"
 msgstr "Propietari"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
+#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
 msgid "Object Path"
 msgstr "Camí d'objecte"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
 msgid "Interface"
 msgstr "Interfície"
 
-#: src/dspy-window.ui:1014
+#: src/dspy-window.ui:1021
 msgid "Property"
 msgstr "Propietat"
 
-#: src/dspy-window.ui:1028
+#: src/dspy-window.ui:1035
 msgid "Type Signature"
 msgstr "Tipus de signatura"
 
-#: src/dspy-window.ui:1042
+#: src/dspy-window.ui:1049
 msgid "Value"
 msgstr "Valor"
 
-#: src/dspy-window.ui:1202
+#: src/dspy-window.ui:1209
 msgid "Signal"
 msgstr "Senyal"
 
-#: src/dspy-window.ui:1216
+#: src/dspy-window.ui:1223
 msgid "Signature"
 msgstr "Signatura"
 
-#: src/dspy-window.ui:1363
+#: src/dspy-window.ui:1370
 msgid "Method"
 msgstr "Mètode"
 
-#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
+#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
 msgid "Parameters"
 msgstr "Paràmetres"
 
-#: src/dspy-window.ui:1391
+#: src/dspy-window.ui:1398
 msgid "Return Type"
 msgstr "Tipus de retorn"
 
-#: src/dspy-window.ui:1429
+#: src/dspy-window.ui:1436
 msgid "Call Method"
 msgstr "Mètode de crida"
 
-#: src/dspy-window.ui:1445
+#: src/dspy-window.ui:1452
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: src/dspy-window.ui:1462
+#: src/dspy-window.ui:1469
 msgid "Result"
 msgstr "Resultat"
 
-#: src/dspy-window.ui:1494
+#: src/dspy-window.ui:1501
 msgid "Statistics"
 msgstr "Estadístiques"
 
-#: src/dspy-window.ui:1498
+#: src/dspy-window.ui:1505
 msgid "Duration"
 msgstr "Durada"
 
-#: src/dspy-window.ui:1504
+#: src/dspy-window.ui:1511
 msgid "Minimum Duration"
 msgstr "Durada mínima"
 
-#: src/dspy-window.ui:1510
+#: src/dspy-window.ui:1517
 msgid "Maximum Duration"
 msgstr "Durada màxima"
 
-#: src/dspy-window.ui:1539
+#: src/dspy-window.ui:1546
 msgid "New Connection"
 msgstr "Nova connexió"
 
-#: src/dspy-window.ui:1550
+#: src/dspy-window.ui:1557
 msgid "Bus Address"
 msgstr "Adreça del bus"
 
-#: src/dspy-window.ui:1561
+#: src/dspy-window.ui:1568
 msgid "Connect"
 msgstr "Connecta"
 
-#: src/dspy-window.ui:1582
+#: src/dspy-window.ui:1589
 msgid "_New Window"
 msgstr "_Finestra nova"
 
-#: src/dspy-window.ui:1588
+#: src/dspy-window.ui:1595
 msgid "Connect to Other _Bus"
 msgstr "Connecteu-vos a un altre _bus"
 
-#: src/dspy-window.ui:1594
+#: src/dspy-window.ui:1601
 msgid "_About D-Spy"
 msgstr "_Quant al D-Spy"
 
