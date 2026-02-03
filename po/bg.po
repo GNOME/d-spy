@@ -1,15 +1,15 @@
 # Bulgarian translation of d-spy po-file.
-# Copyright (C) 2024 twlvnn kraftwerk <kraft_werk@tutanota.com>.
-# Copyright (C) 2025 Alexander Shopov <ash@kambanaria.org>.
+# Copyright (C) 2024, 2026 twlvnn kraftwerk <kraft_werk@tutanota.com>.
+# Copyright (C) 2025, 2026 Alexander Shopov <ash@kambanaria.org>.
 # This file is distributed under the same license as the d-spy package.
-# twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024, 2025.
-# Alexander Shopov <ash@kambanaria.org>, 2025.
+# twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024, 2025, 2026.
+# Alexander Shopov <ash@kambanaria.org>, 2025, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: d-spy gnome-46\n"
+"Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-10-06 23:08+0000\n"
-"PO-Revision-Date: 2025-10-08 14:10+0200\n"
+"POT-Creation-Date: 2026-01-14 23:36+0000\n"
+"PO-Revision-Date: 2026-02-03 20:05+0100\n"
 "Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -94,29 +94,29 @@ msgstr "Грешка"
 msgid "Array of [%s]"
 msgstr "Масив от [%s]"
 
-#: src/dspy-window.c:136
+#: src/dspy-window.c:137
 msgid "Accessibility Bus"
 msgstr "Шина за достъпност"
 
-#: src/dspy-window.c:398
+#: src/dspy-window.c:406
 msgid "Methods"
 msgstr "Методи"
 
-#: src/dspy-window.c:400
+#: src/dspy-window.c:408
 msgid "Properties"
 msgstr "Свойства"
 
-#: src/dspy-window.c:402
+#: src/dspy-window.c:410
 msgid "Signals"
 msgstr "Сигнали"
 
-#: src/dspy-window.c:429
+#: src/dspy-window.c:437
 msgid "Copied to Clipboard"
 msgstr "Копирано в буфера за обмен"
 
-#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
 msgid "msec"
-msgstr "мсек"
+msgstr "msec"
 
 #: src/dspy-window.ui:62
 msgid "Connections"
@@ -126,8 +126,8 @@ msgstr "Връзки"
 msgid "Bus Names"
 msgstr "Имена на шини"
 
-#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
-#: src/dspy-window.ui:717
+#: src/dspy-window.ui:206 src/dspy-window.ui:374 src/dspy-window.ui:577
+#: src/dspy-window.ui:724
 msgid "Filter…"
 msgstr "Филтър…"
 
@@ -135,136 +135,140 @@ msgstr "Филтър…"
 msgid "Objects"
 msgstr "Обекти"
 
-#: src/dspy-window.ui:474 src/dspy-window.ui:526
+#: src/dspy-window.ui:349
+msgid "Refresh Objects"
+msgstr "Опресняване на обектите"
+
+#: src/dspy-window.ui:481 src/dspy-window.ui:533
 msgid "Interfaces"
 msgstr "Интерфейси"
 
-#: src/dspy-window.ui:511
+#: src/dspy-window.ui:518
 msgid "Explore Objects"
 msgstr "Разгледайте обекти"
 
-#: src/dspy-window.ui:512
+#: src/dspy-window.ui:519
 msgid "Select a bus to explore objects"
 msgstr "Изберете шина, за да разгледате обектите"
 
-#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
+#: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
+#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
 msgid "Members"
 msgstr "Членове"
 
-#: src/dspy-window.ui:848
+#: src/dspy-window.ui:855
 msgid "Details"
 msgstr "Подробности"
 
-#: src/dspy-window.ui:888
+#: src/dspy-window.ui:895
 msgid "Explore Interfaces"
 msgstr "Разгледайте интерфейси"
 
-#: src/dspy-window.ui:889
+#: src/dspy-window.ui:896
 msgid "Select an object to explore members"
 msgstr "Изберете обект, за да разгледате членовете"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
+#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
 msgid "Bus"
 msgstr "Шина"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
+#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
 msgid "Bus Name"
 msgstr "Име на шина"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
+#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
 msgid "Owner"
 msgstr "Собственик"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
+#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
 msgid "Object Path"
 msgstr "Път към обекта"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: src/dspy-window.ui:1014
+#: src/dspy-window.ui:1021
 msgid "Property"
 msgstr "Свойство"
 
-#: src/dspy-window.ui:1028
+#: src/dspy-window.ui:1035
 msgid "Type Signature"
-msgstr ""
+msgstr "Сигнатура на типа"
 
-#: src/dspy-window.ui:1042
+#: src/dspy-window.ui:1049
 msgid "Value"
 msgstr "Стойност"
 
-#: src/dspy-window.ui:1202
+#: src/dspy-window.ui:1209
 msgid "Signal"
 msgstr "Сигнал"
 
-#: src/dspy-window.ui:1216
+#: src/dspy-window.ui:1223
 msgid "Signature"
-msgstr "Подпис"
+msgstr "Сигнатура"
 
-#: src/dspy-window.ui:1363
+#: src/dspy-window.ui:1370
 msgid "Method"
 msgstr "Метод"
 
-#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
+#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
 msgid "Parameters"
 msgstr "Параметри"
 
-#: src/dspy-window.ui:1391
+#: src/dspy-window.ui:1398
 msgid "Return Type"
-msgstr ""
+msgstr "Тип за връщане"
 
-#: src/dspy-window.ui:1428
+#: src/dspy-window.ui:1436
 msgid "Call Method"
-msgstr ""
+msgstr "Метод за извикване"
 
-#: src/dspy-window.ui:1444
+#: src/dspy-window.ui:1452
 msgid "Cancel"
 msgstr "Отказване"
 
-#: src/dspy-window.ui:1461
+#: src/dspy-window.ui:1469
 msgid "Result"
 msgstr "Резултат"
 
-#: src/dspy-window.ui:1493
+#: src/dspy-window.ui:1501
 msgid "Statistics"
 msgstr "Статистики"
 
-#: src/dspy-window.ui:1497
+#: src/dspy-window.ui:1505
 msgid "Duration"
 msgstr "Продължителност"
 
-#: src/dspy-window.ui:1503
+#: src/dspy-window.ui:1511
 msgid "Minimum Duration"
 msgstr "Минимална продължителност"
 
-#: src/dspy-window.ui:1509
+#: src/dspy-window.ui:1517
 msgid "Maximum Duration"
 msgstr "Максимална продължителност"
 
-#: src/dspy-window.ui:1538
+#: src/dspy-window.ui:1546
 msgid "New Connection"
 msgstr "Нова връзка"
 
-#: src/dspy-window.ui:1549
+#: src/dspy-window.ui:1557
 msgid "Bus Address"
 msgstr "Адрес на шината"
 
-#: src/dspy-window.ui:1560
+#: src/dspy-window.ui:1568
 msgid "Connect"
 msgstr "Свързване"
 
-#: src/dspy-window.ui:1581
+#: src/dspy-window.ui:1589
 msgid "_New Window"
 msgstr "_Нов прозорец"
 
-#: src/dspy-window.ui:1587
+#: src/dspy-window.ui:1595
 msgid "Connect to Other _Bus"
 msgstr "Свързване към друга _шина"
 
-#: src/dspy-window.ui:1593
+#: src/dspy-window.ui:1601
 msgid "_About D-Spy"
 msgstr "_Относно „D-Spy“"
 
@@ -275,83 +279,3 @@ msgstr "Отваряне на нов прозорец"
 #: src/main.c:154
 msgid "Print version information and exit"
 msgstr "Извеждане на версията и спиране"
-
-#, c-format
-#~ msgid "Connected to “%s”"
-#~ msgstr "Свързан с „%s“"
-
-#~ msgid "_Other"
-#~ msgstr "_Друго"
-
-#~ msgid "Execute"
-#~ msgstr "Изпълняване"
-
-#~ msgid "_Execute"
-#~ msgstr "_Изпълняване"
-
-#~ msgid "_Copy"
-#~ msgstr "_Копиране"
-
-#~ msgid "Elapsed Time"
-#~ msgstr "Изминало време"
-
-#~ msgid "Name"
-#~ msgstr "Име"
-
-#~ msgid "Process ID"
-#~ msgstr "Идентификатор на процеса"
-
-#, c-format
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "Activatable"
-#~ msgstr "Активируемо"
-
-#~ msgid "Yes"
-#~ msgstr "Да"
-
-#~ msgid "No"
-#~ msgstr "Не"
-
-#~ msgid "PID"
-#~ msgstr "Ид. пр."
-
-#~ msgid "Access Denied by Peer"
-#~ msgstr "Отказан достъп от отсрещната страна"
-
-#~ msgid "Authentication Failed"
-#~ msgstr "Удостоверяването е неуспешно"
-
-#~ msgid "Operation Timed Out"
-#~ msgstr "Времето за действието изтече"
-
-#~ msgid "Lost Connection to Bus"
-#~ msgstr "Връзката към шината е изгубена"
-
-#~ msgid "D-Bus Connection Failed"
-#~ msgstr "Неуспешна връзка към D-Bus"
-
-#~ msgid "_Close"
-#~ msgstr "_Затваряне"
-
-#~ msgid "Provide the address of the message bus"
-#~ msgstr "Задайте адреса на шината за съобщения"
-
-#~ msgid "Main Menu"
-#~ msgstr "Основно меню"
-
-#~ msgid "Search Bus Names"
-#~ msgstr "Търсене на имена на шини"
-
-#~ msgid "Select a D-Bus Name"
-#~ msgstr "Избиране на име по D-Bus"
-
-#~ msgid "Select a bus name to introspect the peer"
-#~ msgstr "Изберете име на шина за аналитична информация на отсрещната страна"
-
-#~ msgid "Refresh"
-#~ msgstr "Опресняване"
-
-#~ msgid "Connect to Other Bus…"
-#~ msgstr "Свързване към друга шина…"
