@@ -1,16 +1,16 @@
 # German translation for d-spy.
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
-# Jürgen Benvenuti <gastornis@posteo.org>, 2023-2025.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2023-2026.
 # Philipp Kiemle <philipp.kiemle@gmail.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-11-10 11:33+0000\n"
-"PO-Revision-Date: 2025-12-06 00:25+0100\n"
-"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
+"POT-Creation-Date: 2025-10-28 23:30+0000\n"
+"PO-Revision-Date: 2026-02-05 22:00+0100\n"
+"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,6 @@ msgstr "Sitzungs-Bus"
 #. translators: PID refers to "process identifier"
 #: src/dspy-name.c:497
 #, c-format
-#| msgid "%s: %u"
 msgid "PID: %u"
 msgstr "PID: %u"
 
@@ -146,7 +145,7 @@ msgstr "Objekte erkunden"
 
 #: src/dspy-window.ui:512
 msgid "Select a bus to explore objects"
-msgstr ""
+msgstr "Wählen Sie einen Bus zur Erkundung von Objekten"
 
 #: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
 #: src/dspy-window.ui:1096 src/dspy-window.ui:1257
@@ -158,14 +157,12 @@ msgid "Details"
 msgstr "Details"
 
 #: src/dspy-window.ui:888
-#, fuzzy
-#| msgid "Interfaces"
 msgid "Explore Interfaces"
-msgstr "Schnittstellen"
+msgstr "Schnittstellen erkunden"
 
 #: src/dspy-window.ui:889
 msgid "Select an object to explore members"
-msgstr ""
+msgstr "Wählen Sie ein Objekt zur Erkundung von Mitgliedern"
 
 #: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
 msgid "Bus"
@@ -193,7 +190,7 @@ msgstr "Eigenschaft"
 
 #: src/dspy-window.ui:1028
 msgid "Type Signature"
-msgstr ""
+msgstr "Typensignatur"
 
 #: src/dspy-window.ui:1042
 msgid "Value"
