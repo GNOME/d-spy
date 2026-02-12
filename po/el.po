@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-10-06 23:08+0000\n"
-"PO-Revision-Date: 2024-07-30 02:28+0300\n"
-"Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
+"POT-Creation-Date: 2026-02-03 19:47+0000\n"
+"PO-Revision-Date: 2026-02-12 22:46+0200\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gmail.com>\n"
 "Language-Team: Greek <gnome-el-list@gnome.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -93,27 +93,27 @@ msgstr "Σφάλμα"
 msgid "Array of [%s]"
 msgstr "Πίνακας από [%s]"
 
-#: src/dspy-window.c:136
+#: src/dspy-window.c:137
 msgid "Accessibility Bus"
 msgstr "Δίαυλος Προσβασιμότητας"
 
-#: src/dspy-window.c:398
+#: src/dspy-window.c:406
 msgid "Methods"
 msgstr "Μέθοδοι"
 
-#: src/dspy-window.c:400
+#: src/dspy-window.c:408
 msgid "Properties"
 msgstr "Ιδιότητες"
 
-#: src/dspy-window.c:402
+#: src/dspy-window.c:410
 msgid "Signals"
 msgstr "Σήματα"
 
-#: src/dspy-window.c:429
+#: src/dspy-window.c:437
 msgid "Copied to Clipboard"
 msgstr "Αντιγράφηκε στο Πρόχειρο"
 
-#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
 msgid "msec"
 msgstr "msec"
 
@@ -125,8 +125,8 @@ msgstr "Συνδέσεις"
 msgid "Bus Names"
 msgstr "Ονόματα Διαύλων"
 
-#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
-#: src/dspy-window.ui:717
+#: src/dspy-window.ui:206 src/dspy-window.ui:374 src/dspy-window.ui:577
+#: src/dspy-window.ui:724
 msgid "Filter…"
 msgstr "Φιλτράρισμα…"
 
@@ -134,136 +134,140 @@ msgstr "Φιλτράρισμα…"
 msgid "Objects"
 msgstr "Αντικείμενα"
 
-#: src/dspy-window.ui:474 src/dspy-window.ui:526
+#: src/dspy-window.ui:349
+msgid "Refresh Objects"
+msgstr "Ανανέωση αντικειμένων"
+
+#: src/dspy-window.ui:481 src/dspy-window.ui:533
 msgid "Interfaces"
 msgstr "Διεπαφές"
 
-#: src/dspy-window.ui:511
+#: src/dspy-window.ui:518
 msgid "Explore Objects"
 msgstr "Εξερεύνηση Αντικειμένων"
 
-#: src/dspy-window.ui:512
+#: src/dspy-window.ui:519
 msgid "Select a bus to explore objects"
 msgstr "Επιλέξτε ένα δίαυλο για εξερεύνηση αντικειμένων"
 
-#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
+#: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
+#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
 msgid "Members"
 msgstr "Μέλη"
 
-#: src/dspy-window.ui:848
+#: src/dspy-window.ui:855
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
-#: src/dspy-window.ui:888
+#: src/dspy-window.ui:895
 msgid "Explore Interfaces"
 msgstr "Εξερεύνηση Διεπαφών"
 
-#: src/dspy-window.ui:889
+#: src/dspy-window.ui:896
 msgid "Select an object to explore members"
 msgstr "Επιλέξτε ένα αντικείμενο για εξερεύνηση μελών"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
+#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
 msgid "Bus"
 msgstr "Δίαυλος"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
+#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
 msgid "Bus Name"
 msgstr "Όνομα Διαύλου"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
+#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
 msgid "Owner"
 msgstr "Ιδιοκτήτης"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
+#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
 msgid "Object Path"
 msgstr "Διαδρομή Αντικειμένου"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
 msgid "Interface"
 msgstr "Διεπαφή"
 
-#: src/dspy-window.ui:1014
+#: src/dspy-window.ui:1021
 msgid "Property"
 msgstr "Ιδιότητα"
 
-#: src/dspy-window.ui:1028
+#: src/dspy-window.ui:1035
 msgid "Type Signature"
 msgstr "Υπογραφή Τύπου"
 
-#: src/dspy-window.ui:1042
+#: src/dspy-window.ui:1049
 msgid "Value"
 msgstr "Τιμή"
 
-#: src/dspy-window.ui:1202
+#: src/dspy-window.ui:1209
 msgid "Signal"
 msgstr "Σήμα"
 
-#: src/dspy-window.ui:1216
+#: src/dspy-window.ui:1223
 msgid "Signature"
 msgstr "Υπογραφή"
 
-#: src/dspy-window.ui:1363
+#: src/dspy-window.ui:1370
 msgid "Method"
 msgstr "Μέθοδος"
 
-#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
+#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
 msgid "Parameters"
 msgstr "Παράμετροι"
 
-#: src/dspy-window.ui:1391
+#: src/dspy-window.ui:1398
 msgid "Return Type"
 msgstr "Τύπος Επιστροφής"
 
-#: src/dspy-window.ui:1428
+#: src/dspy-window.ui:1436
 msgid "Call Method"
 msgstr "Κλήση Μεθόδου"
 
-#: src/dspy-window.ui:1444
+#: src/dspy-window.ui:1452
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: src/dspy-window.ui:1461
+#: src/dspy-window.ui:1469
 msgid "Result"
 msgstr "Αποτέλεσμα"
 
-#: src/dspy-window.ui:1493
+#: src/dspy-window.ui:1501
 msgid "Statistics"
 msgstr "Στατιστικά"
 
-#: src/dspy-window.ui:1497
+#: src/dspy-window.ui:1505
 msgid "Duration"
 msgstr "Διάρκεια"
 
-#: src/dspy-window.ui:1503
+#: src/dspy-window.ui:1511
 msgid "Minimum Duration"
 msgstr "Ελάχιστη Διάρκεια"
 
-#: src/dspy-window.ui:1509
+#: src/dspy-window.ui:1517
 msgid "Maximum Duration"
 msgstr "Μέγιστη Διάρκεια"
 
-#: src/dspy-window.ui:1538
+#: src/dspy-window.ui:1546
 msgid "New Connection"
 msgstr "Νέα Σύνδεση"
 
-#: src/dspy-window.ui:1549
+#: src/dspy-window.ui:1557
 msgid "Bus Address"
 msgstr "Διεύθυνση Διαύλου"
 
-#: src/dspy-window.ui:1560
+#: src/dspy-window.ui:1568
 msgid "Connect"
 msgstr "Σύνδεση"
 
-#: src/dspy-window.ui:1581
+#: src/dspy-window.ui:1589
 msgid "_New Window"
 msgstr "_Νέο Παράθυρο"
 
-#: src/dspy-window.ui:1587
+#: src/dspy-window.ui:1595
 msgid "Connect to Other _Bus"
 msgstr "Σύνδεση σε Άλλο _Δίαυλο"
 
-#: src/dspy-window.ui:1593
+#: src/dspy-window.ui:1601
 msgid "_About D-Spy"
 msgstr "Περί με το D-Spy"
 
