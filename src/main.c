@@ -129,6 +129,7 @@ about_action_cb (GSimpleAction *action,
   adw_about_dialog_set_application_icon (ADW_ABOUT_DIALOG(dialog), PACKAGE_ICON_NAME);
   adw_about_dialog_set_developers (ADW_ABOUT_DIALOG(dialog), authors);
   adw_about_dialog_set_designers (ADW_ABOUT_DIALOG(dialog), artists);
+  adw_about_dialog_set_translator_credits (ADW_ABOUT_DIALOG(dialog), _("translator-credits"));
 #if DEVELOPMENT_BUILD
   adw_about_dialog_set_version (ADW_ABOUT_DIALOG(dialog), PACKAGE_VERSION " (" DSPY_BUILD_IDENTIFIER ")");
 #else
