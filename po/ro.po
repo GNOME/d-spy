@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-01-14 23:36+0000\n"
-"PO-Revision-Date: 2026-01-28 11:33+0100\n"
+"POT-Creation-Date: 2026-02-18 21:46+0000\n"
+"PO-Revision-Date: 2026-02-20 11:28+0100\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -175,7 +175,7 @@ msgstr "Magistrală"
 
 #: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
 msgid "Bus Name"
-msgstr "Nume de magistrale"
+msgstr "Numele magistralei"
 
 #: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
 msgid "Owner"
@@ -273,10 +273,14 @@ msgstr "Conectează la altă _magistrală"
 msgid "_About D-Spy"
 msgstr "_Despre D-Spy"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr "Antonio Marin <gnmer.6qxyg@slmail.me>"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Deschide o fereastră nouă"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Afișează informații despre versiune și închide"
