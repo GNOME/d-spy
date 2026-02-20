@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-03 19:47+0000\n"
-"PO-Revision-Date: 2026-02-14 17:15+0800\n"
+"POT-Creation-Date: 2026-02-18 21:46+0000\n"
+"PO-Revision-Date: 2026-02-20 08:02+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -273,11 +273,18 @@ msgstr "连接到其它总线(_B)"
 msgid "_About D-Spy"
 msgstr "关于 D-Spy(_A)"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr ""
+"Boyuan Yang <073plan@gmail.com>, 2023.\n"
+"Victor_Trista <ljlzjzm@hotmail.com>, 2023.\n"
+"lumingzh <lumingzh@qq.com>, 2024-2026."
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "打开新窗口"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "显示版本信息并退出"
 
