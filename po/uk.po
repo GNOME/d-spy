@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-01-14 23:36+0000\n"
-"PO-Revision-Date: 2026-01-26 03:03+0200\n"
+"POT-Creation-Date: 2026-02-18 21:46+0000\n"
+"PO-Revision-Date: 2026-02-20 18:10+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -136,7 +136,6 @@ msgid "Objects"
 msgstr "Об'єкти"
 
 #: src/dspy-window.ui:349
-#| msgid "Explore Objects"
 msgid "Refresh Objects"
 msgstr "Освіжити об'єкти"
 
@@ -273,11 +272,15 @@ msgstr "З'єднатися із іншою _шиною"
 msgid "_About D-Spy"
 msgstr "_Про D-Spy"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2026"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Відкрити нове вікно"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Показати версію та вийти"
 
