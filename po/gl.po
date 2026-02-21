@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-03 19:47+0000\n"
-"PO-Revision-Date: 2026-02-18 00:36+0100\n"
+"POT-Creation-Date: 2026-02-18 21:46+0000\n"
+"PO-Revision-Date: 2026-02-21 16:27+0100\n"
 "Last-Translator: Fran Dieguez <fran.dieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -270,11 +270,15 @@ msgstr "Conectar a outro _bus"
 msgid "_About D-Spy"
 msgstr "_Sobre D-Spy"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr "Fran Dieguez <frandieguez@gnome.org>, 2026"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Abrir unha nova xanela"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Imprimir a información da versión e saír"
 
