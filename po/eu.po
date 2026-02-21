@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-03 19:47+0000\n"
-"PO-Revision-Date: 2026-02-16 18:04+0000\n"
+"POT-Creation-Date: 2026-02-18 21:46+0000\n"
+"PO-Revision-Date: 2026-02-21 18:04+0000\n"
 "Last-Translator: Asier Saratsua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -132,7 +132,6 @@ msgid "Objects"
 msgstr "Objektuak"
 
 #: src/dspy-window.ui:349
-#| msgid "Explore Objects"
 msgid "Refresh Objects"
 msgstr "Freskatu objektuak"
 
@@ -269,11 +268,15 @@ msgstr "Konektatu beste _bus batekin"
 msgid "_About D-Spy"
 msgstr "D-Spy aplikazioari _buruz"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr "Asier Saratsua Garmendia <asiersarasua@ni.eus>, 2026"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Ireki leiho berria"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Inprimatu bertsio-informazioa eta irten"
 
