@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-03 19:47+0000\n"
-"PO-Revision-Date: 2026-02-04 16:14+0100\n"
+"POT-Creation-Date: 2026-02-18 21:46+0000\n"
+"PO-Revision-Date: 2026-02-22 00:02+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -271,11 +271,15 @@ msgstr "Připojit k jiné s_běrnici"
 msgid "_About D-Spy"
 msgstr "O _aplikaci D-Spy"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr "Daniel Rusek <mail@asciiwolf.com>"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Otevřít nové okno"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Vypsat informace o verzi a skončit"
 
