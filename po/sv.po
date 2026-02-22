@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-10-24 21:58+0000\n"
-"PO-Revision-Date: 2026-02-03 23:37+0100\n"
+"POT-Creation-Date: 2026-02-18 21:46+0000\n"
+"PO-Revision-Date: 2026-02-22 11:24+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -271,11 +271,19 @@ msgstr "Anslut till annan _buss"
 msgid "_About D-Spy"
 msgstr "_Om D-Spy"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr ""
+"Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"\n"
+"Skicka synpunkter på översättningen till\n"
+"<tp-sv@listor.tp-sv.se>."
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Öppna ett nytt fönster"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Skriv ut versionsinformation och avsluta"
 
