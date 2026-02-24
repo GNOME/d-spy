@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy gnome-49\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-01-14 23:36+0000\n"
-"PO-Revision-Date: 2026-01-30 07:06+0500\n"
+"POT-Creation-Date: 2026-02-23 19:25+0000\n"
+"PO-Revision-Date: 2026-02-24 06:34+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <Kazakh>\n"
 "Language: kk\n"
@@ -270,10 +270,14 @@ msgstr "Басқа _шинаға қосылу"
 msgid "_About D-Spy"
 msgstr "D-Spy т_уралы"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Жаңа терезені ашу"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Нұсқа ақпаратын шығару және шығу"
