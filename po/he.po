@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-01-14 23:36+0000\n"
-"PO-Revision-Date: 2026-02-01 07:45+0200\n"
+"POT-Creation-Date: 2026-02-23 19:25+0000\n"
+"PO-Revision-Date: 2026-02-27 08:21+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -271,11 +271,15 @@ msgstr "התחברות לאפיק _אחר"
 msgid "_About D-Spy"
 msgstr "_על D-Spy"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr "ירון שהרבני <sh.yaron@gmail.com>"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "פתיחת חלון חדש"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "הצגת נתוני הגרסה ולצאת"
 
