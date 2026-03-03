@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-01-14 23:36+0000\n"
-"PO-Revision-Date: 2026-01-26 11:23-0500\n"
+"POT-Creation-Date: 2026-02-23 19:25+0000\n"
+"PO-Revision-Date: 2026-03-02 23:22-0500\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: \n"
 "Language: ug\n"
@@ -270,10 +270,16 @@ msgstr "باشقا باش لىنىيەگە باغلان(_B)"
 msgid "_About D-Spy"
 msgstr "D-Spy ھەققىدە(_A)"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr ""
+"غەيرەت ت.كەنجى <gheyret@gmail.com>\n"
+"ئابدۇقادىر ئابلىز <sahranbay@gmail.com>"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "يېڭى كۆزنەكتىن بىرنى ئاچ"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "نەشر ئۇچۇرىنى بېسىپ چېكىنىدۇ"
