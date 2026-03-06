@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-01-14 23:36+0000\n"
-"PO-Revision-Date: 2026-01-29 19:44+0100\n"
+"POT-Creation-Date: 2026-02-23 19:25+0000\n"
+"PO-Revision-Date: 2026-02-26 22:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -270,11 +270,15 @@ msgstr "Connecteu-vos a un altre _bus"
 msgid "_About D-Spy"
 msgstr "_Quant al D-Spy"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr "Victor Dargallo <victordargallo@disroot.org>"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Obre una nova finestra"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Mostra la informació de la versió i surt"
 
