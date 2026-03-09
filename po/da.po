@@ -1,14 +1,14 @@
 # Danish translation for d-spy.
-# Copyright (C) 2023-2025 d-spy's COPYRIGHT HOLDER
+# Copyright (C) 2023-2026 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2023-2025.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2023-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-08-30 23:59+0000\n"
-"PO-Revision-Date: 2025-09-01 20:13+0200\n"
+"POT-Creation-Date: 2026-02-23 19:25+0000\n"
+"PO-Revision-Date: 2026-03-07 13:22+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -92,27 +92,27 @@ msgstr "Fejl"
 msgid "Array of [%s]"
 msgstr "Array af [%s]"
 
-#: src/dspy-window.c:136
+#: src/dspy-window.c:137
 msgid "Accessibility Bus"
 msgstr "Tilgængelighedsbus"
 
-#: src/dspy-window.c:398
+#: src/dspy-window.c:406
 msgid "Methods"
 msgstr "Metoder"
 
-#: src/dspy-window.c:400
+#: src/dspy-window.c:408
 msgid "Properties"
 msgstr "Egenskaber"
 
-#: src/dspy-window.c:402
+#: src/dspy-window.c:410
 msgid "Signals"
 msgstr "Signaler"
 
-#: src/dspy-window.c:429
+#: src/dspy-window.c:437
 msgid "Copied to Clipboard"
 msgstr "Kopieret til udklipsholder"
 
-#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
 msgid "msec"
 msgstr "msek"
 
@@ -124,8 +124,8 @@ msgstr "Forbindelser"
 msgid "Bus Names"
 msgstr "Busnavne"
 
-#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
-#: src/dspy-window.ui:717
+#: src/dspy-window.ui:206 src/dspy-window.ui:374 src/dspy-window.ui:577
+#: src/dspy-window.ui:724
 msgid "Filter…"
 msgstr "Filter …"
 
@@ -133,145 +133,158 @@ msgstr "Filter …"
 msgid "Objects"
 msgstr "Objekter"
 
-#: src/dspy-window.ui:474 src/dspy-window.ui:526
+#: src/dspy-window.ui:349
+msgid "Refresh Objects"
+msgstr "Opdatér objekter"
+
+#: src/dspy-window.ui:481 src/dspy-window.ui:533
 msgid "Interfaces"
 msgstr "Grænseflader"
 
-#: src/dspy-window.ui:511
+#: src/dspy-window.ui:518
 msgid "Explore Objects"
 msgstr "Udforsk objekter"
 
-#: src/dspy-window.ui:512
+#: src/dspy-window.ui:519
 msgid "Select a bus to explore objects"
 msgstr "Vælg en bus for at udforske objekter"
 
-#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+#: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
+#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
 msgid "Members"
 msgstr "Elementer"
 
-#: src/dspy-window.ui:848
+#: src/dspy-window.ui:855
 msgid "Details"
 msgstr "Detaljer"
 
-#: src/dspy-window.ui:888
+#: src/dspy-window.ui:895
 msgid "Explore Interfaces"
 msgstr "Udforsk grænseflader"
 
-#: src/dspy-window.ui:889
+#: src/dspy-window.ui:896
 msgid "Select an object to explore members"
 msgstr "Vælg et objekt for at udforske elementer"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
 msgid "Bus"
 msgstr "Bus"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
 msgid "Bus Name"
 msgstr "Busnavn"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
 msgid "Owner"
 msgstr "Ejer"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
 msgid "Object Path"
 msgstr "Objektsti"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
 msgid "Interface"
 msgstr "Grænseflade"
 
-#: src/dspy-window.ui:1014
+#: src/dspy-window.ui:1021
 msgid "Property"
 msgstr "Egenskab"
 
-#: src/dspy-window.ui:1028
+#: src/dspy-window.ui:1035
 msgid "Type Signature"
 msgstr "Typesignatur"
 
-#: src/dspy-window.ui:1042
+#: src/dspy-window.ui:1049
 msgid "Value"
 msgstr "Værdi"
 
-#: src/dspy-window.ui:1200
+#: src/dspy-window.ui:1209
 msgid "Signal"
 msgstr "Signal"
 
-#: src/dspy-window.ui:1214
+#: src/dspy-window.ui:1223
 msgid "Signature"
 msgstr "Signatur"
 
-#: src/dspy-window.ui:1361
+#: src/dspy-window.ui:1370
 msgid "Method"
 msgstr "Metode"
 
-#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
 msgid "Parameters"
 msgstr "Parametre"
 
-#: src/dspy-window.ui:1389
+#: src/dspy-window.ui:1398
 msgid "Return Type"
 msgstr "Returtype"
 
 # Kunne være Opkaldsmetode, men de andre strenge med "signatur" osv. peger på, at det handler om et funktions-/metodekald
-#: src/dspy-window.ui:1426
+#: src/dspy-window.ui:1436
 msgid "Call Method"
 msgstr "Kald metode"
 
-#: src/dspy-window.ui:1442
+#: src/dspy-window.ui:1452
 msgid "Cancel"
 msgstr "Annullér"
 
-#: src/dspy-window.ui:1459
+#: src/dspy-window.ui:1469
 msgid "Result"
 msgstr "Resultat"
 
-#: src/dspy-window.ui:1491
+#: src/dspy-window.ui:1501
 msgid "Statistics"
 msgstr "Statistik"
 
-#: src/dspy-window.ui:1495
+#: src/dspy-window.ui:1505
 msgid "Duration"
 msgstr "Varighed"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1511
 msgid "Minimum Duration"
 msgstr "Minimal varighed"
 
-#: src/dspy-window.ui:1507
+#: src/dspy-window.ui:1517
 msgid "Maximum Duration"
 msgstr "Maksimal varighed"
 
-#: src/dspy-window.ui:1536
+#: src/dspy-window.ui:1546
 msgid "New Connection"
 msgstr "Ny forbindelse"
 
-#: src/dspy-window.ui:1547
+#: src/dspy-window.ui:1557
 msgid "Bus Address"
 msgstr "Busadresse"
 
-#: src/dspy-window.ui:1558
+#: src/dspy-window.ui:1568
 msgid "Connect"
 msgstr "Forbind"
 
-#: src/dspy-window.ui:1579
+#: src/dspy-window.ui:1589
 msgid "_New Window"
 msgstr "_Nyt vindue"
 
-#: src/dspy-window.ui:1585
+#: src/dspy-window.ui:1595
 msgid "Connect to Other _Bus"
 msgstr "Forbind til en anden _bus"
 
-#: src/dspy-window.ui:1591
+#: src/dspy-window.ui:1601
 msgid "_About D-Spy"
 msgstr "_Om D-Spy"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr ""
+"Ask Hjorth Larsen\n"
+"\n"
+"Dansk-gruppen\n"
+"Websted http://dansk-gruppen.dk\n"
+"E-mail <dansk@dansk-gruppen.dk>"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Åbn et nyt vindue"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Udskriv versionsoplysninger og afslut"
 
