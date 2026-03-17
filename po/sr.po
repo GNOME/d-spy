@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-10-28 23:32+0000\n"
-"PO-Revision-Date: 2025-11-09 18:54+0100\n"
+"POT-Creation-Date: 2026-03-16 21:12+0000\n"
+"PO-Revision-Date: 2026-03-17 23:49+0100\n"
 "Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: Serbian <gnome-sr@googlegroups.com>\n"
 "Language: sr\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-DL-Branch: main\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
-"X-Generator: Gtranslator 48.0\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -133,8 +133,8 @@ msgstr "Везе"
 msgid "Bus Names"
 msgstr "називи магистрала"
 
-#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
-#: src/dspy-window.ui:717
+#: src/dspy-window.ui:206 src/dspy-window.ui:374 src/dspy-window.ui:577
+#: src/dspy-window.ui:724
 msgid "Filter…"
 msgstr "Филтер…"
 
@@ -142,144 +142,156 @@ msgstr "Филтер…"
 msgid "Objects"
 msgstr "Објекти"
 
-#: src/dspy-window.ui:474 src/dspy-window.ui:526
+#: src/dspy-window.ui:349
+msgid "Refresh Objects"
+msgstr "Освежи објекте"
+
+#: src/dspy-window.ui:481 src/dspy-window.ui:533
 msgid "Interfaces"
 msgstr "сучеља"
 
-#: src/dspy-window.ui:511
+#: src/dspy-window.ui:518
 msgid "Explore Objects"
 msgstr "Истражи објекте"
 
-#: src/dspy-window.ui:512
+#: src/dspy-window.ui:519
 msgid "Select a bus to explore objects"
 msgstr "Изаберите магистралу да истражите објекте"
 
-#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
+#: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
+#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
 msgid "Members"
 msgstr "Чланови"
 
-#: src/dspy-window.ui:848
+#: src/dspy-window.ui:855
 msgid "Details"
 msgstr "Појединости"
 
-#: src/dspy-window.ui:888
+#: src/dspy-window.ui:895
 msgid "Explore Interfaces"
 msgstr "Истражи сучеља"
 
-#: src/dspy-window.ui:889
+#: src/dspy-window.ui:896
 msgid "Select an object to explore members"
 msgstr "Изаберите објекат да истражите чланове"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
+#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
 msgid "Bus"
 msgstr "магистрала"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
+#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
 msgid "Bus Name"
 msgstr "назив магистрале"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
+#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
 msgid "Owner"
 msgstr "власник"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
+#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
 msgid "Object Path"
 msgstr "путања објекта"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
 msgid "Interface"
 msgstr "сучеље"
 
-#: src/dspy-window.ui:1014
+#: src/dspy-window.ui:1021
 msgid "Property"
 msgstr "особина"
 
-#: src/dspy-window.ui:1028
+#: src/dspy-window.ui:1035
 msgid "Type Signature"
 msgstr "врста потписа"
 
-#: src/dspy-window.ui:1042
+#: src/dspy-window.ui:1049
 msgid "Value"
 msgstr "вредност"
 
-#: src/dspy-window.ui:1202
+#: src/dspy-window.ui:1209
 msgid "Signal"
 msgstr "сигнал"
 
-#: src/dspy-window.ui:1216
+#: src/dspy-window.ui:1223
 msgid "Signature"
 msgstr "потпис"
 
-#: src/dspy-window.ui:1363
+#: src/dspy-window.ui:1370
 msgid "Method"
 msgstr "метода"
 
-#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
+#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
 msgid "Parameters"
 msgstr "параметри"
 
-#: src/dspy-window.ui:1391
+#: src/dspy-window.ui:1398
 msgid "Return Type"
 msgstr "врста враћања"
 
-#: src/dspy-window.ui:1429
+#: src/dspy-window.ui:1436
 msgid "Call Method"
 msgstr "метод позива"
 
-#: src/dspy-window.ui:1445
+#: src/dspy-window.ui:1452
 msgid "Cancel"
 msgstr "Откажи"
 
-#: src/dspy-window.ui:1462
+#: src/dspy-window.ui:1469
 msgid "Result"
 msgstr "резултат"
 
-#: src/dspy-window.ui:1494
+#: src/dspy-window.ui:1501
 msgid "Statistics"
 msgstr "статистика"
 
-#: src/dspy-window.ui:1498
+#: src/dspy-window.ui:1505
 msgid "Duration"
 msgstr "трајање"
 
-#: src/dspy-window.ui:1504
+#: src/dspy-window.ui:1511
 msgid "Minimum Duration"
 msgstr "најмање трајање"
 
-#: src/dspy-window.ui:1510
+#: src/dspy-window.ui:1517
 msgid "Maximum Duration"
 msgstr "највеће трајање"
 
-#: src/dspy-window.ui:1539
+#: src/dspy-window.ui:1546
 msgid "New Connection"
 msgstr "Нова веза"
 
-#: src/dspy-window.ui:1550
+#: src/dspy-window.ui:1557
 msgid "Bus Address"
 msgstr "ареса на магистрали"
 
-#: src/dspy-window.ui:1561
+#: src/dspy-window.ui:1568
 msgid "Connect"
 msgstr "Повежи се"
 
-#: src/dspy-window.ui:1582
+#: src/dspy-window.ui:1589
 msgid "_New Window"
 msgstr "_Нови прозор"
 
-#: src/dspy-window.ui:1588
+#: src/dspy-window.ui:1595
 msgid "Connect to Other _Bus"
 msgstr "Повежи се на другу _магистралу"
 
-#: src/dspy-window.ui:1594
+#: src/dspy-window.ui:1601
 msgid "_About D-Spy"
 msgstr "_О Д-шпијуну"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr ""
+"Душан Симић <dusan.simic1810@gmail.com>\n"
+"Марко М. Костић <marko.m.kostic@gmail.com>\n"
+"\n"
+"https://гном.срб — превод Гнома на српски језик."
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Отвори у новом прозору"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Испиши податке о издрању и изађи"
 
