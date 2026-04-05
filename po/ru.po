@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-10-24 21:58+0000\n"
-"PO-Revision-Date: 2025-11-01 14:35+0300\n"
-"Last-Translator: Данил Гашигуллин <gashigullin44@gmail.com>\n"
+"POT-Creation-Date: 2026-03-16 21:12+0000\n"
+"PO-Revision-Date: 2026-03-26 20:57+0300\n"
+"Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -60,7 +60,7 @@ msgstr "Системная шина"
 
 #: src/dspy-connection.c:513
 msgid "Session Bus"
-msgstr "Сеансовая шина "
+msgstr "Шина сеанса"
 
 #. translators: PID refers to "process identifier"
 #: src/dspy-name.c:497
@@ -222,7 +222,7 @@ msgstr "Возвращаемый тип"
 
 #: src/dspy-window.ui:1436
 msgid "Call Method"
-msgstr "Метод вызова"
+msgstr "Вызвать метод"
 
 #: src/dspy-window.ui:1452
 msgid "Cancel"
@@ -272,11 +272,15 @@ msgstr "Соединиться с другой _шиной"
 msgid "_About D-Spy"
 msgstr "_О приложении"
 
-#: src/main.c:153
+#: src/main.c:132
+msgid "translator-credits"
+msgstr "Artur S0"
+
+#: src/main.c:154
 msgid "Open a new window"
 msgstr "Открыть новое окно"
 
-#: src/main.c:154
+#: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Показать информацию о версии и выйти"
 
