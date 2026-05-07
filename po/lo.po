@@ -1,0 +1,274 @@
+# Lao translation for d-spy.
+# Copyright (C) 2025 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# bone NI <bounkirdni@gmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2025-09-20 15:42+0000\n"
+"PO-Revision-Date: 2025-09-20 15:42+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Lao <lo@li.org>\n"
+"Language: lo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
+msgid "D-Spy"
+msgstr "D-Spy"
+
+#: data/org.gnome.dspy.desktop.in.in:6
+msgid "Discover and explore D-Bus services"
+msgstr "ຄົ້ນພົບ ແລະ ສຳຫຼວດບໍລິການ D-Bus"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
+
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "ໜ້າຕ່າງໃໝ່"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "ວິເຄາະການເຊື່ອມຕໍ່ D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy ແມ່ນເຄື່ອງມືແບບງ່າຍໆເພື່ອສຳຫຼວດການເຊື່ອມຕໍ່ D-Bus."
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "ສ່ວນຕິດຕໍ່ D-Spy"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "ບັສລະບົບ"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "ບັສເຊດຊັນ"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
+#, c-format
+msgid "PID: %u"
+msgstr "PID: %u"
+
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "ບໍ່ໄດ້ເຮັດວຽກ"
+
+#: src/dspy-property.c:63
+msgid "read/write"
+msgstr "ອ່ານ/ຂຽນ"
+
+#: src/dspy-property.c:65
+msgid "write-only"
+msgstr "ຂຽນເທົ່ານັ້ນ"
+
+#: src/dspy-property.c:67
+msgid "read-only"
+msgstr "ອ່ານເທົ່ານັ້ນ"
+
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "ຂໍ້ຜິດພາດ"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: src/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr "ອາເຣຂອງ [%s]"
+
+#: src/dspy-window.c:136
+msgid "Accessibility Bus"
+msgstr "ບັສການເຂົ້າເຖິງ"
+
+#: src/dspy-window.c:398
+msgid "Methods"
+msgstr "ເມທອດ"
+
+#: src/dspy-window.c:400
+msgid "Properties"
+msgstr "ຄຸນສົມບັດ"
+
+#: src/dspy-window.c:402
+msgid "Signals"
+msgstr "ສັນຍານ"
+
+#: src/dspy-window.c:429
+msgid "Copied to Clipboard"
+msgstr "ສຳເນົາລົງຄລິບບອດແລ້ວ"
+
+#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+msgid "msec"
+msgstr "ມິລິວິ"
+
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "ການເຊື່ອມຕໍ່"
+
+#: src/dspy-window.ui:165
+msgid "Bus Names"
+msgstr "ຊື່ບັສ"
+
+#: src/dspy-window.ui:206 src/dspy-window.ui:367 src/dspy-window.ui:570
+#: src/dspy-window.ui:717
+msgid "Filter…"
+msgstr "ກັ່ນຕອງ..."
+
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "ອັອບເຈັກ"
+
+#: src/dspy-window.ui:474 src/dspy-window.ui:526
+msgid "Interfaces"
+msgstr "ອິນເຕີເຟດ"
+
+#: src/dspy-window.ui:511
+msgid "Explore Objects"
+msgstr "ສຳຫຼວດອັອບເຈັກ"
+
+#: src/dspy-window.ui:512
+msgid "Select a bus to explore objects"
+msgstr "ເລືອກບັສເພື່ອສຳຫຼວດອັອບເຈັກ"
+
+#: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
+#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+msgid "Members"
+msgstr "ສະມາຊິກ"
+
+#: src/dspy-window.ui:848
+msgid "Details"
+msgstr "ລາຍລະອຽດ"
+
+#: src/dspy-window.ui:888
+msgid "Explore Interfaces"
+msgstr "ສຳຫຼວດອິນເຕີເຟດ"
+
+#: src/dspy-window.ui:889
+msgid "Select an object to explore members"
+msgstr "ເລືອກອັອບເຈັກເພື່ອສຳຫຼວດສະມາຊິກ"
+
+#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+msgid "Bus"
+msgstr "ບັສ"
+
+#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+msgid "Bus Name"
+msgstr "ຊື່ບັສ"
+
+#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+msgid "Owner"
+msgstr "ເຈົ້າຂອງ"
+
+#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+msgid "Object Path"
+msgstr "ເສັ້ນທາງອັອບເຈັກ"
+
+#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+msgid "Interface"
+msgstr "ອິນເຕີເຟດ"
+
+#: src/dspy-window.ui:1014
+msgid "Property"
+msgstr "ຄຸນສົມບັດ"
+
+#: src/dspy-window.ui:1028
+msgid "Type Signature"
+msgstr "ຊິກເນເຈີປະເພດ"
+
+#: src/dspy-window.ui:1042
+msgid "Value"
+msgstr "ຄ່າ"
+
+#: src/dspy-window.ui:1200
+msgid "Signal"
+msgstr "ສັນຍານ"
+
+#: src/dspy-window.ui:1214
+msgid "Signature"
+msgstr "ຊິກເນເຈີ"
+
+#: src/dspy-window.ui:1361
+msgid "Method"
+msgstr "ເມທອດ"
+
+#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+msgid "Parameters"
+msgstr "ພາລາມິເຕີ"
+
+#: src/dspy-window.ui:1389
+msgid "Return Type"
+msgstr "ປະເພດຄ່າທີ່ສົ່ງຄືນ"
+
+#: src/dspy-window.ui:1426
+msgid "Call Method"
+msgstr "ເອີ້ນໃຊ້ເມທອດ"
+
+#: src/dspy-window.ui:1442
+msgid "Cancel"
+msgstr "ຍົກເລີກ"
+
+#: src/dspy-window.ui:1459
+msgid "Result"
+msgstr "ຜົນລັບ"
+
+#: src/dspy-window.ui:1491
+msgid "Statistics"
+msgstr "ສະຖິຕິ"
+
+#: src/dspy-window.ui:1495
+msgid "Duration"
+msgstr "ໄລຍະເວລາ"
+
+#: src/dspy-window.ui:1501
+msgid "Minimum Duration"
+msgstr "ໄລຍະເວລາຕ່ຳສຸດ"
+
+#: src/dspy-window.ui:1507
+msgid "Maximum Duration"
+msgstr "ໄລຍະເວລາສູງສຸດ"
+
+#: src/dspy-window.ui:1536
+msgid "New Connection"
+msgstr "ການເຊື່ອມຕໍ່ໃໝ່"
+
+#: src/dspy-window.ui:1547
+msgid "Bus Address"
+msgstr "ທີ່ຢູ່ບັສ"
+
+#: src/dspy-window.ui:1558
+msgid "Connect"
+msgstr "ເຊື່ອມຕໍ່"
+
+#: src/dspy-window.ui:1579
+msgid "_New Window"
+msgstr "_ໜ້າຕ່າງໃໝ່"
+
+#: src/dspy-window.ui:1585
+msgid "Connect to Other _Bus"
+msgstr "ເຊື່ອມຕໍ່ກັບ_ບັສອື່ນ"
+
+#: src/dspy-window.ui:1591
+msgid "_About D-Spy"
+msgstr "_ກ່ຽວກັບ D-Spy"
+
+#: src/main.c:153
+msgid "Open a new window"
+msgstr "ເປີດໜ້າຕ່າງໃໝ່"
+
+#: src/main.c:154
+msgid "Print version information and exit"
+msgstr "ສະແດງຂໍ້ມູນເວີຊັນ ແລະ ອອກຈາກໂປຣແກຣມ"
