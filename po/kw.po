@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-18 21:46+0000\n"
-"PO-Revision-Date: 2026-02-21 16:26+0000\n"
+"POT-Creation-Date: 2026-03-16 21:12+0000\n"
+"PO-Revision-Date: 2026-05-16 12:56+0100\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 49.0\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -54,7 +54,7 @@ msgstr "Dielvenna junyansow D-Bus"
 
 #: data/org.gnome.dspy.metainfo.xml.in.in:18
 msgid "D-Spy is a simple tool to explore D-Bus connections."
-msgstr "D-Aspier yw unn toul sempel rag furya junyansow D-Bus."
+msgstr "D-Aspier yw toul sempel dhe furya junyansow D-Bus."
 
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
@@ -130,7 +130,7 @@ msgstr "Junyansow"
 
 #: src/dspy-window.ui:165
 msgid "Bus Names"
-msgstr "Henwyn Kyttrin"
+msgstr "Henwyn Gyttrin"
 
 #: src/dspy-window.ui:206 src/dspy-window.ui:374 src/dspy-window.ui:577
 #: src/dspy-window.ui:724
@@ -155,7 +155,7 @@ msgstr "Furya Taklow"
 
 #: src/dspy-window.ui:519
 msgid "Select a bus to explore objects"
-msgstr "Dewis unn kyttrin rag furya taklow"
+msgstr "Dewis kyttrin rag furya taklow"
 
 #: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
 #: src/dspy-window.ui:1103 src/dspy-window.ui:1264
@@ -172,7 +172,7 @@ msgstr "Furya Ynterfassow"
 
 #: src/dspy-window.ui:896
 msgid "Select an object to explore members"
-msgstr "Dewis unn tra rag furya eseli"
+msgstr "Dewis tra rag furya eseli"
 
 #: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
 msgid "Bus"
@@ -204,7 +204,7 @@ msgstr "Sinans Eghen"
 
 #: src/dspy-window.ui:1049
 msgid "Value"
-msgstr "Dalgh"
+msgstr "Synsas"
 
 #: src/dspy-window.ui:1209
 msgid "Signal"
@@ -224,7 +224,7 @@ msgstr "Parametrow"
 
 #: src/dspy-window.ui:1398
 msgid "Return Type"
-msgstr "Eghen Dehwelans"
+msgstr "Eghen Dhehwelans"
 
 #: src/dspy-window.ui:1436
 msgid "Call Method"
@@ -260,7 +260,7 @@ msgstr "Junyans Nowydh"
 
 #: src/dspy-window.ui:1557
 msgid "Bus Address"
-msgstr "Trigva Kyttrin"
+msgstr "Trigva Gyttrin"
 
 #: src/dspy-window.ui:1568
 msgid "Connect"
@@ -276,7 +276,7 @@ msgstr "Junya orth _Kyttrin Aral"
 
 #: src/dspy-window.ui:1601
 msgid "_About D-Spy"
-msgstr "_A-dro D-Aspier"
+msgstr "_A-dro dhe D-Aspier"
 
 #: src/main.c:132
 msgid "translator-credits"
@@ -284,8 +284,8 @@ msgstr "Flynn"
 
 #: src/main.c:154
 msgid "Open a new window"
-msgstr "Ygeri unn fenester nowydh"
+msgstr "Ygeri fenester nowydh"
 
 #: src/main.c:155
 msgid "Print version information and exit"
-msgstr "Pryntya kedhlow versyon ha kwytya"
+msgstr "Pryntya kedhlow dyllans ha kwytya"
