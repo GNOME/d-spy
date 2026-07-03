@@ -1,0 +1,283 @@
+# Japanese translation for d-spy.
+# Copyright (C) 2026 d-spy's COPYRIGHT HOLDER
+# This file is distributed under the same license as the d-spy package.
+# Ryo Nakano <ryonakaknock3@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2026-03-16 21:12+0000\n"
+"PO-Revision-Date: 2026-07-03 20:53+0900\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
+msgid "D-Spy"
+msgstr "D-Spy"
+
+#: data/org.gnome.dspy.desktop.in.in:6
+msgid "Discover and explore D-Bus services"
+msgstr "D-Bus サービスを探したり確認したりします"
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "dspy;dbus;"
+msgstr "dspy;dbus;"
+
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "新しいウィンドウ"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr "D-Bus 接続を解析します"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr "D-Spy は D-Bus 接続を確認するためのシンプルなツールです。"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr "D-Spy のインターフェース"
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "システムバス"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "セッションバス"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
+#, c-format
+msgid "PID: %u"
+msgstr "PID: %u"
+
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr "実行していません"
+
+#: src/dspy-property.c:63
+msgid "read/write"
+msgstr "取得/設定"
+
+#: src/dspy-property.c:65
+msgid "write-only"
+msgstr "設定のみ"
+
+#: src/dspy-property.c:67
+msgid "read-only"
+msgstr "取得のみ"
+
+#: src/dspy-property.c:207
+msgid "Error"
+msgstr "エラー"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: src/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr "[%s] の配列"
+
+#: src/dspy-window.c:137
+msgid "Accessibility Bus"
+msgstr "アクセシビリティバス"
+
+#: src/dspy-window.c:406
+msgid "Methods"
+msgstr "メソッド"
+
+#: src/dspy-window.c:408
+msgid "Properties"
+msgstr "プロパティ"
+
+#: src/dspy-window.c:410
+msgid "Signals"
+msgstr "シグナル"
+
+#: src/dspy-window.c:437
+msgid "Copied to Clipboard"
+msgstr "クリップボードにコピーしました"
+
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
+msgid "msec"
+msgstr "ミリ秒"
+
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr "接続"
+
+#: src/dspy-window.ui:165
+msgid "Bus Names"
+msgstr "バス名"
+
+#: src/dspy-window.ui:206 src/dspy-window.ui:374 src/dspy-window.ui:577
+#: src/dspy-window.ui:724
+msgid "Filter…"
+msgstr "フィルター…"
+
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr "オブジェクト"
+
+#: src/dspy-window.ui:349
+msgid "Refresh Objects"
+msgstr "オブジェクトを更新"
+
+#: src/dspy-window.ui:481 src/dspy-window.ui:533
+msgid "Interfaces"
+msgstr "インターフェース"
+
+#: src/dspy-window.ui:518
+msgid "Explore Objects"
+msgstr "オブジェクトを確認"
+
+#: src/dspy-window.ui:519
+msgid "Select a bus to explore objects"
+msgstr "オブジェクトを確認するにはバスを選択してください"
+
+#: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
+#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
+msgid "Members"
+msgstr "メンバ"
+
+#: src/dspy-window.ui:855
+msgid "Details"
+msgstr "詳細"
+
+#: src/dspy-window.ui:895
+msgid "Explore Interfaces"
+msgstr "インターフェースを確認"
+
+#: src/dspy-window.ui:896
+msgid "Select an object to explore members"
+msgstr "メンバを確認するにはオブジェクトを選択してください"
+
+#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
+msgid "Bus"
+msgstr "バス"
+
+#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
+msgid "Bus Name"
+msgstr "バス名"
+
+#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
+msgid "Owner"
+msgstr "所有者"
+
+#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
+msgid "Object Path"
+msgstr "オブジェクトパス"
+
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
+msgid "Interface"
+msgstr "インターフェース"
+
+#: src/dspy-window.ui:1021
+msgid "Property"
+msgstr "プロパティ"
+
+#: src/dspy-window.ui:1035
+msgid "Type Signature"
+msgstr "型のシグネチャ"
+
+#: src/dspy-window.ui:1049
+msgid "Value"
+msgstr "値"
+
+#: src/dspy-window.ui:1209
+msgid "Signal"
+msgstr "シグナル"
+
+#: src/dspy-window.ui:1223
+msgid "Signature"
+msgstr "シグネチャ"
+
+#: src/dspy-window.ui:1370
+msgid "Method"
+msgstr "メソッド"
+
+#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
+msgid "Parameters"
+msgstr "パラメータ"
+
+#: src/dspy-window.ui:1398
+msgid "Return Type"
+msgstr "戻り値の型"
+
+#: src/dspy-window.ui:1436
+msgid "Call Method"
+msgstr "メソッドを呼び出す"
+
+#: src/dspy-window.ui:1452
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: src/dspy-window.ui:1469
+msgid "Result"
+msgstr "結果"
+
+#: src/dspy-window.ui:1501
+msgid "Statistics"
+msgstr "統計"
+
+#: src/dspy-window.ui:1505
+msgid "Duration"
+msgstr "実行時間"
+
+#: src/dspy-window.ui:1511
+msgid "Minimum Duration"
+msgstr "最小実行時間"
+
+#: src/dspy-window.ui:1517
+msgid "Maximum Duration"
+msgstr "最大実行時間"
+
+#: src/dspy-window.ui:1546
+msgid "New Connection"
+msgstr "新しい接続"
+
+#: src/dspy-window.ui:1557
+msgid "Bus Address"
+msgstr "バスアドレス"
+
+#: src/dspy-window.ui:1568
+msgid "Connect"
+msgstr "接続"
+
+#: src/dspy-window.ui:1589
+msgid "_New Window"
+msgstr "新しいウィンドウ(_N)"
+
+#: src/dspy-window.ui:1595
+msgid "Connect to Other _Bus"
+msgstr "他のバスに接続(_B)"
+
+#: src/dspy-window.ui:1601
+msgid "_About D-Spy"
+msgstr "D-Spy について(_A)"
+
+#: src/main.c:132
+msgid "translator-credits"
+msgstr "Ryo Nakano <ryonakaknock3@gmail.com>"
+
+#: src/main.c:154
+msgid "Open a new window"
+msgstr "新しいウィンドウを開く"
+
+#: src/main.c:155
+msgid "Print version information and exit"
+msgstr "バージョン情報を表示して終了する"
