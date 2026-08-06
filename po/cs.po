@@ -2,21 +2,22 @@
 # Copyright (C) 2023 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
 # Daniel Rusek <mail@asciiwolf.com>, 2023.
+# Patrik Sivek <sivekpatrik@gmail.com>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-18 21:46+0000\n"
-"PO-Revision-Date: 2026-02-22 00:02+0100\n"
-"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
-"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"POT-Creation-Date: 2026-03-16 21:12+0000\n"
+"PO-Revision-Date: 2026-08-05 21:08+0200\n"
+"Last-Translator: Patrik Sivek <sivekpatrik@gmail.com>\n"
+"Language-Team: Czech\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -38,6 +39,7 @@ msgstr "Nové okno"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -52,6 +54,22 @@ msgstr "D-Spy je jednoduchý nástroj pro zkoumání připojení D-Bus."
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "Rozhraní D-Spy"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "spy"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "prozkoumat"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "vývoj"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
