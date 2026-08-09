@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-23 19:25+0000\n"
-"PO-Revision-Date: 2026-02-26 22:05+0100\n"
+"POT-Creation-Date: 2026-03-16 21:12+0000\n"
+"PO-Revision-Date: 2026-08-09 09:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Minairó 0.1.0\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -37,6 +37,7 @@ msgstr "Finestra nova"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -51,6 +52,22 @@ msgstr "D-Spy és una eina senzilla per explorar les connexions D-Bus."
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "Interfície D-Spy"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "espia"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "inspecciona"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "desenvolupament"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
@@ -281,86 +298,3 @@ msgstr "Obre una nova finestra"
 #: src/main.c:155
 msgid "Print version information and exit"
 msgstr "Mostra la informació de la versió i surt"
-
-#, c-format
-#~ msgid "Connected to “%s”"
-#~ msgstr "Connectat a %s"
-
-#~ msgid "_Other"
-#~ msgstr "_Altres"
-
-#~ msgid "Execute"
-#~ msgstr "Executa"
-
-#~ msgid "_Execute"
-#~ msgstr "_Executa"
-
-#~ msgid "_Copy"
-#~ msgstr "_Copia"
-
-#~ msgid "Elapsed Time"
-#~ msgstr "Temps transcorregut"
-
-#~ msgid "Name"
-#~ msgstr "Nom"
-
-#~ msgid "Process ID"
-#~ msgstr "ID del procés"
-
-#, c-format
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "Activatable"
-#~ msgstr "Activable"
-
-#~ msgid "Yes"
-#~ msgstr "Sí"
-
-#~ msgid "No"
-#~ msgstr "No"
-
-#~ msgid "PID"
-#~ msgstr "PID"
-
-#~ msgid "Access Denied by Peer"
-#~ msgstr "Accés denegat per un «peer»"
-
-#~ msgid "Authentication Failed"
-#~ msgstr "L'autentificació ha fallat"
-
-#~ msgid "Operation Timed Out"
-#~ msgstr "Operació fora de temps"
-
-#~ msgid "Lost Connection to Bus"
-#~ msgstr "Connexió al bus perduda"
-
-#~ msgid "D-Bus Connection Failed"
-#~ msgstr "La connexió al D-Bus ha fallat"
-
-#~ msgid "_Close"
-#~ msgstr "Tan_ca"
-
-#~ msgid "Provide the address of the message bus"
-#~ msgstr "Proporcioneu l'adreça del bus de missatges"
-
-#~ msgid "Main Menu"
-#~ msgstr "Menú principal"
-
-#~ msgid "Search Bus Names"
-#~ msgstr "Cerca noms de Bus"
-
-#~ msgid "Select a D-Bus Name"
-#~ msgstr "Selecciona un nom de D-Bus"
-
-#~ msgid "Select a bus name to introspect the peer"
-#~ msgstr "Seleccioneu un nom de bus per a introspeccionar el «peer»"
-
-#~ msgid "Refresh"
-#~ msgstr "Actualitza"
-
-#~ msgid "Connect to Other Bus…"
-#~ msgstr "Connecteu-vos a un altre bus…"
-
-#~ msgid "A D-Bus explorer for GNOME"
-#~ msgstr "Un explorador D-Bus per a GNOME"
