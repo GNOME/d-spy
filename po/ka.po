@@ -1,14 +1,14 @@
 # Georgian translation for d-spy.
 # Copyright (C) 2023 d-spy's authors
 # This file is distributed under the same license as the d-spy package.
-# Ekaterine Papava <papava.e@gtu.ge>, 2023-2025.
+# Ekaterine Papava <papava.e@gtu.ge>, 2023-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-09-04 07:34+0000\n"
-"PO-Revision-Date: 2025-09-04 11:49+0200\n"
+"POT-Creation-Date: 2025-10-28 23:30+0000\n"
+"PO-Revision-Date: 2026-08-10 14:07+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -38,6 +38,7 @@ msgstr "ახალი ფანჯარა"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -53,6 +54,22 @@ msgstr "D-Spy მარტივი პროგრამაა D-Bus-ის მ
 msgid "D-Spy Interface"
 msgstr "D-Spy-ის ინტერფეისი"
 
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "spy"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "ინსპექცია"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "შემუშავება"
+
 #: src/dspy-connection.c:510
 msgid "System Bus"
 msgstr "სისტემური სალტე"
@@ -64,7 +81,6 @@ msgstr "სესიების სალტე"
 #. translators: PID refers to "process identifier"
 #: src/dspy-name.c:497
 #, c-format
-#| msgid "%s: %u"
 msgid "PID: %u"
 msgstr "PID: %u"
 
@@ -94,27 +110,27 @@ msgstr "შეცდომა"
 msgid "Array of [%s]"
 msgstr "[%s]-ის მასივი"
 
-#: src/dspy-window.c:136
+#: src/dspy-window.c:137
 msgid "Accessibility Bus"
 msgstr "წვდომადობის სალტე"
 
-#: src/dspy-window.c:398
+#: src/dspy-window.c:406
 msgid "Methods"
 msgstr "მეთოდები"
 
-#: src/dspy-window.c:400
+#: src/dspy-window.c:408
 msgid "Properties"
 msgstr "_თვისებები"
 
-#: src/dspy-window.c:402
+#: src/dspy-window.c:410
 msgid "Signals"
 msgstr "სიგნალები"
 
-#: src/dspy-window.c:429
+#: src/dspy-window.c:437
 msgid "Copied to Clipboard"
 msgstr "დაკოპირდა გაცვლის ბაფერში"
 
-#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
 msgid "msec"
 msgstr "მწმ"
 
@@ -148,7 +164,7 @@ msgid "Select a bus to explore objects"
 msgstr "აირჩიეთ სალტე ობიექტების დასათვალიერებლად"
 
 #: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
 msgid "Members"
 msgstr "წევრები"
 
@@ -164,23 +180,23 @@ msgstr "ინტერფეისების დათვალიერე�
 msgid "Select an object to explore members"
 msgstr "აირჩიეთ ობიექტი წევრების დასათვალიერებლად"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
 msgid "Bus"
 msgstr "სალტე"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
 msgid "Bus Name"
 msgstr "სალტის სახელი"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
 msgid "Owner"
 msgstr "მფლობელი"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
 msgid "Object Path"
 msgstr "ობიექტის ბილიკი"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
 msgid "Interface"
 msgstr "ინტერფეისი"
 
@@ -196,75 +212,75 @@ msgstr "ტიპის ხელმოწერა"
 msgid "Value"
 msgstr "მნიშვნელობა"
 
-#: src/dspy-window.ui:1200
+#: src/dspy-window.ui:1202
 msgid "Signal"
 msgstr "სიგნალი"
 
-#: src/dspy-window.ui:1214
+#: src/dspy-window.ui:1216
 msgid "Signature"
 msgstr "ხელმოწერა"
 
-#: src/dspy-window.ui:1361
+#: src/dspy-window.ui:1363
 msgid "Method"
 msgstr "მეთოდი"
 
-#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
 msgid "Parameters"
 msgstr "პარამეტრები"
 
-#: src/dspy-window.ui:1389
+#: src/dspy-window.ui:1391
 msgid "Return Type"
 msgstr "დასაბრუნებელი მნიშვნელობის ტიპი"
 
-#: src/dspy-window.ui:1426
+#: src/dspy-window.ui:1429
 msgid "Call Method"
 msgstr "გამოძახების მეთოდი"
 
-#: src/dspy-window.ui:1442
+#: src/dspy-window.ui:1445
 msgid "Cancel"
 msgstr "გაუქმება"
 
-#: src/dspy-window.ui:1459
+#: src/dspy-window.ui:1462
 msgid "Result"
 msgstr "შედეგი"
 
-#: src/dspy-window.ui:1491
+#: src/dspy-window.ui:1494
 msgid "Statistics"
 msgstr "სტატისტიკა"
 
-#: src/dspy-window.ui:1495
+#: src/dspy-window.ui:1498
 msgid "Duration"
 msgstr "ხანგრძლივობა"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1504
 msgid "Minimum Duration"
 msgstr "მინიმალური ხანგრძლივობა"
 
-#: src/dspy-window.ui:1507
+#: src/dspy-window.ui:1510
 msgid "Maximum Duration"
 msgstr "მაქსიმალური ხანგრძლივობა"
 
-#: src/dspy-window.ui:1536
+#: src/dspy-window.ui:1539
 msgid "New Connection"
 msgstr "ახალი შეერთება"
 
-#: src/dspy-window.ui:1547
+#: src/dspy-window.ui:1550
 msgid "Bus Address"
 msgstr "სალტის მისამართი"
 
-#: src/dspy-window.ui:1558
+#: src/dspy-window.ui:1561
 msgid "Connect"
 msgstr "დაკავშირება"
 
-#: src/dspy-window.ui:1579
+#: src/dspy-window.ui:1582
 msgid "_New Window"
 msgstr "_ახალი ფანჯარა"
 
-#: src/dspy-window.ui:1585
+#: src/dspy-window.ui:1588
 msgid "Connect to Other _Bus"
 msgstr "სხვა სალტესთან მიერთე_ბა"
 
-#: src/dspy-window.ui:1591
+#: src/dspy-window.ui:1594
 msgid "_About D-Spy"
 msgstr "D-Spy-ის _შესახებ"
 
