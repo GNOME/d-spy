@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-09-07 16:10+0000\n"
-"PO-Revision-Date: 2025-09-07 21:23+0300\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2025-10-28 23:30+0000\n"
+"PO-Revision-Date: 2026-08-10 22:21+0300\n"
+"Last-Translator: Aurimas Černius <aurimas.cernius@mailo.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -39,6 +39,7 @@ msgstr "Naujas langas"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -53,6 +54,22 @@ msgstr "D-Spy yra paprastas įrankis D-Bus ryšiams tirti."
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "D-Spy sąsaja"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "šnipas"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "inspektuoti"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "kūrimas"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
@@ -94,27 +111,27 @@ msgstr "Klaida"
 msgid "Array of [%s]"
 msgstr "[%s] masyvas"
 
-#: src/dspy-window.c:136
+#: src/dspy-window.c:137
 msgid "Accessibility Bus"
 msgstr "Prieigos magistralė"
 
-#: src/dspy-window.c:398
+#: src/dspy-window.c:406
 msgid "Methods"
 msgstr "Metodai"
 
-#: src/dspy-window.c:400
+#: src/dspy-window.c:408
 msgid "Properties"
 msgstr "Savybės"
 
-#: src/dspy-window.c:402
+#: src/dspy-window.c:410
 msgid "Signals"
 msgstr "Signalai"
 
-#: src/dspy-window.c:429
+#: src/dspy-window.c:437
 msgid "Copied to Clipboard"
 msgstr "Nukopijuota į iškarpinę"
 
-#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
 msgid "msec"
 msgstr "ms"
 
@@ -148,7 +165,7 @@ msgid "Select a bus to explore objects"
 msgstr "Pasirinkite magistralę objektų naršymui"
 
 #: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
 msgid "Members"
 msgstr "Nariai"
 
@@ -164,23 +181,23 @@ msgstr "Naršyti sąsajas"
 msgid "Select an object to explore members"
 msgstr "Pasirinkite objektą nariams naršyti"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
 msgid "Bus"
 msgstr "Magistralė"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
 msgid "Bus Name"
 msgstr "Magistralės pavadinimas"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
 msgid "Owner"
 msgstr "Savininkas"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
 msgid "Object Path"
 msgstr "Objekto kelias"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
 msgid "Interface"
 msgstr "Sąsaja"
 
@@ -196,75 +213,75 @@ msgstr "Tipo parašas"
 msgid "Value"
 msgstr "Vertė"
 
-#: src/dspy-window.ui:1200
+#: src/dspy-window.ui:1202
 msgid "Signal"
 msgstr "Signalas"
 
-#: src/dspy-window.ui:1214
+#: src/dspy-window.ui:1216
 msgid "Signature"
 msgstr "Parašas"
 
-#: src/dspy-window.ui:1361
+#: src/dspy-window.ui:1363
 msgid "Method"
 msgstr "Metodas"
 
-#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
 msgid "Parameters"
 msgstr "Parametrai"
 
-#: src/dspy-window.ui:1389
+#: src/dspy-window.ui:1391
 msgid "Return Type"
 msgstr "Grąžinamas tipas"
 
-#: src/dspy-window.ui:1426
+#: src/dspy-window.ui:1429
 msgid "Call Method"
 msgstr "Kviesti metodą"
 
-#: src/dspy-window.ui:1442
+#: src/dspy-window.ui:1445
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#: src/dspy-window.ui:1459
+#: src/dspy-window.ui:1462
 msgid "Result"
 msgstr "Rezultatas"
 
-#: src/dspy-window.ui:1491
+#: src/dspy-window.ui:1494
 msgid "Statistics"
 msgstr "Statistika"
 
-#: src/dspy-window.ui:1495
+#: src/dspy-window.ui:1498
 msgid "Duration"
 msgstr "Trukmė"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1504
 msgid "Minimum Duration"
 msgstr "Minimali trukmė"
 
-#: src/dspy-window.ui:1507
+#: src/dspy-window.ui:1510
 msgid "Maximum Duration"
 msgstr "Maksimali trukmė"
 
-#: src/dspy-window.ui:1536
+#: src/dspy-window.ui:1539
 msgid "New Connection"
 msgstr "Naujas ryšys"
 
-#: src/dspy-window.ui:1547
+#: src/dspy-window.ui:1550
 msgid "Bus Address"
 msgstr "Magistralės adresas"
 
-#: src/dspy-window.ui:1558
+#: src/dspy-window.ui:1561
 msgid "Connect"
 msgstr "Jungtis"
 
-#: src/dspy-window.ui:1579
+#: src/dspy-window.ui:1582
 msgid "_New Window"
 msgstr "_Naujas langas"
 
-#: src/dspy-window.ui:1585
+#: src/dspy-window.ui:1588
 msgid "Connect to Other _Bus"
 msgstr "Prisijungti prie kitos _magistralės"
 
-#: src/dspy-window.ui:1591
+#: src/dspy-window.ui:1594
 msgid "_About D-Spy"
 msgstr "_Apie D-Spy"
 
