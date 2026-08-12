@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-09-04 19:32+0000\n"
-"PO-Revision-Date: 2025-09-05 16:29+0330\n"
+"POT-Creation-Date: 2025-10-28 23:30+0000\n"
+"PO-Revision-Date: 2026-08-13 01:59+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -25,7 +25,7 @@ msgstr "دی-اسپای"
 
 #: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
-msgstr "کشف و مرور خدمات D-Bus"
+msgstr "کشف و مرور خدمات دی‌باس"
 
 #: data/org.gnome.dspy.desktop.in.in:7
 msgid "dspy;dbus;"
@@ -37,6 +37,7 @@ msgstr "پنجرهٔ جدید"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "کریستین هرگرت"
 
@@ -51,6 +52,22 @@ msgstr "دی-اسپای ابزاری ساده برای مرور اتّصال‌�
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "میانای دی-اسپای"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "جاسوس"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "دی‌باس"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "بازرسی"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "توسعه"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
@@ -92,27 +109,27 @@ msgstr "خطا"
 msgid "Array of [%s]"
 msgstr "آرایهٔ [%s]"
 
-#: src/dspy-window.c:136
+#: src/dspy-window.c:137
 msgid "Accessibility Bus"
 msgstr "گذرگاه دسترسی‌پذیری"
 
-#: src/dspy-window.c:398
+#: src/dspy-window.c:406
 msgid "Methods"
 msgstr "روش‌ها"
 
-#: src/dspy-window.c:400
+#: src/dspy-window.c:408
 msgid "Properties"
 msgstr "ترجیحات"
 
-#: src/dspy-window.c:402
+#: src/dspy-window.c:410
 msgid "Signals"
 msgstr "علامت‌ها"
 
-#: src/dspy-window.c:429
+#: src/dspy-window.c:437
 msgid "Copied to Clipboard"
 msgstr "در تخته‌گیره رونوشت شد"
 
-#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
 msgid "msec"
 msgstr "م‌ث"
 
@@ -146,7 +163,7 @@ msgid "Select a bus to explore objects"
 msgstr "گزینش گذرگاهی برای کشف اشیا"
 
 #: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
 msgid "Members"
 msgstr "اعضا"
 
@@ -162,23 +179,23 @@ msgstr "میاناهای کشف"
 msgid "Select an object to explore members"
 msgstr "گزینش شی‌ای برای کشف اعضا"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
 msgid "Bus"
 msgstr "گذرگاه"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
 msgid "Bus Name"
 msgstr "نام گذرگاه"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
 msgid "Owner"
 msgstr "مالک"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
 msgid "Object Path"
 msgstr "مسیر شی"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
 msgid "Interface"
 msgstr "واسط"
 
@@ -194,75 +211,75 @@ msgstr "امضای گونه"
 msgid "Value"
 msgstr "مقدار"
 
-#: src/dspy-window.ui:1200
+#: src/dspy-window.ui:1202
 msgid "Signal"
 msgstr "علامت"
 
-#: src/dspy-window.ui:1214
+#: src/dspy-window.ui:1216
 msgid "Signature"
 msgstr "امضا"
 
-#: src/dspy-window.ui:1361
+#: src/dspy-window.ui:1363
 msgid "Method"
 msgstr "رشو"
 
-#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
 msgid "Parameters"
 msgstr "عوامل"
 
-#: src/dspy-window.ui:1389
+#: src/dspy-window.ui:1391
 msgid "Return Type"
 msgstr "گونهٔ بازگشت"
 
-#: src/dspy-window.ui:1426
+#: src/dspy-window.ui:1429
 msgid "Call Method"
 msgstr "روش فراخوانی"
 
-#: src/dspy-window.ui:1442
+#: src/dspy-window.ui:1445
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/dspy-window.ui:1459
+#: src/dspy-window.ui:1462
 msgid "Result"
 msgstr "نتیجه"
 
-#: src/dspy-window.ui:1491
+#: src/dspy-window.ui:1494
 msgid "Statistics"
 msgstr "آمارها"
 
-#: src/dspy-window.ui:1495
+#: src/dspy-window.ui:1498
 msgid "Duration"
 msgstr "مدّت"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1504
 msgid "Minimum Duration"
 msgstr "کمینهء مدّت"
 
-#: src/dspy-window.ui:1507
+#: src/dspy-window.ui:1510
 msgid "Maximum Duration"
 msgstr "بیشینهٔ مدّت"
 
-#: src/dspy-window.ui:1536
+#: src/dspy-window.ui:1539
 msgid "New Connection"
 msgstr "اتّصال جدید"
 
-#: src/dspy-window.ui:1547
+#: src/dspy-window.ui:1550
 msgid "Bus Address"
 msgstr "نشانی گذرگاه"
 
-#: src/dspy-window.ui:1558
+#: src/dspy-window.ui:1561
 msgid "Connect"
 msgstr "اتّصال"
 
-#: src/dspy-window.ui:1579
+#: src/dspy-window.ui:1582
 msgid "_New Window"
 msgstr "_پنجرهٔ جدید"
 
-#: src/dspy-window.ui:1585
+#: src/dspy-window.ui:1588
 msgid "Connect to Other _Bus"
 msgstr "وصل شدن به دیگر گذرگاه‌ها"
 
-#: src/dspy-window.ui:1591
+#: src/dspy-window.ui:1594
 msgid "_About D-Spy"
 msgstr "_درباره دی-اسپای"
 
