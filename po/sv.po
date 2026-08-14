@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-18 21:46+0000\n"
-"PO-Revision-Date: 2026-02-22 11:24+0100\n"
+"POT-Creation-Date: 2026-03-16 21:12+0000\n"
+"PO-Revision-Date: 2026-08-10 15:10+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -38,6 +38,7 @@ msgstr "Nytt fönster"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -51,7 +52,23 @@ msgstr "D-Spy är ett enkelt verktyg för att utforska D-Bus-anslutningar."
 
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
-msgstr "D-Bus-gränssnitt"
+msgstr "D-Spy-gränssnitt"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "spion"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "inspektera"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "utveckling"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
