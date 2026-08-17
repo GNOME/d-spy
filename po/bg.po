@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-18 21:46+0000\n"
-"PO-Revision-Date: 2026-02-20 09:49+0100\n"
+"POT-Creation-Date: 2026-03-16 21:12+0000\n"
+"PO-Revision-Date: 2026-08-17 16:01+0200\n"
 "Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
@@ -39,6 +39,7 @@ msgstr "Нов прозорец"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -53,6 +54,22 @@ msgstr "D-Spy е прост инструмент за разглеждане н�
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "Потребителският интерфейс на D-Spy"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "подслушване"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "преглед"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "разработка"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
