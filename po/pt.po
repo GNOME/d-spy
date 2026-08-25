@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-09-13 01:01+0000\n"
-"PO-Revision-Date: 2025-09-14 18:47+0100\n"
+"POT-Creation-Date: 2025-10-28 23:30+0000\n"
+"PO-Revision-Date: 2026-08-25 16:56+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese\n"
 "Language: pt\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -33,6 +33,7 @@ msgstr "Nova janela"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -47,6 +48,22 @@ msgstr "O D-Spy é uma ferramenta simples para explorar ligações D-Bus."
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "Interface D-Spy"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "spy"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "inspecionar"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "desenvolvimento"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
@@ -88,29 +105,29 @@ msgstr "Erro"
 msgid "Array of [%s]"
 msgstr "Variedade de [%s]"
 
-#: src/dspy-window.c:136
+#: src/dspy-window.c:137
 msgid "Accessibility Bus"
 msgstr "Acessibilidade"
 
-#: src/dspy-window.c:398
+#: src/dspy-window.c:406
 msgid "Methods"
 msgstr "Métodos"
 
-#: src/dspy-window.c:400
+#: src/dspy-window.c:408
 msgid "Properties"
 msgstr "Propriedades"
 
-#: src/dspy-window.c:402
+#: src/dspy-window.c:410
 msgid "Signals"
 msgstr "Sinais"
 
-#: src/dspy-window.c:429
+#: src/dspy-window.c:437
 msgid "Copied to Clipboard"
 msgstr "Copiado para a área de transferência"
 
-#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
 msgid "msec"
-msgstr "Mesa"
+msgstr "msec"
 
 #: src/dspy-window.ui:62
 msgid "Connections"
@@ -142,7 +159,7 @@ msgid "Select a bus to explore objects"
 msgstr "Seleccione um bus para explorar objetos"
 
 #: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
 msgid "Members"
 msgstr "Membros"
 
@@ -158,23 +175,23 @@ msgstr "Explorar interfaces"
 msgid "Select an object to explore members"
 msgstr "Selecione um objeto para explorar membros"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
 msgid "Bus"
 msgstr "Bus"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
 msgid "Bus Name"
 msgstr "Nomes de Barramentos"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
 msgid "Owner"
 msgstr "Proprietário"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
 msgid "Object Path"
 msgstr "Caminho do objeto"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
 msgid "Interface"
 msgstr "Interface"
 
@@ -190,75 +207,75 @@ msgstr "Assinatura de tipo"
 msgid "Value"
 msgstr "Valor"
 
-#: src/dspy-window.ui:1200
+#: src/dspy-window.ui:1202
 msgid "Signal"
 msgstr "Sinal"
 
-#: src/dspy-window.ui:1214
+#: src/dspy-window.ui:1216
 msgid "Signature"
 msgstr "Assinatura"
 
-#: src/dspy-window.ui:1361
+#: src/dspy-window.ui:1363
 msgid "Method"
 msgstr "Método"
 
-#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
 msgid "Parameters"
 msgstr "Parâmetros"
 
-#: src/dspy-window.ui:1389
+#: src/dspy-window.ui:1391
 msgid "Return Type"
 msgstr "Tipo de retorno"
 
-#: src/dspy-window.ui:1426
+#: src/dspy-window.ui:1429
 msgid "Call Method"
 msgstr "Método de ligação"
 
-#: src/dspy-window.ui:1442
+#: src/dspy-window.ui:1445
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/dspy-window.ui:1459
+#: src/dspy-window.ui:1462
 msgid "Result"
 msgstr "Resultados"
 
-#: src/dspy-window.ui:1491
+#: src/dspy-window.ui:1494
 msgid "Statistics"
 msgstr "Estatísticas"
 
-#: src/dspy-window.ui:1495
+#: src/dspy-window.ui:1498
 msgid "Duration"
 msgstr "Duração"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1504
 msgid "Minimum Duration"
 msgstr "Duração mínima"
 
-#: src/dspy-window.ui:1507
+#: src/dspy-window.ui:1510
 msgid "Maximum Duration"
 msgstr "Duração máxima"
 
-#: src/dspy-window.ui:1536
+#: src/dspy-window.ui:1539
 msgid "New Connection"
 msgstr "Nova ligação"
 
-#: src/dspy-window.ui:1547
+#: src/dspy-window.ui:1550
 msgid "Bus Address"
 msgstr "Endereço Bus"
 
-#: src/dspy-window.ui:1558
+#: src/dspy-window.ui:1561
 msgid "Connect"
 msgstr "Ligar"
 
-#: src/dspy-window.ui:1579
+#: src/dspy-window.ui:1582
 msgid "_New Window"
 msgstr "_Nova janela"
 
-#: src/dspy-window.ui:1585
+#: src/dspy-window.ui:1588
 msgid "Connect to Other _Bus"
 msgstr "Ligar a outros _Bus"
 
-#: src/dspy-window.ui:1591
+#: src/dspy-window.ui:1594
 msgid "_About D-Spy"
 msgstr "_Acerca do D-Spy"
 
