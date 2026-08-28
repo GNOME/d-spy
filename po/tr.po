@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the d-spy package.
 #
 # Sabri Ünal <yakushabb@gmail.com>, 2023-2025.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2023-2025.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2023-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-18 21:46+0000\n"
-"PO-Revision-Date: 2026-02-23 14:31+0300\n"
-"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"POT-Creation-Date: 2026-03-16 21:12+0000\n"
+"PO-Revision-Date: 2026-08-28 08:00+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,7 @@ msgstr "Yeni Pencere"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -55,6 +56,22 @@ msgstr "D-Spy, D-Bus bağlantılarını keşfetmek için basit araçtır."
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "D-Spy Arayüzü"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "gözetle"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "incele"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "geliştirme"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
