@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-10-28 23:32+0000\n"
-"PO-Revision-Date: 2025-11-09 18:54+0100\n"
-"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
+"POT-Creation-Date: 2025-10-28 23:30+0000\n"
+"PO-Revision-Date: 2026-08-30 10:46+0200\n"
+"Last-Translator: Марко Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: Serbian <gnome-sr@googlegroups.com>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-DL-Branch: main\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
-"X-Generator: Gtranslator 48.0\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -46,6 +46,7 @@ msgstr "Нови прозор"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Кристијан Хергерт (Christian Hergert)"
 
@@ -59,7 +60,23 @@ msgstr "Д-Шијун је једноставан алат за истражив
 
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
-msgstr "Д-шпијун сучеље"
+msgstr "Д-шпијун прочеље"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "шпијун"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "Д-сабирница"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "прегледај"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "развој"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
@@ -144,7 +161,7 @@ msgstr "Објекти"
 
 #: src/dspy-window.ui:474 src/dspy-window.ui:526
 msgid "Interfaces"
-msgstr "сучеља"
+msgstr "прочеља"
 
 #: src/dspy-window.ui:511
 msgid "Explore Objects"
@@ -165,7 +182,7 @@ msgstr "Појединости"
 
 #: src/dspy-window.ui:888
 msgid "Explore Interfaces"
-msgstr "Истражи сучеља"
+msgstr "Истражи прочеља"
 
 #: src/dspy-window.ui:889
 msgid "Select an object to explore members"
@@ -189,7 +206,7 @@ msgstr "путања објекта"
 
 #: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
 msgid "Interface"
-msgstr "сучеље"
+msgstr "прочеље"
 
 #: src/dspy-window.ui:1014
 msgid "Property"
