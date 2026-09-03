@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2025-08-02 21:25+0000\n"
-"PO-Revision-Date: 2025-08-05 17:10+0300\n"
+"POT-Creation-Date: 2025-10-28 23:30+0000\n"
+"PO-Revision-Date: 2026-08-26 16:22+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -39,6 +39,7 @@ msgstr "Новое окно"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -54,13 +55,29 @@ msgstr "D-Spy – простой инструмент для изучения с
 msgid "D-Spy Interface"
 msgstr "Интерфейс D-Spy"
 
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "отслеживание"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "проверка"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "разработка"
+
 #: src/dspy-connection.c:510
 msgid "System Bus"
 msgstr "Системная шина"
 
 #: src/dspy-connection.c:513
 msgid "Session Bus"
-msgstr "Сеансовая шина "
+msgstr "Шина сеанса"
 
 #. translators: PID refers to "process identifier"
 #: src/dspy-name.c:497
@@ -94,27 +111,27 @@ msgstr "Ошибка"
 msgid "Array of [%s]"
 msgstr "Массив [%s]"
 
-#: src/dspy-window.c:136
+#: src/dspy-window.c:137
 msgid "Accessibility Bus"
 msgstr "Шина спец. возможности"
 
-#: src/dspy-window.c:398
+#: src/dspy-window.c:406
 msgid "Methods"
 msgstr "Методы"
 
-#: src/dspy-window.c:400
+#: src/dspy-window.c:408
 msgid "Properties"
 msgstr "Свойства"
 
-#: src/dspy-window.c:402
+#: src/dspy-window.c:410
 msgid "Signals"
 msgstr "Сигналы"
 
-#: src/dspy-window.c:429
+#: src/dspy-window.c:437
 msgid "Copied to Clipboard"
 msgstr "Скопировано в буфер обмена"
 
-#: src/dspy-window.c:516 src/dspy-window.c:526 src/dspy-window.c:535
+#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
 msgid "msec"
 msgstr "мс"
 
@@ -148,7 +165,7 @@ msgid "Select a bus to explore objects"
 msgstr "Выберите шину для обзора объектов"
 
 #: src/dspy-window.ui:673 src/dspy-window.ui:864 src/dspy-window.ui:908
-#: src/dspy-window.ui:1094 src/dspy-window.ui:1255
+#: src/dspy-window.ui:1096 src/dspy-window.ui:1257
 msgid "Members"
 msgstr "Элементы"
 
@@ -164,23 +181,23 @@ msgstr "Обзор интерфейсов"
 msgid "Select an object to explore members"
 msgstr "Выберите объект для обзора элементов"
 
-#: src/dspy-window.ui:941 src/dspy-window.ui:1127 src/dspy-window.ui:1288
+#: src/dspy-window.ui:941 src/dspy-window.ui:1129 src/dspy-window.ui:1290
 msgid "Bus"
 msgstr "Шина"
 
-#: src/dspy-window.ui:954 src/dspy-window.ui:1140 src/dspy-window.ui:1301
+#: src/dspy-window.ui:954 src/dspy-window.ui:1142 src/dspy-window.ui:1303
 msgid "Bus Name"
 msgstr "Название шины"
 
-#: src/dspy-window.ui:968 src/dspy-window.ui:1154 src/dspy-window.ui:1315
+#: src/dspy-window.ui:968 src/dspy-window.ui:1156 src/dspy-window.ui:1317
 msgid "Owner"
 msgstr "Владелец"
 
-#: src/dspy-window.ui:982 src/dspy-window.ui:1168 src/dspy-window.ui:1329
+#: src/dspy-window.ui:982 src/dspy-window.ui:1170 src/dspy-window.ui:1331
 msgid "Object Path"
 msgstr "Путь к объекту"
 
-#: src/dspy-window.ui:996 src/dspy-window.ui:1182 src/dspy-window.ui:1343
+#: src/dspy-window.ui:996 src/dspy-window.ui:1184 src/dspy-window.ui:1345
 msgid "Interface"
 msgstr "Интерфейс"
 
@@ -196,75 +213,75 @@ msgstr "Тип подписи"
 msgid "Value"
 msgstr "Значение"
 
-#: src/dspy-window.ui:1200
+#: src/dspy-window.ui:1202
 msgid "Signal"
 msgstr "Сигнал"
 
-#: src/dspy-window.ui:1214
+#: src/dspy-window.ui:1216
 msgid "Signature"
 msgstr "Подпись"
 
-#: src/dspy-window.ui:1361
+#: src/dspy-window.ui:1363
 msgid "Method"
 msgstr "Метод"
 
-#: src/dspy-window.ui:1375 src/dspy-window.ui:1405
+#: src/dspy-window.ui:1377 src/dspy-window.ui:1407
 msgid "Parameters"
 msgstr "Параметры"
 
-#: src/dspy-window.ui:1389
+#: src/dspy-window.ui:1391
 msgid "Return Type"
 msgstr "Возвращаемый тип"
 
-#: src/dspy-window.ui:1426
+#: src/dspy-window.ui:1429
 msgid "Call Method"
-msgstr "Метод вызова"
+msgstr "Вызвать метод"
 
-#: src/dspy-window.ui:1442
+#: src/dspy-window.ui:1445
 msgid "Cancel"
 msgstr "Отменить"
 
-#: src/dspy-window.ui:1459
+#: src/dspy-window.ui:1462
 msgid "Result"
 msgstr "Результат"
 
-#: src/dspy-window.ui:1491
+#: src/dspy-window.ui:1494
 msgid "Statistics"
 msgstr "Статистика"
 
-#: src/dspy-window.ui:1495
+#: src/dspy-window.ui:1498
 msgid "Duration"
 msgstr "Длительность"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1504
 msgid "Minimum Duration"
 msgstr "Минимальная длительность"
 
-#: src/dspy-window.ui:1507
+#: src/dspy-window.ui:1510
 msgid "Maximum Duration"
 msgstr "Максимальная длительность"
 
-#: src/dspy-window.ui:1536
+#: src/dspy-window.ui:1539
 msgid "New Connection"
 msgstr "Новое соединение"
 
-#: src/dspy-window.ui:1547
+#: src/dspy-window.ui:1550
 msgid "Bus Address"
 msgstr "Адрес шины"
 
-#: src/dspy-window.ui:1558
+#: src/dspy-window.ui:1561
 msgid "Connect"
 msgstr "Соединиться"
 
-#: src/dspy-window.ui:1579
+#: src/dspy-window.ui:1582
 msgid "_New Window"
 msgstr "_Новое окно"
 
-#: src/dspy-window.ui:1585
+#: src/dspy-window.ui:1588
 msgid "Connect to Other _Bus"
 msgstr "Соединиться с другой _шиной"
 
-#: src/dspy-window.ui:1591
+#: src/dspy-window.ui:1594
 msgid "_About D-Spy"
 msgstr "_О приложении"
 
@@ -275,6 +292,12 @@ msgstr "Открыть новое окно"
 #: src/main.c:154
 msgid "Print version information and exit"
 msgstr "Показать информацию о версии и выйти"
+
+#~ msgid "Refresh Objects"
+#~ msgstr "Обновить объекты"
+
+#~ msgid "translator-credits"
+#~ msgstr "Artur S0"
 
 #, c-format
 #~ msgid "Connected to “%s”"
