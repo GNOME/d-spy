@@ -1,16 +1,16 @@
 # Danish translation for d-spy.
 # Copyright (C) 2023-2026 d-spy's COPYRIGHT HOLDER
 # This file is distributed under the same license as the d-spy package.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2023-2026.
+# Ask Hjorth Larsen <askhl@proton.me>, 2023-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-23 19:25+0000\n"
-"PO-Revision-Date: 2026-03-07 13:22+0100\n"
-"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
-"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"POT-Creation-Date: 2026-03-16 21:12+0000\n"
+"PO-Revision-Date: 2026-09-08 00:05+0200\n"
+"Last-Translator: Ask Hjorth Larsen <askhl@proton.me>\n"
+"Language-Team: Danish <danskgruppen@groups.io>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,6 +37,7 @@ msgstr "Nyt vindue"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -51,6 +52,23 @@ msgstr "D-Spy er et simpelt redskab til at udforske D-Bus-forbindelser."
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "D-Spy-grænseflade"
+
+# spy bruges kun som programnavnet, som vi ikke oversætter.  Det virker sikrest at beholde engelsk
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "spy"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "inspicér"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "udvikling"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
@@ -277,8 +295,8 @@ msgstr ""
 "Ask Hjorth Larsen\n"
 "\n"
 "Dansk-gruppen\n"
-"Websted http://dansk-gruppen.dk\n"
-"E-mail <dansk@dansk-gruppen.dk>"
+"Websted https://l10n.gnome.org/teams/da/\n"
+"E-mail <danskgruppen@groups.io>"
 
 #: src/main.c:154
 msgid "Open a new window"
