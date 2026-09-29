@@ -520,7 +520,7 @@ dspy_window_method_invoke_cb (GObject      *object,
 
       if (self->min_duration == 0 || duration < self->min_duration)
         {
-          double v = (double)duration / (double)G_USEC_PER_SEC;
+          double v = (double)duration / G_TIME_SPAN_MILLISECOND;
           g_autofree char *str = g_strdup_printf ("%0.4lf %s", v, _("msec"));
 
           self->min_duration = duration;
@@ -530,7 +530,7 @@ dspy_window_method_invoke_cb (GObject      *object,
 
       if (duration > self->max_duration)
         {
-          double v = (double)duration / (double)G_USEC_PER_SEC;
+          double v = (double)duration / G_TIME_SPAN_MILLISECOND;
           g_autofree char *str = g_strdup_printf ("%0.4lf %s", v, _("msec"));
 
           self->max_duration = duration;
@@ -539,7 +539,7 @@ dspy_window_method_invoke_cb (GObject      *object,
         }
 
         {
-          double v = (double)duration / (double)G_USEC_PER_SEC;
+          double v = (double)duration / G_TIME_SPAN_MILLISECOND;
           g_autofree char *str = g_strdup_printf ("%0.4lf %s", v, _("msec"));
 
           adw_action_row_set_subtitle (self->dur_row, str);
