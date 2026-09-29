@@ -70,7 +70,11 @@ dspy_property_dup_title (DspyIntrospectable *introspectable)
     g_string_append_printf (str, " (%s)", rw);
 
   if (self->value != NULL)
-    g_string_append_printf (str, " = %s", self->value);
+    {
+      g_autofree char *escaped_value = g_markup_escape_text (self->value, -1);
+
+      g_string_append_printf (str, " = %s", escaped_value);
+    }
 
   return g_string_free (str, FALSE);
 }
