@@ -38,10 +38,15 @@ struct _DspyProperty
   char                   *signature;
   char                   *value;
   GDBusPropertyInfoFlags  flags;
+  guint64                 value_serial;
 };
 
 DexFuture *dspy_property_query_value (DspyProperty    *self,
                                       GDBusConnection *connection,
                                       const char      *name) G_GNUC_WARN_UNUSED_RESULT;
+DexFuture *dspy_property_set_value   (DspyProperty    *self,
+                                      GDBusConnection *connection,
+                                      const char      *name,
+                                      GVariant        *value) G_GNUC_WARN_UNUSED_RESULT;
 
 G_END_DECLS

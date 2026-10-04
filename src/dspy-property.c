@@ -113,6 +113,10 @@ dspy_property_get_property (GObject    *object,
       g_value_set_string (value, self->value);
       break;
 
+    case PROP_FLAGS:
+      g_value_set_flags (value, self->flags);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -191,15 +195,32 @@ dspy_property_get_object_path (DspyProperty *self)
   return NULL;
 }
 
+typedef struct
+{
+  DspyProperty *property;
+  guint64 serial;
+} PropertyRead;
+
+static void
+property_read_free (gpointer data)
+{
+  PropertyRead *read = data;
+
+  g_clear_object (&read->property);
+  g_free (read);
+}
+
 static DexFuture *
 dspy_property_handle_value (DexFuture *completed,
                             gpointer   user_data)
 {
-  DspyProperty *self = user_data;
+  PropertyRead *read = user_data;
+  DspyProperty *self = read->property;
   g_autoptr(GVariant) box = NULL;
   g_autoptr(GVariant) reply = NULL;
   g_autoptr(GVariant) child = NULL;
   g_autoptr(GError) error = NULL;
+  g_autofree char *value = NULL;
 
   g_assert (DEX_IS_FUTURE (completed));
   g_assert (DSPY_IS_PROPERTY (self));
@@ -208,9 +229,12 @@ dspy_property_handle_value (DexFuture *completed,
     {
       g_warning ("Failed to fetch property value: %s", error->message);
 
-      if (g_set_str (&self->value, _("Error")))
-        g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_VALUE]);
-      g_object_notify (G_OBJECT (self), "title");
+      if (read->serial == self->value_serial)
+        {
+          if (g_set_str (&self->value, _("Error")))
+            g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_VALUE]);
+          g_object_notify (G_OBJECT (self), "title");
+        }
 
       return dex_ref (completed);
     }
@@ -218,20 +242,23 @@ dspy_property_handle_value (DexFuture *completed,
   box = g_variant_get_child_value (reply, 0);
   child = g_variant_get_child_value (box, 0);
 
-  g_clear_pointer (&self->value, g_free);
-
   if (g_variant_is_of_type (child, G_VARIANT_TYPE_STRING) ||
       g_variant_is_of_type (child, G_VARIANT_TYPE_OBJECT_PATH))
-    self->value = g_variant_dup_string (child, NULL);
+    value = g_variant_dup_string (child, NULL);
   else if (g_variant_is_of_type (child, G_VARIANT_TYPE_BYTESTRING))
-    self->value = g_utf8_make_valid (g_variant_get_bytestring (child), -1);
+    value = g_utf8_make_valid (g_variant_get_bytestring (child), -1);
   else
-    self->value = g_variant_print (child, FALSE);
+    value = g_variant_print (child, FALSE);
 
-  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_VALUE]);
-  g_object_notify (G_OBJECT (self), "title");
+  /* Older replies must not replace the value from a newer read or write. */
+  if (read->serial == self->value_serial)
+    {
+      g_set_str (&self->value, value);
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_VALUE]);
+      g_object_notify (G_OBJECT (self), "title");
+    }
 
-  return dex_future_new_take_string (g_strdup (self->value));
+  return dex_future_new_take_string (g_steal_pointer (&value));
 }
 
 /**
@@ -250,6 +277,7 @@ dspy_property_query_value (DspyProperty    *self,
 {
   const char *interface;
   const char *object_path;
+  PropertyRead *read;
 
   dex_return_error_if_fail (DSPY_IS_PROPERTY (self));
   dex_return_error_if_fail (G_IS_DBUS_CONNECTION (connection));
@@ -257,18 +285,22 @@ dspy_property_query_value (DspyProperty    *self,
 
   if (!(self->flags & G_DBUS_PROPERTY_INFO_FLAGS_READABLE))
     return dex_future_new_reject (G_IO_ERROR,
-                                  G_IO_ERROR_INVAL,
-                                  "Property is read-only");
+                                  G_IO_ERROR_INVALID_ARGUMENT,
+                                  "Property is not readable");
 
   if (!(interface = dspy_property_get_interface (self)))
     return dex_future_new_reject (G_IO_ERROR,
-                                  G_IO_ERROR_INVAL,
+                                  G_IO_ERROR_INVALID_ARGUMENT,
                                   "Property does not belong to an interface");
 
   if (!(object_path = dspy_property_get_object_path (self)))
     return dex_future_new_reject (G_IO_ERROR,
-                                  G_IO_ERROR_INVAL,
+                                  G_IO_ERROR_INVALID_ARGUMENT,
                                   "Property does not belong to an object");
+
+  read = g_new0 (PropertyRead, 1);
+  read->property = g_object_ref (self);
+  read->serial = ++self->value_serial;
 
   return dex_future_finally (dex_dbus_connection_call (connection,
                                                        name,
@@ -280,6 +312,63 @@ dspy_property_query_value (DspyProperty    *self,
                                                        G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
                                                        -1),
                              dspy_property_handle_value,
-                             g_object_ref (self),
-                             g_object_unref);
+                             read,
+                             property_read_free);
+}
+
+/**
+ * dspy_property_set_value:
+ * @self: a [class@Dspy.Property]
+ * @connection: the connection to call with
+ * @name: the owner name to call
+ * @value: the new value, matching the property's signature
+ *
+ * Returns: (transfer full): a [class@Dex.Future] that resolves to
+ *   an empty tuple variant or rejects with error.
+ */
+DexFuture *
+dspy_property_set_value (DspyProperty    *self,
+                         GDBusConnection *connection,
+                         const char      *name,
+                         GVariant        *value)
+{
+  const char *interface;
+  const char *object_path;
+
+  dex_return_error_if_fail (DSPY_IS_PROPERTY (self));
+  dex_return_error_if_fail (G_IS_DBUS_CONNECTION (connection));
+  dex_return_error_if_fail (name != NULL);
+  dex_return_error_if_fail (value != NULL);
+
+  if (!(self->flags & G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE))
+    return dex_future_new_reject (G_IO_ERROR,
+                                  G_IO_ERROR_INVALID_ARGUMENT,
+                                  "Property is not writable");
+
+  if (!g_variant_is_of_type (value, G_VARIANT_TYPE (self->signature)))
+    return dex_future_new_reject (G_IO_ERROR,
+                                  G_IO_ERROR_INVALID_ARGUMENT,
+                                  "Value does not match the property signature");
+
+  if (!(interface = dspy_property_get_interface (self)))
+    return dex_future_new_reject (G_IO_ERROR,
+                                  G_IO_ERROR_INVALID_ARGUMENT,
+                                  "Property does not belong to an interface");
+
+  if (!(object_path = dspy_property_get_object_path (self)))
+    return dex_future_new_reject (G_IO_ERROR,
+                                  G_IO_ERROR_INVALID_ARGUMENT,
+                                  "Property does not belong to an object");
+
+  self->value_serial++;
+
+  return dex_dbus_connection_call (connection,
+                                   name,
+                                   object_path,
+                                   "org.freedesktop.DBus.Properties",
+                                   "Set",
+                                   g_variant_new ("(ssv)", interface, self->name, value),
+                                   G_VARIANT_TYPE_UNIT,
+                                   G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+                                   -1);
 }

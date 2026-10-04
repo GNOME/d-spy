@@ -74,12 +74,18 @@ struct _DspyWindow
   GtkSortListModel       *names_sorted;
   GtkCustomSorter        *names_sorter;
   GtkSortListModel       *objects_sorted;
+  AdwPreferencesGroup    *property_set_group;
+  AdwEntryRow            *property_set_entry;
+  GtkLabel              *property_status;
   AdwActionRow           *property_value;
   AdwToastOverlay        *property_toast;
   GtkTextBuffer          *result_buffer;
   AdwPreferencesGroup    *result_group;
   GtkTextView            *result_view;
   GtkWidget              *result_frame;
+
+  guint64                 property_serial;
+  gboolean                property_busy;
 
   gint64                  last_call_at;
   gint64                  min_duration;
@@ -102,6 +108,80 @@ enum {
 static GParamSpec *properties[N_PROPS];
 
 static void
+dspy_window_property_status (DspyWindow *self,
+                             const char *message,
+                             gboolean    is_error)
+{
+  gtk_label_set_text (self->property_status, message ? message : "");
+  gtk_widget_set_visible (GTK_WIDGET (self->property_status), message != NULL);
+
+  if (is_error)
+    {
+      gtk_widget_add_css_class (GTK_WIDGET (self->property_status), "error");
+      gtk_widget_add_css_class (GTK_WIDGET (self->property_set_entry), "error");
+    }
+  else
+    {
+      gtk_widget_remove_css_class (GTK_WIDGET (self->property_status), "error");
+      gtk_widget_remove_css_class (GTK_WIDGET (self->property_set_entry), "error");
+    }
+}
+
+static void
+property_set_entry_changed_cb (DspyWindow *self,
+                               GtkEditable *editable)
+{
+  g_autoptr(GVariant) value = NULL;
+  g_autoptr(GError) error = NULL;
+  const char *text = gtk_editable_get_text (editable);
+
+  if (self->property_busy)
+    return;
+
+  if (DSPY_IS_PROPERTY (self->member) &&
+      (DSPY_PROPERTY (self->member)->flags & G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE) &&
+      text[0] != 0)
+    value = g_variant_parse (G_VARIANT_TYPE (DSPY_PROPERTY (self->member)->signature),
+                             text, NULL, NULL, &error);
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "property.set", value != NULL);
+  dspy_window_property_status (self, error ? error->message : NULL, error != NULL);
+}
+
+static void
+dspy_window_reset_property_editor (DspyWindow *self)
+{
+  self->property_serial++;
+  self->property_busy = FALSE;
+  gtk_widget_set_sensitive (GTK_WIDGET (self->property_set_entry), TRUE);
+  gtk_editable_set_text (GTK_EDITABLE (self->property_set_entry), "");
+  gtk_widget_set_visible (GTK_WIDGET (self->property_set_group), FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "property.set", FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "property.refresh", FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "property.copy", FALSE);
+  dspy_window_property_status (self, NULL, FALSE);
+}
+
+static void
+dspy_window_update_property_editor (DspyWindow *self)
+{
+  DspyProperty *property;
+
+  if (!DSPY_IS_PROPERTY (self->member))
+    return;
+
+  property = DSPY_PROPERTY (self->member);
+  gtk_widget_set_visible (GTK_WIDGET (self->property_set_group),
+                          !!(property->flags & G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE));
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "property.refresh",
+                                 !self->property_busy &&
+                                 !!(property->flags & G_DBUS_PROPERTY_INFO_FLAGS_READABLE));
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "property.copy",
+                                 !!(property->flags & G_DBUS_PROPERTY_INFO_FLAGS_READABLE));
+  property_set_entry_changed_cb (self, GTK_EDITABLE (self->property_set_entry));
+}
+
+static void
 dspy_window_update_property_value (DspyWindow *self)
 {
   GDBusConnection *connection = NULL;
@@ -111,7 +191,9 @@ dspy_window_update_property_value (DspyWindow *self)
   if (self->connection != NULL)
     connection = dspy_connection_get_connection (self->connection);
 
-  if (!DSPY_IS_PROPERTY (self->member) || connection == NULL || self->name == NULL)
+  if (!DSPY_IS_PROPERTY (self->member) || connection == NULL || self->name == NULL ||
+      !(DSPY_PROPERTY (self->member)->flags & G_DBUS_PROPERTY_INFO_FLAGS_READABLE) ||
+      dspy_name_get_owner (self->name) == NULL)
     return;
 
   dex_future_disown (dspy_property_query_value (DSPY_PROPERTY (self->member),
@@ -180,6 +262,8 @@ dspy_window_connection_activate_cb (DspyWindow  *self,
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (GTK_IS_LIST_VIEW (list_view));
 
+  dspy_window_reset_property_editor (self);
+
   model = gtk_list_view_get_model (list_view);
   connection = g_list_model_get_item (G_LIST_MODEL (model), position);
   names = dspy_connection_list_names (connection);
@@ -206,6 +290,8 @@ dspy_window_name_activate_cb (DspyWindow  *self,
 
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (GTK_IS_LIST_VIEW (list_view));
+
+  dspy_window_reset_property_editor (self);
 
   model = gtk_list_view_get_model (list_view);
   name = g_list_model_get_item (G_LIST_MODEL (model), position);
@@ -239,6 +325,8 @@ dspy_window_node_activate_cb (DspyWindow  *self,
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (GTK_IS_LIST_VIEW (list_view));
 
+  dspy_window_reset_property_editor (self);
+
   model = gtk_list_view_get_model (list_view);
   node = g_list_model_get_item (G_LIST_MODEL (model), position);
 
@@ -269,6 +357,8 @@ dspy_window_interface_activate_cb (DspyWindow  *self,
 
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (GTK_IS_LIST_VIEW (list_view));
+
+  dspy_window_reset_property_editor (self);
 
   model = gtk_list_view_get_model (list_view);
   interface = g_list_model_get_item (G_LIST_MODEL (model), position);
@@ -361,6 +451,8 @@ dspy_window_member_activate_cb (DspyWindow  *self,
   g_assert (DSPY_IS_WINDOW (self));
   g_assert (GTK_IS_LIST_VIEW (list_view));
 
+  dspy_window_reset_property_editor (self);
+
   model = gtk_list_view_get_model (list_view);
   member = g_list_model_get_item (G_LIST_MODEL (model), position);
 
@@ -376,7 +468,10 @@ dspy_window_member_activate_cb (DspyWindow  *self,
   gtk_widget_set_visible (GTK_WIDGET (self->parameters_group), FALSE);
 
   if (DSPY_IS_PROPERTY (member))
-    dspy_window_update_property_value (self);
+    {
+      dspy_window_update_property_editor (self);
+      dspy_window_update_property_value (self);
+    }
   else if (DSPY_IS_METHOD (member))
     dspy_window_update_method (self, DSPY_METHOD (member));
 
@@ -428,7 +523,7 @@ property_copy_action (GtkWidget  *widget,
   DspyWindow *self = DSPY_WINDOW (widget);
   GdkClipboard *clipboard = gtk_widget_get_clipboard (widget);
 
-  if (DSPY_IS_PROPERTY (self->member))
+  if (DSPY_IS_PROPERTY (self->member) && DSPY_PROPERTY (self->member)->value != NULL)
     {
       gdk_clipboard_set_text (clipboard, DSPY_PROPERTY (self->member)->value);
 
@@ -438,6 +533,188 @@ property_copy_action (GtkWidget  *widget,
                                                  "timeout", 2,
                                                  NULL));
     }
+}
+
+typedef struct
+{
+  GWeakRef window;
+  DspyConnection *connection;
+  DspyName *name;
+  DspyProperty *property;
+  GDBusConnection *bus;
+  GVariant *value;
+  char *owner;
+  guint64 serial;
+} PropertyWrite;
+
+static void
+property_write_free (gpointer data)
+{
+  PropertyWrite *write = data;
+
+  g_weak_ref_clear (&write->window);
+  g_clear_object (&write->connection);
+  g_clear_object (&write->name);
+  g_clear_object (&write->property);
+  g_clear_object (&write->bus);
+  g_clear_pointer (&write->value, g_variant_unref);
+  g_clear_pointer (&write->owner, g_free);
+  g_free (write);
+}
+
+static DspyWindow *
+property_write_get_window (PropertyWrite *write)
+{
+  DspyWindow *self = g_weak_ref_get (&write->window);
+
+  if (self != NULL &&
+      (self->connection != write->connection ||
+       self->name != write->name ||
+       self->member != DSPY_INTROSPECTABLE (write->property)))
+    g_clear_object (&self);
+
+  return self;
+}
+
+static void
+property_write_finish (PropertyWrite *write,
+                       const char    *message,
+                       gboolean       was_set,
+                       gboolean       is_error)
+{
+  g_autoptr(DspyWindow) self = property_write_get_window (write);
+
+  /* A previous submission must not change a newly opened editor. */
+  if (self == NULL || self->property_serial != write->serial)
+    return;
+
+  if (was_set && g_strcmp0 (write->owner, dspy_name_get_owner (self->name)) != 0)
+    {
+      message = _("Property was set, but the service owner has changed");
+      is_error = TRUE;
+    }
+
+  self->property_busy = FALSE;
+  gtk_widget_set_sensitive (GTK_WIDGET (self->property_set_entry), TRUE);
+
+  if (was_set)
+    gtk_editable_set_text (GTK_EDITABLE (self->property_set_entry), "");
+
+  dspy_window_update_property_editor (self);
+  dspy_window_property_status (self, message, is_error);
+}
+
+static DexFuture *
+dspy_window_set_property_fiber (gpointer data)
+{
+  PropertyWrite *write = data;
+  g_autoptr(GVariant) reply = NULL;
+  g_autoptr(GError) error = NULL;
+  g_autofree char *message = NULL;
+  DexFuture *refresh = NULL;
+
+  reply = dex_await_variant (dspy_property_set_value (write->property,
+                                                     write->bus,
+                                                     write->owner,
+                                                     write->value),
+                             &error);
+
+  if (reply == NULL)
+    {
+      message = g_strdup_printf (_("Failed to set property: %s"), error->message);
+      property_write_finish (write, message, FALSE, TRUE);
+      return NULL;
+    }
+
+  /* Read back if the submitted target is selected, including after reselection. */
+  {
+    g_autoptr(DspyWindow) self = property_write_get_window (write);
+
+    if (self == NULL)
+      return NULL;
+
+    if (g_strcmp0 (write->owner, dspy_name_get_owner (self->name)) != 0)
+      {
+        property_write_finish (write, _("Property was set, but the service owner has changed"), TRUE, TRUE);
+        return NULL;
+      }
+
+    if (write->property->flags & G_DBUS_PROPERTY_INFO_FLAGS_READABLE)
+      refresh = dspy_property_query_value (write->property, write->bus, write->owner);
+  }
+
+  if (refresh != NULL)
+    {
+      g_autofree char *value = dex_await_string (refresh, &error);
+
+      if (value == NULL)
+        {
+          message = g_strdup_printf (_("Property was set, but could not be read back: %s"), error->message);
+          property_write_finish (write, message, TRUE, TRUE);
+          return NULL;
+        }
+    }
+
+  property_write_finish (write, _("Property updated"), TRUE, FALSE);
+  return NULL;
+}
+
+static void
+property_set_action (GtkWidget  *widget,
+                     const char *action_name,
+                     GVariant   *param)
+{
+  DspyWindow *self = DSPY_WINDOW (widget);
+  GDBusConnection *connection;
+  g_autoptr(GVariant) value = NULL;
+  g_autoptr(GError) error = NULL;
+  const char *text;
+  const char *owner;
+  PropertyWrite *write;
+
+  if (self->property_busy || !DSPY_IS_PROPERTY (self->member) ||
+      !(DSPY_PROPERTY (self->member)->flags & G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE) ||
+      self->connection == NULL || self->name == NULL)
+    return;
+
+  connection = dspy_connection_get_connection (self->connection);
+  owner = dspy_name_get_owner (self->name);
+
+  if (connection == NULL || owner == NULL)
+    {
+      dspy_window_property_status (self, _("The D-Bus connection or service owner is unavailable"), TRUE);
+      return;
+    }
+
+  text = gtk_editable_get_text (GTK_EDITABLE (self->property_set_entry));
+  value = g_variant_parse (G_VARIANT_TYPE (DSPY_PROPERTY (self->member)->signature),
+                           text, NULL, NULL, &error);
+
+  if (value == NULL)
+    {
+      dspy_window_property_status (self, error->message, TRUE);
+      return;
+    }
+
+  write = g_new0 (PropertyWrite, 1);
+  g_weak_ref_init (&write->window, self);
+  write->connection = g_object_ref (self->connection);
+  write->name = g_object_ref (self->name);
+  write->property = g_object_ref (DSPY_PROPERTY (self->member));
+  write->bus = g_object_ref (connection);
+  write->value = g_steal_pointer (&value);
+  write->owner = g_strdup (owner);
+  write->serial = ++self->property_serial;
+
+  self->property_busy = TRUE;
+  gtk_widget_set_sensitive (GTK_WIDGET (self->property_set_entry), FALSE);
+  gtk_widget_action_set_enabled (widget, "property.set", FALSE);
+  gtk_widget_action_set_enabled (widget, "property.refresh", FALSE);
+  dspy_window_property_status (self, _("Setting property…"), FALSE);
+
+  dex_future_disown (dex_scheduler_spawn (dex_scheduler_get_default (), 0,
+                                          dspy_window_set_property_fiber,
+                                          write, property_write_free));
 }
 
 static void
@@ -683,10 +960,26 @@ shorten_string (gpointer    instance,
   return g_strdup_printf ("%s…", shorter);
 }
 
+static char *
+property_value_text (gpointer            instance,
+                     DspyIntrospectable *member,
+                     const char         *value)
+{
+  if (!DSPY_IS_PROPERTY (member))
+    return NULL;
+
+  if (!(DSPY_PROPERTY (member)->flags & G_DBUS_PROPERTY_INFO_FLAGS_READABLE))
+    return g_strdup (_("Write-only property"));
+
+  return shorten_string (instance, value);
+}
+
 static void
 dspy_window_dispose (GObject *object)
 {
   DspyWindow *self = (DspyWindow *)object;
+
+  self->property_serial++;
 
   gtk_widget_dispose_template (GTK_WIDGET (self), DSPY_TYPE_WINDOW);
 
@@ -830,6 +1123,9 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_page);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, objects_sorted);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, overlay_split_view);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_set_group);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_set_entry);
+  gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_status);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_toast);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, property_value);
   gtk_widget_class_bind_template_child (widget_class, DspyWindow, result_buffer);
@@ -847,8 +1143,11 @@ dspy_window_class_init (DspyWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, get_member_header_text);
   gtk_widget_class_bind_template_callback (widget_class, new_connection_entry_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, shorten_string);
+  gtk_widget_class_bind_template_callback (widget_class, property_value_text);
+  gtk_widget_class_bind_template_callback (widget_class, property_set_entry_changed_cb);
   gtk_widget_class_install_action (widget_class, "property.refresh", NULL, property_refresh_action);
   gtk_widget_class_install_action (widget_class, "property.copy", NULL, property_copy_action);
+  gtk_widget_class_install_action (widget_class, "property.set", NULL, property_set_action);
   gtk_widget_class_install_action (widget_class, "focus-members", NULL, focus_members_action);
   gtk_widget_class_install_action (widget_class, "new-connection", NULL, new_connection_action);
   gtk_widget_class_install_action (widget_class, "add-connection", NULL, add_connection_action);
@@ -884,6 +1183,7 @@ dspy_window_init (DspyWindow *self)
                                       g_object_unref));
 
   gtk_widget_init_template (GTK_WIDGET (self));
+  dspy_window_reset_property_editor (self);
 
 #if DEVELOPMENT_BUILD
   gtk_widget_add_css_class (GTK_WIDGET (self), "devel");

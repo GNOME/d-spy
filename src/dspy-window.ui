@@ -1050,7 +1050,8 @@
                                         <property name="subtitle-selectable">true</property>
                                         <property name="activatable-widget">refresh_button</property>
                                         <binding name="subtitle">
-                                          <closure function="shorten_string" type="gchararray">
+                                          <closure function="property_value_text" type="gchararray">
+                                            <lookup name="member">DspyWindow</lookup>
                                             <lookup name="value" type="DspyProperty">
                                               <lookup name="member">DspyWindow</lookup>
                                             </lookup>
@@ -1078,6 +1079,44 @@
                                         </child>
                                         <style>
                                           <class name="property"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwPreferencesGroup" id="property_set_group">
+                                    <property name="title" translatable="yes">Set Property</property>
+                                    <property name="description" translatable="yes">Enter a value in GVariant text format, such as 'hello', true, or 42.</property>
+                                    <property name="visible">false</property>
+                                    <child>
+                                      <object class="AdwEntryRow" id="property_set_entry">
+                                        <property name="title" translatable="yes">New Value</property>
+                                        <signal name="changed" handler="property_set_entry_changed_cb" swapped="true"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="property_status">
+                                        <property name="visible">false</property>
+                                        <property name="wrap">true</property>
+                                        <property name="xalign">0</property>
+                                        <property name="selectable">true</property>
+                                        <property name="margin-top">6</property>
+                                        <style>
+                                          <class name="dim-label"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkButton">
+                                        <property name="label" translatable="yes">Set</property>
+                                        <property name="action-name">property.set</property>
+                                        <property name="halign">center</property>
+                                        <property name="margin-top">12</property>
+                                        <style>
+                                          <class name="pill"/>
+                                          <class name="large-button"/>
+                                          <class name="suggested-action"/>
                                         </style>
                                       </object>
                                     </child>
