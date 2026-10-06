@@ -330,12 +330,36 @@ dspy_property_set_value_cb (DexFuture *completed,
   return dex_ref (completed);
 }
 
+static gboolean
+property_value_has_handle (GVariant *value)
+{
+  if (g_variant_is_of_type (value, G_VARIANT_TYPE_HANDLE))
+    return TRUE;
+
+  if (g_variant_is_container (value))
+    {
+      gsize n_children = g_variant_n_children (value);
+
+      for (gsize i = 0; i < n_children; i++)
+        {
+          g_autoptr(GVariant) child = g_variant_get_child_value (value, i);
+
+          if (property_value_has_handle (child))
+            return TRUE;
+        }
+    }
+
+  return FALSE;
+}
+
 /**
  * dspy_property_set_value:
  * @self: a [class@Dspy.Property]
  * @connection: the connection to call with
  * @name: the owner name to call
  * @value: the new value, matching the property's signature
+ *
+ * Values containing Unix file descriptor handles are not supported.
  *
  * Returns: (transfer full): a [class@Dex.Future] that resolves to
  *   an empty tuple variant or rejects with error.
@@ -373,6 +397,11 @@ dspy_property_set_value (DspyProperty    *self,
     return dex_future_new_reject (G_IO_ERROR,
                                   G_IO_ERROR_INVALID_ARGUMENT,
                                   "Property does not belong to an object");
+
+  if (property_value_has_handle (value))
+    return dex_future_new_reject (G_IO_ERROR,
+                                  G_IO_ERROR_NOT_SUPPORTED,
+                                  "Setting properties containing Unix file descriptors is not supported");
 
   return dex_future_then (dex_dbus_connection_call (connection,
                                                     name,
