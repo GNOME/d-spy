@@ -107,6 +107,12 @@ enum {
 
 static GParamSpec *properties[N_PROPS];
 
+static GtkAccessible *
+property_set_entry_get_accessible (DspyWindow *self)
+{
+  return GTK_ACCESSIBLE (gtk_editable_get_delegate (GTK_EDITABLE (self->property_set_entry)));
+}
+
 static void
 dspy_window_property_status (DspyWindow *self,
                              const char *message,
@@ -145,7 +151,7 @@ property_set_entry_changed_cb (DspyWindow *self,
                              text, NULL, NULL, &error);
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "property.set", value != NULL);
-  gtk_accessible_update_state (GTK_ACCESSIBLE (self->property_set_entry),
+  gtk_accessible_update_state (property_set_entry_get_accessible (self),
                                GTK_ACCESSIBLE_STATE_INVALID, error != NULL,
                                -1);
   dspy_window_property_status (self, error ? error->message : NULL, error != NULL);
@@ -695,7 +701,7 @@ property_set_action (GtkWidget  *widget,
 
   if (value == NULL)
     {
-      gtk_accessible_update_state (GTK_ACCESSIBLE (self->property_set_entry),
+      gtk_accessible_update_state (property_set_entry_get_accessible (self),
                                    GTK_ACCESSIBLE_STATE_INVALID, TRUE,
                                    -1);
       dspy_window_property_status (self, error->message, TRUE);
@@ -1189,6 +1195,9 @@ dspy_window_init (DspyWindow *self)
                                       g_object_unref));
 
   gtk_widget_init_template (GTK_WIDGET (self));
+  gtk_accessible_update_relation (property_set_entry_get_accessible (self),
+                                  GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE, self->property_status, NULL,
+                                  -1);
   dspy_window_reset_property_editor (self);
 
 #if DEVELOPMENT_BUILD
