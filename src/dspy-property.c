@@ -316,6 +316,20 @@ dspy_property_query_value (DspyProperty    *self,
                              property_read_free);
 }
 
+static DexFuture *
+dspy_property_set_value_cb (DexFuture *completed,
+                            gpointer   user_data)
+{
+  DspyProperty *self = user_data;
+
+  g_assert (DEX_IS_FUTURE (completed));
+  g_assert (DSPY_IS_PROPERTY (self));
+
+  self->value_serial++;
+
+  return dex_ref (completed);
+}
+
 /**
  * dspy_property_set_value:
  * @self: a [class@Dspy.Property]
@@ -360,15 +374,16 @@ dspy_property_set_value (DspyProperty    *self,
                                   G_IO_ERROR_INVALID_ARGUMENT,
                                   "Property does not belong to an object");
 
-  self->value_serial++;
-
-  return dex_dbus_connection_call (connection,
-                                   name,
-                                   object_path,
-                                   "org.freedesktop.DBus.Properties",
-                                   "Set",
-                                   g_variant_new ("(ssv)", interface, self->name, value),
-                                   G_VARIANT_TYPE_UNIT,
-                                   G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
-                                   -1);
+  return dex_future_then (dex_dbus_connection_call (connection,
+                                                    name,
+                                                    object_path,
+                                                    "org.freedesktop.DBus.Properties",
+                                                    "Set",
+                                                    g_variant_new ("(ssv)", interface, self->name, value),
+                                                    G_VARIANT_TYPE_UNIT,
+                                                    G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+                                                    -1),
+                          dspy_property_set_value_cb,
+                          g_object_ref (self),
+                          g_object_unref);
 }
