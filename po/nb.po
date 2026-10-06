@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-03-16 21:12+0000\n"
-"PO-Revision-Date: 2026-07-09 11:31+0200\n"
-"Last-Translator: Kjartan Maraas <kmaraas@gnome.org> \n"
+"POT-Creation-Date: 2026-10-02 14:19+0000\n"
+"PO-Revision-Date: 2026-10-06 19:26+0200\n"
+"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: \n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,7 @@ msgstr "Nytt vindu"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -52,6 +53,22 @@ msgstr "D-Spy er et enkelt verktøy for å utforske D-Bus-forbindelser."
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "D-Spy grensesnitt"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "spy"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "inspiser"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "utvikling"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
@@ -83,7 +100,7 @@ msgstr "kun skrive"
 msgid "read-only"
 msgstr "kun lese"
 
-#: src/dspy-property.c:207
+#: src/dspy-property.c:211
 msgid "Error"
 msgstr "Feil"
 
