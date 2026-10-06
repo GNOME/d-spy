@@ -1092,6 +1092,9 @@
                                     <child>
                                       <object class="AdwEntryRow" id="property_set_entry">
                                         <property name="title" translatable="yes">New Value</property>
+                                        <accessibility>
+                                          <relation name="error-message">property_status</relation>
+                                        </accessibility>
                                         <signal name="changed" handler="property_set_entry_changed_cb" swapped="true"/>
                                       </object>
                                     </child>

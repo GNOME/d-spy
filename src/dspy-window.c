@@ -145,6 +145,9 @@ property_set_entry_changed_cb (DspyWindow *self,
                              text, NULL, NULL, &error);
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "property.set", value != NULL);
+  gtk_accessible_update_state (GTK_ACCESSIBLE (self->property_set_entry),
+                               GTK_ACCESSIBLE_STATE_INVALID, error != NULL,
+                               -1);
   dspy_window_property_status (self, error ? error->message : NULL, error != NULL);
 }
 
@@ -692,6 +695,9 @@ property_set_action (GtkWidget  *widget,
 
   if (value == NULL)
     {
+      gtk_accessible_update_state (GTK_ACCESSIBLE (self->property_set_entry),
+                                   GTK_ACCESSIBLE_STATE_INVALID, TRUE,
+                                   -1);
       dspy_window_property_status (self, error->message, TRUE);
       return;
     }
