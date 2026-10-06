@@ -19,7 +19,7 @@
   </description>
 
   <url type="homepage">https://apps.gnome.org/Dspy</url>
-  <url type="bugtracker">https://gitlab.gnome.org/GNOME/d-spy/issues</url>
+  <url type="bugtracker">https://gitlab.gnome.org/GNOME/d-spy/-/work_items</url>
   <url type="donation">https://www.gnome.org/donate/</url>
   <url type="translate">https://l10n.gnome.org/module/d-spy/</url>
   <url type="vcs-browser">https://gitlab.gnome.org/GNOME/d-spy</url>
