@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-03-16 21:12+0000\n"
-"PO-Revision-Date: 2026-08-01 21:37+0200\n"
+"POT-Creation-Date: 2026-10-13 13:41+0000\n"
+"PO-Revision-Date: 2026-10-19 09:10+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-"
 "si@googlegroups.com>\n"
@@ -106,7 +106,7 @@ msgstr "le za pisanje"
 msgid "read-only"
 msgstr "le za branje"
 
-#: src/dspy-property.c:207
+#: src/dspy-property.c:234
 msgid "Error"
 msgstr "Napaka"
 
@@ -116,29 +116,59 @@ msgstr "Napaka"
 msgid "Array of [%s]"
 msgstr "Podatkovno polje [%s]"
 
-#: src/dspy-window.c:137
+#: src/dspy-window.c:228
 msgid "Accessibility Bus"
 msgstr "Vodilo dostopnosti"
 
-#: src/dspy-window.c:406
+#: src/dspy-window.c:510
 msgid "Methods"
 msgstr "Načini"
 
-#: src/dspy-window.c:408
+#: src/dspy-window.c:512
 msgid "Properties"
 msgstr "Lastnosti"
 
-#: src/dspy-window.c:410
+#: src/dspy-window.c:514
 msgid "Signals"
 msgstr "Signali"
 
-#: src/dspy-window.c:437
+#: src/dspy-window.c:541
 msgid "Copied to Clipboard"
 msgstr "Kopirano na odložišče"
 
-#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
+#: src/dspy-window.c:602 src/dspy-window.c:647
+msgid "Property was set, but the service owner has changed"
+msgstr "Lastnost je bila nastavljena, vendar se je lastnik storitve spremenil"
+
+#: src/dspy-window.c:633
+#, c-format
+msgid "Failed to set property: %s"
+msgstr "Nastavitev lastnosti ni uspela: %s"
+
+#: src/dspy-window.c:661
+#, c-format
+msgid "Property was set, but could not be read back: %s"
+msgstr "Lastnost je bila nastavljena, vendar je ni bilo mogoče prebrati: %s"
+
+#: src/dspy-window.c:667
+msgid "Property updated"
+msgstr "Lastnost posodobljena"
+
+#: src/dspy-window.c:694
+msgid "The D-Bus connection or service owner is unavailable"
+msgstr "Lastnik povezave ali storitve D-Bus ni na voljo"
+
+#: src/dspy-window.c:725
+msgid "Setting property…"
+msgstr "Nastavljanje lastnosti…"
+
+#: src/dspy-window.c:813 src/dspy-window.c:823 src/dspy-window.c:832
 msgid "msec"
 msgstr "ms"
+
+#: src/dspy-window.c:984
+msgid "Write-only property"
+msgstr "Lastnost le za pisanje"
 
 #: src/dspy-window.ui:62
 msgid "Connections"
@@ -174,7 +204,7 @@ msgid "Select a bus to explore objects"
 msgstr "Izberite vodilo za raziskovanje predmetov"
 
 #: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
-#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
+#: src/dspy-window.ui:1142 src/dspy-window.ui:1303
 msgid "Members"
 msgstr "Člani"
 
@@ -190,23 +220,23 @@ msgstr "Raziščite vmesnike"
 msgid "Select an object to explore members"
 msgstr "Izberite predmet za raziskovanje članov"
 
-#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
+#: src/dspy-window.ui:948 src/dspy-window.ui:1175 src/dspy-window.ui:1336
 msgid "Bus"
 msgstr "Vodilo"
 
-#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
+#: src/dspy-window.ui:961 src/dspy-window.ui:1188 src/dspy-window.ui:1349
 msgid "Bus Name"
 msgstr "Ime vodila"
 
-#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
+#: src/dspy-window.ui:975 src/dspy-window.ui:1202 src/dspy-window.ui:1363
 msgid "Owner"
 msgstr "Lastnik"
 
-#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
+#: src/dspy-window.ui:989 src/dspy-window.ui:1216 src/dspy-window.ui:1377
 msgid "Object Path"
 msgstr "Pot predmeta"
 
-#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1230 src/dspy-window.ui:1391
 msgid "Interface"
 msgstr "Vmesnik"
 
@@ -222,75 +252,92 @@ msgstr "Vrsta podpisa"
 msgid "Value"
 msgstr "Vrednost"
 
-#: src/dspy-window.ui:1209
+#: src/dspy-window.ui:1089
+msgid "Set Property"
+msgstr "Nastavi lastnost"
+
+#: src/dspy-window.ui:1090
+msgid "Enter a value in GVariant text format, such as 'hello', true, or 42."
+msgstr ""
+"Vnesite vrednost v besedilni obliki GVariant, npr. »živijo«, true ali 42."
+
+#: src/dspy-window.ui:1094
+msgid "New Value"
+msgstr "Nova vrednost"
+
+#: src/dspy-window.ui:1112
+msgid "Set"
+msgstr "Nastavi"
+
+#: src/dspy-window.ui:1248
 msgid "Signal"
 msgstr "Signal"
 
-#: src/dspy-window.ui:1223
+#: src/dspy-window.ui:1262
 msgid "Signature"
 msgstr "Podpis"
 
-#: src/dspy-window.ui:1370
+#: src/dspy-window.ui:1409
 msgid "Method"
 msgstr "Način"
 
-#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
+#: src/dspy-window.ui:1423 src/dspy-window.ui:1453
 msgid "Parameters"
 msgstr "Parametri"
 
-#: src/dspy-window.ui:1398
+#: src/dspy-window.ui:1437
 msgid "Return Type"
 msgstr "Vrnjena vrsta"
 
-#: src/dspy-window.ui:1436
+#: src/dspy-window.ui:1475
 msgid "Call Method"
 msgstr "Metoda klicanja"
 
-#: src/dspy-window.ui:1452
+#: src/dspy-window.ui:1491
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: src/dspy-window.ui:1469
+#: src/dspy-window.ui:1508
 msgid "Result"
 msgstr "Rezultat"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1540
 msgid "Statistics"
 msgstr "Statistika"
 
-#: src/dspy-window.ui:1505
+#: src/dspy-window.ui:1544
 msgid "Duration"
 msgstr "Trajanje"
 
-#: src/dspy-window.ui:1511
+#: src/dspy-window.ui:1550
 msgid "Minimum Duration"
 msgstr "Najkrajše trajanje"
 
-#: src/dspy-window.ui:1517
+#: src/dspy-window.ui:1556
 msgid "Maximum Duration"
 msgstr "Najdaljše trajanje"
 
-#: src/dspy-window.ui:1546
+#: src/dspy-window.ui:1585
 msgid "New Connection"
 msgstr "Nova povezava"
 
-#: src/dspy-window.ui:1557
+#: src/dspy-window.ui:1596
 msgid "Bus Address"
 msgstr "Naslov vodila"
 
-#: src/dspy-window.ui:1568
+#: src/dspy-window.ui:1607
 msgid "Connect"
 msgstr "Poveži"
 
-#: src/dspy-window.ui:1589
+#: src/dspy-window.ui:1628
 msgid "_New Window"
 msgstr "_Novo okno"
 
-#: src/dspy-window.ui:1595
+#: src/dspy-window.ui:1634
 msgid "Connect to Other _Bus"
 msgstr "Poveži z _drugim vodilom"
 
-#: src/dspy-window.ui:1601
+#: src/dspy-window.ui:1640
 msgid "_About D-Spy"
 msgstr "_O programu"
 
