@@ -1,0 +1,349 @@
+# Māori translation of d-spy.
+# Copyright (C) 2026 the d-spy authors.
+# This file is distributed under the same licence as the d-spy package.
+# Arlewatyerre Tuhoro-Bell <aidan@ursa.nz>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: d-spy main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
+"POT-Creation-Date: 2026-10-13 13:41+0000\n"
+"PO-Revision-Date: 2026-10-19 13:37+1300\n"
+"Last-Translator: Arlewatyerre Tuhoro-Bell <aidan@ursa.nz>\n"
+"Language-Team: Māori <https://gitlab.gnome.org/Teams/Translation/mi>\n"
+"Language: mi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: gnomi\n"
+
+#: data/org.gnome.dspy.desktop.in.in:5
+#: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
+#: src/dspy-window.ui:50 src/dspy-window.ui:69 src/main.c:91 src/main.c:128
+msgid "D-Spy"
+msgstr ""
+
+#: data/org.gnome.dspy.desktop.in.in:6
+msgid "Discover and explore D-Bus services"
+msgstr ""
+
+#: data/org.gnome.dspy.desktop.in.in:7
+msgid "dspy;dbus;"
+msgstr ""
+
+#: data/org.gnome.dspy.desktop.in.in:17
+msgid "New Window"
+msgstr "Matapihi Hōu"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
+msgid "Christian Hergert"
+msgstr ""
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:16
+msgid "Analyze D-Bus connections"
+msgstr ""
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:18
+msgid "D-Spy is a simple tool to explore D-Bus connections."
+msgstr ""
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:29
+msgid "D-Spy Interface"
+msgstr ""
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr ""
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr ""
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "ārohi"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr ""
+
+#: src/dspy-connection.c:510
+msgid "System Bus"
+msgstr "Pahi Pūnaha"
+
+#: src/dspy-connection.c:513
+msgid "Session Bus"
+msgstr "Pahi Wātū"
+
+#. translators: PID refers to "process identifier"
+#: src/dspy-name.c:497
+#, c-format
+msgid "PID: %u"
+msgstr ""
+
+#: src/dspy-name.c:501
+msgid "Not Running"
+msgstr ""
+
+#: src/dspy-property.c:63
+msgid "read/write"
+msgstr ""
+
+#: src/dspy-property.c:65
+msgid "write-only"
+msgstr ""
+
+#: src/dspy-property.c:67
+msgid "read-only"
+msgstr "pānui-anake"
+
+#: src/dspy-property.c:234
+msgid "Error"
+msgstr "Hapa"
+
+#. translators: %s is replaced with the simple D-Bus type string
+#: src/dspy-signature.c:77
+#, c-format
+msgid "Array of [%s]"
+msgstr ""
+
+#: src/dspy-window.c:228
+msgid "Accessibility Bus"
+msgstr ""
+
+#: src/dspy-window.c:510
+msgid "Methods"
+msgstr ""
+
+#: src/dspy-window.c:512
+msgid "Properties"
+msgstr "Ngā Āhuatanga"
+
+#: src/dspy-window.c:514
+msgid "Signals"
+msgstr ""
+
+#: src/dspy-window.c:541
+msgid "Copied to Clipboard"
+msgstr ""
+
+#: src/dspy-window.c:602 src/dspy-window.c:647
+msgid "Property was set, but the service owner has changed"
+msgstr ""
+
+#: src/dspy-window.c:633
+#, c-format
+msgid "Failed to set property: %s"
+msgstr ""
+
+#: src/dspy-window.c:661
+#, c-format
+msgid "Property was set, but could not be read back: %s"
+msgstr ""
+
+#: src/dspy-window.c:667
+msgid "Property updated"
+msgstr ""
+
+#: src/dspy-window.c:694
+msgid "The D-Bus connection or service owner is unavailable"
+msgstr ""
+
+#: src/dspy-window.c:725
+msgid "Setting property…"
+msgstr ""
+
+#: src/dspy-window.c:813 src/dspy-window.c:823 src/dspy-window.c:832
+msgid "msec"
+msgstr ""
+
+#: src/dspy-window.c:984
+msgid "Write-only property"
+msgstr ""
+
+#: src/dspy-window.ui:62
+msgid "Connections"
+msgstr ""
+
+#: src/dspy-window.ui:165
+msgid "Bus Names"
+msgstr ""
+
+#: src/dspy-window.ui:206 src/dspy-window.ui:374 src/dspy-window.ui:577
+#: src/dspy-window.ui:724
+msgid "Filter…"
+msgstr "Tātari…"
+
+#: src/dspy-window.ui:326
+msgid "Objects"
+msgstr ""
+
+#: src/dspy-window.ui:349
+msgid "Refresh Objects"
+msgstr ""
+
+#: src/dspy-window.ui:481 src/dspy-window.ui:533
+msgid "Interfaces"
+msgstr ""
+
+#: src/dspy-window.ui:518
+msgid "Explore Objects"
+msgstr ""
+
+#: src/dspy-window.ui:519
+msgid "Select a bus to explore objects"
+msgstr ""
+
+#: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
+#: src/dspy-window.ui:1142 src/dspy-window.ui:1303
+msgid "Members"
+msgstr "Ngā mema"
+
+#: src/dspy-window.ui:855
+msgid "Details"
+msgstr "Ngā Taipitopito"
+
+#: src/dspy-window.ui:895
+msgid "Explore Interfaces"
+msgstr ""
+
+#: src/dspy-window.ui:896
+msgid "Select an object to explore members"
+msgstr ""
+
+#: src/dspy-window.ui:948 src/dspy-window.ui:1175 src/dspy-window.ui:1336
+msgid "Bus"
+msgstr ""
+
+#: src/dspy-window.ui:961 src/dspy-window.ui:1188 src/dspy-window.ui:1349
+msgid "Bus Name"
+msgstr ""
+
+#: src/dspy-window.ui:975 src/dspy-window.ui:1202 src/dspy-window.ui:1363
+msgid "Owner"
+msgstr "Kaipupuri"
+
+#: src/dspy-window.ui:989 src/dspy-window.ui:1216 src/dspy-window.ui:1377
+msgid "Object Path"
+msgstr ""
+
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1230 src/dspy-window.ui:1391
+msgid "Interface"
+msgstr "Atanga"
+
+#: src/dspy-window.ui:1021
+msgid "Property"
+msgstr ""
+
+#: src/dspy-window.ui:1035
+msgid "Type Signature"
+msgstr ""
+
+#: src/dspy-window.ui:1049
+msgid "Value"
+msgstr ""
+
+#: src/dspy-window.ui:1089
+msgid "Set Property"
+msgstr ""
+
+#: src/dspy-window.ui:1090
+msgid "Enter a value in GVariant text format, such as 'hello', true, or 42."
+msgstr ""
+
+#: src/dspy-window.ui:1094
+msgid "New Value"
+msgstr ""
+
+#: src/dspy-window.ui:1112
+msgid "Set"
+msgstr "Tautuhi"
+
+#: src/dspy-window.ui:1248
+msgid "Signal"
+msgstr ""
+
+#: src/dspy-window.ui:1262
+msgid "Signature"
+msgstr ""
+
+#: src/dspy-window.ui:1409
+msgid "Method"
+msgstr ""
+
+#: src/dspy-window.ui:1423 src/dspy-window.ui:1453
+msgid "Parameters"
+msgstr ""
+
+#: src/dspy-window.ui:1437
+msgid "Return Type"
+msgstr ""
+
+#: src/dspy-window.ui:1475
+msgid "Call Method"
+msgstr ""
+
+#: src/dspy-window.ui:1491
+msgid "Cancel"
+msgstr "Whakakore"
+
+#: src/dspy-window.ui:1508
+msgid "Result"
+msgstr ""
+
+#: src/dspy-window.ui:1540
+msgid "Statistics"
+msgstr "Ngā Tatauranga"
+
+#: src/dspy-window.ui:1544
+msgid "Duration"
+msgstr "Roanga"
+
+#: src/dspy-window.ui:1550
+msgid "Minimum Duration"
+msgstr ""
+
+#: src/dspy-window.ui:1556
+msgid "Maximum Duration"
+msgstr ""
+
+#: src/dspy-window.ui:1585
+msgid "New Connection"
+msgstr ""
+
+#: src/dspy-window.ui:1596
+msgid "Bus Address"
+msgstr ""
+
+#: src/dspy-window.ui:1607
+msgid "Connect"
+msgstr "Hono"
+
+#: src/dspy-window.ui:1628
+msgid "_New Window"
+msgstr "Matapihi _Hōu"
+
+#: src/dspy-window.ui:1634
+msgid "Connect to Other _Bus"
+msgstr ""
+
+#: src/dspy-window.ui:1640
+msgid "_About D-Spy"
+msgstr ""
+
+#: src/main.c:132
+msgid "translator-credits"
+msgstr ""
+"Arlewatyerre Tuhoro-Bell <aidan@ursa.nz>\n"
+"Te Rōpū Whakamāori GNOME https://gitlab.gnome.org/Teams/Translation/mi"
+
+#: src/main.c:154
+msgid "Open a new window"
+msgstr ""
+
+#: src/main.c:155
+msgid "Print version information and exit"
+msgstr "Tā i ngā mōhiohio putanga, ka puta"
