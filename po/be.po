@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-03-16 21:12+0000\n"
-"PO-Revision-Date: 2026-08-01 23:44+0300\n"
+"POT-Creation-Date: 2026-10-13 13:41+0000\n"
+"PO-Revision-Date: 2026-11-01 00:12+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <Belarusian>\n"
 "Language: be\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.10\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -101,7 +101,7 @@ msgstr "толькі запіс"
 msgid "read-only"
 msgstr "толькі чытанне"
 
-#: src/dspy-property.c:207
+#: src/dspy-property.c:234
 msgid "Error"
 msgstr "Памылка"
 
@@ -111,29 +111,59 @@ msgstr "Памылка"
 msgid "Array of [%s]"
 msgstr "Масіў [%s]"
 
-#: src/dspy-window.c:137
+#: src/dspy-window.c:228
 msgid "Accessibility Bus"
 msgstr "Шына спецмагчымасцей"
 
-#: src/dspy-window.c:406
+#: src/dspy-window.c:510
 msgid "Methods"
 msgstr "Метады"
 
-#: src/dspy-window.c:408
+#: src/dspy-window.c:512
 msgid "Properties"
 msgstr "Уласцівасці"
 
-#: src/dspy-window.c:410
+#: src/dspy-window.c:514
 msgid "Signals"
 msgstr "Сігналы"
 
-#: src/dspy-window.c:437
+#: src/dspy-window.c:541
 msgid "Copied to Clipboard"
 msgstr "Скапіявана ў буфер абмену"
 
-#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
+#: src/dspy-window.c:602 src/dspy-window.c:647
+msgid "Property was set, but the service owner has changed"
+msgstr "Уласцівасць зададзена, але уладальнік сэрвісу змяніўся"
+
+#: src/dspy-window.c:633
+#, c-format
+msgid "Failed to set property: %s"
+msgstr "Не ўдалося задаць уласцівасць: %s"
+
+#: src/dspy-window.c:661
+#, c-format
+msgid "Property was set, but could not be read back: %s"
+msgstr "Уласцівасць зададзена, але не ўдалося яе счытаць: %s"
+
+#: src/dspy-window.c:667
+msgid "Property updated"
+msgstr "Уласцівасць абноўлена"
+
+#: src/dspy-window.c:694
+msgid "The D-Bus connection or service owner is unavailable"
+msgstr "Злучэнне D-Bus або уладальнік сэрвісу недаступны"
+
+#: src/dspy-window.c:725
+msgid "Setting property…"
+msgstr "Задаецца ўласцівасць…"
+
+#: src/dspy-window.c:813 src/dspy-window.c:823 src/dspy-window.c:832
 msgid "msec"
 msgstr "мс"
+
+#: src/dspy-window.c:984
+msgid "Write-only property"
+msgstr "Уласцівасць толькі для запісу"
 
 #: src/dspy-window.ui:62
 msgid "Connections"
@@ -169,7 +199,7 @@ msgid "Select a bus to explore objects"
 msgstr "Выберыце шыну для агляду элементаў"
 
 #: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
-#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
+#: src/dspy-window.ui:1142 src/dspy-window.ui:1303
 msgid "Members"
 msgstr "Элементы"
 
@@ -185,23 +215,23 @@ msgstr "Агляд інтэрфейсаў"
 msgid "Select an object to explore members"
 msgstr "Выберыце аб'ект для агляду элементаў"
 
-#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
+#: src/dspy-window.ui:948 src/dspy-window.ui:1175 src/dspy-window.ui:1336
 msgid "Bus"
 msgstr "Шына"
 
-#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
+#: src/dspy-window.ui:961 src/dspy-window.ui:1188 src/dspy-window.ui:1349
 msgid "Bus Name"
 msgstr "Назва шыны"
 
-#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
+#: src/dspy-window.ui:975 src/dspy-window.ui:1202 src/dspy-window.ui:1363
 msgid "Owner"
 msgstr "Уладальнік"
 
-#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
+#: src/dspy-window.ui:989 src/dspy-window.ui:1216 src/dspy-window.ui:1377
 msgid "Object Path"
 msgstr "Шлях да аб'екта"
 
-#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1230 src/dspy-window.ui:1391
 msgid "Interface"
 msgstr "Інтэрфейс"
 
@@ -217,75 +247,93 @@ msgstr "Подпіс тыпа"
 msgid "Value"
 msgstr "Значэнне"
 
-#: src/dspy-window.ui:1209
+#: src/dspy-window.ui:1089
+msgid "Set Property"
+msgstr "Задаць уласцівасць"
+
+#: src/dspy-window.ui:1090
+msgid "Enter a value in GVariant text format, such as 'hello', true, or 42."
+msgstr ""
+"Увядзіце значэнне ў тэкставым фармаце GVariant, напрыклад, 'hello', true "
+"або 42."
+
+#: src/dspy-window.ui:1094
+msgid "New Value"
+msgstr "Новае значэнне"
+
+#: src/dspy-window.ui:1112
+msgid "Set"
+msgstr "Задаць"
+
+#: src/dspy-window.ui:1248
 msgid "Signal"
 msgstr "Сігнал"
 
-#: src/dspy-window.ui:1223
+#: src/dspy-window.ui:1262
 msgid "Signature"
 msgstr "Подпіс"
 
-#: src/dspy-window.ui:1370
+#: src/dspy-window.ui:1409
 msgid "Method"
 msgstr "Метад"
 
-#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
+#: src/dspy-window.ui:1423 src/dspy-window.ui:1453
 msgid "Parameters"
 msgstr "Параметры"
 
-#: src/dspy-window.ui:1398
+#: src/dspy-window.ui:1437
 msgid "Return Type"
 msgstr "Тып, які вяртаецца"
 
-#: src/dspy-window.ui:1436
+#: src/dspy-window.ui:1475
 msgid "Call Method"
 msgstr "Метад выкліку"
 
-#: src/dspy-window.ui:1452
+#: src/dspy-window.ui:1491
 msgid "Cancel"
 msgstr "Скасаваць"
 
-#: src/dspy-window.ui:1469
+#: src/dspy-window.ui:1508
 msgid "Result"
 msgstr "Вынік"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1540
 msgid "Statistics"
 msgstr "Статыстыка"
 
-#: src/dspy-window.ui:1505
+#: src/dspy-window.ui:1544
 msgid "Duration"
 msgstr "Працягласць"
 
-#: src/dspy-window.ui:1511
+#: src/dspy-window.ui:1550
 msgid "Minimum Duration"
 msgstr "Мінімальная працягласць"
 
-#: src/dspy-window.ui:1517
+#: src/dspy-window.ui:1556
 msgid "Maximum Duration"
 msgstr "Максімальная працягласць"
 
-#: src/dspy-window.ui:1546
+#: src/dspy-window.ui:1585
 msgid "New Connection"
 msgstr "Новае злучэнне"
 
-#: src/dspy-window.ui:1557
+#: src/dspy-window.ui:1596
 msgid "Bus Address"
 msgstr "Адрас шыны"
 
-#: src/dspy-window.ui:1568
+#: src/dspy-window.ui:1607
 msgid "Connect"
 msgstr "Злучыцца"
 
-#: src/dspy-window.ui:1589
+#: src/dspy-window.ui:1628
 msgid "_New Window"
 msgstr "_Новае акно"
 
-#: src/dspy-window.ui:1595
+#: src/dspy-window.ui:1634
 msgid "Connect to Other _Bus"
 msgstr "Злучыцца з іншай _шынай"
 
-#: src/dspy-window.ui:1601
+#: src/dspy-window.ui:1640
 msgid "_About D-Spy"
 msgstr "_Аб праграме D-Spy"
 
