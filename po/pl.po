@@ -4,22 +4,24 @@
 # Piotr Drąg <piotrdrag@gmail.com>, 2023-2025.
 # Aviary.pl <community-poland@mozilla.org>, 2023-2025.
 # Victoria <royal.victoria@proton.me>, 2026.
+# Marcel Mrówka <micro.mail88@gmail.com>, 2026.
+# Tomasz Bojanowski <tomasz@bojanowski.me>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: d-spy\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-02-23 19:25+0000\n"
-"PO-Revision-Date: 2026-03-03 10:29+0100\n"
-"Last-Translator: Victoria <royal.victoria@proton.me>\n"
-"Language-Team: Polish\n"
+"POT-Creation-Date: 2026-10-13 13:41+0000\n"
+"PO-Revision-Date: 2026-11-05 14:20+0100\n"
+"Last-Translator: Tomasz Bojanowski <tomasz@bojanowski.me>\n"
+"Language-Team: Polish <https://l10n.gnome.org/teams/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 49.0\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/org.gnome.dspy.desktop.in.in:5
 #: data/org.gnome.dspy.metainfo.xml.in.in:14 src/dspy-window.ui:6
@@ -29,7 +31,7 @@ msgstr "D-Spy"
 
 #: data/org.gnome.dspy.desktop.in.in:6
 msgid "Discover and explore D-Bus services"
-msgstr "Okrywanie i badanie usług D-Bus"
+msgstr "Odkrywanie i badanie usług D-Bus"
 
 #: data/org.gnome.dspy.desktop.in.in:7
 msgid "dspy;dbus;"
@@ -41,6 +43,7 @@ msgstr "Nowe okno"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.dspy.metainfo.xml.in.in:7
+#: data/org.gnome.dspy.metainfo.xml.in.in:9
 msgid "Christian Hergert"
 msgstr "Christian Hergert"
 
@@ -55,6 +58,22 @@ msgstr "D-Spy to proste narzędzie do badania połączeń magistrali D-Bus."
 #: data/org.gnome.dspy.metainfo.xml.in.in:29
 msgid "D-Spy Interface"
 msgstr "Interfejs D-Spy"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:63
+msgid "spy"
+msgstr "szpieg"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:64
+msgid "D-Bus"
+msgstr "D-Bus"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:65
+msgid "inspect"
+msgstr "badaj"
+
+#: data/org.gnome.dspy.metainfo.xml.in.in:66
+msgid "development"
+msgstr "rozwój"
 
 #: src/dspy-connection.c:510
 msgid "System Bus"
@@ -72,7 +91,7 @@ msgstr "PID: %u"
 
 #: src/dspy-name.c:501
 msgid "Not Running"
-msgstr "Bezczynny"
+msgstr "Nie działa"
 
 #: src/dspy-property.c:63
 msgid "read/write"
@@ -86,7 +105,7 @@ msgstr "tylko do zapisu"
 msgid "read-only"
 msgstr "tylko do odczytu"
 
-#: src/dspy-property.c:207
+#: src/dspy-property.c:234
 msgid "Error"
 msgstr "Błąd"
 
@@ -96,29 +115,59 @@ msgstr "Błąd"
 msgid "Array of [%s]"
 msgstr "Macierz [%s]"
 
-#: src/dspy-window.c:137
+#: src/dspy-window.c:228
 msgid "Accessibility Bus"
 msgstr "Magistrala ułatwień dostępu"
 
-#: src/dspy-window.c:406
+#: src/dspy-window.c:510
 msgid "Methods"
 msgstr "Metody"
 
-#: src/dspy-window.c:408
+#: src/dspy-window.c:512
 msgid "Properties"
 msgstr "Właściwości"
 
-#: src/dspy-window.c:410
+#: src/dspy-window.c:514
 msgid "Signals"
 msgstr "Sygnały"
 
-#: src/dspy-window.c:437
+#: src/dspy-window.c:541
 msgid "Copied to Clipboard"
 msgstr "Skopiowano do schowka"
 
-#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
+#: src/dspy-window.c:602 src/dspy-window.c:647
+msgid "Property was set, but the service owner has changed"
+msgstr "Ustawiono właściwość, ale zmienił się właściciel usługi"
+
+#: src/dspy-window.c:633
+#, c-format
+msgid "Failed to set property: %s"
+msgstr "Ustawienie właściwości się nie powiodło: %s"
+
+#: src/dspy-window.c:661
+#, c-format
+msgid "Property was set, but could not be read back: %s"
+msgstr "Ustawiono właściwość, ale nie można jej ponownie odczytać: %s"
+
+#: src/dspy-window.c:667
+msgid "Property updated"
+msgstr "Zaktualizowano właściwość"
+
+#: src/dspy-window.c:694
+msgid "The D-Bus connection or service owner is unavailable"
+msgstr "Połączenie D-Bus lub właściciel usługi jest niedostępny"
+
+#: src/dspy-window.c:725
+msgid "Setting property…"
+msgstr "Ustawianie właściwości…"
+
+#: src/dspy-window.c:813 src/dspy-window.c:823 src/dspy-window.c:832
 msgid "msec"
 msgstr "ms"
+
+#: src/dspy-window.c:984
+msgid "Write-only property"
+msgstr "Właściwość tylko do zapisu"
 
 #: src/dspy-window.ui:62
 msgid "Connections"
@@ -131,7 +180,7 @@ msgstr "Nazwy magistrali"
 #: src/dspy-window.ui:206 src/dspy-window.ui:374 src/dspy-window.ui:577
 #: src/dspy-window.ui:724
 msgid "Filter…"
-msgstr "Filtrowanie…"
+msgstr "Filtruj…"
 
 #: src/dspy-window.ui:326
 msgid "Objects"
@@ -139,7 +188,7 @@ msgstr "Obiekty"
 
 #: src/dspy-window.ui:349
 msgid "Refresh Objects"
-msgstr "Odświeżanie obiektów"
+msgstr "Odśwież obiekty"
 
 #: src/dspy-window.ui:481 src/dspy-window.ui:533
 msgid "Interfaces"
@@ -147,14 +196,14 @@ msgstr "Interfejsy"
 
 #: src/dspy-window.ui:518
 msgid "Explore Objects"
-msgstr "Badanie obiektów"
+msgstr "Badaj obiekty"
 
 #: src/dspy-window.ui:519
 msgid "Select a bus to explore objects"
-msgstr "Wybranie magistrali umożliwia badanie obiektów"
+msgstr "Wybierz magistralę, aby zbadać obiekty"
 
 #: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
-#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
+#: src/dspy-window.ui:1142 src/dspy-window.ui:1303
 msgid "Members"
 msgstr "Elementy"
 
@@ -164,29 +213,29 @@ msgstr "Szczegóły"
 
 #: src/dspy-window.ui:895
 msgid "Explore Interfaces"
-msgstr "Badanie interfejsów"
+msgstr "Badaj interfejsy"
 
 #: src/dspy-window.ui:896
 msgid "Select an object to explore members"
-msgstr "Wybranie obiektu umożliwia badanie elementów"
+msgstr "Wybierz obiekt, aby zbadać elementy"
 
-#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
+#: src/dspy-window.ui:948 src/dspy-window.ui:1175 src/dspy-window.ui:1336
 msgid "Bus"
 msgstr "Magistrala"
 
-#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
+#: src/dspy-window.ui:961 src/dspy-window.ui:1188 src/dspy-window.ui:1349
 msgid "Bus Name"
 msgstr "Nazwa magistrali"
 
-#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
+#: src/dspy-window.ui:975 src/dspy-window.ui:1202 src/dspy-window.ui:1363
 msgid "Owner"
 msgstr "Właściciel"
 
-#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
+#: src/dspy-window.ui:989 src/dspy-window.ui:1216 src/dspy-window.ui:1377
 msgid "Object Path"
 msgstr "Ścieżka do obiektu"
 
-#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1230 src/dspy-window.ui:1391
 msgid "Interface"
 msgstr "Interfejs"
 
@@ -202,83 +251,102 @@ msgstr "Podpis typu"
 msgid "Value"
 msgstr "Wartość"
 
-#: src/dspy-window.ui:1209
+#: src/dspy-window.ui:1089
+msgid "Set Property"
+msgstr "Ustaw właściwość"
+
+#: src/dspy-window.ui:1090
+msgid "Enter a value in GVariant text format, such as 'hello', true, or 42."
+msgstr ""
+"Wprowadź wartość w formacie tekstowym GVariant, na przykład 'hello', true "
+"lub 42."
+
+#: src/dspy-window.ui:1094
+msgid "New Value"
+msgstr "Nowa wartość"
+
+#: src/dspy-window.ui:1112
+msgid "Set"
+msgstr "Ustaw"
+
+#: src/dspy-window.ui:1248
 msgid "Signal"
 msgstr "Sygnał"
 
-#: src/dspy-window.ui:1223
+#: src/dspy-window.ui:1262
 msgid "Signature"
 msgstr "Podpis"
 
-#: src/dspy-window.ui:1370
+#: src/dspy-window.ui:1409
 msgid "Method"
 msgstr "Metoda"
 
-#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
+#: src/dspy-window.ui:1423 src/dspy-window.ui:1453
 msgid "Parameters"
 msgstr "Parametry"
 
-#: src/dspy-window.ui:1398
+#: src/dspy-window.ui:1437
 msgid "Return Type"
 msgstr "Typ zwrotny"
 
-#: src/dspy-window.ui:1436
+#: src/dspy-window.ui:1475
 msgid "Call Method"
-msgstr "Metoda wywołania"
+msgstr "Wywołaj metodę"
 
-#: src/dspy-window.ui:1452
+#: src/dspy-window.ui:1491
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: src/dspy-window.ui:1469
+#: src/dspy-window.ui:1508
 msgid "Result"
 msgstr "Wynik"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1540
 msgid "Statistics"
 msgstr "Statystyki"
 
-#: src/dspy-window.ui:1505
+#: src/dspy-window.ui:1544
 msgid "Duration"
 msgstr "Czas trwania"
 
-#: src/dspy-window.ui:1511
+#: src/dspy-window.ui:1550
 msgid "Minimum Duration"
 msgstr "Minimalny czas trwania"
 
-#: src/dspy-window.ui:1517
+#: src/dspy-window.ui:1556
 msgid "Maximum Duration"
 msgstr "Maksymalny czas trwania"
 
-#: src/dspy-window.ui:1546
+#: src/dspy-window.ui:1585
 msgid "New Connection"
 msgstr "Nowe połączenie"
 
-#: src/dspy-window.ui:1557
+#: src/dspy-window.ui:1596
 msgid "Bus Address"
 msgstr "Adres magistrali"
 
-#: src/dspy-window.ui:1568
+#: src/dspy-window.ui:1607
 msgid "Connect"
 msgstr "Połącz"
 
-#: src/dspy-window.ui:1589
+#: src/dspy-window.ui:1628
 msgid "_New Window"
 msgstr "_Nowe okno"
 
-#: src/dspy-window.ui:1595
+#: src/dspy-window.ui:1634
 msgid "Connect to Other _Bus"
 msgstr "Połącz z inną _magistralą"
 
-#: src/dspy-window.ui:1601
+#: src/dspy-window.ui:1640
 msgid "_About D-Spy"
-msgstr "_O programie"
+msgstr "_O aplikacji"
 
 #: src/main.c:132
 msgid "translator-credits"
 msgstr ""
 "Piotr Drąg <piotrdrag@gmail.com>, 2023-2025.\n"
-"Aviary.pl <community-poland@mozilla.org>, 2023-2025."
+"Aviary.pl <community-poland@mozilla.org>, 2023-2025.\n"
+"Tomasz Bojanowski <tomasz@bojanowski.me>, 2026."
 
 #: src/main.c:154
 msgid "Open a new window"
