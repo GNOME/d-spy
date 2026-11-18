@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: d-spy main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/d-spy/issues\n"
-"POT-Creation-Date: 2026-03-16 21:12+0000\n"
-"PO-Revision-Date: 2026-08-03 14:38+0200\n"
+"POT-Creation-Date: 2026-10-13 13:41+0000\n"
+"PO-Revision-Date: 2026-11-18 21:31+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Gtranslator 50.0\n"
+"X-Generator: Gtranslator 51.0\n"
 "X-DL-VCS-Web: https://gitlab.gnome.org/GNOME/d-spy\n"
 "X-DL-Lang: ro\n"
 "X-DL-Module: d-spy\n"
@@ -108,7 +108,7 @@ msgstr "doar scriere"
 msgid "read-only"
 msgstr "doar citire"
 
-#: src/dspy-property.c:207
+#: src/dspy-property.c:234
 msgid "Error"
 msgstr "Eroare"
 
@@ -118,29 +118,61 @@ msgstr "Eroare"
 msgid "Array of [%s]"
 msgstr "Vector de [%s]"
 
-#: src/dspy-window.c:137
+#: src/dspy-window.c:228
 msgid "Accessibility Bus"
 msgstr "Magistrală de accesibilitate"
 
-#: src/dspy-window.c:406
+#: src/dspy-window.c:510
 msgid "Methods"
 msgstr "Metode"
 
-#: src/dspy-window.c:408
+#: src/dspy-window.c:512
 msgid "Properties"
 msgstr "Proprietăți"
 
-#: src/dspy-window.c:410
+#: src/dspy-window.c:514
 msgid "Signals"
 msgstr "Semnale"
 
-#: src/dspy-window.c:437
+#: src/dspy-window.c:541
 msgid "Copied to Clipboard"
 msgstr "Copiat"
 
-#: src/dspy-window.c:524 src/dspy-window.c:534 src/dspy-window.c:543
+#: src/dspy-window.c:602 src/dspy-window.c:647
+msgid "Property was set, but the service owner has changed"
+msgstr ""
+"Proprietatea a fost stabilită, dar proprietarul serviciului s-a schimbat"
+
+#: src/dspy-window.c:633
+#, c-format
+msgid "Failed to set property: %s"
+msgstr "Nu s-a putut stabili proprietatea: %s"
+
+#: src/dspy-window.c:661
+#, c-format
+msgid "Property was set, but could not be read back: %s"
+msgstr "Proprietatea a fost stabilită, dar nu s-a putut citi din nou: %s"
+
+#: src/dspy-window.c:667
+msgid "Property updated"
+msgstr "Proprietate actualizată"
+
+#: src/dspy-window.c:694
+msgid "The D-Bus connection or service owner is unavailable"
+msgstr ""
+"Conexiunea D-Bus nu este disponibilă sau serviciul nu are un proprietar"
+
+#: src/dspy-window.c:725
+msgid "Setting property…"
+msgstr "Se actualizează proprietatea…"
+
+#: src/dspy-window.c:813 src/dspy-window.c:823 src/dspy-window.c:832
 msgid "msec"
 msgstr "msec"
+
+#: src/dspy-window.c:984
+msgid "Write-only property"
+msgstr "Proprietate cu acces doar la scriere"
 
 #: src/dspy-window.ui:62
 msgid "Connections"
@@ -176,7 +208,7 @@ msgid "Select a bus to explore objects"
 msgstr "Alege o magistrală pentru a explora obiecte"
 
 #: src/dspy-window.ui:680 src/dspy-window.ui:871 src/dspy-window.ui:915
-#: src/dspy-window.ui:1103 src/dspy-window.ui:1264
+#: src/dspy-window.ui:1142 src/dspy-window.ui:1303
 msgid "Members"
 msgstr "Membri"
 
@@ -192,23 +224,23 @@ msgstr "Explorează interfețe"
 msgid "Select an object to explore members"
 msgstr "Alege un obiect pentru a explora membrii"
 
-#: src/dspy-window.ui:948 src/dspy-window.ui:1136 src/dspy-window.ui:1297
+#: src/dspy-window.ui:948 src/dspy-window.ui:1175 src/dspy-window.ui:1336
 msgid "Bus"
 msgstr "Magistrală"
 
-#: src/dspy-window.ui:961 src/dspy-window.ui:1149 src/dspy-window.ui:1310
+#: src/dspy-window.ui:961 src/dspy-window.ui:1188 src/dspy-window.ui:1349
 msgid "Bus Name"
 msgstr "Numele magistralei"
 
-#: src/dspy-window.ui:975 src/dspy-window.ui:1163 src/dspy-window.ui:1324
+#: src/dspy-window.ui:975 src/dspy-window.ui:1202 src/dspy-window.ui:1363
 msgid "Owner"
 msgstr "Proprietar"
 
-#: src/dspy-window.ui:989 src/dspy-window.ui:1177 src/dspy-window.ui:1338
+#: src/dspy-window.ui:989 src/dspy-window.ui:1216 src/dspy-window.ui:1377
 msgid "Object Path"
 msgstr "Cale obiect"
 
-#: src/dspy-window.ui:1003 src/dspy-window.ui:1191 src/dspy-window.ui:1352
+#: src/dspy-window.ui:1003 src/dspy-window.ui:1230 src/dspy-window.ui:1391
 msgid "Interface"
 msgstr "Interfață"
 
@@ -224,75 +256,92 @@ msgstr "Tip de semnătură"
 msgid "Value"
 msgstr "Valoare"
 
-#: src/dspy-window.ui:1209
+#: src/dspy-window.ui:1089
+msgid "Set Property"
+msgstr "Modifică proprietatea"
+
+#: src/dspy-window.ui:1090
+msgid "Enter a value in GVariant text format, such as 'hello', true, or 42."
+msgstr ""
+"Introdu o valoare în format text GVariant, de exemplu „hello”, true sau 42."
+
+#: src/dspy-window.ui:1094
+msgid "New Value"
+msgstr "Valoare nouă"
+
+#: src/dspy-window.ui:1112
+msgid "Set"
+msgstr "Aplică"
+
+#: src/dspy-window.ui:1248
 msgid "Signal"
 msgstr "Semnal"
 
-#: src/dspy-window.ui:1223
+#: src/dspy-window.ui:1262
 msgid "Signature"
 msgstr "Semnătura"
 
-#: src/dspy-window.ui:1370
+#: src/dspy-window.ui:1409
 msgid "Method"
-msgstr "Metodă"
+msgstr "Metoda"
 
-#: src/dspy-window.ui:1384 src/dspy-window.ui:1414
+#: src/dspy-window.ui:1423 src/dspy-window.ui:1453
 msgid "Parameters"
 msgstr "Parametri"
 
-#: src/dspy-window.ui:1398
+#: src/dspy-window.ui:1437
 msgid "Return Type"
 msgstr "Tip de restituire"
 
-#: src/dspy-window.ui:1436
+#: src/dspy-window.ui:1475
 msgid "Call Method"
 msgstr "Cheamă metoda"
 
-#: src/dspy-window.ui:1452
+#: src/dspy-window.ui:1491
 msgid "Cancel"
 msgstr "Anulează"
 
-#: src/dspy-window.ui:1469
+#: src/dspy-window.ui:1508
 msgid "Result"
 msgstr "Rezultat"
 
-#: src/dspy-window.ui:1501
+#: src/dspy-window.ui:1540
 msgid "Statistics"
 msgstr "Statistici"
 
-#: src/dspy-window.ui:1505
+#: src/dspy-window.ui:1544
 msgid "Duration"
 msgstr "Durata"
 
-#: src/dspy-window.ui:1511
+#: src/dspy-window.ui:1550
 msgid "Minimum Duration"
 msgstr "Durata minimă"
 
-#: src/dspy-window.ui:1517
+#: src/dspy-window.ui:1556
 msgid "Maximum Duration"
 msgstr "Durata maximă"
 
-#: src/dspy-window.ui:1546
+#: src/dspy-window.ui:1585
 msgid "New Connection"
 msgstr "Conexiune nouă"
 
-#: src/dspy-window.ui:1557
+#: src/dspy-window.ui:1596
 msgid "Bus Address"
 msgstr "Adresă de magistrală"
 
-#: src/dspy-window.ui:1568
+#: src/dspy-window.ui:1607
 msgid "Connect"
 msgstr "Conectare"
 
-#: src/dspy-window.ui:1589
+#: src/dspy-window.ui:1628
 msgid "_New Window"
 msgstr "Fereastră _nouă"
 
-#: src/dspy-window.ui:1595
+#: src/dspy-window.ui:1634
 msgid "Connect to Other _Bus"
 msgstr "Conectează la altă _magistrală"
 
-#: src/dspy-window.ui:1601
+#: src/dspy-window.ui:1640
 msgid "_About D-Spy"
 msgstr "_Despre D-Spy"
 
